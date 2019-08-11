@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eagle>
+
+    <record id="_assets_backend_helpers" inherit_id="web._assets_backend_helpers">
+        <xpath expr="//link" position="before">
+        </xpath>
+    </record>
+
+</eagle>

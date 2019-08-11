@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eagle>
+
+    <record id="product_template_form_view_inherit" model="ir.ui.view">
+        <field name="name">product.template.form.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//label[@for='name']" position="before">
+                <h3><field name="prefix" attrs="{'invisible': [('is_book','=',False)]}"/></h3>
+            </xpath>
+            <xpath expr="//div[@name='options']" position="before">
+                <h3><field name="suffix" attrs="{'invisible': [('is_book','=',False)]}"/></h3>
+            </xpath>
+            <xpath expr="//div[@name='options']" position="replace">
+                <div name="options" groups="base.group_user">
+                       <group col="4">
+                           <field name="sale_ok" nolabel="1"/>
+                           <label for="sale_ok"/>
+                           <field name="purchase_ok" nolabel="1"/>
+                           <label for="purchase_ok"/>
+                           <field name="is_book" nolabel="1"/>
+                           <label for="is_book"/>
+                       </group>
+                </div>
+
+            </xpath>
+            <xpath expr="//field[@name='type']" position="before" >
+               <field name="writer_ids" widget="many2many_tags" attrs="{'invisible': [('is_book','=',False)]}"  domain="[('is_writer','=',True)]" context="{'default_is_writer':1}"/>
+               <field name="publisher_id" attrs="{'invisible': [('is_book','=',False)]}"  domain="[('is_publisher','=',True)]" context="{'default_is_publisher':True}"/>
+        </xpath>
+            <xpath expr="//field[@name='applied_on']" position="replace" >
+                <field name="product_id" invisible="1" />
+                <field name="product_tmpl_id" invisible="1" />
+               <field name="applied_on" invisible="1"/>
+        </xpath>
+        </field>
+    </record>
+    <record id="product_template_search_view_inherit" model="ir.ui.view">
+        <field name="name">product.template.search.view.inherit</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='inactive']" position="before">
+                <field name="writer_ids" string="Writer" filter_domain="[('writer_ids.name', 'ilike', self)]"/>
+            </xpath>
+        </field>
+    </record>
+
+
+
+
+    <record id="product_product_varient_easy_edit_view_inherit" model="ir.ui.view">
+            <field name="name">product.product.varient.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="replace">
+                    <form string="Variant Information">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                           <button name="%(product.action_product_price_list)d" type="action"
+                                icon="fa-sitemap" class="oe_stat_button"
+                                groups="product.group_product_variant">
+                                <field string="Price List Items" name="product_price_list_item_count" widget="statinfo" />
+                            </button>
+                        </div>
+                        <field name="id" invisible="1"/>
+                        <field name="image_medium" widget="image" class="oe_avatar"/>
+
+                            <label class="oe_edit_only" for="name" string="Product Name"/>
+                            <h1><field name="name" placeholder="e.g. Eagle ERP Subscription" readonly="1"/></h1>
+                            <field name="attribute_value_ids" widget="many2many_tags" readonly="1"/>
+
+
+                        <notebook>
+                          <page string="General Info">
+                            <group>
+                            <group name="codes" string="Codes">
+                                <field name="barcode"/>
+                                <field name="default_code"/>
+                            </group>
+                            <group>
+                                <field name="active"/>
+                                <field name="type" invisible="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group name="pricing" string="Pricing">
+                                <field name="product_variant_count" invisible="1"/>
+                                <field name="lst_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" attrs="{'readonly': [('product_variant_count', '&gt;', 1)]}"/>
+                                <field name="standard_price" widget="monetary" options="{'currency_field': 'cost_currency_id', 'field_digits': True}"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="cost_currency_id" invisible="1"/>
+                            </group>
+                            <group name="weight">
+                                <group name="weight" string="Weights" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}">
+                                    <label for="volume"/>
+                                    <div class="o_row">
+                                        <field name="volume"/>
+                                        <span>m³</span>
+                                    </div>
+                                    <label for="weight"/>
+                                    <div class="o_row">
+                                        <field name="weight"/>
+                                        <span><field name="weight_uom_name"/></span>
+                                    </div>
+                                </group>
+                            </group>
+                        </group>
+                        <group name="packaging" string="Packaging" colspan="4" groups="product.group_stock_packaging">
+                            <field name="packaging_ids" nolabel="1"  context="{'tree_view_ref':'product.product_packaging_tree_view2', 'form_view_ref':'product.product_packaging_form_view2'}"/>
+                        </group>
+                          </page>
+                          <page string="prices">
+                            <field name="item_ids" nolabel="1"  readonly="False" domain="[('product_id','=',id)]" context="{'default_base':'list_price', 'default_applied_on' :'0_product_variant', 'default_product_id' :id}">
+                                            <tree string="Pricelist Items" editable="bottom" domain="[('product_id','=',id)]">
+                                                <field name="pricelist_id" string="Pricelist" required="1"/>
+                                                <field name="currency_id" invisible="1"/>
+                                                <field name="fixed_price" string="Price" required="1" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                                <field name="min_quantity"/>
+                                                <field name="date_start"/>
+                                                <field name="date_end"/>
+                                                <field name="product_tmpl_id" invisible="1"/>
+                                                <field name="applied_on" invisible="1"/>
+
+                                                <field name="product_id" invisible="1"/>
+                                                <field name="applied_on" invisible="1"/>
+                                            </tree>
+                                            </field>
+                          </page>
+                        </notebook>
+
+                    </sheet>
+                </form>
+                </xpath>
+            </field>
+    </record>
+
+
+
+    <!--<record model='ir.ui.view' id='product_pricelist_varient_form'>
+        <field name="name">product.pricelist.varient.forms</field>
+        <field name="model">product.pricelist</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="id"/>
+                        </group>
+                    <field name="item_ids">
+                        <tree>
+                            <field name="product_tmpl_id"/>
+                        </tree>
+                    </field>
+                    <tree>
+
+                    </tree>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_product_pricelist_varients" model="ir.actions.act_window">
+        <field name="name">Price List</field>
+        <field name="res_model">product.pricelist</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create the your first academic year here.
+            </p>
+        </field>
+    </record>
+-->
+
+</eagle>

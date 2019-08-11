@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eagle>
+    <data>
+        <menuitem id="shop_menu_root" action="mail.action_discuss" name="Shop" groups="base.group_user,base.group_partner_manager" />
+        <menuitem id="menu_shop_orders_main" name="Orders"
+                        parent="shop_menu_root" sequence="1"/>
+        <menuitem id="menu_shop_contacts" name="Contacts"
+                        action="base.action_partner_customer_form"
+                        parent="shop_menu_root" sequence="3"/>
+        <menuitem id="menu_shop_purchase" name="Purchase"
+                        parent="shop_menu_root" sequence="2"/>
+
+        <menuitem id="menu_shop_product" name="Products"
+                        parent="shop_menu_root" sequence="4"/>
+
+        <menuitem id="menu_shop_product_product" name="All Products"
+                  action="stock.product_template_action_product"
+                        parent="menu_shop_product" sequence="4"/>
+        <menuitem id="menu_shop_product_product_category" name="Category"
+                  action="product.product_category_action_form"
+                        parent="menu_shop_product" sequence="5"/>
+
+        <menuitem id="menu_shop_purchase_purchase" name="Purchase Orders"
+                        action="purchase.purchase_form_action"
+                        parent="menu_shop_purchase" sequence="2"/>
+
+        <menuitem id="menu_shop_contacts_customers" name="Customers"
+                        action="base.action_partner_customer_form"
+                        parent="menu_shop_contacts" sequence="1"/>
+
+        <menuitem id="menu_shop_orders_orders" name="Orders"
+                        action="website_sale.action_orders_ecommerce"
+                        parent="menu_shop_orders_main" sequence="2"/>
+    </data>
+</eagle>

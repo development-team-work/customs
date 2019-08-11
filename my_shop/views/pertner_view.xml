@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eagle>
+
+
+
+
+    <record id="res_partner_form_view_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='sales_purchases']" position="after">
+                    <page name="book_writer_publisher" string="Writer &amp; Publisher">
+                                <group string="writer_publisher">
+                                    <group>
+                                        <field name="is_writer" domain="[('is_writer','=',True)]"/>
+                                        <field name="is_publisher"/>
+                                    </group>
+                                    <group>
+                                        <field name="published" attrs="{'invisible': [('is_publisher','=',False)]}">
+                                            <tree>
+                                                <field name="name"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                    <group>
+                                        <field name="written" attrs="{'invisible': [('is_writer','=',False)]}">
+                                            <tree>
+                                                <field name="name"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </group>
+                        </page>
+                </xpath>
+
+
+            </field>
+    </record>
+</eagle>
