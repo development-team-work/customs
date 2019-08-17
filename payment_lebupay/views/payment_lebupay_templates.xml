@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eagle>
+	<data noupdate="1">
+		<template id="lebupay_acquirer_button">
+			<form t-if="acquirer.accesskey">
+				<input type="hidden" id="accesskey" name="accesskey" t-att-value="accesskey" />
+				<input type="hidden" id="secretkey" name="secretkey" t-att-value="secretkey" />
+				<input type="hidden" id="amount" name="amount" t-att-value="amount" />
+				<input type="hidden" id="currency" name="currency" t-att-value="currency" />
+				<input type="hidden" id="invoicenumber" name="invoicenumber" t-att-value="invoicenumber" />
+				<input type="hidden" id="culture" name="culture" t-att-value="culture" />
+				<input type="hidden" id="name" name="name" t-att-value="name" />
+				<input type="hidden" id="last_order_id" name="last_order_id" t-att-value="last_order_id" />
+				<input type="hidden" id="last_order_number" name="last_order_number" t-att-value="last_order_number" />
+				<input type="hidden" id="id" name="id" t-att-value="id" />
+				<input type="hidden" id="address_line1" name="address_line1" t-att-value="address_line1" />
+				<input type="hidden" id="address_city" name="address_city" t-att-value="address_city" />
+				<input type="hidden" id="address_zip" name="address_zip" t-att-value="address_zip" />
+				<input type="hidden" id="address_country" name="address_country" t-att-value="address_country" />
+				<input type="hidden" id="phone" name="phone" t-att-value="phone" />
+				<input type="hidden" id="email" name="email" t-att-value="email" />
+				<input type="hidden" id="acquirer" name="acquirer" t-att-value="acquirer.id" />
+				<input type="hidden" id="last_order_product_id" name="last_order_product_id" t-att-value="last_order_product_id" />
+				<input type="hidden" id="last_order_wareouse_id" name="last_order_wareouse_id" t-att-value="last_order_wareouse_id" />
+				<input type="hidden" id="last_order_picking_id" name="last_order_picking_id" t-att-value="last_order_picking_id" />
+				<input type="hidden" id="last_order_location_id" name="last_order_location_id" t-att-value="last_order_location_id" />
+				<!--
+				<button type="submit" width="100px" t-att-class="submit_class">
+				<img t-if="not submit_txt" src="/payment_buckaroo/static/src/img/buckaroo_icon.png"/>
+				<span t-if="submit_txt"><t t-esc="submit_txt"/> <span class="fa fa-long-arrow-right"/></span>
+				</button>
+				-->
+				<div class="lebupy">
+					<span onclick="lebupay()" id="submit" style="text-transform: uppercase;padding: 15px 35px;font-weight: bold;border: none;background: #b9a78c !important;    border-radius: 0;" width="100px" class="submit_class btn btn-primary">
+						Place Order
+					</span>
+				</div>
+			</form>
+			<form name="form_name" action="https://www.lebupay.com/execute-payment" target="_self">
+				<input type="hidden" id="token" name="token" value="" />
+			</form>
+			<script type="text/javascript">
+
+                function TransactionIDGenerator() {
+
+                    this.length = 8;
+                    this.timestamp = +new Date;
+
+                    var _getRandomInt = function (min, max) {
+                        return Math.floor(Math.random() * (max - min + 1)) + min;
+                    }
+
+                    this.generate = function () {
+
+                        var ts = this.timestamp.toString();
+                        var parts = ts.split("").reverse();
+                        var id = "";
+
+                        for (var i = 0; i &lt; this.length; ++i) {
+                            var index = _getRandomInt(0, parts.length - 1);
+                            id += parts[index];
+                        }
+
+                        return id;
+                    }
+                }
+
+                if($("input[name='pm_id']:checked").attr('data-provider') == "lebupay") {
+                //function lebupay() {
+
+                    var generator = new TransactionIDGenerator();
+                    var orderTransation_id = generator.generate()
+
+                    var accesskey = $('#accesskey').val();
+                    var amount = $('#amount').val();
+                    var currency = $('#currency').val();
+                    var name = $('#name').val();
+                    var last_order_id = $('#last_order_id').val();
+                    var last_order_number = $('#last_order_number').val();
+                    var id = $('#id').val();
+                    var phone = $('#phone').val();
+                    var email = $('#email').val();
+                    var acquirer = $('#acquirer').val();
+
+                    var product_id = $('#last_order_product_id').val();
+                    var warehouse_id = $('#last_order_wareouse_id').val();
+                    var picking_id = $('#last_order_picking_id').val();
+                    var location_id = $('#last_order_location_id').val();
+
+                    var t_a_o_p_a = orderTransation_id + "-" + accesskey + "-" + last_order_id + "-" + product_id + "-" + picking_id + "-" + location_id + "-" + id;
+
+                    var order = Math.floor((Math.random() * 100) + 1)
+                    var sucess = window.location.origin + "/page/paymentsuccess?orderdata=" + t_a_o_p_a;
+
+                    var cancel = window.location.origin + "/page/paymentfailure?orderdata=" + t_a_o_p_a;
+
+                    $.ajax({
+                        url: 'https://www.lebupay.com/check-payment',
+                        dataType: 'json',
+                        type: 'post',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            "successURL": sucess,
+                            "failureURL": cancel,
+                            "amount": amount,
+                            "orderTransactionID": orderTransation_id,
+                            "firstName": name,
+                            "lastName": " ",
+                            "email": email,
+                            "mobileNumber": phone,
+                            "accessKey": accesskey
+                        }),
+                        processData: false,
+                        success: function (data, textStatus, jQxhr) {
+
+                            console.log(data)
+
+                            if (data.responseCode == '200') {
+                                var token = data.token;
+                                var name = document.getElementById("token").value = token;
+                                var x = document.getElementsByName('form_name');
+                                x[0].submit(); //form submission
+                            }
+
+                        },
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            console.log(errorThrown);
+                        }
+                    });
+
+                }
+			</script>
+		</template>
+	</data>
+</eagle>

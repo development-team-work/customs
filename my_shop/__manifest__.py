@@ -15,6 +15,7 @@ Customisation Eagle ERP
     'depends' : ['base','website','stock','account','sale_management','point_of_sale',
                  'note','website_sale','purchase','contacts','mrp','l10n_bd'],
     'data': [
+        'data/payment_acquirer.xml',
         'reports/product_label.xml',
         'reports/report.xml',
         'security/ir.model.access.csv',

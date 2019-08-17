@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eagle>
+
+    <template id="payment_lebupay.paymentsuccess">
+        <t t-call="website.layout">     
+
+            <script>
+                
+                function makeOrder(order){            
+                    $.ajax({
+                            url: window.location.origin +'/shop/payment/lebupay',
+                            dataType: 'json',
+                            type: 'post',
+                            contentType: 'application/json',
+                            data: JSON.stringify(order),
+                            processData: false,
+                            success: function(data, textStatus, jQxhr) {
+                                console.log(data)
+                            },
+                            error: function(jqXhr, textStatus, errorThrown) {
+                                console.log(errorThrown);
+                            }
+                        });
+                }         
+                    
+                function url_query( query ) {
+                    query = query.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+                    var expr = "[\\?&amp;]"+query+"=([^&amp;#]*)";
+                    var regex = new RegExp( expr );
+                    var results = regex.exec( window.location.href );
+                    if ( results !== null ) {
+                        return results[1];
+                    } else {
+                        return false;
+                    }
+                }
+
+                var string =  url_query('orderdata');
+                var array = string.split("-");
+                
+                var orderTransaction_id = array[0];
+                var access_key = array[1];
+                var last_order_id = array[2];
+                var product_id = array[3];
+                var picking_id = array[4];
+                var location_id = array[5];
+                var partner_id = array[6];
+            
+                
+                var amount=0;
+            
+                console.log(array[0]);
+                
+                if(orderTransaction_id != '' &amp;&amp; access_key !='') {
+                
+                    $.ajax({
+                        url: 'https://www.lebupay.com/get-order-trx-status',
+                        dataType: 'json',
+                        type: 'post',
+                        contentType: 'application/json',
+                        data: JSON.stringify({
+                            "orderTransactionID":"mi2q31",
+                            "accessKey":access_key
+                        }),
+                        processData: false,
+                        success: function(data, textStatus, jQxhr) {
+                            console.log(data)
+                            if(data.responseCode == '200'){
+                                amount = data.amount;
+                                
+                                order_data={
+                                            "params":{
+                                                "o_id":last_order_id,
+                                                "o_num":orderTransaction_id,
+                                                "picking_id":picking_id,
+                                                "location_id":location_id,
+                                                "partner_id":partner_id,
+                                                "product_id":product_id
+                                            }
+                                }
+                                makeOrder(order_data)
+                            } 
+                        },
+                        error: function(jqXhr, textStatus, errorThrown) {
+                            console.log(errorThrown);
+                        }
+                    });
+                
+                }
+                           
+            </script>
+
+             <div class="oe_structure">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 mt64 mb64 bg-black-25">
+                            <h4 class="o_default_snippet_text">You order has been placed successfully.</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </t>
+    </template>
+
+</eagle>

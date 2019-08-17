@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- L/C informations start -->
+
+            <!-- <tree view start> -->
+            <record id="view_lc_informations_tree" model="ir.ui.view">
+                <field name="name">lc_informations.model.tree</field>
+                <field name="model">lc_informations.model</field>
+                <field name="priority" eval="16" />
+                <field name="arch" type="xml">
+                    <tree string="lc_informations"> 
+                        <field name="name" />
+                        <field name="pi_no" />
+                        <field name="created_date" />
+                        <field name="org_bank_name" />
+                        <field name="bank_name2" />
+                        <field name="bank_branch" />
+                        <field name="bank_address" />
+                    </tree>
+                </field>
+            </record>
+            <!-- <tree view end> -->    
+
+            <!-- <form view start> -->
+            <record id="view_lc_informations_form" model="ir.ui.view">
+                <field name="name">lc_informations.model.form</field>
+                <field name="model">lc_informations.model</field>
+                <field name="priority" eval="16" />
+                <field name="arch" type="xml">
+                    <form string="lc_informations">
+                        <sheet>
+                            <div class='row'>
+                                <div class='col-xs-6'>
+                                    <group>
+                                        <field name="name" string="LC No"/>
+
+                                        <field name="pi_no_id" on_change="onchange_pi_no_id(pi_no_id)" />
+                                        <field name="pi_no" invisible="1"/>
+                                        <field name="vat_no" />
+                                        <field name="irc_no" /> 
+                                        <field name="bin_no" invisible="1"/>
+                                        <field name="tin_no" />   
+                                        <field name="erc_no" />                  
+                                        <field name="expire_date" />         
+                                    </group>
+                                </div>
+                                <div class='col-xs-6'>
+                                    <group>
+                                        <field name="created_date" string="LC Date"/>
+
+                                        <field name="org_bank_name" on_change="onchange_bank_name_branch(org_bank_name)"/>
+                                        <field name="bank_name2" invisible="1"/>
+                                        <field name="bank_branch" />
+                                        <field name="bank_address" />
+                                        <field name="shipment_last_date" />
+                                        
+                                    </group>                                    
+                                </div>
+                            </div>
+
+                            <separator/>
+                            <h3>Contracts Numbers</h3>
+                            <div class='row'>
+                                <div class="col-xs-6">
+                                    <group>
+                                        <field name="export_con_no" />
+                                        <field name="export_lc_no" />
+                                        <field name="sales_con_no" />
+                                        <field name="tt_no" />
+                                        <field name="exp_sale_con_no" />
+                                        <field name="pur_con_no" />
+                                        <field name="exp_dc_no" />
+                                        <field name="bg_bank_dc_no" />
+                                        <field name="extra_field" />
+                                    </group>
+                                </div>
+                                <div class="col-xs-6">
+                                    <group>
+                                    <field name="export_con_no_created_date" />
+                                    <field name="export_lc_no_created_date" />
+                                    <field name="sales_con_no_created_date" />
+                                    <field name="tt_no_created_date" />
+                                    <field name="exp_sale_con_no_created_date" />
+                                    <field name="pur_con_no_created_date" />
+                                    <field name="exp_dc_no_created_date" />
+                                    <field name="bg_bank_dc_no_created_date" />
+                                    </group>
+                                </div>
+                            </div>
+
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+            <!-- <form view end> -->
+
+            <!-- <search start> -->
+            <record id="view_lc_informations_search" model="ir.ui.view">
+                <field name="name">lc_informations.model.search</field>
+                <field name="model">lc_informations.model</field>
+                <field name="priority" eval="16" />
+                <field name="arch" type="xml">
+                    <search string="lc_informations">
+                        <field name="name" />
+                        <field name="org_bank_name" />
+                        <field name="bank_name2" />
+                        <field name="bank_branch" />
+                        <field name="bank_address" />
+                        <field name="created_date" />
+                    </search>
+                </field>
+            </record>
+            <!-- <search end> -->
+
+            <!-- <act_window start> -->
+            <record id="act_open_lc_informations_view" model="ir.actions.act_window">
+                <field name="name">L/C Informations</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="res_model">lc_informations.model</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">tree,form</field>
+                <field name="search_view_id" ref='view_lc_informations_search'/>
+                <field name='domain'>[]</field>
+                <field name="context">{}</field> 
+                <field name="help" type="html">
+                    <p class="oe_view_nocontent_create">
+                        Click here to create L/C Informations
+                    </p>
+                </field>
+            </record>
+            <record model="ir.actions.act_window.view" id="act_open_lc_informations_view_form">
+                <field name="act_window_id" ref="act_open_lc_informations_view" />
+                <field name="sequence" eval="20" />
+                <field name="view_mode">form</field>
+                <field name="view_id" ref="view_lc_informations_form" />
+            </record>
+            <record model="ir.actions.act_window.view" id="act_open_lc_informations_view_tree">
+                <field name="act_window_id" ref="act_open_lc_informations_view" />
+                <field name="sequence" eval="10" />
+                <field name="view_mode">tree</field>
+                <field name="view_id" ref="view_lc_informations_tree" />
+            </record>
+            <!-- <act_window end> -->
+
+        <!-- L/C informations end -->
+
+        <!-- Creat child menu / Action menu -->
+        <!-- <menuitem action="lc_management.act_open_lc_informations_view" name="L/C Informations" id="lc_informations" parent="sales_team.menu_sales"  sequence="100"/>  -->
+
+    </data>
+</odoo>    

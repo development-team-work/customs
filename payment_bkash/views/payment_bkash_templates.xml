@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eagle>
+    <data noupdate="1">
+        <template id="bkash_form">
+            <style>
+                        .right_top{
+                            float:right;
+                            padding-top:65px;
+                            padding-right:10px;
+                            }
+                            .left_top{
+                            float:left;
+                            padding-top:165px;
+                            }
+                            .right{
+                            float:right;
+                            padding-top:10px;
+                            padding-left:70px;
+                            padding-right:200px;
+                            padding-bottom:10px;
+                            }
+
+                            .rotated {
+                            writing-mode: tb-rl;
+                            transform: rotate(-90deg);
+                             -webkit-transform: rotate(-90deg);
+                             -moz-transform: rotate(-90deg);
+                             -o-transform: rotate(-90deg);
+                             -ms-transform: rotate(-90deg);
+
+
+                            }
+                            .dont_split{
+                               page-break-inside: avoid;
+                                }
+
+
+
+</style>
+<div class="page">
+
+    <div class="header" style="width:100%">
+        <div style="width: 10%;float: left;">
+            <img src='\payment_bkash\static\src\img\bkash_icon.png' style="width:75%"/>
+        </div>
+        <div style="width: 80%;float: left; padding-left:10px">
+            <h1>Please Cash Out To <t t-esc="seller_account"/></h1>
+        </div>
+    </div>
+</div>
+            <div>
+                <group col="4">
+                <input  name="data_set" t-att-data-action-url="tx_url" data-remove-me=""/>
+                <input  name="cmd" t-att-value="cmd"/>
+                <input  name="business" t-att-value="business"/>
+                <input  name="item_name" t-att-value="item_name"/>
+                <input  name="item_number" t-att-value="item_number"/>
+                <input  name="amount" t-att-value="amount"/>
+                <input t-if="handling"  name="handling"
+                    t-att-value="handling"/>
+                <input  name="currency_code" t-att-value="currency_code"/>
+                <!-- partner / address data -->
+                <input  name="address1" t-att-value="address1"/>
+                <input  name="city" t-att-value="city"/>
+                <input  name="country" t-att-value="country"/>
+                <input  name="email" t-att-value="email"/>
+                <input  name="first_name" t-att-value="first_name"/>
+                <input  name="last_name" t-att-value="last_name"/>
+                <input  name="zip" t-att-value="zip_code"/>
+                <input t-if='state'  name="state"
+                    t-att-value='state'/>
+                <!-- after payment parameters -->
+                <input t-if='custom'  name="custom"
+                    t-att-value='custom'/>
+                <!-- URLs -->
+                <input t-if="bkash_return"  name='return'
+                    t-att-value="bkash_return"/>
+                <input  name='notify_url'
+                    t-att-value="notify_url"/>
+                <input t-if="cancel_return"  name="cancel_return"
+                    t-att-value="cancel_return"/>
+                     <button type="submit" class="btn btn-primary" id="btn_shorten_url" data-clipboard-text="">Get tracked link</button>
+                </group>
+            </div>
+        </template>
+    </data>
+</eagle>

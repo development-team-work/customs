@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eagle>
+    <data>
+
+        <record id="acquirer_form_lebupay" model="ir.ui.view">
+            <field name="name">acquirer.form.lebupay</field>
+            <field name="model">payment.acquirer</field>
+            <field name="inherit_id" ref="payment.acquirer_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//group[@name="acquirer"]' position='after'>
+                    <group attrs="{'invisible': [('provider', '!=', 'lebupay')]}">
+                        <field name="accesskey"/>
+                        <field name="secretkey"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</eagle>

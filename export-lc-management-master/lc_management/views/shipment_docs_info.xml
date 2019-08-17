@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+            <!-- <tree view start> -->
+            <record id="view_forwarding_letter_tree" model="ir.ui.view">
+                <field name="name">forwarding_letter.model.tree</field>
+                <field name="model">forwarding_letter.model</field>
+                <field name="priority" eval="8" />
+                <field name="arch" type="xml">
+                    <tree string="Forwarding_Letter" default_order="id desc">
+                        <field name="name" />
+                        <field name="date" />
+                        <field name="for_whom" />
+                        <field name="lc_bank_name" />
+                        <field name="lc_bank_brunch" />
+                        <field name="lc_num" />
+                        <field name="ordered_products_total_amount" />
+                        <field name="fc_account_no" />
+                    </tree>
+                </field>
+            </record>
+            <!-- <tree view end> -->
+
+            <!-- <form view start> -->
+            <record id="view_forwarding_letter_form" model="ir.ui.view">
+                <field name="name">forwarding_letter.form</field>
+                <field name="model">forwarding_letter.model</field>
+                <field name="arch" type="xml">
+                    <form string="forwarding_letter">
+                        <header>
+                        </header>
+        
+                        <sheet string="Forwarding Letter">
+                            <div class='col-xs-6'>
+                                <group>
+                                    <field name="commercial_invoice_id" />
+                                    <field name="name" />
+                                    <field name="date" /> 
+                                    <field name="for_whom" />
+                                    <field name="lc_bank_name" />
+                                    <field name="lc_bank_brunch" /> 
+                                    <field name="lc_bank_address" /> 
+                                </group>
+                            </div>
+                            <div class='col-xs-6'></div>
+
+                            <div class="col-xs-12" style='margin-top:10px;'>
+                                    <h2 class="mt1 com_invoice_title">
+                                        <span class="com_invoice_title_span"></span>
+                                    </h2>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <p style='margin-left:15px;'>Subject: </p>
+                                </div>
+                                <div class="col-xs-10">
+                                    <p>Submission of original Shipping document against L/C No. <field name="lc_num" class='oe_inline' nolabel="1"/> dated <field name="lc_date" class='oe_inline' nolabel="1"/></p>
+                                </div>
+
+                                <div class="col-xs-12">  
+                                    <p  style='margin-left:15px;'>Dear <field name="sir_madam" class='oe_inline' nolabel="1"/>:</p>
+                                    <p  style='margin-left:15px;'>Assalamu Alaikum,</p>
+                                    <p  style='margin-left:15px;'>This is to inform you that we are submitting the following original document against L/C No. <field name="lc_num2" class='oe_inline' nolabel="1"/> dated <field name="lc_date2" class='oe_inline' nolabel="1"/> of <field name="bank_name" class='oe_inline' nolabel="1"/>,<field name="bank_brunch" class='oe_inline' nolabel="1"/>,<field name="bank_address" class='oe_inline' nolabel="1"/> amounting to <field name="currency_name" class='oe_inline' nolabel="1"/> <field name="currency_symbol" class='oe_inline' nolabel="1"/><field name="ordered_products_total_amount" class='oe_inline' nolabel="1"/> in favour of our Company.</p>
+                                </div>                              
+                                <div class="col-xs-6" >
+                                    <p style='margin-left:30px'>1.  Commercial Invoice</p>
+                                </div>
+                                <div class="col-xs-6">
+                                    <p><field name='c1' class='oe_inline' nolabel='1'/>  Copies (Original)</p>
+                                </div>
+                                
+                                <div class="col-xs-6" >
+                                    <p style='margin-left:30px;'>2.  Packing List</p>
+                                </div>
+                                <div class="col-xs-6" >
+                                    <p><field name='c2' class='oe_inline' nolabel='1'/>  Copies (Original)</p>
+                                </div>
+
+                                <div class="col-xs-6" >
+                                    <p style='margin-left:30px;'>3.  Bill of Exchange</p>
+                                </div>
+                                <div class="col-xs-6" >
+                                    <p><field name='c3' class='oe_inline' nolabel='1'/>  Copy (Original)</p>
+                                </div>
+
+                                <div class="col-xs-6" >
+                                    <p style='margin-left:30px;'>4.  Delivery Challan</p>                                    
+                                </div>
+                                <div class="col-xs-6" >
+                                    <p><field name='c4' class='oe_inline' nolabel='1'/>  Copy (Original)</p> 
+                                </div>
+
+                                <div class="col-xs-6" >
+                                    <p style='margin-left:30px;'>5.  Truck Challan</p>                                    
+                                </div>
+                                <div class="col-xs-6" >
+                                    <p><field name='c5' class='oe_inline' nolabel='1'/>  Copies (Original)</p>
+                                </div>
+
+                                <div class="col-xs-6" >
+                                    <p style='margin-left:30px;'>6.  Certificate of Origin</p>                                    
+                                </div>
+                                <div class="col-xs-6" >
+                                    <p><field name='c6' class='oe_inline' nolabel='1'/>  Copies (Original)</p>
+                                </div>
+
+                                <div class="col-xs-6" >
+                                    <p style='margin-left:30px;'>7.  VAT-||</p>                                    
+                                </div>
+                                <div class="col-xs-6" >
+                                    <p><field name='c7' class='oe_inline' nolabel='1'/>  Copy (Original)</p>
+                                </div>
+
+                                <div class="col-xs-6" >
+                                    <p style='margin-left:30px;'>8.  BTMA Certificate</p>    
+                                    
+                                </div>
+                                <div class="col-xs-6" >
+                                    <p><field name='c8' class='oe_inline' nolabel='1'/>  Copy (Original)</p>
+                                </div>
+
+                                <div class="col-xs-6" >
+                                    <p style='margin-left:30px;'>9.  Beneficiary Certificate</p>                                    
+                                </div>
+                                <div class="col-xs-6" >
+                                    <p><field name='c9' class='oe_inline' nolabel='1'/>  Copies (Original)</p>
+                                </div>
+
+
+                                <div class="col-xs-12">
+                                    <p style='margin-left:15px;'>
+                                        We would therefore request you to kindly arrange for negotiating th documents at the earliest and also request you to kindly transfer <field name="transfer_per" class='oe_inline' nolabel="1"/>% of the L/C Proceeds to tour F/C Account No. <field name="fc_account_no" class='oe_inline' nolabel="1"/>
+                                    </p>
+
+                                    <br/>
+                                    <br/>
+
+                                    <p style='margin-left:15px;'>
+                                        Thanking You.
+                                    </p>
+                                    <p style='margin-left:15px;'>
+                                        Sincerely yours,
+                                    </p>
+
+                                    <br/>
+                                    <br/>
+
+                                    <p style='margin-left:15px;'>
+                                        Authorized Signature
+                                    </p>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </sheet>
+                    </form>
+                </field>
+            </record>       
+            <!-- <form view end> -->         
+
+            <!-- <search start> -->
+            <record id="view_forwarding_letter_search" model="ir.ui.view">
+                <field name="name">forwarding_letter.model.search</field>
+                <field name="model">forwarding_letter.model</field>
+                <field name="priority" eval="8" />
+                <field name="arch" type="xml">
+                    <search string="Forwarding Letter">
+                        <field name="name" />
+                        <field name="date" />
+                        <field name="for_whom" />
+                        <field name="bank_name" />
+                        <field name="bank_brunch" />
+                        <field name="bank_address" />
+                        <field name="swift_code" />
+                        <field name="lc_num" />
+                        <field name="lc_date" />
+                        <field name="lc_bank_name" />
+                        <field name="lc_bank_brunch" />
+                        <field name="lc_bank_address" />
+                        <field name="currency_symbol" />
+                        <field name="ordered_products_total_amount" />
+                        <field name="transfer_per" />
+                        <field name="fc_account_no" />
+                    </search>
+                </field>
+            </record>
+            <!-- <search end> -->
+
+            <!-- <act_window start> -->
+                <record id="act_open_forwarding_letter_view" model="ir.actions.act_window">
+                    <field name="name">Forwarding Letter</field>
+                    <field name="type">ir.actions.act_window</field>
+                    <field name="res_model">forwarding_letter.model</field>
+                    <field name="view_type">form</field>
+                    <field name="view_mode">tree,form</field>
+                    <field name="search_view_id" ref='view_forwarding_letter_search'/>
+                    <field name='domain'>[]</field>
+                    <field name="context">{}</field>
+                    <field name="help" type="html">
+                        <p class="oe_view_nocontent_create">
+                            Click here to creat Forwarding Letter
+                        </p>
+                    </field>
+                </record>
+                <record model="ir.actions.act_window.view" id="act_open_forwarding_letter_view_tree">
+                    <field name="act_window_id" ref="act_open_forwarding_letter_view" />
+                    <field name="sequence" eval="10" />
+                    <field name="view_mode">tree</field>
+                    <field name="view_id" ref="view_forwarding_letter_tree" />
+                </record>
+                <record model="ir.actions.act_window.view" id="act_open_forwarding_letter_view_form">
+                    <field name="act_window_id" ref="act_open_forwarding_letter_view" />
+                    <field name="sequence" eval="20" />
+                    <field name="view_mode">form</field>
+                    <field name="view_id" ref="view_forwarding_letter_form" />
+                </record>
+            <!-- <act_window end> -->
+        <!-- forwarding_letter end -->
+
+        <!-- Creat child menu / Action menu -->
+        <!-- <menuitem action="lc_management.act_open_forwarding_letter_view" name="Shipment Docs Info" id="shipment_docs" parent="sales_team.menu_sales"  sequence="107"/>  -->
+
+        <!-- shipment docs pdf start -->
+            <report
+            id="report_of_forwarding_letter" 
+            model="forwarding_letter.model"
+            string="Forwarding Letter"
+            name="lc_management.forwarding_letter"
+            file="lc_management.forwarding_letter.model"
+            report_type="qweb-pdf"/>
+
+            <template id="forwarding_letter">
+                    
+                <t t-call="report.external_layout" t-lang="en_US">              
+                    <t t-foreach="docs" t-as="o">
+                        <t>          
+                            <div class="page" style='margin-left:30px !important; padding-top:80px;'>
+                               <!-- < page content start> -->
+
+                                <div class="row">
+                                    <div class="col-xs-12" >
+                                        <p style=''>Ref. No :  <span t-field="o.name" /></p>
+                                        <p style=''><span t-field="o.date" /> </p>
+                                    </div>   
+                                    <div class="col-xs-4" style='margin-top:25px!important;'> 
+                                        <p style=''><span t-field="o.for_whom" /></p>
+                                        <p style=''><span t-field="o.lc_bank_name" /></p>
+                                        <p style=''><span t-field="o.lc_bank_brunch" /></p> 
+                                        <p style=''><span t-field="o.lc_bank_address" /></p>
+                                    </div>
+                                    <div class="col-xs-8"></div>
+                                </div> 
+
+                                <div class="row" style='font-weight: bold !important;'>
+                                    <div class="col-xs-12"  style='margin-top:21px!important;'>
+                                        <p style='font-size:17px;'>Subject  :  Submission of original Shipping document against L/C No. <span t-field="o.lc_num" /> dated <span t-field="o.lc_date"/></p>
+                                    </div>
+                                </div> 
+                                
+                                <div class="row">
+                                    <div class="col-xs-12" style='margin-top:25px!important; font-size:17px;'>
+                                            <p  style=''>Dear Sir,</p>
+                                            <p  style=''>Assalamu Alaikum, </p>
+                                            <span  style='text-align: justify!important;'>This is to inform you that we are submitting the following original document against L/C No. <span style=''><span t-field="o.lc_num2" /> dated <span t-field="o.lc_date2" /></span> of <span style=''><span t-field="o.bank_name" />,<span t-field="o.bank_brunch" />,<field name="bank_address" /></span> amounting to <span style=''><span t-field="o.currency_symbol" /><span t-field="o.ordered_products_total_amount" /></span> in favour of our Company.</span>
+                                    </div>
+                                </div>
+
+                                <div class="row" style='margin-top:8px; font-size:17px;'>
+                                    <div class="col-xs-6" >
+                                        <p style='margin-left:30px'>1.  Commercial Invoice</p>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <p><span t-field='o.c1' />  Copies (Original)</p>
+                                    </div>
+                                    
+                                    <div class="col-xs-6" >
+                                        <p style='margin-left:30px;'>2.  Packing List</p>
+                                    </div>
+                                    <div class="col-xs-6" >
+                                        <p><span t-field='o.c2' />  Copies (Original)</p>
+                                    </div>
+    
+                                    <div class="col-xs-6" >
+                                        <p style='margin-left:30px;'>3.  Bill of Exchange</p>
+                                    </div>
+                                    <div class="col-xs-6" >
+                                        <p><span t-field='o.c3' />  Copy (Original)</p>
+                                    </div>
+    
+                                    <div class="col-xs-6" >
+                                        <p style='margin-left:30px;'>4.  Delivery Challan</p>                                    
+                                    </div>
+                                    <div class="col-xs-6" >
+                                        <p><span t-field='o.c4' />  Copy (Original)</p> 
+                                    </div>
+    
+                                    <div class="col-xs-6" >
+                                        <p style='margin-left:30px;'>5.  Truck Challan</p>                                    
+                                    </div>
+                                    <div class="col-xs-6" >
+                                        <p><span t-field='o.c5' />  Copies (Original)</p>
+                                    </div>
+    
+                                    <div class="col-xs-6" >
+                                        <p style='margin-left:30px;'>6.  Certificate of Origin</p>                                    
+                                    </div>
+                                    <div class="col-xs-6" >
+                                        <p><span t-field='o.c6' />  Copies (Original)</p>
+                                    </div>
+    
+                                    <div class="col-xs-6" >
+                                        <p style='margin-left:30px;'>7.  VAT-||</p>                                    
+                                    </div>
+                                    <div class="col-xs-6" >
+                                        <p><span t-field='o.c7' />  Copy (Original)</p>
+                                    </div>
+    
+                                    <div class="col-xs-6" >
+                                        <p style='margin-left:30px;'>8.  BTMA Certificate</p>                                    
+                                    </div>
+                                    <div class="col-xs-6" >
+                                        <p><span t-field='o.c8' />  Copy (Original)</p>
+                                    </div>
+    
+                                    <div class="col-xs-6" >
+                                        <p style='margin-left:30px;'>9.  Beneficiary Certificate</p>                                    
+                                    </div>
+                                    <div class="col-xs-6" >
+                                        <p><span t-field='o.c9' />  Copies (Original)</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <p style='font-size:17px;text-align: justify!important;'>
+                                             We would therefore request you to kindly arrange for negotiating the documents at the earliest and also request you to kindly transfer <span style='' t-field="o.transfer_per" />% of the L/C Proceeds <span t-if="o.fc_account_no">to our F/C Account No. <span style='' t-field="o.fc_account_no" /></span>
+                                        </p>
+            
+                                        <br/>
+                                        <br/>
+            
+                                        <p style='font-size:17px;'>
+                                            Thanking You.
+                                        </p>
+                                        <p style='font-size:17px;'>
+                                            Sincerely yours,
+                                        </p>
+            
+                                        <br/>
+                                        <br/>
+            
+                                        <p style='margin-top:20px;font-weight:bold;font-size:17px;'>
+                                            Authorized Signature
+                                        </p>
+                                    </div>
+                                </div>
+
+                               <!-- < page content end> -->
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </template>    
+
+        <!-- shipment docs pdf end   -->
+
+    </data>
+</odoo>    

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eagle>
+    <data noupdate="1">
+
+        <record id="payment_acquirer_bkash" model="payment.acquirer">
+            <field name="name">bKash</field>
+            <field name="image" type="base64" file="payment_bkash/static/src/img/bkash_icon.png"/>
+            <field name="provider">bkash</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="view_template_id" ref="bkash_form"/>
+            <field name="environment">test</field>
+            <field name="pre_msg"><![CDATA[
+<p>You will be redirected to the bKash website after clicking on the payment button.</p>]]></field>
+            <field name="bkash_email_account">dummy</field>
+            <field name="bkash_seller_account">dummy</field>
+            <field name="bkash_api_enabled">False</field>
+            <field name="bkash_api_username">dummy</field>
+            <field name="bkash_api_password">dummy</field>
+            <field name="bkash_pdt_token">dummy</field>
+        </record>
+
+    </data>
+</eagle>

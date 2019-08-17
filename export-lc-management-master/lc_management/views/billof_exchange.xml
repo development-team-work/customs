@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data> 
+        <!-- bill_of_exchange start -->
+
+            <!-- <tree view start> -->
+            <record id="view_bill_of_exchange_tree" model="ir.ui.view">  
+                <field name="name">bill_of_exchange.model.tree</field>
+                <field name="model">commercial_invoice.model</field>
+                <field name="priority" eval="8" />
+                <field name="arch" type="xml">
+                    <tree string="Bill Of Exchange" default_order="id desc">
+                        <field name="name" />
+                        <field name="boe_letter1" />
+                    </tree>
+                </field>
+            </record>
+            <!-- <tree view end> -->
+
+            <!-- <form view start> -->
+            <record id="view_bill_of_exchange_form" model="ir.ui.view">
+                <field name="name">bill_of_exchange.form</field>  
+                <field name="model">commercial_invoice.model</field>
+                <field name="arch" type="xml">
+                    <form string="Bill_Of_Exchange">
+                        <sheet string="Bill_Of_Exchange">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h2 class="mt1 com_invoice_title">
+                                        <span class="com_invoice_title_span">BILL OF EXCHANGE</span>
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                    <div class="col-xs-6">
+                                        <group>
+                                            <field name="boe_letter1"/>
+                                            <field name="boe_letter11"/>
+                                            <field name="boe_letter2"/>
+                                            <field name="boe_letter3"/>
+                                            <field name="delivery_order_num_created" string='Del. Order'/> 
+                                        </group>
+
+                                        <div class='col-xs-12' >
+                                            <group>
+                                             <field name="currency_symbol_name"/> 
+                                             <field name="currency_symbol"/> 
+                                             <field name="ordered_products_total_amount" string="Total Amount"/>
+                                             <field name="ordered_products_total_amount_in_word" string="Total In Word"/>
+                                             </group>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <group>
+                                            <field name="delivery_form_date"/>  
+                                            <field name="delivery_to_date"/>
+                                            <field name="truck_receipt_no"/>
+                                            <field name="beneficiary_bank_name"/>
+                                            <field name="beneficiary_bank_brunch"/>
+                                            <field name="beneficiary_bank_address"/>
+                                            <field name="swift_code"/>
+                                            <field name="only_seq_num" string="Truck Receive/Del. Challan No."/>
+                                            <field name="truck_receive_date"/>
+                                            <field name="del_challan_date"/>
+                                            <field name="truck_no"/> 
+                                            <field name="freight"/>  -->
+                                            <field name="place_of_delivery" string='Factory Address'/>
+                                            <field name="proforma_invoice_id" string="PI No."/>
+                                        </group>
+                                    </div>
+                            </div>                           
+                               
+                            <div class="row" style='margin-top:20px;'>
+                                <div class='col-xs-6'>
+                                    <div class="col-xs-2">
+                                        <p>To : </p>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <p><field name="lc_bank_name" class="oe_inline" nolabel="1"/></p>
+                                        <p><field name="lc_bank_brunch" class="oe_inline" nolabel="1"/></p>
+                                        <p><field name="lc_bank_address" class="oe_inline" nolabel="1"/></p>
+                                    </div>
+                                </div>
+                                <div class='col-xs-3'></div>
+                                <div class='col-xs-3' style='margin-top:30px;'>
+                                    <p>Authorized Signature</p>
+                                    <p style='font-weight:bold;'><field name="benificiary_name" class="oe_inline" nolabel="1"/></p>
+                                </div>
+                                 <field name="document_status" class="oe_inline" nolabel="1" invisible='1'/>                                
+                            </div>
+                        </sheet>
+                    </form>
+                </field>
+            </record>            
+            <!-- <form view end> -->
+
+            <!-- <act_window start> -->
+                <record id="act_open_bill_of_exchange_view" model="ir.actions.act_window">
+                    <field name="name">Bill Of Exchange</field>
+                    <field name="type">ir.actions.act_window</field> 
+                    <field name="res_model">commercial_invoice.model</field>
+                    <field name="view_type">form</field>
+                    <field name="view_mode">tree,form</field>
+                    <field name='domain'>[]</field>
+                    <field name="context">{}</field>
+                    <field name="help" type="html">
+                        <p class="oe_view_nocontent_create">
+                            Click here to creat Bill Of Exchange
+                        </p>
+                    </field>
+                </record>
+                <record model="ir.actions.act_window.view" id="act_open_bill_of_exchange_view_tree">
+                    <field name="act_window_id" ref="act_open_bill_of_exchange_view" />
+                    <field name="sequence" eval="10" />
+                    <field name="view_mode">tree</field>
+                    <field name="view_id" ref="view_bill_of_exchange_tree" />
+                </record>
+                <record model="ir.actions.act_window.view" id="act_open_bill_of_exchange_view_form">
+                    <field name="act_window_id" ref="act_open_bill_of_exchange_view" />
+                    <field name="sequence" eval="20" />
+                    <field name="view_mode">form</field>
+                    <field name="view_id" ref="view_bill_of_exchange_form" />
+                </record>
+            <!-- <act_window end> -->
+        <!-- bill_of_exchange end -->
+
+        <!-- <menuitem action="lc_management.act_open_bill_of_exchange_view" name="Bill Of Exchange" id="bill_of_exchange" parent="sales_team.menu_sales"  sequence="105"/>  -->
+
+<!-- REPORT SECTION START -->
+
+<!-- REPORT SECTION END -->                   
+
+    </data>
+</odoo>         
