@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
+<eagle>
     <data>
 
         <!-- <menuitem id="lc_management.menu_factory" name="Factory" parent="sales_team.menu_base_partner" sequence="5"/> -->
@@ -226,4 +226,4 @@
 
 
     </data>
-</odoo>    
+</eagle>

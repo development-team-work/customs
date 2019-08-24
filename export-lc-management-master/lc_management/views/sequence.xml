@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<eagle>
     <data noupdate="1">
 
         <record model="ir.sequence" id="seq_commercial_invoice_num">
@@ -24,4 +24,4 @@
         </record>
 
     </data>
-</odoo>
+</eagle>

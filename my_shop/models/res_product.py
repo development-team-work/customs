@@ -10,3 +10,4 @@ class productBook(models.Model):
     publisher_id=fields.Many2one("res.partner",string="Publisher")
 
 
+

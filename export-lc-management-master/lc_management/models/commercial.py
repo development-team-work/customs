@@ -3,11 +3,11 @@ import psycopg2
 import re
 import datetime
 
-import odoo.addons.decimal_precision as dp
+import eagle.addons.decimal_precision as dp
 
-from odoo import api, fields, models, tools, _
-from odoo.exceptions import ValidationError, except_orm, UserError
-from odoo.tools import amount_to_text_en
+from eagle import api, fields, models, tools, _
+from eagle.exceptions import ValidationError, except_orm, UserError
+from eagle.tools import amount_to_text_en
 import random
 
 

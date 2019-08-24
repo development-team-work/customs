@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
+<eagle>
     <data>
         <!-- <tree view start> -->
             <record id="view_lc_bank_names_branch_address_tree" model="ir.ui.view">
@@ -95,4 +95,4 @@
         <!-- Creat child menu / Action menu -->
         <!-- <menuitem action="lc_management.act_open_lc_bank_names_branch_address_view" name="L/C Bank Info" id="lc_bank_names_branch_address" parent="sales_team.menu_sales"  sequence="102"/>   -->
     </data>
-</odoo>    
+</eagle>

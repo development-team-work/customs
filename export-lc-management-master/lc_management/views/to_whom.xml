@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
+<eagle>
     <data>
 
         <!-- To Whom It May Concern start -->
@@ -361,4 +361,4 @@
 <!-- REPORT SECTION END -->
 
     </data>
-</odoo>    
+</eagle>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
+<eagle>
     <data>
 
         <!-- <tree view start> -->
@@ -97,4 +97,4 @@
         <!-- <menuitem action="lc_management.act_open_bank_names_branch_address_view" name="Beneficiary Bank Info" id="bank_names_branch_address" parent="sales_team.menu_sales"  sequence="101"/>   -->
 
     </data>
-</odoo>
+</eagle>

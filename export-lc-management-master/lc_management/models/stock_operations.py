@@ -3,10 +3,10 @@ import psycopg2
 import re
 from datetime import datetime
 
-import odoo.addons.decimal_precision as dp
+import eagle.addons.decimal_precision as dp
 
-from odoo import api, fields, models, tools, _
-from odoo.exceptions import ValidationError, except_orm, UserError
+from eagle import api, fields, models, tools, _
+from eagle.exceptions import ValidationError, except_orm, UserError
 
 class StockPickingLcInherit(models.Model):
     _inherit = 'stock.picking'

@@ -12,6 +12,9 @@
 
         <menuitem id="menu_shop_product" name="Products"
                         parent="shop_menu_root" sequence="4"/>
+        <!--<menuitem id="menu_product" name="Product Variants" parent="menu_shop_product"
+                  sequence="2" groups="base.group_no_one" active="False"/>-->
+
 
         <menuitem id="menu_shop_product_product" name="All Products"
                   action="stock.product_template_action_product"
@@ -19,6 +22,13 @@
         <menuitem id="menu_shop_product_product_category" name="Category"
                   action="product.product_category_action_form"
                         parent="menu_shop_product" sequence="5"/>
+        <menuitem id="menu_product_variant" name="Product Variants"
+                  parent="menu_shop_product" action="product.product_normal_action_sell"
+                  groups="product.group_sale_pricelist" sequence="6" />
+        <menuitem id="menu_product_pricelist_main" name="Pricelists"
+                  parent="menu_shop_product" action="product.product_pricelist_action2"
+                  groups="product.group_sale_pricelist" sequence="3" />
+
 
         <menuitem id="menu_shop_purchase_purchase" name="Purchase Orders"
                         action="purchase.purchase_form_action"

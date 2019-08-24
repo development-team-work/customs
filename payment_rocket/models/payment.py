@@ -56,7 +56,7 @@ class RocketPaymentAcquirer(models.Model):
         to have access to the name and other creation values. If no post_msg
         or a void post_msg is given at creation, generate a default one. """
         if values.get('provider') == 'rocket' and not values.get('post_msg'):
-            values['post_msg'] = self._format_transfer_data()
+            values['post_msg'] = self._format_rocket_data()
         return super(RocketPaymentAcquirer, self).create(values)
 
     @api.multi
