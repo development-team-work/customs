@@ -7,6 +7,10 @@
         <menuitem id="menu_shop_contacts" name="Contacts"
                         action="base.action_partner_customer_form"
                         parent="shop_menu_root" sequence="3"/>
+        <menuitem id="menu_partner_ledger" name="Partner Ledger"
+            sequence="2" parent="menu_shop_contacts"
+            action="accounting_pdf_reports.action_account_partner_ledger_menu"
+            groups="account.group_account_user"/>
         <menuitem id="menu_shop_purchase" name="Purchase"
                         parent="shop_menu_root" sequence="2"/>
 

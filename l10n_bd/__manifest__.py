@@ -9,7 +9,7 @@
     'category': 'Localization',
     'description': """
 This is the latest Bangladesh eagle localisation necessary to run eagle accounting for Bangladeshi SME's with:
-============================================================================================================
+=============================================================================================================
     - a CT600-ready chart of accounts
     - VAT100-ready tax structure
     - InfoLogic Bangladesh counties listing

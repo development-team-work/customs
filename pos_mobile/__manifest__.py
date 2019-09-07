@@ -20,6 +20,7 @@
     ],
     "external_dependencies": {"python": [], "bin": []},
     "data": [
+        # "product.template.csv",
         "views/pos_mobile_template.xml",
         "views/pos_mobile_view.xml",
     ],

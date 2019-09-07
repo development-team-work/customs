@@ -17,6 +17,7 @@ Customisation Eagle ERP
     'data': [
         # 'data/payment_acquirer.xml',
         'reports/product_label.xml',
+        'reports/account_common_report_view.xml',
         'reports/report.xml',
         'security/ir.model.access.csv',
         'views/my_shop.xml',
