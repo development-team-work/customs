@@ -11,13 +11,37 @@
             sequence="2" parent="menu_shop_contacts"
             action="accounting_pdf_reports.action_account_partner_ledger_menu"
             groups="account.group_account_user"/>
+        <menuitem id="menu_shop_cash" name="Cash"
+            sequence="2" parent="shop_menu_root"
+            groups="account.group_account_user"/>
+        <menuitem id="menu_shop_payment" name="Payment"
+            sequence="2" parent="menu_shop_cash"
+            action="account.action_account_payments_payable"
+            groups="account.group_account_user"/>
+        <menuitem id="menu_shop_receive" name="Receive"
+            sequence="2" parent="menu_shop_cash"
+            action="account.action_account_payments"
+            groups="account.group_account_user"/>
+
         <menuitem id="menu_shop_purchase" name="Purchase"
                         parent="shop_menu_root" sequence="2"/>
+        <menuitem id="menu_shop_inventory_main" name="Inventory"
+                        parent="shop_menu_root" sequence="5"/>
+        <menuitem id="menu_shop_inventory_over_view" name="Over View"
+                action="stock.stock_picking_type_action"
+                parent="menu_shop_inventory_main" sequence="2"/>
+        <menuitem id="menu_valuation" name="Inventory Report"
+                  parent="menu_shop_inventory_main" sequence="3"
+                  action="stock.action_stock_quantity_history"/>
+
 
         <menuitem id="menu_shop_product" name="Products"
                         parent="shop_menu_root" sequence="4"/>
         <!--<menuitem id="menu_product" name="Product Variants" parent="menu_shop_product"
                   sequence="2" groups="base.group_no_one" active="False"/>-->
+        <menuitem id="menu_shop_pos_main" name="POS"
+                 action="point_of_sale.action_pos_config_kanban"
+                        parent="shop_menu_root" sequence="6"/>
 
 
         <menuitem id="menu_shop_product_product" name="All Products"
@@ -37,6 +61,12 @@
         <menuitem id="menu_shop_purchase_purchase" name="Purchase Orders"
                         action="purchase.purchase_form_action"
                         parent="menu_shop_purchase" sequence="2"/>
+        <menuitem id="menu_shop_rfq" name="Request Quotation"
+                        action="purchase.purchase_rfq"
+                        parent="menu_shop_purchase" sequence="2"/>
+        <menuitem id="menu_shop_vendor_pricelist" name="Vendor Pricelist"
+                        action="product.product_supplierinfo_type_action"
+                        parent="menu_shop_purchase" sequence="3"/>
 
         <menuitem id="menu_shop_contacts_customers" name="Customers"
                         action="base.action_partner_customer_form"
@@ -45,5 +75,7 @@
         <menuitem id="menu_shop_orders_orders" name="Orders"
                         action="website_sale.action_orders_ecommerce"
                         parent="menu_shop_orders_main" sequence="2"/>
+        <menuitem id="sale_order_menu_quotations_crm" name="Quotations"
+            action="sale.action_quotations" parent="menu_shop_orders_main" sequence="1"/>
     </data>
 </eagle>

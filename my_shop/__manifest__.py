@@ -21,6 +21,7 @@ Customisation Eagle ERP
         'reports/report.xml',
         'security/ir.model.access.csv',
         'views/my_shop.xml',
+        'views/account_invoice.xml',
         'views/order.xml',
         'views/product_view.xml',
         'views/pertner_view.xml',

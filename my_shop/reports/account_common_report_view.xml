@@ -9,8 +9,6 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='target_move']" position="before">
                 <field name="partner_id" widget="many2many_tags" invisible="False" options="{'no_create': True}"/>
-                <field name="partner_id" widget="many2many_tags" invisible="False" options="{'no_create': True}"/>
-                <field name="partner_id" widget="many2many_tags" invisible="False" options="{'no_create': True}"/>
             </xpath>
         </field>
     </record>

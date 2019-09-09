@@ -16,4 +16,5 @@ class res_partner(models.Model):
 
     @api.onchange('debit','credit')
     def calculate_balance(self):
-            self.balance=self.credit-self.debit
+        for rec in self:
+            rec.balance=rec.credit-rec.debit
