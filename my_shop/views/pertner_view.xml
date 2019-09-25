@@ -4,6 +4,7 @@
         <field name="name">res.partner.form.inherit</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
+
         <field name="arch" type="xml">
             <xpath expr="//page[@name='sales_purchases']" position="after">
                 <page name="book_writer_publisher" string="Writer &amp; Publisher">
@@ -32,6 +33,10 @@
             </xpath>
         </field>
         <field name="arch" type="xml">
+            <field name="parent_id" position="before">
+                <div >Personal ID/BP/Ref</div>
+                <field name="ref" />
+            </field>
                 <div name="button_box" position="inside">
                     <button type="action"  class="oe_stat_button" icon="fa-balance-scale" name="%(accounting_pdf_reports.action_account_partner_ledger_menu)d"
                          context="{'default_partner_ids': [active_id]}">
@@ -43,6 +48,18 @@
                         </div>
                     </button>
                 </div>
+        </field>
+    </record>
+    <record model='ir.ui.view' id='view_res_partner_filter'>
+        <field name='name'>res.partner.select.inherit.base.partner.filter</field>
+        <field name='model'>res.partner</field>
+        <field name='inherit_id' ref='base.view_res_partner_filter'/>
+        <field name='arch' type='xml'>
+            <field name="name" position="after">
+                <field name="phone" string="Telephone" filter_domain="[('phone','ilike', self)]"/>
+                <field name="mobile" string="mobile" filter_domain="[('mobile','ilike', self)]"/>
+                <field name="city" string="City" filter_domain="[('city','ilike', self)]"/>
+            </field>
         </field>
     </record>
 </eagle>

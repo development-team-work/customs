@@ -56,8 +56,16 @@
         <menuitem id="menu_product_pricelist_main" name="Pricelists"
                   parent="menu_shop_product" action="product.product_pricelist_action2"
                   groups="product.group_sale_pricelist" sequence="3" />
-
-
+        <menuitem id="menu_shop_inventory_main" name="Inventory"
+                        parent="menu_shop_product" sequence="7"/>
+        <menuitem id="menu_shop_inventory_over_view" name="Over View"
+                action="stock.stock_picking_type_action"
+                parent="menu_shop_inventory_main" sequence="2"/>
+        <menuitem id="menu_valuation" name="Inventory Report"
+                  parent="menu_shop_inventory_main" sequence="3"
+                  action="stock.action_stock_quantity_history"/>
+        <menuitem id="inventory_valuation" name="Inventory Report" parent="menu_shop_inventory_main" sequence="100" action="stock.action_stock_quantity_history"/>
+        <menuitem id="menu_valuation" name="Inventory Valuation" parent="menu_shop_inventory_main" sequence="110" action="stock_account.action_stock_inventory_valuation"/>
         <menuitem id="menu_shop_purchase_purchase" name="Purchase Orders"
                         action="purchase.purchase_form_action"
                         parent="menu_shop_purchase" sequence="2"/>
@@ -77,5 +85,6 @@
                         parent="menu_shop_orders_main" sequence="2"/>
         <menuitem id="sale_order_menu_quotations_crm" name="Quotations"
             action="sale.action_quotations" parent="menu_shop_orders_main" sequence="1"/>
+
     </data>
 </eagle>

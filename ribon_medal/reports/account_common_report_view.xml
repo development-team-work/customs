@@ -5,12 +5,10 @@
         <field name="name">account.common.reprot.view.inherit</field>
         <field name="model">account.common.report</field>
         <field name="inherit_id" ref="account.account_common_report_view"/>
-<!--         <field name="priority">25</field>-->
+         <field name="priority">1</field>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='target_move']" position="before">
-                <group>
-                    <field name="partner_id" widget="many2many_tags" invisible="False" options="{'no_create': True}"/>
-                </group>
+                <field name="partner_id" widget="many2many_tags" invisible="False" options="{'no_create': True}"/>
             </xpath>
         </field>
     </record>

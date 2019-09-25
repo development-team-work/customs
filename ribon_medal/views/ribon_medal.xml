@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eagle>
+    <data>
+
+
+        <!-- Accounts -->
+
+        <record id="view_ribon_form" model="ir.ui.view">
+            <field name="name">ribon.medal.form</field>
+            <field name="model">ribon.medal</field>
+            <field name="arch" type="xml">
+                <form string="Ribon">
+                   <sheet>
+                       <group>
+                           <group>
+                             <field name="image" />
+                             <field name="is_ribon"/>
+                             <field name="name"/>
+                             <field name="declared_date"/>
+                             <field name="ribon_category"/>
+                           </group>
+                       </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="ribon_form_action" model="ir.actions.act_window">
+        <field name="name">Ribons And Medals</field>
+        <field name="res_model">ribon.medal</field>
+        <field name="view_mode">form</field>
+<!--        <field name="view_id" ref="report_all_channels_sales_view_pivot"/>-->
+<!--        <field name="search_view_id" ref="report_all_channels_sales_view_search"/>-->
+<!--        <field name="context">{'search_default_team_id': 1, 'search_default_current_year': 1}</field>-->
+    </record>
+         <menuitem id="ribon_main" name="Ribon"
+                        parent="my_shop.shop_menu_root"  groups="base.group_user,base.group_partner_manager"/>
+        <menuitem id="ribon_form_menu" name="Ribon"
+                        parent="ribon_main" action="ribon_form_action"  groups="base.group_user,base.group_partner_manager"/>
+    </data>
+</eagle>

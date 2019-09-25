@@ -12,11 +12,12 @@ Customisation Eagle ERP
     'category': 'Custom',
     'website': 'http://www.eagle.com/page/billing',
     'images' : ['images/accounts.jpeg','images/bank_statement.jpeg','images/cash_register.jpeg','images/chart_of_accounts.jpeg','images/customer_invoice.jpeg','images/journal_entries.jpeg'],
-    'depends' : ['base','website','stock','account','sale_management','point_of_sale',
+    'depends' : ['base','website','stock','stock_account','account','sale_management','point_of_sale',
                  'note','website_sale','accounting_pdf_reports','purchase','contacts','mrp','l10n_bd'],
     'data': [
         # 'data/payment_acquirer.xml',
         # 'data/res.country.state.csv',
+        'reports/invoice.xml',
         'reports/product_label.xml',
         'reports/account_common_report_view.xml',
         'reports/report.xml',
