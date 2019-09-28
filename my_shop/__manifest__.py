@@ -16,7 +16,7 @@ Customisation Eagle ERP
                  'note','website_sale','accounting_pdf_reports','purchase','contacts','mrp','l10n_bd'],
     'data': [
         # 'data/payment_acquirer.xml',
-        # 'data/res.country.state.csv',
+        'data/res.country.state.csv',
         'reports/invoice.xml',
         'reports/product_label.xml',
         'reports/account_common_report_view.xml',
