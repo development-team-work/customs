@@ -37,6 +37,9 @@
                 <div >Personal ID/BP/Ref</div>
                 <field name="ref" />
             </field>
+            <field name="city" position="replace">
+                <field name="city" placeholder="City/area" class="o_address_city" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'state_id': state_id}"/>
+            </field>
                 <div name="button_box" position="inside">
                     <button type="action"  class="oe_stat_button" icon="fa-balance-scale" name="%(accounting_pdf_reports.action_account_partner_ledger_menu)d"
                          context="{'default_partner_ids': [active_id]}">
