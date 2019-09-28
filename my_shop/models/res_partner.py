@@ -51,6 +51,20 @@ class res_partner(models.Model):
             name = "%s ‒ %s" % (name, partner.vat)
         return name
 
+    @api.onchange('state_id')
+    def _onchange_state(self):
+        if self.state_id.country_id:
+            self.country_id = self.state_id.country_id
+        if self.city and self.city.state_id != self.state_id:
+            self.city = False
+
+    @api.onchange('city')
+    def _onchange_city(self):
+        if self.city.state_id:
+            self.state_id = self.city.state_id
+            self.country_id=self.state_id.country_id
+        
+
     @api.depends('is_company', 'name', 'parent_id.name', 'type', 'company_name')
     def _compute_display_name(self):
         diff = dict(show_address=None, show_address_only=None, show_email=None,show_mobile=None,show_phone=None, html_format=None, show_vat=False)

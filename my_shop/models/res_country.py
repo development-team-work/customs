@@ -28,19 +28,19 @@ class CountryCity(models.Model):
     @api.model
     def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
         args = args or []
-        if self.env.context.get('country_id'):
-            args = expression.AND([args, [('country_id', '=', self.env.context.get('country_id'))]])
+        if self.state_id:
+            args = expression.AND([args, [('state_id', '=', self.state_id)]])
 
         if operator == 'ilike' and not (name or '').strip():
             first_domain = []
             domain = []
         else:
-            first_domain = [('code', '=ilike', name)]
+            first_domain = [('name', '=ilike', name)]
             domain = [('name', operator, name)]
 
-        first_state_ids = self._search(expression.AND([first_domain, args]), limit=limit, access_rights_uid=name_get_uid) if first_domain else []
-        state_ids = first_state_ids + [state_id for state_id in self._search(expression.AND([domain, args]), limit=limit, access_rights_uid=name_get_uid) if not state_id in first_state_ids]
-        return self.browse(state_ids).name_get()
+        first_city_ids = self._search(expression.AND([first_domain, args]), limit=limit, access_rights_uid=name_get_uid) if first_domain else []
+        city_ids = first_city_ids + [city_id for city_id in self._search(expression.AND([domain, args]), limit=limit, access_rights_uid=name_get_uid) if not city_id in first_city_ids]
+        return self.browse(city_ids).name_get()
 
     @api.multi
     def name_get(self):
