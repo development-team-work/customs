@@ -15,6 +15,7 @@ class res_partner(models.Model):
     published=fields.One2many('product.template','publisher_id',string="Publications", translate=True)
     written=fields.Many2many('product.template','writer_ids',string="Written Books", translate=True)
     balance=fields.Monetary(string="Balance",compute='calculate_balance',  help="Balance for this account.")
+    city = fields.Many2one('res.country.city',string="City",ondelete='restrict', domain="[('state_id', '=?', state_id)]")
 
     @api.onchange('debit','credit')
     def calculate_balance(self):
