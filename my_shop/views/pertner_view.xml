@@ -38,7 +38,8 @@
                 <field name="ref" />
             </field>
             <field name="city" position="replace">
-                <field name="city" placeholder="City/area" class="o_address_city" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'state_id': state_id}"/>
+                <field name="city" invisible="True"/>
+                <field name="city_id" placeholder="City/area" class="o_address_city" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'state_id': state_id}"/>
             </field>
                 <div name="button_box" position="inside">
                     <button type="action"  class="oe_stat_button" icon="fa-balance-scale" name="%(accounting_pdf_reports.action_account_partner_ledger_menu)d"
@@ -65,4 +66,9 @@
             </field>
         </field>
     </record>
+    <template id="contact" inherit_id="base.contact">
+    <xpath expr="//address/div[2]/div[2]/span[1]" position="after">
+        <span itemprop="addressLocality" t-esc="city.name"/>
+   </xpath>
+</template>
 </eagle>

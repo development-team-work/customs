@@ -15,7 +15,8 @@ class res_partner(models.Model):
     published=fields.One2many('product.template','publisher_id',string="Publications", translate=True)
     written=fields.Many2many('product.template','writer_ids',string="Written Books", translate=True)
     balance=fields.Monetary(string="Balance",compute='calculate_balance',  help="Balance for this account.")
-    city = fields.Many2one('res.country.city',string="City",ondelete='restrict', domain="[('state_id', '=?', state_id)]")
+    city=fields.Char(related="city_id.name")
+    city_id = fields.Many2one('res.country.city',string="City",ondelete='restrict', domain="[('state_id', '=?', state_id)]")
 
     @api.onchange('debit','credit')
     def calculate_balance(self):
@@ -55,13 +56,13 @@ class res_partner(models.Model):
     def _onchange_state(self):
         if self.state_id.country_id:
             self.country_id = self.state_id.country_id
-        if self.city and self.city.state_id != self.state_id:
-            self.city = False
+        if self.city_id and self.city_id.state_id != self.state_id:
+            self.city_id = False
 
-    @api.onchange('city')
-    def _onchange_city(self):
-        if self.city.state_id:
-            self.state_id = self.city.state_id
+    @api.onchange('city_id')
+    def _onchange_city_id(self):
+        if self.city_id.state_id:
+            self.state_id = self.city_id.state_id
             self.country_id=self.state_id.country_id
         
 
