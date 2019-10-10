@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_eagle_smsgateway,access_eagle_smsgateway,model_eagle_smsgateway,base.group_user,1,1,1,1
+access_eagle_smsgateway_device,access_eagle_smsgateway_device,model_eagle_smsgateway_device,base.group_user,1,1,1,1
+access_eagle_smsgateway_message,access_eagle_smsgateway_message,model_eagle_smsgateway_message,base.group_user,1,1,1,1

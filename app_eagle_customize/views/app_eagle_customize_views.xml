@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eagle>
+
+        <template id="assets_backend" name="app_eagle_customize assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/scss" href="/app_eagle_customize/static/src/scss/app.scss"/>
+                <script type="text/javascript" src="/app_eagle_customize/static/src/js/app_window_title.js"></script>
+                <script type="text/javascript" src="/app_eagle_customize/static/src/js/customize_user_menu.js"></script>
+            </xpath>
+        </template>
+        <!-- some eagle version not support, please remove this if you are using eagle9 -->
+        <!--<template id="replace_login" name="Login Layout" inherit_id="web.login_layout">-->
+            <!--<xpath expr="//a[@target='_blank']" position="replace">-->
+                <!--<a href="https://www.sunpop.cn" target="_blank">Powered by <span>eagleApp</span></a>-->
+            <!--</xpath>-->
+        <!--</template>-->
+</eagle>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eagle>
+    <data>
+
+        <menuitem name="Export LC"
+            id="lc_management.menu_base_lc"
+            web_icon="lc_management,static/description/icon.png"/>
+
+        <menuitem id="lc_management.menu_main_lc" name="Export L/C Management " parent="lc_management.menu_base_lc" sequence="1"/> 
+
+
+        <menuitem id="lc_management.menu_sale_quotations"
+                action="sale.action_quotations" parent="lc_management.menu_main_lc"
+                sequence="1"/>
+        <menuitem action="sale.action_orders"
+            id="lc_management.menu_sale_order" parent="lc_management.menu_main_lc"
+            sequence="2" groups="sales_team.group_sale_salesman,sales_team.group_sale_manager"/>     
+        <menuitem id="lc_management.delivey_challans" name="Delivery Challans" parent="lc_management.menu_main_lc" sequence="3" action="lc_management.action_delivery_challans"/>     
+        <menuitem action="lc_management.act_open_commercial_invoices_view" name="Commercial" id="commercial_invoices" parent="lc_management.menu_main_lc"  sequence="4"/>     
+        <menuitem action="lc_management.act_open_bill_of_exchange_view" name="Bill Of Exchange" id="bill_of_exchange" parent="lc_management.menu_main_lc"  sequence="5"/>
+        <menuitem action="lc_management.act_open_to_whom_view" name="To Whom It May Concern" id="lc_management.custom_to_whom" parent="lc_management.menu_main_lc"  sequence="6"/>
+        <menuitem action="lc_management.act_open_forwarding_letter_view" name="Shipment Docs Info" id="shipment_docs" parent="lc_management.menu_main_lc"  sequence="7"/> 
+
+
+        <menuitem id="lc_management.menu_factory" name="Factory" parent="lc_management.menu_base_lc" sequence="2"/>
+
+        <menuitem id="delivey_orders" name="Delivery Orders" parent="lc_management.menu_factory" sequence="1" action="lc_management.action_delivery_orders"/>
+
+
+        <menuitem id="lc_management.configuration" name="Configuration" parent="lc_management.menu_base_lc" sequence="3"/>
+
+        <menuitem action="lc_management.act_open_lc_informations_view" name="L/C Informations" id="lc_management.lc_informations" parent="lc_management.configuration"  sequence="1"/> 
+        <menuitem action="lc_management.act_open_lc_bank_names_branch_address_view" name="L/C Bank Info" id="lc_management.lc_bank_names_branch_address" parent="lc_management.configuration"  sequence="2"/>  
+        <menuitem action="lc_management.act_open_bank_names_branch_address_view" name="Beneficiary Bank Info" id="lc_management.bank_names_branch_address" parent="lc_management.configuration"  sequence="3"/>  
+
+       
+
+        
+
+    </data>
+</eagle>
