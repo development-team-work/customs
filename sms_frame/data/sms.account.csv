@@ -1,0 +1,3 @@
+id,account_gateway_id/id,name,sid,password,user
+__export__.sms_account_3,__export__.sms_gateway_3,ME,77669,asraf123,dmashraf@gmail.com
+__export__.sms_account_2,__export__.sms_gateway_2,SSL,DSBLSC,SSl@1234,dsblsc

@@ -27,6 +27,7 @@ Customisation Eagle ERP
         'views/order.xml',
         'views/product_view.xml',
         'views/pertner_view.xml',
+        'views/product_pricelist_view.xml',
 
     ],
     'demo': [

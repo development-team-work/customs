@@ -1,0 +1,3 @@
+id,gateway_model_name,name,gateway_url,param_to_mobile,param_sid,param_message,param_user,param_password
+__export__.sms_gateway_3,sms.gateway.me,ME,http://smsgateway.me/api/v3/messages/send,number,device,message,email,password
+__export__.sms_gateway_2,sms.gateway.ssl,SSL Wireless,http://sms.sslwireless.com/pushapi/dynamic/server.php,sms[0][0],sid,sms[0][1],user,pass

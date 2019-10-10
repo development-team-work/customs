@@ -14,6 +14,8 @@
 "0070","0070","Plant and machinery","account.data_account_type_fixed_assets","FALSE","l10n_bd"
 "0071","0071","Plant and machinery Depreciation","account.data_account_type_fixed_assets","FALSE","l10n_bd"
 "1001","1001","Stock","account.data_account_type_current_assets","TRUE","l10n_bd"
+"101120","101120","Stock Interim Account (Received)","account.data_account_type_current_liabilities","TRUE","l10n_bd"
+"101130","101130","Stock Interim Account (Delivered)","account.data_account_type_current_assets","TRUE","l10n_bd"
 "1002","1002","Work in Progress","account.data_account_type_current_assets","FALSE","l10n_bd"
 "1003","1003","Finished Goods","account.data_account_type_current_assets","FALSE","l10n_bd"
 "1100","1100","Debtors Control Account","account.data_account_type_receivable","TRUE","l10n_bd"

@@ -1,2 +1,5 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_res_country_city,access_res_country_city,model_res_country_city,base.group_user,1,1,1,1
+
+
+access_product_pricelist_price,access_product_pricelist_price,model_product_pricelist_price,base.group_user,1,1,1,1

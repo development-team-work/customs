@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+      <record id="sms_gateway_view_form" model="ir.ui.view">
+          <field name="name">sms.gateway.view.form</field>
+          <field name="model">sms.gateway</field>
+          <field name="arch" type="xml">
+      	      <form>
+      	          <group>
+      	              <field name="name"/>
+      	              <field name="gateway_url" placeholder="Getway URL"/>
+      	              <field name="param_user" placeholder="Parameter for Login ID"/>
+      	            <field name="param_password" placeholder="Parameter For Password" />
+      	              <field name="param_sid" placeholder="parameter For SID"/>
+      	              <field name="param_message" placeholder="Parameter for Message Body"/>
+      	              <field name="param_to_mobile" placeholder="Parameter for Receiver No"/>
+      	              <field name="gateway_model_name"/>
+      	          </group>
+      	      </form>
+      	  </field>
+      </record>
+
+      <record id="sms_gateway_view_tree" model="ir.ui.view">
+          <field name="name">sms.gateway.view.tree</field>
+          <field name="model">sms.gateway</field>
+          <field name="arch" type="xml">     
+      	      <tree>
+      	          <field name="name"/>
+      	           <field name="gateway_model_name" />
+      	      </tree>
+      	  </field>
+      </record>
+
+      <record id="sms_gateway_action" model="ir.actions.act_window">
+          <field name="name">SMS Gateway Account</field>
+      	  <field name="res_model">sms.gateway</field>
+      	  <field name="view_type">form</field>
+      	  <field name="view_mode">tree,form</field>
+      	  <field name="help" type="html">
+	      <p class="oe_view_nocontent_create">Add SMS Gateway</p>
+	  </field>
+      </record>      
+
+      
+      <menuitem id="sms_gateway_menu" name="Gateway" parent="sms_parent_menu" action="sms_gateway_action" sequence="10"/>
+
+    </data>
+</openerp>
