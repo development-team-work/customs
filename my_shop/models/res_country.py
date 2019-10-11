@@ -12,17 +12,11 @@ _logger = logging.getLogger(__name__)
 
 
 class CountryCity(models.Model):
-    _inherit = 'res.country.state'
-
-    city_ids = fields.One2many('res.country.city', 'state_id', string='Areas')
-
-class CountryCity(models.Model):
     _description = "City of a state"
     _name = 'res.country.city'
     _order = 'name'
 
     state_id = fields.Many2one('res.country.state', string='State', required=True)
-
     name = fields.Char(string='City', required=True,
                help='city',translate=True)
 
