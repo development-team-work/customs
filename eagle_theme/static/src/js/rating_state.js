@@ -1,4 +1,4 @@
-eagle.define('rating_state_js', function(require) {
+eagle.define('eagle_theme.rating_state_js', function(require) {
     'use strict';
 
     var ajax = require('web.ajax');

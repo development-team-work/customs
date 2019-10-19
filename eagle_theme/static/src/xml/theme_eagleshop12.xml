@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates>
     <!-- Blog slider modal -->
-    <t t-name="eagleshop_blog_slider_block">
+    <t t-name="eagle_theme.eagleshop_blog_slider_block">
         <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal" contenteditable="False" role="dialog" style="z-index:2001" tabindex="1">
             <div class="modal-dialog">
                 <div class="modal-content" id="s_media_block_modal">
@@ -29,7 +29,7 @@
         </div>
     </t>
     <!-- Multi Product slider modal -->
-    <t t-name="multi_product_custom_slider_block">
+    <t t-name="eagle_theme.multi_product_custom_slider_block">
         <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal" contenteditable="False" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content" id="s_media_block_modal">
@@ -57,7 +57,7 @@
         </div>
     </t>
     <!-- Coming Soon -->
-    <t t-name="model_dialog_commingsoon">
+    <t t-name="eagle_theme.model_dialog_commingsoon">
         <div class="modal fade" id="userlist" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -104,7 +104,7 @@
         </div>
     </t>
     <!-- Category slider modal -->
-    <t t-name="eagleshop_dynamic_category_slider">
+    <t t-name="eagle_theme.eagleshop_dynamic_category_slider">
         <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal" contenteditable="False" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content" id="s_media_block_modal">
@@ -132,7 +132,7 @@
         </div>
     </t>
     <!-- Product slider modal -->
-    <t t-name="eagleshop_dynamic_product_slider">
+    <t t-name="eagle_theme.eagleshop_dynamic_product_slider">
         <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal" contenteditable="False" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content" id="s_media_block_modal_prod">
@@ -160,7 +160,7 @@
         </div>
     </t>
     <!-- Featured Product slider modal -->
-    <t t-name="eagleshop_dynamic_featured_product_slider">
+    <t t-name="eagle_theme.eagleshop_dynamic_featured_product_slider">
         <div aria-hidden="true" aria-labelledby="myModalLabel" class="modal" contenteditable="False" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content" id="s_media_block_modal_feature">
@@ -188,7 +188,7 @@
         </div>
     </t>
     <!-- Fact sheet -->
-    <t t-name="eagleshop_dynami_fact_sheet">
+    <t t-name="eagle_theme.eagleshop_dynami_fact_sheet">
         <div class="modal fade" id="fact_model" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -267,7 +267,7 @@
         </div>
     </t>
     <!-- Skills -->
-    <t t-name="eagleshop_dyanamic_skill">
+    <t t-name="eagle_theme.eagleshop_dyanamic_skill">
         <div class="modal fade" id="skill_model" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">

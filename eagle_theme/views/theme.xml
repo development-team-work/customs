@@ -204,7 +204,7 @@
                                                 <div class="" t-if="website_sale_order and website_sale_order.website_order_line">
                                                     <!-- <div class="block-subtitle">Recently added item(s)</div>-->
                                                     <div id="eagleshop_hover_total">
-                                                        <t t-call="hover_total"/>
+                                                        <t t-call="eagle_theme.hover_total"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -416,7 +416,7 @@
     </record>
 
 
-    <template active="True" customize_show="True" id="eagleshop_search_count" inherit_id="eagle_theme_header_layout" name="Eagleshop Show # found">
+    <template active="True" customize_show="True" id="eagleshop_search_count" inherit_id="eagle_theme.eagle_theme_header_layout" name="Eagleshop Show # found">
         <xpath expr="//span[hasclass('oe_search_found')]" position="replace">
             <span class="oe_search_found" t-if="search and search_count">
                 <small>(
@@ -434,7 +434,7 @@
 
    
 
-    <template active="True" customize_show="True" id="eagleshop_layout_logo_show" inherit_id="eagle_theme_header_layout" name="Eagleshop Show Logo">
+    <template active="True" customize_show="True" id="eagleshop_layout_logo_show" inherit_id="eagle_theme.eagle_theme_header_layout" name="Eagleshop Show Logo">
         <xpath expr="//div[hasclass('header-middle')]//div[hasclass('logo')]" position="replace">
             <div class="logo">
                 <h1>
@@ -477,7 +477,7 @@
                 <div class="container">
                     <div class="row">
                         <section class="col-md-5 col-sm-12 col-xs-12" id="footer-contact">
-                            <div class="footer-logo" t-if="request.env.ref('eagleshop_layout_logo_show').active">
+                            <div class="footer-logo" t-if="request.env.ref('eagle_theme.eagleshop_layout_logo_show').active">
                                 <a href="/">
                                     <span t-att-alt="'Logo of %s' % res_company.name" t-att-title="res_company.name" t-field="res_company.logo" t-options="{'widget': 'image'}"/>
                                     
@@ -656,7 +656,7 @@
         </xpath>
     </template>
     <!-- eagle11 -->
-    <template  id="eagleshop_header_footer_custom_payment" inherit_id="footer_copyright" name="Eagleshop Payment Icons" active="False" customize_show="True">
+    <template  id="eagleshop_header_footer_custom_payment" inherit_id="eagle_theme.footer_copyright" name="Eagleshop Payment Icons" active="False" customize_show="True">
         <xpath expr="//div[hasclass('payment-icons')]" position="replace">
             <div class="payment-icons">
                 <t t-as="icon" t-foreach="request.website.payment_icons()">
@@ -1136,7 +1136,7 @@
                     <div class="product-title">
                         <h1 itemprop="name" t-field="product.name">Product Name</h1>
                         <ul class="ratings"/>
-                        <p class="review" t-if="request.env.ref('eagle_theme_rating').active">
+                        <p class="review" t-if="request.env.ref('eagle_theme.eagle_theme_rating').active">
                             <a href="#">
                                 <span>
                                     <t t-esc="len(product.website_message_ids)"/>
@@ -1219,7 +1219,7 @@
         <field eval="False" name="active"/>
     </record>
 
-    <template active="False" customize_show="True" id="eagleshop_product_variants" inherit_id="eagle_theme_product_details" name="Eagleshop List View of Variants">
+    <template active="False" customize_show="True" id="eagleshop_product_variants" inherit_id="eagle_theme.eagle_theme_product_details" name="Eagleshop List View of Variants">
         <xpath expr="//t[@t-placeholder='select']" position="replace">
             <input class="product_id" name="product_id" t-att-value="product.product_variant_id.id" t-if="len(product.product_variant_ids) == 1" type="hidden"/>
             <t t-if="len(product.product_variant_ids) &gt; 1">
@@ -1235,7 +1235,7 @@
         </xpath>
     </template>
     <!-- Related Products -->
-    <template active="False" customize_show="True" id="eagle_theme_related_products" inherit_id="eagle_theme_product_details" name="Eagleshop Related Products">
+    <template active="False" customize_show="True" id="eagle_theme_related_products" inherit_id="eagle_theme.eagle_theme_product_details" name="Eagleshop Related Products">
         <xpath expr="//div[@itemscope='itemscope']/section//div[hasclass('col-md-6')]" position="attributes">
             <attribute name="class">col-md-4</attribute>
         </xpath> 
@@ -1277,7 +1277,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="pink-box">
-                                                    <ul class="ratings" t-if="request.env.ref('eagle_theme_rating').active">
+                                                    <ul class="ratings" t-if="request.env.ref('eagle_theme.eagle_theme_rating').active">
                                                         <t t-set="rates" t-value="rel_product.rating_get_stats([('website_published', '=', True)])"/>
                                                         <t t-call="portal.message_thread">
                                                             <t t-if="rates and rates.get('avg')" t-set="rating_val" t-value="rates.get('avg')"/>
@@ -1312,7 +1312,7 @@
         </xpath>
     </template>
     <!-- Discussion inherited to display in tabs -->
-    <template active="True" customize_show="True" id="eagle_theme_rating" inherit_id="eagle_theme_product_details" name="Eagleshop Discussion and Ratings">
+    <template active="True" customize_show="True" id="eagle_theme_rating" inherit_id="eagle_theme.eagle_theme_product_details" name="Eagleshop Discussion and Ratings">
         <xpath expr="//div[@id='product_details']//ul[hasclass('ratings')]" position="inside">
             <t t-set="rates" t-value="product.rating_get_stats([('website_published', '=', True)])"/>
             <t t-call="portal.message_thread">
@@ -1382,7 +1382,7 @@
                                         <span t-field="sug_product.name"/>
                                     </a>
                                 </h3>
-                                <ul class="ratings" t-if="request.env.ref('eagle_theme_rating').active">
+                                <ul class="ratings" t-if="request.env.ref('eagle_theme.eagle_theme_rating').active">
                                     <t t-set="rates" t-value="sug_product.rating_get_stats([('website_published', '=', True)])"/>
                                     <t t-call="portal.message_thread">
                                         <t t-if="rates and rates.get('avg')" t-set="rating_val" t-value="rates.get('avg')"/>
@@ -1392,7 +1392,7 @@
                                         <t t-set="disable_composer" t-value="True"/>
                                     </t>
                                 </ul>
-                                <p t-att-class="'price %s' %('no_suggested_rating' if not request.env.ref('eagle_theme_rating').active else '')">
+                                <p t-att-class="'price %s' %('no_suggested_rating' if not request.env.ref('eagle_theme.eagle_theme_rating').active else '')">
                                     <span class="price">
                                         <span class="product_price mt16" itemprop="offers" itemscope="itemscope" itemtype="http://schema.org/Offer">
                                             <b>
@@ -1433,7 +1433,7 @@
                                 <a itemprop="name" t-att-href="keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))" t-field="product.name"/>
                                 <a role="button" t-if="not show_publish and not product.website_published" t-att-href="product_href" class="btn btn-secondary btn-sm btn-danger" title="This product is unpublished.">Unpublished</a>
                             </h3>
-                            <ul class="ratings" t-if="request.env.ref('eagle_theme_rating').active">
+                            <ul class="ratings" t-if="request.env.ref('eagle_theme.eagle_theme_rating').active">
                                 <t t-set="rates" t-value="product.rating_get_stats([('website_published', '=', True)])"/>
                                 <t t-call="portal.message_thread">
                                     <t t-if="rates and rates.get('avg')" t-set="rating_val" t-value="rates.get('avg')"/>
@@ -1458,7 +1458,7 @@
                             </p>
                             <div class="o_hidden" id="list_add_to_cart">
                                 <div class="list-desc">
-                                    <span t-field="product.description_sale" t-if="request.env.ref('eagleshop_products_description').active"/>
+                                    <span t-field="product.description_sale" t-if="request.env.ref('eagle_theme.eagleshop_products_description').active"/>
                                 </div>
                                 <input name="product_id" t-att-value="product.product_variant_id.id" type="hidden"/>
                                 <div class='product_price'>
@@ -1478,7 +1478,7 @@
             </form>
         </xpath>
     </template>
-    <template customize_show="True" id="product_attributes" inherit_id="eagle_theme_product_details" name="Eagleshop Product attributes">
+    <template customize_show="True" id="product_attributes" inherit_id="eagle_theme.eagle_theme_product_details" name="Eagleshop Product attributes">
         <xpath expr="//div[hasclass('details')]" position="inside">
             <hr style="border-top: 1px solid #eeeeee;" t-if="sum([(1 if len(l.value_ids)==1 else 0) for l in product.attribute_line_ids])"/>
             <p class="text-muted">
@@ -1507,7 +1507,7 @@
     </record>
 
 
-    <template active="False" customize_show="True" id="eagleshop_products_description" inherit_id="eagle_theme_products_item" name="Eagleshop Product Description">
+    <template active="False" customize_show="True" id="eagleshop_products_description" inherit_id="eagle_theme.eagle_theme_products_item" name="Eagleshop Product Description">
         <xpath expr="//div[hasclass('pwp-img')]" position="inside">
             <div class="text-info oe_subdescription" contenteditable="false">
                 <div itemprop="description" t-field="product.description_sale"/>
@@ -1517,7 +1517,7 @@
     <!-- Remove main add to cart -->
     
     <!-- Inherited Add to cart -->
-    <template active="True" customize_show="True" id="eagle_theme_products_add_to_cart" inherit_id="eagle_theme_products_item" name="Eagleshop Add to Cart">
+    <template active="True" customize_show="True" id="eagle_theme_products_add_to_cart" inherit_id="eagle_theme.eagle_theme_products_item" name="Eagleshop Add to Cart">
         <xpath expr="//div[hasclass('pwp-img')]" position="inside">
             <div class="pink-box">
                 <div class="qvp-btn" id="quick_view_product">
@@ -1683,7 +1683,7 @@
                         <t t-if="td_product">
                             <t t-set="product" t-value="td_product['product']"/>
                             <div class="col-md-4 col-sm-6 list-items">
-                                <t t-call="eagle_theme_products_item"/>
+                                <t t-call="eagle_theme.eagle_theme_products_item"/>
                             </div>
                         </t>
                     </t>
@@ -1693,7 +1693,7 @@
     </template>
 
     <!-- Inherited Product Categories -->
-    <template active="False" customize_show="True" id="eagle_theme_product_category" inherit_id="eagle_theme_sale_products" name="Eagleshop Product Categories" >
+    <template active="False" customize_show="True" id="eagle_theme_product_category" inherit_id="eagle_theme.eagle_theme_sale_products" name="Eagleshop Product Categories" >
         <xpath expr="//div[@id='products_grid_before']" position="inside">
             <div class="left-title">
                 <h3>Categories</h3>
@@ -1715,7 +1715,7 @@
         </xpath>
     </template>
 
-    <template id="cra_option_collapse_products_categories" name="Eagleshop Collapsible Category List" inherit_id="eagle_theme_product_category" active="False" customize_show="True">
+    <template id="cra_option_collapse_products_categories" name="Eagleshop Collapsible Category List" inherit_id="eagle_theme.eagle_theme_product_category" active="False" customize_show="True">
         <xpath expr="//div[@id='products_grid_before']/ul" position="replace">
             <ul class="nav nav-pills flex-column mt16" id="o_shop_collapse_category">
                 <li class="nav-item">
@@ -1729,7 +1729,7 @@
     </template>
 
     <!-- Inherited Product Attributes -->
-    <template active="False" customize_show="True" id="eagle_theme_products_attributes" inherit_id="eagle_theme_sale_products" name="Eagleshop Product Attribute's Filters">
+    <template active="False" customize_show="True" id="eagle_theme_products_attributes" inherit_id="eagle_theme.eagle_theme_sale_products" name="Eagleshop Product Attribute's Filters">
         <xpath expr="//div[@id='products_grid_before']" position="inside">
             <div class="shop-by mt16">
                 <div class="left-title">
@@ -1787,7 +1787,7 @@
     </template>
 
     <!--Price Slider View-->
-    <template active="False" customize_show="True" id="price_remove" inherit_id="eagle_theme_sale_products" name="Eagleshop Custom Filters" priority="1">
+    <template active="False" customize_show="True" id="price_remove" inherit_id="eagle_theme.eagle_theme_sale_products" name="Eagleshop Custom Filters" priority="1">
         <xpath expr="//div[@id='products_grid_before']" position="inside">
             <div class="popular-tags" t-if="request.session.get('pricerange') or request.session.get('sortid')">
                 <div class="left-title">
@@ -1821,7 +1821,7 @@
         </xpath>
     </template>
 
-    <template active="False" customize_show="True" id="product_price_slider" inherit_id="eagle_theme_sale_products" name="Eagleshop Product Price Slider" priority="40">
+    <template active="False" customize_show="True" id="product_price_slider" inherit_id="eagle_theme.eagle_theme_sale_products" name="Eagleshop Product Price Slider" priority="40">
         <xpath expr="//div[@id='products_grid_before']" position="inside">
             <div class="price-slider">
                 <div class="left-title">
@@ -1849,7 +1849,7 @@
     </template>
 
     <!-- Product Sorting -->
-    <template active="False" customize_show="True" id="eagle_theme_product_sorting" inherit_id="eagle_theme_sale_products" name="Eagleshop Product Sorting">
+    <template active="False" customize_show="True" id="eagle_theme_product_sorting" inherit_id="eagle_theme.eagle_theme_sale_products" name="Eagleshop Product Sorting">
         <xpath expr="//div[hasclass('category-products', 'category_products')]//div[hasclass('pager_right')]/div" position="before">
             <div class="sort-by">
                 <div class="dropdown ">
@@ -2119,7 +2119,7 @@
         <field eval="False" name="active"/>
     </record>
 
-    <template active="True" customize_show="True" id="eagleshop_product_quantity" inherit_id="eagle_theme_product_details" name="Eagleshop Select Quantity">
+    <template active="True" customize_show="True" id="eagleshop_product_quantity" inherit_id="eagle_theme.eagle_theme_product_details" name="Eagleshop Select Quantity">
         <xpath expr="//a[@id='add_to_cart']" position="before">
             <div class="css_quantity input-group oe_website_spinner" contenteditable="false">
                 <a class="mb8 input-group-addon js_add_cart_json" t-attf-href="#">

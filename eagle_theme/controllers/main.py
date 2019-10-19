@@ -158,7 +158,7 @@ class EagleshopSliderSettings(http.Controller):
                 'slider_header': slider_header,
                 'blog_slider_details': slider_header.collections_blog_post,
             }
-            return request.render("eagle_theme_blog_slider_view", values)
+            return request.render("eagle_theme.eagle_theme_blog_slider_view", values)
 
     @http.route(['/eagle_theme/blog_image_effect_config'], type='json', auth='public', website=True)
     def eagleshop_product_image_dynamic_slider(self, **post):
@@ -180,7 +180,7 @@ class EagleshopSliderSettings(http.Controller):
         values = {
             'client_slider_details': client_data,
         }
-        return request.render("eagle_theme_client_slider_view", values)
+        return request.render("eagle_theme.eagle_theme_client_slider_view", values)
 
     # For multi product slider
     @http.route(['/eagle_theme/product_multi_get_options'], type='json', auth="public", website=True)
@@ -218,7 +218,7 @@ class EagleshopSliderSettings(http.Controller):
                 'slider_header': slider_header,
                 'compute_currency': compute_currency
             }
-            return request.render("eagle_theme_multi_cat_slider_view", values)
+            return request.render("eagle_theme.eagle_theme_multi_cat_slider_view", values)
 
     @http.route(['/eagle_theme/product_multi_image_effect_config'], type='json', auth='public', website=True)
     def eagleshop_product_multi_product_image_dynamic_slider(self, **post):
@@ -241,7 +241,7 @@ class EagleshopSliderSettings(http.Controller):
                 'slider_header': slider_header,
                 'blog_slider_details': slider_header.collections_blog_post,
             }
-            return request.render("eagle_theme_news1_view", values)
+            return request.render("eagle_theme.eagle_theme_news1_view", values)
 
     @http.route(['/eagle_theme/newstwo_get_dynamic_slider'], type='http', auth='public', website=True)
     def eagleshop_get_dynamic_newstwo_slider(self, **post):
@@ -252,7 +252,7 @@ class EagleshopSliderSettings(http.Controller):
                 'slider_header': slider_header,
                 'blog_slider_details': slider_header.collections_blog_post,
             }
-            return request.render("eagle_theme_news2_view", values)
+            return request.render("eagle_theme.eagle_theme_news2_view", values)
 
     @http.route(['/eagle_theme/theme_new_hardware_blog'], type='http', auth='public', website=True)
     def eagleshop_get_dynamic_hardwareblog_slider(self, **post):
@@ -263,16 +263,16 @@ class EagleshopSliderSettings(http.Controller):
                 'slider_header': slider_header,
                 'blog_slider_details': slider_header.collections_blog_post,
             }
-            return request.render("eagle_theme_hardware_blog_snippet_view", values)
+            return request.render("eagle_theme.eagle_theme_hardware_blog_snippet_view", values)
 
     # Coming soon snippet
     @http.route(['/biztech_comming_soon/soon_data'], type="http", auth="public", website=True)
     def get_soon_data(self, **post):
-        return request.render("eagle_theme_coming_soon_mode_one_view")
+        return request.render("eagle_theme.eagle_theme_coming_soon_mode_one_view")
 
     @http.route(['/biztech_comming_soon_two/two_soon_data'], type="http", auth="public", website=True)
     def get_soon_data_two(self, **post):
-        return request.render("eagle_theme_coming_soon_mode_two_view")
+        return request.render("eagle_theme.eagle_theme_coming_soon_mode_two_view")
 
     def find_snippet_employee(self):
         emp = {}
@@ -285,17 +285,17 @@ class EagleshopSliderSettings(http.Controller):
     @http.route(['/biztech_emp_data_one/employee_data'], type="http", auth="public", website=True)
     def get_one_employee_details_custom(self, **post):
         emp = self.find_snippet_employee()
-        return request.render("eagle_theme_team_one", emp)
+        return request.render("eagle_theme.eagle_theme_team_one", emp)
 
     @http.route(['/biztech_emp_data/employee_data'], type="http", auth="public", website=True)
     def get_employee_detail_custom(self, **post):
         emp = self.find_snippet_employee()
-        return request.render("eagle_theme_team_two", emp)
+        return request.render("eagle_theme.eagle_theme_team_two", emp)
 
     @http.route(['/biztech_emp_data_three/employee_data'], type="http", auth="public", website=True)
     def get_employee_detail_custom_1(self, **post):
         emp = self.find_snippet_employee()
-        return request.render("eagle_theme_team_three", emp)
+        return request.render("eagle_theme.eagle_theme_team_three", emp)
 
     # For Category slider
     @http.route(['/eagle_theme/category_get_options'], type='json', auth="public", website=True)
@@ -331,7 +331,7 @@ class EagleshopSliderSettings(http.Controller):
             values.update({
                 'slider_details': slider_header.collections_category,
             })
-            return request.render("eagle_theme_cat_slider_view", values)
+            return request.render("eagle_theme.eagle_theme_cat_slider_view", values)
 
     @http.route(['/eagle_theme/category_image_effect_config'], type='json', auth='public', website=True)
     def category_image_dynamic_slider(self, **post):
@@ -347,11 +347,11 @@ class EagleshopSliderSettings(http.Controller):
 
     @http.route(['/biztech_fact_model_data/fact_data'], type="http", auth="public", website=True)
     def get_factsheet_data(self, **post):
-        return request.render("eagle_theme_facts_sheet_view")
+        return request.render("eagle_theme.eagle_theme_facts_sheet_view")
 
     @http.route(['/biztech_skill_model_data/skill_data'], type="http", auth="public", website="True")
     def get_skill_data(self, **post):
-        return request.render("eagle_theme_skills_view")
+        return request.render("eagle_theme.eagle_theme_skills_view")
 
     # Multi image gallery
     @http.route(['/eagle_theme/eagleshop_multi_image_effect_config'], type='json', auth="public", website=True)
@@ -392,7 +392,7 @@ class EagleshopSliderSettings(http.Controller):
             values.update({
                 'slider_details': slider_header.collections_products,
             })
-            return request.render("eagle_theme_product_slider_view", values)
+            return request.render("eagle_theme.eagle_theme_product_slider_view", values)
 
     @http.route(['/eagle_theme/product_image_effect_config'], type='json', auth='public', website=True)
     def product_image_dynamic_slider(self, **post):
@@ -444,7 +444,7 @@ class EagleshopSliderSettings(http.Controller):
                 'compute_currency': compute_currency,
                 'slider_header': slider_header
             }
-            return request.render("eagle_theme_featured_product_slider_view", values)
+            return request.render("eagle_theme.eagle_theme_featured_product_slider_view", values)
 
     @http.route(['/eagle_theme/featured_product_image_effect_config'], type='json', auth='public', website=True)
     def featured_product_image_dynamic_slider(self, **post):
@@ -462,7 +462,7 @@ class EagleshopSliderSettings(http.Controller):
     def get_event_data(self, **post):
         events = request.env['event.type'].sudo().search([])
         values = {'main_events_category': events}
-        return request.render("eagle_theme_events_view", values)
+        return request.render("eagle_theme.eagle_theme_events_view", values)
 
 
 class EagleshopEcommerceShop(WebsiteSale):
@@ -472,7 +472,7 @@ class EagleshopEcommerceShop(WebsiteSale):
         result = super(EagleshopEcommerceShop, self).cart_update_json(
             product_id, line_id, add_qty, set_qty, display)
         order = request.website.sale_get_order()
-        result.update({'hover_total': request.env['ir.ui.view'].render_template("hover_total", {
+        result.update({'eagle_theme.hover_total': request.env['ir.ui.view'].render_template("eagle_theme.hover_total", {
             'website_sale_order': order})
         })
         return result
@@ -570,7 +570,7 @@ class EagleshopEcommerceShop(WebsiteSale):
                         sort, sort_order, sort_field.name, order_type]
 
             is_price_slider = request.env.ref(
-                'product_price_slider')
+                'eagle_theme.product_price_slider')
             # if is_price_slider and is_price_slider.active:
             if is_price_slider:
                 # For Price slider

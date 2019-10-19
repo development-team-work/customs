@@ -106,7 +106,7 @@
         </field>
     </record>
     <!-- Main menu in config -->
-    <menuitem action="eagle_theme_multi_slider_action" id="eagle_theme_multi_slider_menu" name="Multi Product Slider Configuration" parent="eagleshop_menu_slider_config" sequence="70"/>
+    <menuitem action="eagle_theme_multi_slider_action" id="eagle_theme_multi_slider_menu" name="Multi Product Slider Configuration" parent="eagle_theme.eagleshop_menu_slider_config" sequence="70"/>
     <!-- Category Slider -->
     <!-- Category Slider Form View-->
     <record id="cat_slider_form_view" model="ir.ui.view">
@@ -152,7 +152,7 @@
         </field>
     </record>
     <!-- Category menu in slider config -->
-    <menuitem action="cat_slider_action" id="cat_slider_menu" name="Category Slider Configuration" parent="eagleshop_menu_slider_config" sequence="60"/>
+    <menuitem action="cat_slider_action" id="cat_slider_menu" name="Category Slider Configuration" parent="eagle_theme.eagleshop_menu_slider_config" sequence="60"/>
     <!-- Product Slider -->
     <!-- Product Slider Form View-->
     <record id="prod_slider_form_view" model="ir.ui.view">
@@ -198,7 +198,7 @@
         </field>
     </record>
     <!-- Product menu in slider config -->
-    <menuitem action="prod_slider_action" id="prod_slider_menu" name="Product Slider Configuration" parent="eagleshop_menu_slider_config" sequence="60"/>
+    <menuitem action="prod_slider_action" id="prod_slider_menu" name="Product Slider Configuration" parent="eagle_theme.eagleshop_menu_slider_config" sequence="60"/>
     <!-- Featured Product Slider -->
     <!-- Featured Product Slider Form View-->
     <record id="featued_prod_slider_form_view" model="ir.ui.view">
@@ -248,5 +248,5 @@
         </field>
     </record>
     <!-- Featured Product menu in slider config -->
-    <menuitem action="featured_prod_slider_action" id="featured_prod_slider_menu" name="Featured Product Slider Configuration" parent="eagleshop_menu_slider_config" sequence="60"/>
+    <menuitem action="featured_prod_slider_action" id="featured_prod_slider_menu" name="Featured Product Slider Configuration" parent="eagle_theme.eagleshop_menu_slider_config" sequence="60"/>
 </eagle>

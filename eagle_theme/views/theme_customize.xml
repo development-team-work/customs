@@ -2,68 +2,68 @@
 <eagle>
        
         <!-- Option Primary Fonts -->
-        <template active="False" customize_show="True" id="option_font_style_open_sans" inherit_id="asset_frontend" name="option_font_style_open_sans">
+        <template active="False" customize_show="True" id="option_font_style_open_sans" inherit_id="eagle_theme.asset_frontend" name="option_font_style_open_sans">
             <xpath expr="." position="inside">
                 <link href="/eagle_theme/static/src/scss/options/fonts/font-style-open-sans-font.scss" rel="stylesheet" type="text/scss"/>
             </xpath>
         </template>
-        <template active="False" customize_show="True" id="option_font_style_lato_font" inherit_id="asset_frontend" name="option_font_style_lato_font">
+        <template active="False" customize_show="True" id="option_font_style_lato_font" inherit_id="eagle_theme.asset_frontend" name="option_font_style_lato_font">
             <xpath expr="." position="inside">
                 <link href="/eagle_theme/static/src/scss/options/fonts/font-style-lato-font.scss" rel="stylesheet" type="text/scss"/>
             </xpath>
         </template>
-        <template active="False" customize_show="True" id="option_font_style_raleway" inherit_id="asset_frontend" name="option_font_style_raleway_font">
+        <template active="False" customize_show="True" id="option_font_style_raleway" inherit_id="eagle_theme.asset_frontend" name="option_font_style_raleway_font">
             <xpath expr="." position="inside">
                 <link href="/eagle_theme/static/src/scss/options/fonts/font-style-raleway-font.scss" rel="stylesheet" type="text/scss"/>
             </xpath>
         </template>
-        <template active="False" customize_show="True" id="option_font_style_source_sans_pro" inherit_id="asset_frontend" name="option_font_style_source_sans_pro">
+        <template active="False" customize_show="True" id="option_font_style_source_sans_pro" inherit_id="eagle_theme.asset_frontend" name="option_font_style_source_sans_pro">
             <xpath expr="." position="inside">
                 <link href="/eagle_theme/static/src/scss/options/fonts/font-style-source-sans-pro-font.scss" rel="stylesheet" type="text/scss"/>
             </xpath>
         </template>
-        <template active="False" customize_show="True" id="option_font_style_source_serif_pro" inherit_id="asset_frontend" name="option_font_style_source_serif_pro">
+        <template active="False" customize_show="True" id="option_font_style_source_serif_pro" inherit_id="eagle_theme.asset_frontend" name="option_font_style_source_serif_pro">
             <xpath expr="." position="inside">
                 <link href="/eagle_theme/static/src/scss/options/fonts/font-style-source-serif-pro-font.scss" rel="stylesheet" type="text/scss"/>
             </xpath>
         </template>
-        <template active="False" customize_show="True" id="option_font_style_varela_round" inherit_id="asset_frontend" name="option_font_style_varela_round">
+        <template active="False" customize_show="True" id="option_font_style_varela_round" inherit_id="eagle_theme.asset_frontend" name="option_font_style_varela_round">
             <xpath expr="." position="inside">
                 <link href="/eagle_theme/static/src/scss/options/fonts/font-style-varela-round-font.scss" rel="stylesheet" type="text/scss"/>
             </xpath>
         </template>
-        <template active="False" customize_show="True" id="boxed_layout" inherit_id="asset_frontend" name="boxed_layout">
+        <template active="False" customize_show="True" id="boxed_layout" inherit_id="eagle_theme.asset_frontend" name="boxed_layout">
             <xpath expr="." position="inside">
                 <link href="/eagle_theme/static/src/scss/options/layout/boxed.scss" rel="stylesheet" type="text/scss"/>
             </xpath>
         </template>
         <!-- Background Pattern -->
-        <template active="False" customize_show="True" id="option_bg_pattern_1" inherit_id="asset_frontend" name="option_bg_pattern_1">
+        <template active="False" customize_show="True" id="option_bg_pattern_1" inherit_id="eagle_theme.asset_frontend" name="option_bg_pattern_1">
             <xpath expr="." position="inside">
                 <link href="/eagle_theme/static/src/scss/options/bg_patterns/bg-pattern-1.scss" rel="stylesheet" type="text/scss"/>
             </xpath>
         </template>
-        <template active="False" customize_show="True" id="option_bg_pattern_2" inherit_id="asset_frontend" name="option_bg_pattern_2">
+        <template active="False" customize_show="True" id="option_bg_pattern_2" inherit_id="eagle_theme.asset_frontend" name="option_bg_pattern_2">
             <xpath expr="." position="inside">
                 <link href="/eagle_theme/static/src/scss/options/bg_patterns/bg-pattern-2.scss" rel="stylesheet" type="text/scss"/>
             </xpath>
         </template>
-        <template active="False" customize_show="True" id="option_bg_pattern_3" inherit_id="asset_frontend" name="option_bg_pattern_3">
+        <template active="False" customize_show="True" id="option_bg_pattern_3" inherit_id="eagle_theme.asset_frontend" name="option_bg_pattern_3">
             <xpath expr="." position="inside">
                 <link href="/eagle_theme/static/src/scss/options/bg_patterns/bg-pattern-3.scss" rel="stylesheet" type="text/scss"/>
             </xpath>
         </template>
-        <template active="False" customize_show="True" id="option_bg_pattern_4" inherit_id="asset_frontend" name="option_bg_pattern_4">
+        <template active="False" customize_show="True" id="option_bg_pattern_4" inherit_id="eagle_theme.asset_frontend" name="option_bg_pattern_4">
             <xpath expr="." position="inside">
                 <link href="/eagle_theme/static/src/scss/options/bg_patterns/bg-pattern-4.scss" rel="stylesheet" type="text/scss"/>
             </xpath>
         </template>
-        <template active="False" customize_show="True" id="option_bg_pattern_5" inherit_id="asset_frontend" name="option_bg_pattern_5">
+        <template active="False" customize_show="True" id="option_bg_pattern_5" inherit_id="eagle_theme.asset_frontend" name="option_bg_pattern_5">
             <xpath expr="." position="inside">
                 <link href="/eagle_theme/static/src/scss/options/bg_patterns/bg-pattern-5.scss" rel="stylesheet" type="text/scss"/>
             </xpath>
         </template>
-        <template active="False" customize_show="True" id="option_bg_pattern_6" inherit_id="asset_frontend" name="option_bg_pattern_6">
+        <template active="False" customize_show="True" id="option_bg_pattern_6" inherit_id="eagle_theme.asset_frontend" name="option_bg_pattern_6">
             <xpath expr="." position="inside">
                 <link href="/eagle_theme/static/src/scss/options/bg_patterns/bg-pattern-6.scss" rel="stylesheet" type="text/scss"/>
             </xpath>
@@ -93,7 +93,7 @@
                                         <td class=" text-center">
                                             <label class=" center-block">
                                                 <div class="text-center" style="background-size: 100%; line-height: 40px;">BOXED</div>
-                                                <input data-enable="less" data-xmlid="boxed_layout" name="layoutvar" type="radio"/>
+                                                <input data-enable="less" data-xmlid="eagle_theme.boxed_layout" name="layoutvar" type="radio"/>
                                             </label>
                                         </td>
                                     </tr>
@@ -107,19 +107,19 @@
                                         <td>
                                             <label class="chd-color-combi">
                                                 <span class="pf-color1"/>
-                                                <input data-enable="less" data-xmlid="option_bg_pattern_1" name="colorvar_pattern" type="radio"/>
+                                                <input data-enable="less" data-xmlid="eagle_theme.option_bg_pattern_1" name="colorvar_pattern" type="radio"/>
                                             </label>
                                         </td>
                                         <td>
                                             <label class="chd-color-combi">
                                                 <span class="pf-color2"/>
-                                                <input data-enable="less" data-xmlid="option_bg_pattern_2" name="colorvar_pattern" type="radio"/>
+                                                <input data-enable="less" data-xmlid="eagle_theme.option_bg_pattern_2" name="colorvar_pattern" type="radio"/>
                                             </label>
                                         </td>
                                         <td>
                                             <label class="chd-color-combi">
                                                 <span class="pf-color3"/>
-                                                <input data-enable="less" data-xmlid="option_bg_pattern_3" name="colorvar_pattern" type="radio"/>
+                                                <input data-enable="less" data-xmlid="eagle_theme.option_bg_pattern_3" name="colorvar_pattern" type="radio"/>
                                             </label>
                                         </td>
                                     </tr>
@@ -127,19 +127,19 @@
                                         <td>
                                             <label class="chd-color-combi">
                                                 <span class="pf-color4"/>
-                                                <input data-enable="less" data-xmlid="option_bg_pattern_4" name="colorvar_pattern" type="radio"/>
+                                                <input data-enable="less" data-xmlid="eagle_theme.option_bg_pattern_4" name="colorvar_pattern" type="radio"/>
                                             </label>
                                         </td>
                                         <td>
                                             <label class="chd-color-combi">
                                                 <span class="pf-color5"/>
-                                                <input data-enable="less" data-xmlid="option_bg_pattern_5" name="colorvar_pattern" type="radio"/>
+                                                <input data-enable="less" data-xmlid="eagle_theme.option_bg_pattern_5" name="colorvar_pattern" type="radio"/>
                                             </label>
                                         </td>
                                         <td>
                                             <label class="chd-color-combi">
                                                 <span class="pf-color6"/>
-                                                <input data-enable="less" data-xmlid="option_bg_pattern_6" name="colorvar_pattern" type="radio"/>
+                                                <input data-enable="less" data-xmlid="eagle_theme.option_bg_pattern_6" name="colorvar_pattern" type="radio"/>
                                             </label>
                                         </td>
                                     </tr>
@@ -150,13 +150,13 @@
                                         <td width="50%">
                                             <label>
                                                 <span class="font-style1" style="font-family: 'Open Sans', sans-serif;">Open Sans </span>
-                                                <input data-enable="less" data-xmlid="option_font_style_open_sans" name="theme" type="radio"/>
+                                                <input data-enable="less" data-xmlid="eagle_theme.option_font_style_open_sans" name="theme" type="radio"/>
                                             </label>
                                         </td>
                                         <td width="50%">
                                             <label>
                                                 <span class="font-style2" style="font-family: 'Lato', sans-serif;">Lato</span>
-                                                <input data-enable="less" data-xmlid="option_font_style_lato_font" name="theme" type="radio"/>
+                                                <input data-enable="less" data-xmlid="eagle_theme.option_font_style_lato_font" name="theme" type="radio"/>
                                             </label>
                                         </td>
                                     </tr>
@@ -164,13 +164,13 @@
                                         <td width="50%">
                                             <label>
                                                 <span class="font-style1" style="font-family: 'Source Sans Pro', sans-serif;">Source Sans Pro</span>
-                                                <input data-enable="less" data-xmlid="option_font_style_source_sans_pro" name="theme" type="radio"/>
+                                                <input data-enable="less" data-xmlid="eagle_theme.option_font_style_source_sans_pro" name="theme" type="radio"/>
                                             </label>
                                         </td>
                                         <td width="50%">
                                             <label>
                                                 <span class="font-style1" style="font-family: 'Source Serif Pro', serif;">Source Serif Pro</span>
-                                                <input data-enable="less" data-xmlid="option_font_style_source_serif_pro" name="theme" type="radio"/>
+                                                <input data-enable="less" data-xmlid="eagle_theme.option_font_style_source_serif_pro" name="theme" type="radio"/>
                                             </label>
                                         </td>
                                     </tr>
@@ -178,13 +178,13 @@
                                         <td width="50%">
                                             <label>
                                                 <span class="font-style3" style="font-family: 'Raleway', sans-serif;">Raleway</span>
-                                                <input data-enable="less" data-xmlid="option_font_style_raleway" name="theme" type="radio"/>
+                                                <input data-enable="less" data-xmlid="eagle_theme.option_font_style_raleway" name="theme" type="radio"/>
                                             </label>
                                         </td>
                                         <td width="50%">
                                             <label>
                                                 <span class="font-style1" style="font-family: 'Varela Round', sans-serif;">Varela Round</span>
-                                                <input data-enable="less" data-xmlid="option_font_style_varela_round" name="theme" type="radio"/>
+                                                <input data-enable="less" data-xmlid="eagle_theme.option_font_style_varela_round" name="theme" type="radio"/>
                                             </label>
                                         </td>
                                     </tr>

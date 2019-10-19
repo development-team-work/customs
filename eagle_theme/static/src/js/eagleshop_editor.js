@@ -1,4 +1,4 @@
-eagle.define('eagleshop_editor_js', function(require) {
+eagle.define('eagle_theme.eagleshop_editor_js', function(require) {
     'use strict';
 
     var options = require('web_editor.snippets.options');
@@ -7,7 +7,7 @@ eagle.define('eagleshop_editor_js', function(require) {
     var qweb = core.qweb;
     var _t = core._t;
 
-    ajax.loadXML('/eagle_theme/static/src/xml/xml', qweb);
+    ajax.loadXML('/eagle_theme/static/src/xml/eagle_theme.xml', qweb);
 
     options.registry.eagleshop_tabbing_snippet = options.Class.extend({
         start: function() {
@@ -90,7 +90,7 @@ eagle.define('eagleshop_editor_js', function(require) {
         eagle_theme_blog_slider: function(type, value) {
             var self = this;
             if (type != undefined && type.type == "click" || type == undefined) {
-                self.$modal = $(qweb.render("eagleshop_blog_slider_block"));
+                self.$modal = $(qweb.render("eagle_theme.eagleshop_blog_slider_block"));
                 self.$modal.appendTo('body');
                 self.$modal.modal();
                 var $slider_type = self.$modal.find("#blog_slider_type"),
@@ -159,7 +159,7 @@ eagle.define('eagleshop_editor_js', function(require) {
         multi_category_slider: function(type, value) {
             var self = this;
             if (type != undefined && type.type == "click" || type == undefined) {
-                self.$modal = $(qweb.render("multi_product_custom_slider_block"));
+                self.$modal = $(qweb.render("eagle_theme.multi_product_custom_slider_block"));
                 self.$modal.appendTo('body');
                 self.$modal.modal();
                 var $slider_type = self.$modal.find("#slider_type"),
@@ -230,7 +230,7 @@ eagle.define('eagleshop_editor_js', function(require) {
         eagle_theme_coming_soon_mode_one_function: function(type, value) {
             if (type != undefined && type.type == "click" || type == undefined) {
                 var self = this;
-                self.$modal = $(qweb.render("model_dialog_commingsoon"));
+                self.$modal = $(qweb.render("eagle_theme.model_dialog_commingsoon"));
                 self.$modal.appendTo('body');
                 self.$modal.modal();
                 var $sub_data = self.$modal.find("#biztech_coumtdown_btn");
@@ -315,7 +315,7 @@ eagle.define('eagleshop_editor_js', function(require) {
         eagle_theme_coming_soon_mode_two_function: function(type, value) {
             if (type != undefined && type.type == "click" || type == undefined) {
                 var self = this;
-                self.$modal = $(qweb.render("model_dialog_commingsoon"));
+                self.$modal = $(qweb.render("eagle_theme.model_dialog_commingsoon"));
                 self.$modal.appendTo('body');
                 self.$modal.modal();
                 var $sub_data = self.$modal.find("#biztech_coumtdown_btn");
@@ -400,7 +400,7 @@ eagle.define('eagleshop_editor_js', function(require) {
         cat_slider: function(type, value) {
             var self = this;
             if (type != undefined && type.type == "click" || type == undefined) {
-                self.$modal = $(qweb.render("eagleshop_dynamic_category_slider"));
+                self.$modal = $(qweb.render("eagle_theme.eagleshop_dynamic_category_slider"));
                 self.$modal.appendTo('body');
                 self.$modal.modal();
                 var $slider_type = self.$modal.find("#slider_type"),
@@ -469,7 +469,7 @@ eagle.define('eagleshop_editor_js', function(require) {
         prod_slider: function(type, value) {
             var self = this;
             if (type != undefined && type.type == "click" || type == undefined) {
-                self.$modal = $(qweb.render("eagleshop_dynamic_product_slider"));
+                self.$modal = $(qweb.render("eagle_theme.eagleshop_dynamic_product_slider"));
                 self.$modal.appendTo('body');
                 self.$modal.modal();
                 var $slider_type = self.$modal.find("#slider_type"),
@@ -538,7 +538,7 @@ eagle.define('eagleshop_editor_js', function(require) {
         featured_prod_slider: function(type, value) {
             var self = this;
             if (type != undefined && type.type == "click" || type == undefined) {
-                self.$modal = $(qweb.render("eagleshop_dynamic_featured_product_slider"));
+                self.$modal = $(qweb.render("eagle_theme.eagleshop_dynamic_featured_product_slider"));
                 self.$modal.appendTo('body');
                 self.$modal.modal();
                 var $slider_type = self.$modal.find("#featured_slider_type"),
@@ -607,7 +607,7 @@ eagle.define('eagleshop_editor_js', function(require) {
             if (type != undefined && type.type == "click" || type == undefined) {
                 var self = this;
                 var factcount
-                self.$modal = $(qweb.render("eagleshop_dynami_fact_sheet"));
+                self.$modal = $(qweb.render("eagle_theme.eagleshop_dynami_fact_sheet"));
                 self.$modal.appendTo('body');
                 self.$modal.modal();
                 var $cancel = self.$modal.find("#biz_cancle"),
@@ -718,7 +718,7 @@ eagle.define('eagleshop_editor_js', function(require) {
             if (type != undefined && type.type == "click" || type == undefined) {
                 var self = this;
                 var skillcount;
-                self.$modal = $(qweb.render("eagleshop_dyanamic_skill"));
+                self.$modal = $(qweb.render("eagle_theme.eagleshop_dyanamic_skill"));
                 self.$modal.appendTo('body');
                 self.$modal.modal();
 
@@ -815,7 +815,7 @@ eagle.define('eagleshop_editor_js', function(require) {
         eagle_theme_newsone_slider: function(type, value) {
             var self = this;
             if (type != undefined && type.type == "click" || type == undefined) {
-                self.$modal = $(qweb.render("eagleshop_blog_slider_block"));
+                self.$modal = $(qweb.render("eagle_theme.eagleshop_blog_slider_block"));
                 self.$modal.appendTo('body');
                 self.$modal.modal();
                 var $slider_type = self.$modal.find("#blog_slider_type"),
@@ -886,7 +886,7 @@ eagle.define('eagleshop_editor_js', function(require) {
         eagle_theme_newstwo_slider: function(type, value) {
             var self = this;
             if (type != undefined && type.type == "click" || type == undefined) {
-                self.$modal = $(qweb.render("eagleshop_blog_slider_block"));
+                self.$modal = $(qweb.render("eagle_theme.eagleshop_blog_slider_block"));
                 self.$modal.appendTo('body');
                 self.$modal.modal();
                 var $slider_type = self.$modal.find("#blog_slider_type"),
@@ -953,7 +953,7 @@ eagle.define('eagleshop_editor_js', function(require) {
         eagle_theme_new_blog_function: function(type, value) {
             var self = this;
             if (type != undefined && type.type == "click" || type == undefined) {
-                self.$modal = $(qweb.render("eagleshop_blog_slider_block"));
+                self.$modal = $(qweb.render("eagle_theme.eagleshop_blog_slider_block"));
                 self.$modal.appendTo('body');
                 self.$modal.modal();
                 var $slider_type = self.$modal.find("#blog_slider_type"),

@@ -56,7 +56,7 @@ theme for ecommerce store
     ''',
     'category': 'Theme/Ecommerce',
     'version': '12.0.1.0.6',
-    'license': 'OPL-1',
+
     'author': 'Shaheen Hossain',
     'website': 'https://www.eagle-erp.com/',
     'depends': [

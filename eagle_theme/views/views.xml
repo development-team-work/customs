@@ -125,7 +125,7 @@
             </xpath>
             <xpath expr="//notebook" position="inside">
                 <page attrs="{'invisible':[('multi_image','!=',True)]}" name="product multi image" string="Product Multiple Images">
-                    <field context="{'default_product_id': id, 'tree_view_ref':'biztech_list_view_for_biz_product_images', 'form_view_ref':'biztech_form_view_for_biz_product_images'}" name="biz_images" nolabel="1"/>
+                    <field context="{'default_product_id': id, 'tree_view_ref':'eagle_theme.biztech_list_view_for_biz_product_images', 'form_view_ref':'eagle_theme.biztech_form_view_for_biz_product_images'}" name="biz_images" nolabel="1"/>
                 </page>
             </xpath>
         </field>

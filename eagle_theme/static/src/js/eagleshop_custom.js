@@ -1,4 +1,4 @@
-eagle.define('eagleshop_custom_js', function(require) {
+eagle.define('eagle_theme.eagleshop_custom_js', function(require) {
     'use strict';
 
     var ajax = require('web.ajax');
@@ -405,7 +405,7 @@ eagle.define('eagleshop_custom_js', function(require) {
                                 $q1.html(data.cart_quantity).fadeIn(500);
                                 return;
                             }
-                            $("#eagleshop_hover_total").empty().html(data['hover_total']);
+                            $("#eagleshop_hover_total").empty().html(data['eagle_theme.hover_total']);
                             $(".js_cart_lines").first().before(data['website_sale.cart_lines']).end().remove();
                         }, 100);
 

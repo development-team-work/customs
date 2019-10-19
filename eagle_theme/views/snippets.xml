@@ -5307,68 +5307,68 @@
                             <i class="fa fa-circle-o-notch fa-stack-1x"/>
                         </span>Theme Eagleshop</div>
                     <div class="o_panel_body">
-                        <t t-snippet="s_eagle_theme_main_title" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Main_Title.png"/>
-                        <t t-snippet="s_eagle_theme_upper_banner" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Upper_Banner.png"/>
-                        <t t-snippet="s_eagle_theme_homes_slider_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Home_Slider.png"/>
-                        <t t-snippet="s_eagle_theme_homes_slider_snippet_2" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Home_Slider.png"/>
-                        <t t-snippet="s_carfito_custom_tabbing_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/About_Company.png"/>
-                        <t t-snippet="s_eagle_theme_about_me_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/About_Me.png"/>
-                        <t t-snippet="s_eagle_theme_about_us_2" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/About_us_2.png"/>
-                        <t t-snippet="s_eagle_theme_about_us_3" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/About_us_3.png"/>
-                        <t t-snippet="s_eagle_theme_feature1" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Feature_3.png"/>
-                        <t t-snippet="s_eagle_theme_feature2" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Feature_1.png"/>
-                        <t t-snippet="s_eagle_theme_feature3" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Feature_2.png"/>
-                        <t t-snippet="s_eagle_theme_at_service" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/At-your-service.png"/>
-                        <t t-snippet="s_eagle_theme_newsletter" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Newsletter.png"/>
-                        <t t-snippet="s_eagle_theme_contact_us" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Contact_us.png"/>
-                        <t t-snippet="s_eagle_theme_facts_sheet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/facts_sheet.png"/>
-                        <t t-snippet="s_eagle_theme_skills" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Skills.png"/>
-                        <t t-snippet="s_eagle_theme_choose_us" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/why-choose-us.png"/>
-                        <t t-snippet="s_eagle_theme_coming_soon_mode_one" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Coming_soon_1.png"/>
-                        <t t-snippet="s_eagle_theme_coming_soon_mode_two" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Coming_soon_2.png"/>
-                        <t t-snippet="s_eagle_theme_testimonial_1" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Testimonial_1.png"/>
-                        <t t-snippet="s_eagle_theme_testimonial_2" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Testimonial_4.png"/>
-                        <t t-snippet="s_eagle_theme_testimonial_3" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Testimonial_2.png"/>
-                        <t t-snippet="s_eagle_theme_testimonial_4" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Testimonial_3.png"/>
-                        <t t-snippet="s_eagle_theme_pricing_table_1" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_table_1.png"/>
-                        <t t-snippet="s_eagle_theme_pricing_table_1_4column" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_table_2.png"/>
-                        <t t-snippet="s_eagle_theme_pricing_table_2" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_table_3.png"/>
-                        <t t-snippet="s_eagle_theme_pricing_table_2_4column" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_table_4.png"/>
-                        <t t-snippet="s_eagle_theme_pricing_table_3" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_table_5.png"/>
-                        <t t-snippet="s_eagle_theme_pricing_table_3_4column" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_table_6.png"/>
-                        <t t-snippet="s_eagle_theme_pricing_table_4" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_Table_7.png"/>
-                        <t t-snippet="s_eagle_theme_pricing_table_4_4column" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_Table_8.png"/>
-                        <t t-snippet="s_eagle_theme_service_tab1_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Our_Services_1.png"/>
-                        <t t-snippet="s_eagle_theme_service_tab2_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Service_1.png"/>
-                        <t t-snippet="s_eagle_theme_service_tab3_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Service_3.png"/>
-                        <t t-snippet="s_eagle_theme_service_tab4_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Service_2.png"/>
-                        <t t-snippet="s_eagle_theme_multi_cat_custom_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Special-Offer-multi-tab-snippet.png"/>
-                        <t t-snippet="s_eagle_theme_category_slider" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Category_snippet.png"/>
-                        <t t-snippet="s_eagle_theme_product_slider" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Product_Slider.png"/>
-                        <t t-snippet="s_eagle_theme_featured_product_slider" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Features_Product_Slider.png"/>
-                        <t t-snippet="s_eagle_theme_blog_custom_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/blog_slider.png"/>
-                        <t t-snippet="s_eagle_theme_client_slider_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/clients-slider.png"/>
-                        <!-- <t t-snippet="s_eagle_theme_showcase" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Showcase_1.png"/>
-                        <t t-snippet="s_eagle_theme_showcase_4_column" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Showcase_4.png"/>
-                        <t t-snippet="s_eagle_theme_showcase_2_column" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Showcase_2.png"/> -->
-                        <t t-snippet="s_biztech_new_theme_team_one" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Our_Team_2.png"/>
-                        <t t-snippet="s_biztech_new_theme_team_two" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Our_Team_3.png"/>
-                        <t t-snippet="s_biztech_new_theme_team_three" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Our_Team_1.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_main_title" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Main_Title.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_upper_banner" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Upper_Banner.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_homes_slider_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Home_Slider.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_homes_slider_snippet_2" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Home_Slider.png"/>
+                        <t t-snippet="eagle_theme.s_carfito_custom_tabbing_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/About_Company.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_about_me_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/About_Me.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_about_us_2" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/About_us_2.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_about_us_3" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/About_us_3.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_feature1" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Feature_3.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_feature2" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Feature_1.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_feature3" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Feature_2.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_at_service" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/At-your-service.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_newsletter" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Newsletter.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_contact_us" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Contact_us.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_facts_sheet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/facts_sheet.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_skills" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Skills.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_choose_us" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/why-choose-us.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_coming_soon_mode_one" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Coming_soon_1.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_coming_soon_mode_two" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Coming_soon_2.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_testimonial_1" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Testimonial_1.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_testimonial_2" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Testimonial_4.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_testimonial_3" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Testimonial_2.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_testimonial_4" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Testimonial_3.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_pricing_table_1" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_table_1.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_pricing_table_1_4column" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_table_2.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_pricing_table_2" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_table_3.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_pricing_table_2_4column" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_table_4.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_pricing_table_3" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_table_5.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_pricing_table_3_4column" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_table_6.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_pricing_table_4" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_Table_7.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_pricing_table_4_4column" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Pricing_Table_8.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_service_tab1_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Our_Services_1.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_service_tab2_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Service_1.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_service_tab3_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Service_3.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_service_tab4_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Service_2.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_multi_cat_custom_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Special-Offer-multi-tab-snippet.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_category_slider" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Category_snippet.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_product_slider" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Product_Slider.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_featured_product_slider" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Features_Product_Slider.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_blog_custom_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/blog_slider.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_client_slider_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/clients-slider.png"/>
+                        <!-- <t t-snippet="eagle_theme.s_eagle_theme_showcase" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Showcase_1.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_showcase_4_column" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Showcase_4.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_showcase_2_column" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Showcase_2.png"/> -->
+                        <t t-snippet="eagle_theme.s_biztech_new_theme_team_one" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Our_Team_2.png"/>
+                        <t t-snippet="eagle_theme.s_biztech_new_theme_team_two" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Our_Team_3.png"/>
+                        <t t-snippet="eagle_theme.s_biztech_new_theme_team_three" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Our_Team_1.png"/>
                         <!-- Hardware theme snippet collection -->
-                        <t t-snippet="s_eagle_theme_promo_block" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Promo_Book.png"/>
-                        <t t-snippet="s_eagle_theme_subscribe" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Subscribe.png"/>
-                        <t t-snippet="s_eagle_theme_text_img" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Text_Img.png"/>
-                        <t t-snippet="s_eagle_theme_img_text" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Img_Text.png"/>
-                        <t t-snippet="s_eagle_theme_service_new" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Service_New.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_promo_block" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Promo_Book.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_subscribe" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Subscribe.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_text_img" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Text_Img.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_img_text" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Img_Text.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_service_new" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Service_New.png"/>
                         <!-- Event theme snippet collection -->
-                        <t t-snippet="s_eagle_theme__promo_collection" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Collection.png"/>
-                        <t t-snippet="s_eagle_theme_news1" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/News_1.png"/>
-                        <t t-snippet="s_eagle_theme_news2" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/News_2.png"/>
-                        <t t-snippet="s_eagle_theme_hardware_blog_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/New_Blog.png"/>
-                        <t t-snippet="s_eagle_theme_faq_1" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Faq_1.png"/>
-                        <t t-snippet="eagle_theme_faq_2" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Faq_2.png"/>
-                        <!-- <t t-snippet="s_eagle_theme_faq_3" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Faq_3.png"/> -->
-                        <t t-snippet="s_eagle_theme_events" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/event.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme__promo_collection" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Collection.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_news1" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/News_1.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_news2" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/News_2.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_hardware_blog_snippet" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/New_Blog.png"/>
+                        <t t-snippet="eagle_theme.s_eagle_theme_faq_1" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Faq_1.png"/>
+                        <t t-snippet="eagle_theme.eagle_theme_faq_2" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Faq_2.png"/>
+                        <!-- <t t-snippet="eagle_theme.s_eagle_theme_faq_3" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/Faq_3.png"/> -->
+                        <t t-snippet="eagle_theme.s_eagle_theme_events" t-thumbnail="/eagle_theme/static/src/img/snippet_icons/event.png"/>
                     </div>
                 </div>
             </xpath>
