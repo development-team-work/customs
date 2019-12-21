@@ -3,7 +3,7 @@
 {
     'name' : 'Ribbon And Medal',
     'version' : '1.2.0.1',
-    'summary': 'Ribon and medal for Police,Army',
+    'summary': 'ribbon and medal for Police,Army',
     'sequence': 15,
     'description': """
 Riboon And Medal Indicator
@@ -15,7 +15,10 @@ Riboon And Medal Indicator
     'depends' : ['my_shop'],
     'data': [
         # 'data/payment_acquirer.xml',
-        'views/ribon_medal.xml',
+        'views/ribbon_medal.xml',
+        'views/ribbon_medal_sales.xml',
+        'views/ribbon_medal_quotation.xml',
+        'wizards/ribbon_acquisition_wizard.xml',
 
     ],
     'demo': [
