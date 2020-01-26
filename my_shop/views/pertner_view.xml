@@ -33,10 +33,10 @@
             </xpath>
         </field>
         <field name="arch" type="xml">
-            <field name="parent_id" position="before">
+            <!--<field name="parent_id" position="before">
                 <div >Personal ID/BP/Ref</div>
                 <field name="ref" />
-            </field>
+            </field>-->
             <field name="city" position="replace">
                 <field name="city" placeholder="City/area" class="o_address_city" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'state_id': state_id}"/>
             </field>

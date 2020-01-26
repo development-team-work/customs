@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eagle>
+    <data>
+
+        <record id="mail_channel_view_form" model="ir.ui.view">
+            <field name="name">Channel</field>
+            <field name="model">mail.channel</field>
+            <field name="inherit_id" ref="mail.mail_channel_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <!-- Add your fields or attributes here -->
+
+                    <header>
+                        <field name="channel_status" widget="statusbar"/>
+                    </header>
+                </xpath>
+                <xpath expr="//div[@class='oe_button_box']" position="inside">
+                    <button invisible="1" string="Tin nhắn" name="view_message" type="object" class="oe_stat_button" icon="fa-envelope-o"/>
+                </xpath>
+
+                <xpath expr="//field[@name='email_send']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <!--<xpath expr="//field[@name='anonymous_name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>-->
+
+                <xpath expr="//field[@name='channel_last_seen_partner_ids']/tree" position="inside">
+                    <field name="fold_state"/>
+                    <field name="is_minimized"/>
+                    <field name="is_pinned"/>
+                </xpath>
+
+                <xpath expr="//page[1]" position="before">
+                    <page string="Tin nhắn trong kênh">
+                        <field name="message_ids">
+                            <tree>
+                                <field name="date"/>
+                                <field name="author_id"/>
+                                <field name="body"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="mail_channel_tree" model="ir.ui.view">
+            <field name="name">Channel</field>
+            <field name="model">mail.channel</field>
+            <field name="arch" type="xml">
+                <tree string="Channel">
+                    <field name="name"/>
+                    <field name="channel_status"/>
+                    <field name="channel_type"/>
+                    <field name="description"/>
+                    <field name="public"/>
+                    <field name="uuid"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="mail_channel_act" model="ir.actions.act_window">
+            <field name="name">Channel</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mail.channel</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('channel_type', '=', 'fb')]</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('mail_channel_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('mail.mail_channel_view_form')}),
+            ]"/>
+        </record>
+    </data>
+</eagle>

@@ -8,12 +8,14 @@ class SmsGatewayAccount(models.Model):
     name=fields.Char("Account Name/ Mobile No")
     sms_gateway_id=fields.Many2one("eagle.smsgateway",string="SMS Gateway Provider Name",required=True)
     credentials=fields.One2many("smsgateway.account.credential",'account_id',"Credentials")
+    credential_value=fields.Char("value")
 
     @api.onchange('sms_gateway_id')
     def sms_gateway_id_onchange(self):
         for rec in self:
             credents=rec.sms_gateway_id.parameter_ids
-            rec.credentials=[(5)]
+            for cre in credents:
+                rec.credentials=self.env['eagle.smsgateway.parameters'].search([('sms_gateway_id','=',rec.sms_gateway_id.id)])
             # for cred in credents:
                 # credentials=self.env[]
 

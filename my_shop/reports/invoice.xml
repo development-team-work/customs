@@ -16,10 +16,10 @@
                     <t t-set="information_block">
                         <strong t-if="doc.partner_id == doc.partner_invoice_id">Invoice and Bill to:</strong>
                         <strong t-if="doc.partner_id != doc.partner_invoice_id" >Bill for:</strong>
-                        <div t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [ &quot;name&quot;, &quot;mobile&quot;], &quot;no_marker&quot;: True}"/>
+                        <div t-field="doc.partner_id" t-options="{'widget': 'contact', 'fields': [ 'name', 'phone', 'mobile'], 'no_marker': True}"/>
                         <t t-if="doc.partner_id != doc.partner_invoice_id">
                             <strong>invoicing address:</strong>
-                            <div t-field="doc.partner_invoice_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/>
+                            <div t-field="doc.partner_invoice_id" t-options="{'widget': 'contact', 'fields': ['address', 'name', 'phone', 'mobile'], 'no_marker': True, 'phone_icons': True}"/>
                         </t>
                     </t>
                 </t>
@@ -38,6 +38,29 @@
             </xpath>
         </template>
 
+
+    </data>
+    <data>
+        <template id="invoice_report_document_inherit" inherit_id="account.report_invoice_document">
+<!--            print Phone and Mobile no in the Invoice-->
+            <xpath expr="//t[@t-set='address']" position="replace">
+                <t t-set="address">
+                    <address t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name","phone","mobile"], "no_marker": True}' />
+                    <div t-if="o.partner_id.vat" class="mt16"><t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="o.partner_id.vat"/></div>
+                </t>
+            </xpath>
+
+        </template>
+     <record id="account_report_specific_partner_ledger_view" model="ir.ui.view">
+        <field name="name">Partner Ledger</field>
+        <field name="model">account.report.partner.ledger</field>
+        <field name="inherit_id" ref="account.account_common_report_view"/>
+        <field name="arch" type="xml">
+        <xpath expr="//field[@name='result_selection']" position="before">
+                <field name="partner_id" widget="many2many_tags"/>
+            </xpath>
+        </field>
+    </record>
 
     </data>
 </eagle>

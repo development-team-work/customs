@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<eagle>
+    <record id="eagleshop_view_res_partner_form_inherit" model="ir.ui.view">
+        <field name="name">eagleshop.view.res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="website" position="after">
+                <field name="add_to_slider"/>
+            </field>
+        </field>
+    </record>
+    <record id="theme_eagleshop12_inherited_employee_view" model="ir.ui.view">
+        <field name="name">hr employee</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook[last()]" position="inside">
+                <page name="sliderinformation" string="Slider Configuration">
+                    <group>
+                        <field name="include_inourteam"/>
+                    </group>
+                    <group attrs="{'invisible': [('include_inourteam', '=', False)]}">
+                        <field name="emp_social_twitter"/>
+                        <field name="emp_social_facebook"/>
+                        <field name="emp_social_linkdin"/>
+                        <field name="emp_description"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <!-- Product category -->
+    <record id="theme_eagleshop12_product_public_category" model="ir.ui.view">
+        <field name="name">product.public.category</field>
+        <field name="model">product.public.category</field>
+        <field name="inherit_id" ref="website_sale.product_public_category_form_view"/>
+        <field name="arch" type="xml">
+            <field name="sequence" position="after">
+                <field invisible="1" name="linked_product_count"/>
+            </field>
+            <xpath expr="//field[@name='sequence']" position="after">
+                <field name="include_in_megamenu"/>
+            </xpath>
+            <xpath expr="//div[hasclass('oe_left')]" position="inside">
+                <group attrs="{'invisible': [('include_in_megamenu', '=', False)]}">
+                    <field attrs="{'required': [('include_in_megamenu', '=', True)]}" domain="[('is_megamenu', '=', True), ('megamenu_view_type', '=', 'cat_megamenu')]" name="menu_id"/>
+                    <field name="description"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+    <!-- Product template for related products -->
+    <record id="theme_eagleshop12_product_template_inherited" model="ir.ui.view">
+        <field name="name">eagleshop.product.template</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="website_sale.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <field name="alternative_product_ids" position="after">
+                <field name="related_product_ids" widget="many2many_tags"/>
+            </field>
+            <field name="description_sale" position="after">
+                <separator colspan="4" string="Description for Quickview"/>
+                <field colspan="4" name="quickview_description" nolabel="1" widget="html"/>
+            </field>
+        </field>
+    </record>
+    <record id="biztech_form_view_for_biz_product_images" model="ir.ui.view">
+        <field name="name">biztech.product.images.form</field>
+        <field name="model">biztech.product.images</field>
+        <field name="arch" type="xml">
+            <form string="Multiple Image">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="alt"/>
+                        <field name="attach_type" widget="radio"/>
+                        <field attrs="{'invisible': [('attach_type', '=', 'video')]}" class="oe_avatar" height="64" name="image" options="{&quot;preview_image&quot;:&quot;image_medium&quot;}" widget="image" width="64"/>
+                        <field attrs="{'invisible': [('attach_type', '=', 'image')]}" name="video_type"/>
+                    </group>
+                    <group col="4">
+                        <field attrs="{'invisible': ['|', ('attach_type', '=', 'image'), ('video_type', '=', 'youtube')]}" class="oe_avatar" height="64" name="cover_image" options="{&quot;preview_image&quot;:&quot;image_medium&quot;}" widget="image" width="64"/>
+                        <!-- <label string="It is required"
+                                attrs="{'invisible': ['|', ('attach_type', '=', 'image'), ('video_type', '=', 'youtube')]}"/>-->
+                    </group>
+                    <group>
+                        <field attrs="{'invisible': ['|', ('attach_type', '=', 'image'), ('video_type', '=', 'html5video')]}" name="video_id"/>
+                        <field attrs="{'invisible': ['|', ('attach_type', '=', 'image'), ('video_type', 'in', ('youtube', 'vimeo'))]}" name="video_ogv"/>
+                        <field attrs="{'invisible': ['|', ('attach_type', '=', 'image'), ('video_type', 'in', ('youtube', 'vimeo'))]}" name="video_webm"/>
+                        <field attrs="{'invisible': ['|', ('attach_type', '=', 'image'), ('video_type', 'in', ('youtube', 'vimeo'))]}" name="video_mp4"/>
+                        <field name="sequence"/>
+                        <field name="more_view_exclude"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="biztech_list_view_for_biz_product_images" model="ir.ui.view">
+        <field name="name">biztech.product.images.tree</field>
+        <field name="model">biztech.product.images</field>
+        <field name="arch" type="xml">
+            <tree name="Multiple Image">
+                <field name="name"/>
+                <field name="alt"/>
+                <field name="attach_type"/>
+                <field attrs="{'invisible': [('attach_type', '=', 'video')]}" height="64px" name="image" options="{&quot;preview_image&quot;:&quot;image_medium&quot;}" widget="image" width="64"/>
+                <field attrs="{'invisible': [('attach_type', '=', 'image')]}" name="video_type"/>
+                <field attrs="{'invisible': [('attach_type', '=', 'image')]}" name="video_id"/>
+                <field name="sequence"/>
+                <field name="more_view_exclude"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Product Form View Inherited for multi images -->
+    <record id="eagleshop_view_product_template_form_multiple_image" model="ir.ui.view">
+        <field name="name">eagleshop.product.template.form.view.inherited</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='options']" position="inside">
+                <div>
+                    <field name="multi_image"/>
+                    <label for="multi_image"/>
+                </div>
+            </xpath>
+            <xpath expr="//notebook" position="inside">
+                <page attrs="{'invisible':[('multi_image','!=',True)]}" name="product multi image" string="Product Multiple Images">
+                    <field context="{'default_product_id': id, 'tree_view_ref':'theme_eagleshop12.biztech_list_view_for_biz_product_images', 'form_view_ref':'theme_eagleshop12.biztech_form_view_for_biz_product_images'}" name="biz_images" nolabel="1"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <!-- Product Sorting -->
+    <!-- Product sorting form view -->
+    <record id="biztech_form_view_for_product_sorting" model="ir.ui.view">
+        <field name="name">Biztech Product Sorting Form View</field>
+        <field name="model">biztech.product.sortby</field>
+        <field name="arch" type="xml">
+            <form name="Product Sorting">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="sort_on"/>
+                        </group>
+                        <group>
+                            <field name="sort_type" string="Order By"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Product sorting list View -->
+    <record id="biztech_list_view_for_product_sorting" model="ir.ui.view">
+        <field name="name">Biztech Product Sorting List View</field>
+        <field name="model">biztech.product.sortby</field>
+        <field name="arch" type="xml">
+            <tree name="Product Sorting">
+                <field name="name"/>
+                <field name="sort_on"/>
+                <field name="sort_type"/>
+            </tree>
+        </field>
+    </record>
+    <!-- Action for product sorting -->
+    <record id="action_for_product_sorting" model="ir.actions.act_window">
+        <field name="name">Product Sorting</field>
+        <field name="res_model">biztech.product.sortby</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    <!-- Menu for product sorting -->
+    <menuitem action="action_for_product_sorting" id="sub_menu_sort_by" name="Product Sorting" parent="sale.menu_sale_config" sequence="80"/>
+    <!-- New rating feature for displying only stars in any view for eagle 12 -->
+    <template id="inherited_message_thread" inherit_id="portal.message_thread">
+        <xpath expr="//div[@id='discussion']" position="attributes">
+            <attribute name="t-att-data-rating_val">rating_val or 6</attribute>
+            <attribute name="t-att-data-only_rating">only_rating or 0</attribute>
+        </xpath>
+    </template>
+    <!-- Event -->
+    <record id="theme_eagleshop12_inherited_event_view" model="ir.ui.view">
+        <field name="name">event</field>
+        <field name="model">event.event</field>
+        <field name="inherit_id" ref="event.view_event_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="event_extra_information" string="Extra Information">
+                    <group>
+                        <field name="event_cover_poster" widget="image"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</eagle>
