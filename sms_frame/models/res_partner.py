@@ -8,7 +8,7 @@ class ResPartnerSms(models.Model):
 
     _inherit = "res.partner"
 
-    @api.multi
+
     def sms_action(self):
         self.ensure_one()
 

@@ -2,7 +2,7 @@
 # © 2016 Julien Coux (Camptocamp)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from eagle import models, fields, api, _
+from odoo import models, fields, api, _
 
 
 class GeneralLedgerReport(models.TransientModel):
@@ -214,7 +214,7 @@ class GeneralLedgerReportCompute(models.TransientModel):
 
     _inherit = 'report_general_ledger'
 
-    @api.multi
+
     def print_report(self, report_type):
         self.ensure_one()
         if report_type == 'xlsx':
@@ -243,7 +243,7 @@ class GeneralLedgerReportCompute(models.TransientModel):
     def get_html(self, given_context=None):
         return self._get_html()
 
-    @api.multi
+
     def compute_data_for_report(self,
                                 with_line_details=True,
                                 with_partners=True):

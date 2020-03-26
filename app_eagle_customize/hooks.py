@@ -15,7 +15,7 @@
 # https://www.sunpop.cn/eagle10_developer_document_offline/
 # description:
 
-from eagle import api, SUPERUSER_ID, _
+from odoo import api, SUPERUSER_ID, _
 
 
 def pre_init_hook(cr):

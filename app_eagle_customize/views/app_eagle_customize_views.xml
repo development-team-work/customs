@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eagle>
+<odoo>
 
         <template id="assets_backend" name="app_eagle_customize assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
@@ -14,4 +14,4 @@
                 <!--<a href="https://www.sunpop.cn" target="_blank">Powered by <span>eagleApp</span></a>-->
             <!--</xpath>-->
         <!--</template>-->
-</eagle>
+</odoo>

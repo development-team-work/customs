@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eagle>
+<odoo>
     <record id="account_report_standard_view" model="ir.ui.view">
         <field name="name">Standard Ledger</field>
         <field name="model">account.report.standard.ledger</field>
@@ -78,4 +78,4 @@
 
     <menuitem id="menu_account_standard_report" name="Standard Report" sequence="0" parent="account.menu_finance_reports" action="action_account_standard_report" groups="account.group_account_user"/>
 
-</eagle>
+</odoo>

@@ -13,6 +13,6 @@
         'data/payment_acquirer_data.xml',
     ],
     'installable': True,
-    'auto_install': True,
+    'auto_install': False,
     'post_init_hook': 'create_missing_journal_for_acquirers',
 }

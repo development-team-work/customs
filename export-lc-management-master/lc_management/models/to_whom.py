@@ -5,9 +5,9 @@ import datetime
 
 import eagle.addons.decimal_precision as dp
 
-from eagle import api, fields, models, tools, _
-from eagle.exceptions import ValidationError, except_orm, UserError
-from eagle.tools import amount_to_text_en
+from odoo import api, fields, models, tools, _
+from odoo.exceptions import ValidationError, except_orm, UserError
+from odoo.tools import amount_to_text_en
 import random
 
 

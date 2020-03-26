@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eagle>
+<odoo>
         <!-- Modules -->
         <record id="app_module_tree" model="ir.ui.view">
             <field name="name">app.ir.module.module.tree</field>
@@ -46,4 +46,4 @@
                 <xpath expr="//div[@class='oe_module_action']/a[@target='_blank']" position="replace" groups="app_eagle_customize.group_show_quick_upgrade"/>
             </field>
         </record>
-</eagle>
+</odoo>

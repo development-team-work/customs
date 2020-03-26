@@ -3,8 +3,8 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from datetime import datetime, timedelta
-from eagle.tools.misc import DEFAULT_SERVER_DATE_FORMAT
-from eagle import api, fields, models, _
+from odoo.tools.misc import DEFAULT_SERVER_DATE_FORMAT
+from odoo import api, fields, models, _
 
 
 class ReportStatementCommon(models.AbstractModel):
@@ -275,7 +275,7 @@ class ReportStatementCommon(models.AbstractModel):
             currencies
         )
 
-    @api.multi
+
     def _get_report_values(self, docids, data):
         """
         @return: returns a dict of parameters to pass to qweb report.

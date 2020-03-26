@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eagle>
+<odoo>
 
     <menuitem id="synch_config" name="Synchronization"
               parent="base.menu_administration" sequence="30"/>
@@ -196,4 +196,4 @@
     <menuitem action="action_base_synchro_server_tree" id="synchro_server_tree_menu_id"
               parent="base_synchro.synch_config"/>
 
-</eagle>
+</odoo>

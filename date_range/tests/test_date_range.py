@@ -3,8 +3,8 @@
 
 import datetime
 
-from eagle.exceptions import ValidationError
-from eagle.tests.common import TransactionCase
+from odoo.exceptions import ValidationError
+from odoo.tests.common import TransactionCase
 
 
 class DateRangeTest(TransactionCase):

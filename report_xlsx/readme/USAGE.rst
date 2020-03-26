@@ -2,7 +2,7 @@ An example of XLSX report for partners on a module called `module_name`:
 
 A python class ::
 
-    from eagle import models
+    from odoo import models
 
     class PartnerXlsx(models.AbstractModel):
         _name = 'report.module_name.report_name'

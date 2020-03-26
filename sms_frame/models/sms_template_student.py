@@ -4,7 +4,7 @@ from urllib import urlencode, quote as quote
 import logging
 _logger = logging.getLogger(__name__)
 
-from eagle import api, fields, models, tools
+from odoo import api, fields, models, tools
 
 try:
     # We use a jinja2 sandboxed environment to render mako templates.

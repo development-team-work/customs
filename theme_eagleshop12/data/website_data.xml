@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<eagle>
-    <data noupdate="1">
-    	<record model="website" id="website.default_website">
-            <field name="breadcrumb_img" type="base64" file="theme_eagleshop12/static/src/img/title-back.jpg"/>
-        </record>
-    </data>
-</eagle>

@@ -1,8 +1,8 @@
 # Copyright 2016 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from eagle import _, api, fields, models
-from eagle.exceptions import ValidationError
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class DateRange(models.Model):
@@ -41,7 +41,7 @@ class DateRange(models.Model):
             self._cache.update(
                 self._convert_to_cache({'type_id': False}, update=True))
 
-    @api.multi
+
     @api.constrains('company_id', 'type_id')
     def _check_company_id_type_id(self):
         for rec in self.sudo():
@@ -86,7 +86,7 @@ class DateRange(models.Model):
                 raise ValidationError(
                     _("%s overlaps %s") % (this.name, dt.name))
 
-    @api.multi
+
     def get_domain(self, field_name):
         self.ensure_one()
         return [(field_name, '>=', self.date_start),

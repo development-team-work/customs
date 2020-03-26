@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<eagle>
+<odoo>
     <data>
 
         <!-- Scheduler for Event Alarm-->
@@ -30,4 +30,4 @@
         </record>
         
     </data>
-</eagle>
+</odoo>

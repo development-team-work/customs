@@ -42,7 +42,7 @@ class SmsCompose(models.Model):
             self.media_filename = self.sms_template_id.media_filename
             self.sms_content = sms_rendered_content
 
-    @api.multi
+
     def send_entity(self):
         """Attempt to send the sms, if any error comes back show it to the user and only log the smses that successfully sent"""
         self.ensure_one()

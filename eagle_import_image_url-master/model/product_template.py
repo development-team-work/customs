@@ -3,7 +3,7 @@
 import urllib
 import base64
 
-from eagle import fields, models, api, _
+from odoo import fields, models, api, _
 
 class ProductTemplate(models.Model):
     _inherit = 'product.template'
@@ -25,7 +25,7 @@ class ProductTemplate(models.Model):
                     pass
         return super(ProductTemplate, self).create(vals)
             
-    @api.multi
+
     def write(self, vals):
         image_url_template = vals.get('image_url_template')
         if image_url_template:

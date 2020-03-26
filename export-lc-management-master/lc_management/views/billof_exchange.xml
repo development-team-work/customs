@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<eagle>
+<odoo>
     <data> 
         <!-- bill_of_exchange start -->
 
@@ -132,4 +132,4 @@
 <!-- REPORT SECTION END -->                   
 
     </data>
-</eagle>
+</odoo>

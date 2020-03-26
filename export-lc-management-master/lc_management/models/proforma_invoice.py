@@ -8,8 +8,8 @@ from datetime import datetime
 
 import eagle.addons.decimal_precision as dp
 
-from eagle import api, fields, models, tools, _
-from eagle.exceptions import ValidationError, except_orm, UserError
+from odoo import api, fields, models, tools, _
+from odoo.exceptions import ValidationError, except_orm, UserError
 
 class SaleOrderInherited(models.Model):
     _inherit = 'sale.order'

@@ -2,7 +2,7 @@
 <!-- Copyright 2017 ACSONE SA/NV
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
 
-<eagle>
+<odoo>
 
 
     <record id="journal_ledger_wizard" model="ir.ui.view">
@@ -63,4 +63,4 @@
                 view_id="journal_ledger_wizard"
                 target="new" />
 
-</eagle>
+</odoo>

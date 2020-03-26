@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eagle>
+<odoo>
     <data>
         <record id="view_app_theme_config_settings" model="ir.ui.view">
             <field name="name">Eagle Customize Settings</field>
@@ -203,4 +203,4 @@
                 action="action_app_theme_config"
                 groups="base.group_system"/>
     </data>
-</eagle>
+</odoo>

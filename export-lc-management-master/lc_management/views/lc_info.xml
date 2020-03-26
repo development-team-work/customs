@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eagle>
+<odoo>
     <data>
 
         <!-- L/C informations start -->
@@ -150,4 +150,4 @@
         <!-- <menuitem action="lc_management.act_open_lc_informations_view" name="L/C Informations" id="lc_informations" parent="sales_team.menu_sales"  sequence="100"/>  -->
 
     </data>
-</eagle>
+</odoo>

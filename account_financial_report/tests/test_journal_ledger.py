@@ -4,8 +4,8 @@
 from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 
-from eagle.fields import Date
-from eagle.tests.common import TransactionCase
+from odoo.fields import Date
+from odoo.tests.common import TransactionCase
 
 from . import abstract_test_foreign_currency as a_t_f_c
 

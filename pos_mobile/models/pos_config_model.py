@@ -1,7 +1,7 @@
 # Copyright 2019 Dinar Gabbasov <https://it-projects.info/team/GabbasovDinar>
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from eagle import models, fields
+from odoo import models, fields
 
 
 class PosConfig(models.Model):

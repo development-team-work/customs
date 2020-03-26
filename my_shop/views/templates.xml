@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<eagle>
-   <record id="website_sale.address_b2b" model="ir.ui.view">
-        <field name="active" eval="False"/>
-</record>
-
-</eagle>

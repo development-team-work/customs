@@ -1,7 +1,7 @@
 # Copyright 2018 Alexandre Díaz
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from eagle.tests import common
+from odoo.tests import common
 
 
 class TestResUsers(common.TransactionCase):

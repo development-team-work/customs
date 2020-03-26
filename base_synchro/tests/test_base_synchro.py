@@ -1,6 +1,6 @@
 # See LICENSE file for full copyright and licensing details.
 
-from eagle.tests import common
+from odoo.tests import common
 
 
 class BaseSynchroObjTestCase(common.TransactionCase):

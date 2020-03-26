@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2018 Eficent Business and IT Consulting Services S.L.
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-<eagle>
+<odoo>
 
     <template id="partner_statement.activity_statement_document">
         <t t-call="web.external_layout">
@@ -134,4 +134,4 @@
         file="partner_statement.activity_statement"
         />
 
-</eagle>
+</odoo>

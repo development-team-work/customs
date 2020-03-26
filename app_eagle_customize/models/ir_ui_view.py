@@ -2,7 +2,7 @@
 
 import logging
 
-from eagle import api, fields, models, _
+from odoo import api, fields, models, _
 
 _logger = logging.getLogger(__name__)
 

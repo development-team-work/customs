@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eagle>
+<odoo>
     <data>
         <record id="action_server_module_multi_uninstall" model="ir.actions.server">
             <field name="name">Uninstall Modules</field>
@@ -13,4 +13,4 @@
             </field>
         </record>
     </data>
-</eagle>
+</odoo>

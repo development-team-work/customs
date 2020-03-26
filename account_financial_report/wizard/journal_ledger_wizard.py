@@ -1,9 +1,9 @@
 # Copyright 2017 ACSONE SA/NV
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from eagle import api, fields, models, _
-from eagle.tools.safe_eval import safe_eval
-from eagle.tools import pycompat
+from odoo import api, fields, models, _
+from odoo.tools.safe_eval import safe_eval
+from odoo.tools import pycompat
 
 
 class JournalLedgerReportWizard(models.TransientModel):
@@ -102,7 +102,7 @@ class JournalLedgerReportWizard(models.TransientModel):
                 ('company_id', '=', self.company_id.id)]
         return res
 
-    @api.multi
+
     def button_export_html(self):
         self.ensure_one()
         action = self.env.ref(
@@ -119,19 +119,19 @@ class JournalLedgerReportWizard(models.TransientModel):
         vals['context'] = context1
         return vals
 
-    @api.multi
+
     def button_export_pdf(self):
         self.ensure_one()
         report_type = 'qweb-pdf'
         return self._export(report_type)
 
-    @api.multi
+
     def button_export_xlsx(self):
         self.ensure_one()
         report_type = 'xlsx'
         return self._export(report_type)
 
-    @api.multi
+
     def _prepare_report_journal_ledger(self):
         self.ensure_one()
         journals = self.journal_ids

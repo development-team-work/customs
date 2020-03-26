@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eagle>
+<odoo>
      <record id="sms_gateway_form" model="ir.ui.view">
         <field name="name">eagle.sms.gateway.form</field>
         <field name="model">eagle.smsgateway</field>
@@ -93,4 +93,4 @@
     </record>
     <menuitem  id="menu_sms_gateway_root" name="SMS" groups="base.group_user" sequence="1"/>
     <menuitem  id="menu_sms_message" parent="menu_sms_gateway_root" action="actions_sms_gateway_message_form" name="Send SMS" groups="base.group_user" sequence="1"/>
-</eagle>
+</odoo>

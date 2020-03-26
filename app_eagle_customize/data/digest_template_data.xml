@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eagle>
+<odoo>
     <record id="digest.digest_mail_template" model="mail.template">
         <field name="body_html"><![CDATA[
 <table style="width: 100%; border-spacing: 0; font-family: Helvetica,Arial,Verdana,sans-serif;">
@@ -153,4 +153,4 @@
 </table>
         ]]></field>
     </record>
-</eagle>
+</odoo>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eagle>
+<odoo>
 
     <template id="report_trial_balance">
         <div class="o_account_financial_reports_page">
@@ -8,4 +8,4 @@
         </div>
     </template>
 
-</eagle>
+</odoo>

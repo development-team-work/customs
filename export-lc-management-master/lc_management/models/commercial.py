@@ -5,9 +5,9 @@ import datetime
 
 import eagle.addons.decimal_precision as dp
 
-from eagle import api, fields, models, tools, _
-from eagle.exceptions import ValidationError, except_orm, UserError
-from eagle.tools import amount_to_text_en
+from odoo import api, fields, models, tools, _
+from odoo.exceptions import ValidationError, except_orm, UserError
+from odoo.tools import amount_to_text_en
 import random
 
 
@@ -456,7 +456,7 @@ class CommercialInvoiceModel(models.Model):
             return final_dict    
 
     
-    # @api.multi
+    #
     # def confirm_lc(self):
         # pi_no = self.pi_no
         # commercial_invoice_name = self.commercial_invoice_name

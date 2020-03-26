@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from eagle import api, fields, models, _
-from eagle.addons.payment.models.payment_acquirer import ValidationError
-from eagle.tools.float_utils import float_compare
+from odoo import api, fields, models, _
+from odoo.addons.payment.models.payment_acquirer import ValidationError
+from odoo.tools.float_utils import float_compare
 
 import logging
 import pprint
@@ -59,7 +59,7 @@ class RocketPaymentAcquirer(models.Model):
             values['post_msg'] = self._format_rocket_data()
         return super(RocketPaymentAcquirer, self).create(values)
 
-    @api.multi
+
     def write(self, values):
         """ Hook in write to create a default post_msg. See create(). """
         if all(not acquirer.post_msg and acquirer.provider != 'rocket' for acquirer in self) and values.get('provider') == 'rocket':

@@ -1,6 +1,6 @@
 # See LICENSE file for full copyright and licensing details.
 
-from eagle import api, fields, models
+from odoo import api, fields, models
 
 
 class BaseSynchroServer(models.Model):

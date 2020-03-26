@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from dateutil.relativedelta import relativedelta
-from eagle import api, fields, models
+from odoo import api, fields, models
 
 
 class StatementCommon(models.AbstractModel):
@@ -56,7 +56,7 @@ class StatementCommon(models.AbstractModel):
         else:
             self.date_end = fields.Date.context_today(self)
 
-    @api.multi
+
     def button_export_pdf(self):
         self.ensure_one()
         return self._export()

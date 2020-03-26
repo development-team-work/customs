@@ -4,10 +4,10 @@ from lxml import objectify
 import urlparse
 
 import eagle
-from eagle.addons.payment.models.payment_acquirer import ValidationError
-from eagle.addons.payment.tests.common import PaymentAcquirerCommon
-from eagle.addons.payment_lebupay.controllers.main import LebupayController
-from eagle.tools import mute_logger
+from odoo.addons.payment.models.payment_acquirer import ValidationError
+from odoo.addons.payment.tests.common import PaymentAcquirerCommon
+from odoo.addons.payment_lebupay.controllers.main import LebupayController
+from odoo.tools import mute_logger
 
 
 @eagle.tests.common.at_install(False)

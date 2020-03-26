@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 
-from eagle import api, fields, models, _
+from odoo import api, fields, models, _
 import datetime
 
 class PersonalDetails(models.Model):
     _inherit = 'res.partner'
-    _description = "force member's personal Details for ribbon, medal, cap, belt, ranks etc"
+    _description = "force member's personal Details for ribbon_bk, medal, cap, belt, ranks etc"
     is_force=fields.Boolean("Is a Force",default=False , translate=True)
-    force_id = fields.Many2one("ribbon.medal.force","Force")
+    force_id = fields.Many2one("ribbon_bk.medal.force","Force")
     id_no=fields.Char("ID No")
-    rank = fields.Many2one("ribbon.medal.rank","Rank",translate=True)
-    unit=fields.Many2one("ribbon.medal.force.unit",string="Unit",translate=True ,domain="[('force_name','=',force_id)]")
-    post=fields.Many2one("ribbon.medal.post",string="Post",translate=True)
+    rank = fields.Many2one("ribbon_bk.medal.rank","Rank",translate=True)
+    unit=fields.Many2one("ribbon_bk.medal.force.unit",string="Unit",translate=True ,domain="[('force_name','=',force_id)]")
+    post=fields.Many2one("ribbon_bk.medal.post",string="Post",translate=True)
     joining=fields.Date("Joining Date")
     bcs=fields.Boolean("BCS ?")
     retired=fields.Date("Retiered Date")
@@ -31,8 +31,8 @@ class PersonalDetails(models.Model):
     psc=fields.Boolean("Staff College")
     rab=fields.Boolean("RAB")
     rab=fields.Boolean("RAB")
-    missions=fields.One2many("ribbon.medal.mission",'partner_id')
-    @api.multi
+    missions=fields.One2many("ribbon_bk.medal.mission",'partner_id')
+
     @api.onchange('joining',"retired")
     def calculate_service_length(self):
         currentDate=datetime.datetime.now()
@@ -72,21 +72,21 @@ class PersonalDetails(models.Model):
                 rec.service_day=lday
 
 # class RibonMedalPersonalAcquisition(models.Model)
-#     _name="ribbon.medal.personal.acquisition"
+#     _name="ribbon_bk.medal.personal.acquisition"
 #     _description = "Personal acquisition for a force member"
 #     force_member=fields.Many2one("res.partner","Name")
 #     acquired_ribbons=fields.Many2many('ribbon_acquired',)
 class RibbonMedalPersonalAward(models.Model):
-    _name="ribbon.medal.personal.award"
+    _name="ribbon_bk.medal.personal.award"
     _description="list of Personal Award"
     ribbon_holder_id = fields.Many2one("res.partner")
-    ribbon_id = fields.Many2one("ribbon.medal.regulation")
-    extension = fields.Many2one("ribbon.medal.extension")
+    ribbon_id = fields.Many2one("ribbon_bk.medal.regulation")
+    extension = fields.Many2one("ribbon_bk.medal.extension")
     serial = fields.Integer("serial")
 class RibbonMedalPersonalMission(models.Model):
-    _name="ribbon.medal.personal.mission"
+    _name="ribbon_bk.medal.personal.mission"
     _description="list of Personal Mission"
     ribbon_holder_id = fields.Many2one("res.partner")
-    ribbon_id = fields.Many2one("ribbon.medal.regulation")
-    extension = fields.Many2one("ribbon.medal.extension")
+    ribbon_id = fields.Many2one("ribbon_bk.medal.regulation")
+    extension = fields.Many2one("ribbon_bk.medal.extension")
     serial = fields.Integer("serial")

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eagle>
+<odoo>
     <data>
         <record id="ribon_button_res_partner_inherit" model="ir.ui.view">
             <field name="name">ribbon.medal.res.partner.form.inherit</field>
@@ -19,4 +19,4 @@
 
 
     </data>
-</eagle>
+</odoo>

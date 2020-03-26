@@ -1,10 +1,10 @@
 # Copyright  2018 Forest and Biomass Romania
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from eagle import api, fields, models, _
-from eagle.tools.safe_eval import safe_eval
-from eagle.tools import pycompat
-from eagle.exceptions import ValidationError
+from odoo import api, fields, models, _
+from odoo.tools.safe_eval import safe_eval
+from odoo.tools import pycompat
+from odoo.exceptions import ValidationError
 
 
 class VATReportWizard(models.TransientModel):
@@ -52,7 +52,7 @@ class VATReportWizard(models.TransientModel):
         self.date_from = self.date_range_id.date_start
         self.date_to = self.date_range_id.date_end
 
-    @api.multi
+
     @api.constrains('company_id', 'date_range_id')
     def _check_company_id_date_range_id(self):
         for rec in self.sudo():
@@ -62,7 +62,7 @@ class VATReportWizard(models.TransientModel):
                     _('The Company in the Vat Report Wizard and in '
                       'Date Range must be the same.'))
 
-    @api.multi
+
     def button_export_html(self):
         self.ensure_one()
         action = self.env.ref(
@@ -79,13 +79,13 @@ class VATReportWizard(models.TransientModel):
         vals['context'] = context1
         return vals
 
-    @api.multi
+
     def button_export_pdf(self):
         self.ensure_one()
         report_type = 'qweb-pdf'
         return self._export(report_type)
 
-    @api.multi
+
     def button_export_xlsx(self):
         self.ensure_one()
         report_type = 'xlsx'

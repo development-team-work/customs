@@ -1,22 +1,22 @@
-from eagle import api, fields, models, _
+from odoo import api, fields, models, _
 import datetime
 
 
 class RibbonMedalAcquisitionWizard(models.TransientModel):
-    _name ='ribbon.medal.acquisition.wizard'
+    _name ='ribbon_bk.medal.acquisition.wizard'
     _description='Get acquired ribbons and medals by a force Member'
     ribbon_holder=fields.Many2one('res.partner',"Person")
-    force_id=fields.Many2one("ribbon.medal.force","Force Name",related="ribbon_holder.force_id")
+    force_id=fields.Many2one("ribbon_bk.medal.force","Force Name",related="ribbon_holder.force_id")
     id_no=fields.Char("ID No",related="ribbon_holder.id_no")
-    rank=fields.Many2one("ribbon.medal.rank","Rank",related="ribbon_holder.rank")
-    unit=fields.Many2one("ribbon.medal.force.unit","Unit",related="ribbon_holder.unit")
-    post=fields.Many2one("ribbon.medal.post","Post",related="ribbon_holder.post")
+    rank=fields.Many2one("ribbon_bk.medal.rank","Rank",related="ribbon_holder.rank")
+    unit=fields.Many2one("ribbon_bk.medal.force.unit","Unit",related="ribbon_holder.unit")
+    post=fields.Many2one("ribbon_bk.medal.post","Post",related="ribbon_holder.post")
     joining=fields.Date("Joining Date",related="ribbon_holder.joining")
     bcs=fields.Boolean("BCS ?",related="ribbon_holder.bcs")
     retired=fields.Date("Retired Date?",related="ribbon_holder.retired")
     service_length=fields.Char("Service Length",related="ribbon_holder.service_length")
-    service_ribbons=fields.Many2many("ribbon.medal.service.ribbon","perty_service_rel")
-    acquired_ribbons=fields.Many2many("ribbon.medal.acquired.ribbon.wizard","party_acquired_rel")
+    service_ribbons=fields.Many2many("ribbon_bk.medal.service.ribbon_bk","perty_service_rel")
+    acquired_ribbons=fields.Many2many("ribbon_bk.medal.acquired.ribbon_bk.wizard","party_acquired_rel")
     ribbon_set_image=fields.Html("Ribbons Immage",compute="getRibonImage")
     ribbon_point_size=fields.Integer("Point Size",default='15')
     ribbon_point_unit=fields.Selection(string='Unit', selection=[
@@ -28,11 +28,11 @@ class RibbonMedalAcquisitionWizard(models.TransientModel):
     @api.onchange('ribbon_holder')
     def get_acquired_ribbons(self):
         if self.ribbon_holder.retired:
-            ribbon_for_age=self.env["ribbon.medal.regulation"].search([('force_id', '=', self.force_id.id),
+            ribbon_for_age=self.env["ribbon_bk.medal.regulation"].search([('force_id', '=', self.force_id.id),
                                                                          ('acquisition.name', '=', "Service Age"),
                                                                          ('service_length', '<=',self.ribbon_holder.service_year),("shedule_date","<=",self.ribbon_holder.retired)])
         else:
-            ribbon_for_age = self.env["ribbon.medal.regulation"].search([('force_id', '=', self.force_id.id),
+            ribbon_for_age = self.env["ribbon_bk.medal.regulation"].search([('force_id', '=', self.force_id.id),
                                                                          ('acquisition.name', '=', "Service Age"),
                                                                          ('service_length', '<=',
                                                                           self.ribbon_holder.service_year),
@@ -40,25 +40,25 @@ class RibbonMedalAcquisitionWizard(models.TransientModel):
         #todo here to apply search for shedule_date between joining date and Retired date
         data=[]
         for rec in ribbon_for_age:
-            input=self.env["ribbon.medal.acquired.ribbon.wizard"].create({
+            input=self.env["ribbon_bk.medal.acquired.ribbon_bk.wizard"].create({
             'force_member_id': self.ribbon_holder.id,
             'ribbon_id': rec.id,
             'extension': 1,
             'serial': rec.serial})
             data.append(input.id)
         self.acquired_ribbons=[(6,0,data)]
-        ribbon_for_awards=self.env["ribbon.medal.personal.award"].search([("ribbon_holder_id","=",self.ribbon_holder.id)])
+        ribbon_for_awards=self.env["ribbon_bk.medal.personal.award"].search([("ribbon_holder_id","=",self.ribbon_holder.id)])
         for rec in ribbon_for_awards:
-            input=self.env["ribbon.medal.acquired.ribbon.wizard"].create({
+            input=self.env["ribbon_bk.medal.acquired.ribbon_bk.wizard"].create({
                 'force_member_id': self.ribbon_holder.id,
                 'ribbon_id': rec.ribbon_id.id,
                 'extension': rec.extension.id,
                 'serial': rec.ribbon_id.serial})
             self.acquired_ribbons=[(4,input.id)]
-        ribbon_for_missions = self.env["ribbon.medal.personal.mission"].search(
+        ribbon_for_missions = self.env["ribbon_bk.medal.personal.mission"].search(
             [("ribbon_holder_id", "=", self.ribbon_holder.id)])
         for rec in ribbon_for_missions:
-            input = self.env["ribbon.medal.acquired.ribbon.wizard"].create({
+            input = self.env["ribbon_bk.medal.acquired.ribbon_bk.wizard"].create({
                 'force_member_id': self.ribbon_holder.id,
                 'ribbon_id': rec.ribbon_id.id,
                 'extension': rec.extension.id,
@@ -92,7 +92,7 @@ class RibbonMedalAcquisitionWizard(models.TransientModel):
                         position_left=point_length*(4-first_row_point)/2
                         row_point = first_row_point
             image_set = image_set + '<img style=" position:absolute;  left: '+str(position_left)+point_unit+';   width:'+str(point_length)+point_unit+';'\
-                        + 'height:'+ str(point_height)+point_unit+';  border: 1px solid blue;z-index: 1;" src="../web/image/ribbon.medal.extension/'+str(rec.extension.id)+'/image"/>'+chr(10)
+                        + 'height:'+ str(point_height)+point_unit+';  border: 1px solid blue;z-index: 1;" src="../web/image/ribbon_bk.medal.extension/'+str(rec.extension.id)+'/image"/>'+chr(10)
             #here to impliment extension rule if extension exist!
 
             image_set=image_set+'<img style=" position:absolute;  left: '+str(position_left)+point_unit+';   width:'+str(point_length)+point_unit+';'\
@@ -110,48 +110,48 @@ class RibbonMedalAcquisitionWizard(models.TransientModel):
         self.ribbon_set_image=image_set
 
 class ribbonMedalAcquiredRibbonWizard(models.TransientModel):
-    _name="ribbon.medal.acquired.ribbon.wizard"
+    _name="ribbon_bk.medal.acquired.ribbon_bk.wizard"
     _description = "list of acquired rebbon"
     _order = "serial desc"
     force_member_id = fields.Many2one("res.partner")
-    ribbon_id = fields.Many2one("ribbon.medal.regulation")
+    ribbon_id = fields.Many2one("ribbon_bk.medal.regulation")
     image = fields.Binary(
         "Image", related="ribbon_id.big_ribbon.image")
-    extension = fields.Many2one("ribbon.medal.extension")
+    extension = fields.Many2one("ribbon_bk.medal.extension")
     serial = fields.Integer("serial")
 class ribbonMedalserviceRibbon(models.Model):
-    _name="ribbon.medal.service.ribbon"
-    _description = "list of ribbon acquired for service"
+    _name="ribbon_bk.medal.service.ribbon_bk"
+    _description = "list of ribbon_bk acquired for service"
     _order = "serial desc"
     force_member_id = fields.Many2one("res.partner")
-    ribbon_id = fields.Many2one("ribbon.medal.regulation")
+    ribbon_id = fields.Many2one("ribbon_bk.medal.regulation")
     image = fields.Binary(
         "Image", related="ribbon_id.big_ribbon.image")
-    extension = fields.Many2one("ribbon.medal.extension")
+    extension = fields.Many2one("ribbon_bk.medal.extension")
     serial = fields.Integer("serial")
 class ribbonMedalMisssionRibbon(models.Model):
-    _name="ribbon.medal.service.ribbon"
-    _description = "list of ribbon acquired for service"
+    _name="ribbon_bk.medal.service.ribbon_bk"
+    _description = "list of ribbon_bk acquired for service"
     _order = "serial desc"
     force_member_id = fields.Many2one("res.partner")
-    ribbon_id = fields.Many2one("ribbon.medal.regulation")
+    ribbon_id = fields.Many2one("ribbon_bk.medal.regulation")
     image = fields.Binary(
         "Image", related="ribbon_id.big_ribbon.image")
-    extension = fields.Many2one("ribbon.medal.extension")
+    extension = fields.Many2one("ribbon_bk.medal.extension")
     serial = fields.Integer("serial")
 class ribbonMedalawardRibbon(models.Model):
-    _name="ribbon.medal.award.ribbon"
-    _description = "list of ribbon acquired for service"
+    _name="ribbon_bk.medal.award.ribbon_bk"
+    _description = "list of ribbon_bk acquired for service"
     _order = "serial desc"
     force_member_id = fields.Many2one("res.partner")
-    ribbon_id = fields.Many2one("ribbon.medal.regulation")
+    ribbon_id = fields.Many2one("ribbon_bk.medal.regulation")
     image = fields.Binary(
         "Image", related="ribbon_id.big_ribbon.image")
-    extension = fields.Many2one("ribbon.medal.extension")
+    extension = fields.Many2one("ribbon_bk.medal.extension")
     serial = fields.Integer("serial")
 
 class ribbonMedalquotation(models.TransientModel):
-    _name="ribbon.medal.quotation"
+    _name="ribbon_bk.medal.quotation"
     force_member_id = fields.Many2one("res.partner")
     curiar_address = fields.Char('Address')
     curiar_Contact = fields.Char('Mobile')
@@ -159,25 +159,25 @@ class ribbonMedalquotation(models.TransientModel):
     ribbon_qty=fields.Integer("Ribbon Qty")
     pin_qty=fields.Integer("Safety Pin")
     vel_qty=fields.Integer("Velcro")
-    ribbon_details=fields.One2many("ribbon.medal.ribbon.quotation.details",'quotation_id')
+    ribbon_details=fields.One2many("ribbon_bk.medal.ribbon_bk.quotation.details",'quotation_id')
     ribbon_price_per_set=fields.Float('price/set',compute="get_ribbon_per_set_price")
     ribbon_refund_price=fields.Float('Refund')
     ribbon_net_price=fields.Float('price')
 
     bmedal_qty=fields.Integer("Tunic Medal Qty")
-    bmedal_details=fields.One2many("ribbon.medal.ribbon.quotation.details",'quotation_id')
+    bmedal_details=fields.One2many("ribbon_bk.medal.ribbon_bk.quotation.details",'quotation_id')
     bmedal_price_per_set=fields.Float('price/set',compute="get_bmedal_per_set_price")
     bmedal_refund_price=fields.Float('Refund')
     bmedal_net_price=fields.Float('price')
 
     smedal_qty=fields.Integer("Meskit Medal Qty")
-    smedal_details = fields.One2many("ribbon.medal.ribbon.quotation.details", 'quotation_id')
+    smedal_details = fields.One2many("ribbon_bk.medal.ribbon_bk.quotation.details", 'quotation_id')
     smedal_price_per_set = fields.Float('price/set', compute="get_smedal_per_set_price")
     smedal_refund_price = fields.Float('Refund')
     smedal_net_price = fields.Float('price')
 
     @api.onchange("ribbon_qty")
-    @api.multi
+
     def get_ribbon_per_set_price(self):
         set_price=0
         refund=0
@@ -189,7 +189,7 @@ class ribbonMedalquotation(models.TransientModel):
         self.ribbon_net_price=(self.ribbon_qty*set_price)-refund
 
     @api.onchange("bmedal_qty")
-    @api.multi
+
     def get_bmedal_per_set_price(self):
         set_price=0
         refund=0
@@ -201,7 +201,7 @@ class ribbonMedalquotation(models.TransientModel):
         self.bmedal_net_price=(self.bmedal_qty*set_price)-refund
 
     @api.onchange("smedal_qty")
-    @api.multi
+
     def get_smedal_per_set_price(self):
         set_price=0
         refund=0
@@ -213,8 +213,8 @@ class ribbonMedalquotation(models.TransientModel):
         self.smedal_net_price=(self.smedal_qty*set_price)-refund
 
 class  ribbonMedalribbonQuotationDetails(models.TransientModel):
-    _name= "ribbon.medal.ribbon.quotation.details"
-    quotation_id=fields.Many2one('ribbon.medal.quotation')
+    _name= "ribbon_bk.medal.ribbon_bk.quotation.details"
+    quotation_id=fields.Many2one('ribbon_bk.medal.quotation')
     product_id=fields.Many2one("product.product")
     req_qty=fields.Integer("Required",related="quotation_id.ribbon_qty")
     ref_qty= fields.Integer("Ref. Qty",help="Qty supplied by the customer")
@@ -223,8 +223,8 @@ class  ribbonMedalribbonQuotationDetails(models.TransientModel):
     making=fields.Float("making")
 
 class  ribbonMedalTunicMedalQuotationDetails(models.TransientModel):
-    _name= "ribbon.medal.bmedal.quotation.details"
-    quotation_id=fields.Many2one('ribbon.medal.quotation')
+    _name= "ribbon_bk.medal.bmedal.quotation.details"
+    quotation_id=fields.Many2one('ribbon_bk.medal.quotation')
     product_id=fields.Many2one("product.product")
     req_qty=fields.Integer("Required",related="quotation_id.bmedal_qty")
     ref_qty= fields.Integer("Ref. Qty",help="Qty supplied by the customer")
@@ -233,8 +233,8 @@ class  ribbonMedalTunicMedalQuotationDetails(models.TransientModel):
     making=fields.Float("making")
 
 class  ribbonMedalMeskitMedalQuotationDetails(models.TransientModel):
-    _name= "ribbon.medal.smedal.quotation.details"
-    quotation_id=fields.Many2one('ribbon.medal.quotation')
+    _name= "ribbon_bk.medal.smedal.quotation.details"
+    quotation_id=fields.Many2one('ribbon_bk.medal.quotation')
     product_id=fields.Many2one("product.product")
     req_qty=fields.Integer("Required",related="quotation_id.smedal_qty")
     ref_qty= fields.Integer("Ref. Qty",help="Qty supplied by the customer")

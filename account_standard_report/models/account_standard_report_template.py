@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from eagle import api, models, fields, _
+from odoo import api, models, fields, _
 
 
 class AccountStandardLedger(models.Model):

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from eagle import fields
-from eagle.addons.payment.models.payment_acquirer import ValidationError
-from eagle.addons.payment.tests.common import PaymentAcquirerCommon
-from eagle.addons.payment_bkash.controllers.main import bKashController
+from odoo import fields
+from odoo.addons.payment.models.payment_acquirer import ValidationError
+from odoo.addons.payment.tests.common import PaymentAcquirerCommon
+from odoo.addons.payment_bkash.controllers.main import bKashController
 from werkzeug import urls
 
-from eagle.tools import mute_logger
-from eagle.tests import tagged
+from odoo.tools import mute_logger
+from odoo.tests import tagged
 
 from lxml import objectify
 

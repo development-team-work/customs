@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from eagle import models, fields
+from odoo import models, fields
 
 
 class AccountAccount(models.Model):

@@ -6,8 +6,8 @@ from lxml import etree
 import logging
 _logger = logging.getLogger(__name__)
 
-from eagle.http import request
-from eagle import api, fields, models
+from odoo.http import request
+from odoo import api, fields, models
 from openerp.exceptions import Warning
 
 class sms_response():

@@ -54,13 +54,15 @@
                                     </td>
                                     <td class="text-right">
                                         <strong t-esc="sum_partner(data, o, 'debit')"
-                                                t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
+                                                t-options="{'widget': 'monetary', 'display_currency':o.currency_id}"/>
                                     </td>
                                     <td class="text-right">
                                         <strong t-esc="sum_partner(data, o, 'credit')"
                                                 t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                     </td>
                                     <td class="text-right">
+                                        <t t-esc="o.currency_id.symbol"/>
+                                        <t t-esc="o.currency_id.name"/>
                                         <strong t-esc="sum_partner(data, o, 'debit - credit')"
                                                 t-options="{'widget': 'monetary', 'display_currency': res_company.currency_id}"/>
                                     </td>

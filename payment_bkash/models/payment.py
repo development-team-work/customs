@@ -7,10 +7,10 @@ import dateutil.parser
 import pytz
 from werkzeug import urls
 
-from eagle import api, fields, models, _
-from eagle.addons.payment.models.payment_acquirer import ValidationError
-from eagle.addons.payment_bkash.controllers.main import bKashController
-from eagle.tools.float_utils import float_compare
+from odoo import api, fields, models, _
+from odoo.addons.payment.models.payment_acquirer import ValidationError
+from odoo.addons.payment_bkash.controllers.main import bKashController
+from odoo.tools.float_utils import float_compare
 
 
 _logger = logging.getLogger(__name__)
@@ -68,7 +68,7 @@ class AcquirerbKash(models.Model):
                 'bkash_rest_url': '/payment/bkash/',
             }
 
-    @api.multi
+
     def bkash_compute_fees(self, amount, currency_id, country_id):
         """ Compute bkash fees.
 
@@ -90,7 +90,7 @@ class AcquirerbKash(models.Model):
         fees = (percentage / 100.0 * amount) + fixed / (1 - percentage / 100.0)
         return fees
 
-    @api.multi
+
     def bkash_form_generate_values(self, values):
         base_url = self.env['ir.config_parameter'].sudo().get_param('web.base.url')
 
@@ -119,7 +119,7 @@ class AcquirerbKash(models.Model):
         })
         return bkash_tx_values
 
-    @api.multi
+
     def bkash_get_form_action_url(self):
         return self._get_bkash_urls(self.environment)['bkash_form_url']
 
@@ -153,7 +153,7 @@ class TxbKash(models.Model):
             raise ValidationError(error_msg)
         return txs[0]
 
-    @api.multi
+
     def _bkash_form_get_invalid_parameters(self, data):
         invalid_parameters = []
         _logger.info('Received a notification from bKash with IPN version %s', data.get('notify_version'))
@@ -190,7 +190,7 @@ class TxbKash(models.Model):
 
         return invalid_parameters
 
-    @api.multi
+
     def _bkash_form_validate(self, data):
         status = data.get('payment_status')
         res = {

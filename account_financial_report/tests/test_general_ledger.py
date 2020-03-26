@@ -4,8 +4,8 @@
 
 import time
 
-from eagle.tests import common
-from eagle import fields
+from odoo.tests import common
+from odoo import fields
 from datetime import date
 from . import abstract_test_foreign_currency as a_t_f_c
 

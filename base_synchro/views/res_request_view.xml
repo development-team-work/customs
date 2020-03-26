@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eagle>
+<odoo>
 
     <record id="view_res_request_form" model="ir.ui.view">
         <field name="name">res.request.form</field>
@@ -62,4 +62,4 @@
 
     <menuitem id="menu_res_request" action="action_res_request" parent="base_synchro.next_id_63"/>
 
-</eagle>
+</odoo>

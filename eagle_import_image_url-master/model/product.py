@@ -3,7 +3,7 @@
 import urllib
 import base64
 
-from eagle import fields, models, api, _
+from odoo import fields, models, api, _
 
 class Product(models.Model):
     _inherit = 'product.product'
@@ -25,7 +25,7 @@ class Product(models.Model):
                     pass
         return super(Product, self).create(vals)
             
-    @api.multi
+
     def write(self, vals):
         image_url = vals.get('image_url')
         if image_url:

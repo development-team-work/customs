@@ -6,7 +6,7 @@
     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 -->
 
-<eagle>
+<odoo>
     <template id="assets_backend" name="Open Mobile Assets" inherit_id="web.assets_backend">
         <xpath expr=".">
             <link rel="stylesheet"
@@ -17,4 +17,4 @@
                     />
         </xpath>
     </template>
-</eagle>
+</odoo>

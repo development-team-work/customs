@@ -4,10 +4,10 @@
 # Copyright 2018 Eficent Business and IT Consuting Services, S.L.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from eagle import api, fields, models, _
-from eagle.tools.safe_eval import safe_eval
-from eagle.tools import pycompat
-from eagle.exceptions import UserError, ValidationError
+from odoo import api, fields, models, _
+from odoo.tools.safe_eval import safe_eval
+from odoo.tools import pycompat
+from odoo.exceptions import UserError, ValidationError
 
 
 class TrialBalanceReportWizard(models.TransientModel):
@@ -86,7 +86,7 @@ class TrialBalanceReportWizard(models.TransientModel):
              'will display initial and final balance in that currency.'
     )
 
-    @api.multi
+
     @api.constrains('hierarchy_on', 'show_hierarchy_level')
     def _check_show_hierarchy_level(self):
         for rec in self:
@@ -152,7 +152,7 @@ class TrialBalanceReportWizard(models.TransientModel):
         self.date_from = self.date_range_id.date_start
         self.date_to = self.date_range_id.date_end
 
-    @api.multi
+
     @api.constrains('company_id', 'date_range_id')
     def _check_company_id_date_range_id(self):
         for rec in self.sudo():
@@ -185,7 +185,7 @@ class TrialBalanceReportWizard(models.TransientModel):
         else:
             self.receivable_accounts_only = self.payable_accounts_only = False
 
-    @api.multi
+
     def button_export_html(self):
         self.ensure_one()
         action = self.env.ref(
@@ -203,13 +203,13 @@ class TrialBalanceReportWizard(models.TransientModel):
         vals['context'] = context1
         return vals
 
-    @api.multi
+
     def button_export_pdf(self):
         self.ensure_one()
         report_type = 'qweb-pdf'
         return self._export(report_type)
 
-    @api.multi
+
     def button_export_xlsx(self):
         self.ensure_one()
         report_type = 'xlsx'

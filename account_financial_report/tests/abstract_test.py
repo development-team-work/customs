@@ -4,8 +4,8 @@
 
 import logging
 
-from eagle.tests import common
-from eagle.tools import test_reports
+from odoo.tests import common
+from odoo.tools import test_reports
 
 _logger = logging.getLogger(__name__)
 

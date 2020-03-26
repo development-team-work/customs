@@ -2,8 +2,8 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import logging
-from eagle.tests.common import TransactionCase
-from eagle.tools import test_reports
+from odoo.tests.common import TransactionCase
+from odoo.tools import test_reports
 
 _logger = logging.getLogger(__name__)
 

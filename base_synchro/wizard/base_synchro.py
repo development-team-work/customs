@@ -5,8 +5,8 @@ import time
 import threading
 from xmlrpc.client import ServerProxy
 
-from eagle import api, fields, models, _
-from eagle.exceptions import Warning
+from odoo import api, fields, models, _
+from odoo.exceptions import Warning
 
 _logger = logging.getLogger(__name__)
 
@@ -244,7 +244,7 @@ class BaseSynchro(models.TransientModel):
         del data['id']
         return data
 
-    @api.multi
+
     def upload_download(self):
         self.ensure_one()
         self.report = []
@@ -285,7 +285,7 @@ Exceptions:
             })
             return {}
 
-    @api.multi
+
     def upload_download_multi_thread(self):
         threaded_synchronization = threading.Thread(
             target=self.upload_download())

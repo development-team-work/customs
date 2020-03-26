@@ -1,8 +1,8 @@
 # Copyright 2015 ACSONE SA/NV (<http://acsone.eu>)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from eagle import api, fields, models, _
-from eagle.exceptions import UserError
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 
 class ReportAction(models.Model):

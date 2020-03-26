@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
 
-from eagle.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
 from openerp import api, fields, models
 
 
@@ -29,7 +29,7 @@ class SmsMessage(models.Model):
     attachment_ids = fields.One2many('ir.attachment', 'res_id', domain=[('res_model', '=', 'sms.message')],
                                      string="MMS Attachments")
 
-    @api.multi
+
     def send_queued_sms(self):
         self.process_sms_queue(self)
 

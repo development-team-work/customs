@@ -4,10 +4,10 @@ import logging
 # import urllib
 # import urlparse
 
-from eagle import api, fields, models, _
-from eagle.addons.payment.models.payment_acquirer import ValidationError
-from eagle.addons.payment_lebupay.controllers.main import LebupayController
-from eagle.tools.float_utils import float_compare
+from odoo import api, fields, models, _
+from odoo.addons.payment.models.payment_acquirer import ValidationError
+from odoo.addons.payment_lebupay.controllers.main import LebupayController
+from odoo.tools.float_utils import float_compare
 
 _logger = logging.getLogger(__name__)
 
@@ -41,7 +41,7 @@ class AcquirerLebupay(models.Model):
             }
 
 
-    @api.multi
+
     def get_last_order_id(self):
 
         query = "SELECT id FROM sale_order ORDER BY id DESC LIMIT 1"
@@ -50,7 +50,7 @@ class AcquirerLebupay(models.Model):
         lastOrder_id = data['id']
         return lastOrder_id
 
-    @api.multi
+
     def get_last_order_number(self):
 
         query = "SELECT name FROM sale_order ORDER BY id DESC LIMIT 1"
@@ -59,7 +59,7 @@ class AcquirerLebupay(models.Model):
         lastOrder_number = data['name']
         return lastOrder_number   
 
-    @api.multi
+
     def get_product_id(self):
 
         query = "SELECT company_id FROM sale_order_line WHERE order_id=%s ORDER BY id DESC LIMIT 1"
@@ -71,7 +71,7 @@ class AcquirerLebupay(models.Model):
         company_id = data['company_id']
         return company_id  
     
-    @api.multi
+
     def get_warehouse_id(self):
 
         query = "SELECT warehouse_id FROM sale_order ORDER BY id DESC LIMIT 1"
@@ -80,7 +80,7 @@ class AcquirerLebupay(models.Model):
         warehouseid = data['warehouse_id']
         return warehouseid  
     
-    @api.multi
+
     def get_picking_id(self):
 
         query = "SELECT id FROM stock_picking_type WHERE warehouse_id=%s AND code=%s ORDER BY id DESC LIMIT 1"
@@ -93,7 +93,7 @@ class AcquirerLebupay(models.Model):
         picking_id = data['id']
         return picking_id
 
-    @api.multi
+
     def get_location_id(self):
 
         query = "SELECT default_location_src_id FROM stock_picking_type WHERE warehouse_id=%s AND code=%s ORDER BY id DESC LIMIT 1"
@@ -107,7 +107,7 @@ class AcquirerLebupay(models.Model):
         return default_location_src_id
 
 
-    @api.multi
+
     def lebupay_form_generate_values(self, values):
         base_url = self.env['ir.config_parameter'].get_param('web.base.url')
         lebupay_tx_values = dict(values)
@@ -141,7 +141,7 @@ class AcquirerLebupay(models.Model):
        
         return lebupay_tx_values
 
-    @api.multi
+
     def lebupay_get_form_action_url(self):
         return self._get_lebupay_urls(self.environment)['lebupay_form_url']
 

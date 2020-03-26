@@ -2,13 +2,13 @@
 # Copyright 2017 Jarvis (www.eaglemod.com)
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl.html).
 
-from eagle import api, fields, models, _
+from odoo import api, fields, models, _
 
 
 class BaseLanguageInstall(models.TransientModel):
     _inherit = "base.language.install"
 
-    @api.multi
+
     def lang_install(self):
         self.ensure_one()
         if self.overwrite:

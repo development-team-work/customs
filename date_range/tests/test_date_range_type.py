@@ -3,9 +3,9 @@
 
 from psycopg2 import IntegrityError
 
-from eagle.exceptions import ValidationError
-from eagle.tests.common import TransactionCase
-from eagle.tools import mute_logger
+from odoo.exceptions import ValidationError
+from odoo.tests.common import TransactionCase
+from odoo.tools import mute_logger
 
 
 class DateRangeTypeTest(TransactionCase):

@@ -1,5 +1,5 @@
 import requests
-from eagle import _,fields, models,api
+from odoo import _,fields, models,api
 import datetime
 
 class SmsGatewayAccount(models.Model):
@@ -49,7 +49,7 @@ class Message(models.Model):
         ('message_id_unique', 'unique(message_id)', 'Message Id Must Be Unique'),
     ]
 
-    @api.multi
+
     def send_sms(self):
         for rec in self:
             body = [{'device_id': rec.device_id,'phone_number':rec.phone_number,'message':rec.message}]
@@ -87,11 +87,11 @@ class SMSGateway(models.Model):
 
     # def __init__(self, "api_key"):
     #     self.api_key = api_key
-    @api.multi
+
     def _get_headers(self):
         return {'Authorization': self.api_key}
 
-    @api.multi
+
     def _make_post(self,endpoint,body):
         url = self.base_endpoint + endpoint
         return requests.post(url, json=body, headers=self._get_headers()).json()

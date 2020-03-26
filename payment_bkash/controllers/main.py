@@ -8,9 +8,9 @@ import requests
 import werkzeug
 from werkzeug import urls
 
-from eagle import http
-from eagle.addons.payment.models.payment_acquirer import ValidationError
-from eagle.http import request
+from odoo import http
+from odoo.addons.payment.models.payment_acquirer import ValidationError
+from odoo.http import request
 
 _logger = logging.getLogger(__name__)
 

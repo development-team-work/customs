@@ -3,7 +3,7 @@
 
 import time
 from datetime import date
-from eagle.tests import common
+from odoo.tests import common
 from . import abstract_test_tax_report
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eagle>
+<odoo>
         <template id="pos_assets" name="pos_mobile assets" inherit_id="point_of_sale.assets">
             <xpath expr="." position="inside">
                 <link rel="stylesheet" href="/pos_mobile/static/src/css/swiper.css"/>
@@ -61,4 +61,4 @@ if (!eagle.is_mobile){
                 <script type="text/javascript" src="/pos_mobile/static/src/js/tour.js"></script>
             </xpath>
         </template>
-</eagle>
+</odoo>

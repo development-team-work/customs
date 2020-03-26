@@ -2,7 +2,7 @@
 #   (http://www.eficent.com)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
-from eagle import api, models
+from odoo import api, models
 
 
 class OutstandingStatement(models.AbstractModel):
@@ -114,7 +114,7 @@ class OutstandingStatement(models.AbstractModel):
             res[row.pop('partner_id')].append(row)
         return res
 
-    @api.multi
+
     def _get_report_values(self, docids, data):
         if not data:
             data = {}

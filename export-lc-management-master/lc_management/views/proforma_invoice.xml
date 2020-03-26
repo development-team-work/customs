@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<eagle>
+<odoo>
     <data>
         <record id="view_sale_order_form_inherit_view_lc" model="ir.ui.view">
              <field name="name">Proforma Invoices</field>
@@ -464,4 +464,4 @@
         
 
     </data>
-</eagle>
+</odoo>

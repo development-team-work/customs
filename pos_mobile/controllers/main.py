@@ -1,8 +1,8 @@
 import json
 
-from eagle import http
-from eagle.http import request
-from eagle.addons.point_of_sale.controllers.main import PosController
+from odoo import http
+from odoo.http import request
+from odoo.addons.point_of_sale.controllers.main import PosController
 
 
 class ControllerPos(PosController):

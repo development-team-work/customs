@@ -1,7 +1,7 @@
 # Copyright  2018 Forest and Biomass Romania
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from eagle import api, fields, models
+from odoo import api, fields, models
 
 
 class VATReport(models.TransientModel):
@@ -101,7 +101,7 @@ class VATReportCompute(models.TransientModel):
 
     _inherit = 'report_vat_report'
 
-    @api.multi
+
     def print_report(self, report_type='qweb'):
         self.ensure_one()
         if report_type == 'xlsx':
@@ -130,7 +130,7 @@ class VATReportCompute(models.TransientModel):
     def get_html(self, given_context=None):
         return self.with_context(given_context)._get_html()
 
-    @api.multi
+
     def compute_data_for_report(self):
         self.ensure_one()
         # Compute report data

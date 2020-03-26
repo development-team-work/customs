@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
-from eagle.tools import DEFAULT_SERVER_DATE_FORMAT
-from eagle import models, _
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT
+from odoo import models, _
 
 
 class StandardReportXlsx(models.AbstractModel):

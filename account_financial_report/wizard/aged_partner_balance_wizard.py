@@ -3,9 +3,9 @@
 # Copyright 2016 Camptocamp SA, Onestein B.V.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from eagle import api, fields, models
-from eagle.tools.safe_eval import safe_eval
-from eagle.tools import pycompat
+from odoo import api, fields, models
+from odoo.tools.safe_eval import safe_eval
+from odoo.tools import pycompat
 
 
 class AgedPartnerBalanceWizard(models.TransientModel):
@@ -78,7 +78,7 @@ class AgedPartnerBalanceWizard(models.TransientModel):
         else:
             self.account_ids = None
 
-    @api.multi
+
     def button_export_html(self):
         self.ensure_one()
         action = self.env.ref(
@@ -96,13 +96,13 @@ class AgedPartnerBalanceWizard(models.TransientModel):
         vals['context'] = context1
         return vals
 
-    @api.multi
+
     def button_export_pdf(self):
         self.ensure_one()
         report_type = 'qweb-pdf'
         return self._export(report_type)
 
-    @api.multi
+
     def button_export_xlsx(self):
         self.ensure_one()
         report_type = 'xlsx'

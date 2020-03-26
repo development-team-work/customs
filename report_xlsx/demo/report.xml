@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<eagle>
+<odoo>
     <!--
     © 2017 Creu Blanca
     License AGPL-3.0 or later (https://www.gnuorg/licenses/agpl.html).
@@ -13,4 +13,4 @@
         file="res_partner"
         attachment_use="False"
     />
-</eagle>
+</odoo>

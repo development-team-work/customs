@@ -3,7 +3,7 @@
 {
     'name' : 'Ribbon And Medal',
     'version' : '1.2.0.1',
-    'summary': 'ribbon and medal for Police,Army',
+    'summary': 'ribbon_bk and medal for Police,Army',
     'sequence': 15,
     'description': """
 Riboon And Medal Indicator

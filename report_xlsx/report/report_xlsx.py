@@ -3,7 +3,7 @@
 
 from io import BytesIO
 
-from eagle import models
+from odoo import models
 
 import logging
 _logger = logging.getLogger(__name__)

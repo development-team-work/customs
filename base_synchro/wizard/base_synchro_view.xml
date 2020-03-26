@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html>
-<eagle>
+<odoo>
 
     <record id="view_base_synchro" model="ir.ui.view">
         <field name="name">Base Synchronization</field>
@@ -50,4 +50,4 @@
     <menuitem parent="base_synchro.next_id_62" name="Synchronize objects"
               action="action_view_base_synchro" id="menu_action_view_base_synchro"/>
 
-</eagle>
+</odoo>

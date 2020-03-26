@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eagle>
+<odoo>
 
     <template id="payment_lebupay.paymentsuccess">
         <t t-call="website.layout">     
@@ -103,4 +103,4 @@
         </t>
     </template>
 
-</eagle>
+</odoo>

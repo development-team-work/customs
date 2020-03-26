@@ -3,8 +3,8 @@ import logging
 import pprint
 import werkzeug
 
-from eagle import http
-from eagle.http import request
+from odoo import http
+from odoo.http import request
 
 _logger = logging.getLogger(__name__)
 

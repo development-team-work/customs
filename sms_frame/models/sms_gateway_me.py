@@ -7,8 +7,8 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-from eagle.http import request
-from eagle import api, fields, models
+from odoo.http import request
+from odoo import api, fields, models
 from openerp.exceptions import Warning
 
 
@@ -26,7 +26,7 @@ class SmsGatewayME(models.Model):
 
     api_url = fields.Char(string='API URL')
 
-    @api.multi
+
     def _get_headers(self):
         return {'Authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhZG1pbiIsImlhdCI6MTU3MDYwNDc5MiwiZXhwIjo0MTAyNDQ0ODAwLCJ1aWQiOjQ3MDc5LCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.mIjb9LJYut1qJHsJ0zFBXEo-s6zzvwlf03Qv00h0P0g'}
     def send_message(self, sms_gateway_id, from_number, to_number, sms_content, my_model_name='', my_record_id=0,

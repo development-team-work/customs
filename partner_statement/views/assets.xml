@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Copyright 2018 Eficent Business and IT Consulting Services S.L.
      License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl). -->
-<eagle>
+<odoo>
 
     <template id="report_assets_common" name="oca_statements report assets" inherit_id="web.report_assets_common">
         <xpath expr="." position="inside">
@@ -9,4 +9,4 @@
         </xpath>
     </template>
 
-</eagle>
+</odoo>

@@ -3,7 +3,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from dateutil.relativedelta import relativedelta
-from eagle import api, fields, models
+from odoo import api, fields, models
 
 
 class ActivityStatementWizard(models.TransientModel):

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eagle>
+<odoo>
     <data noupdate="1">
         <template id="rocket_form">
             <input type="hidden" name="data_set" t-att-data-action-url="tx_url" data-remove-me=""/>
@@ -11,4 +11,4 @@
             <input type="hidden" name='currency' t-att-value='currency.name'/>
         </template>
     </data>
-</eagle>
+</odoo>

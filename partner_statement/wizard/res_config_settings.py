@@ -1,4 +1,4 @@
-from eagle import fields, models
+from odoo import fields, models
 
 
 class ResConfigSettings(models.TransientModel):

@@ -2,7 +2,7 @@
 # © 2016 Julien Coux (Camptocamp)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from eagle import models, fields, api, _
+from odoo import models, fields, api, _
 
 
 class OpenItemsReport(models.TransientModel):
@@ -150,7 +150,7 @@ class OpenItemsReportCompute(models.TransientModel):
 
     _inherit = 'report_open_items'
 
-    @api.multi
+
     def print_report(self, report_type):
         self.ensure_one()
         if report_type == 'xlsx':
@@ -179,7 +179,7 @@ class OpenItemsReportCompute(models.TransientModel):
     def get_html(self, given_context=None):
         return self._get_html()
 
-    @api.multi
+
     def compute_data_for_report(self):
         self.ensure_one()
         # Compute report data

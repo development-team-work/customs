@@ -1,7 +1,7 @@
 # © 2018 Forest and Biomass Romania SA
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from eagle import api, fields, models
+from odoo import api, fields, models
 
 
 class AccountGroup(models.Model):
@@ -24,7 +24,7 @@ class AccountGroup(models.Model):
         compute='_compute_group_accounts',
         string="Compute accounts", store=True)
 
-    @api.multi
+
     @api.depends('parent_id', 'parent_id.level')
     def _compute_level(self):
         for group in self:
@@ -33,7 +33,7 @@ class AccountGroup(models.Model):
             else:
                 group.level = group.parent_id.level + 1
 
-    @api.multi
+
     @api.depends('code_prefix', 'account_ids', 'account_ids.code',
                  'group_child_ids', 'group_child_ids.account_ids.code')
     def _compute_group_accounts(self):

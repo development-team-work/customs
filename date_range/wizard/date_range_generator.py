@@ -4,8 +4,8 @@
 from dateutil.relativedelta import relativedelta
 from dateutil.rrule import DAILY, MONTHLY, WEEKLY, YEARLY, rrule
 
-from eagle import _, api, fields, models
-from eagle.exceptions import ValidationError
+from odoo import _, api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class DateRangeGenerator(models.TransientModel):
@@ -34,7 +34,7 @@ class DateRangeGenerator(models.TransientModel):
     count = fields.Integer(
         string="Number of ranges to generate", required=True)
 
-    @api.multi
+
     def _compute_date_ranges(self):
         self.ensure_one()
         vals = rrule(freq=self.unit_of_time, interval=self.duration_count,
@@ -64,7 +64,7 @@ class DateRangeGenerator(models.TransientModel):
             self._cache.update(
                 self._convert_to_cache({'type_id': False}, update=True))
 
-    @api.multi
+
     @api.constrains('company_id', 'type_id')
     def _check_company_id_type_id(self):
         for rec in self.sudo():
@@ -74,7 +74,7 @@ class DateRangeGenerator(models.TransientModel):
                     _('The Company in the Date Range Generator and in '
                       'Date Range Type must be the same.'))
 
-    @api.multi
+
     def action_apply(self):
         date_ranges = self._compute_date_ranges()
         if date_ranges:

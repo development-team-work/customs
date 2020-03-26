@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eagle>
+<odoo>
     <data noupdate="1">
 
         <record id="payment_acquirer_bkash" model="payment.acquirer">
@@ -20,4 +20,4 @@
         </record>
 
     </data>
-</eagle>
+</odoo>

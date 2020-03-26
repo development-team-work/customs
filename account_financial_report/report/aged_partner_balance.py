@@ -1,7 +1,7 @@
 # © 2016 Julien Coux (Camptocamp)
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from eagle import models, fields, api
+from odoo import models, fields, api
 
 
 class AgedPartnerBalanceReport(models.TransientModel):
@@ -184,7 +184,7 @@ class AgedPartnerBalanceReportCompute(models.TransientModel):
 
     _inherit = 'report_aged_partner_balance'
 
-    @api.multi
+
     def print_report(self, report_type):
         self.ensure_one()
         if report_type == 'xlsx':
@@ -223,7 +223,7 @@ class AgedPartnerBalanceReportCompute(models.TransientModel):
             'filter_partner_ids': [(6, 0, self.filter_partner_ids.ids)],
         }
 
-    @api.multi
+
     def compute_data_for_report(self):
         self.ensure_one()
         # Compute Open Items Report Data.

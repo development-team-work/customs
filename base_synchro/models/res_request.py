@@ -1,6 +1,6 @@
 # See LICENSE file for full copyright and licensing details.
 
-from eagle import fields, models
+from odoo import fields, models
 
 
 class ResRequest(models.Model):

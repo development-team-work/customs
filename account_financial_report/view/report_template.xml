@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<eagle>
+<odoo>
 
     <template id="account_financial_report_assets_backend"
               name="account_financial_report assets" inherit_id="web.assets_backend">
@@ -55,4 +55,4 @@
         <field name="context" eval="{'active_model': 'report_vat_report'}" />
     </record>
 
-</eagle>
+</odoo>

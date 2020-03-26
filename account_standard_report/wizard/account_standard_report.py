@@ -4,9 +4,9 @@ import calendar
 
 import eagle.addons.decimal_precision as dp
 from datetime import datetime, timedelta
-from eagle import api, models, fields, _
-from eagle.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
-from eagle.exceptions import AccessError, UserError
+from odoo import api, models, fields, _
+from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
+from odoo.exceptions import AccessError, UserError
 
 D_LEDGER = {'general': {'name': _('General Ledger'),
                         'group_by': 'account_id',
