@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_barcode_print">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <t t-foreach="docs" t-as="picking">
+                        <t t-foreach="picking.item_ids" t-as="items">
+                            <t t-foreach="items" t-as="item">
+                                <t t-set="qty" t-value="item.qty"/>
+                                <t t-foreach="range(qty)" t-as="label">
+                                    <t t-translation="off">
+                                        <div style="display: inline-table; width: 19%;padding:0px;">
+                                            <table class="table table-bordered" style="border: 1px solid black; padding:0px;" t-if="items">
+                                                <tr>
+                                                    <th class="text-center "  style="font-size:12px; padding:0px">
+                                                        <span t-esc="item.product_id.name"/>
+                                                    </th>
+                                                </tr>
+                                                    <tr>
+                                                        <td class="text-center " style="padding:0px">
+                                                                <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128',item.product_id.barcode, 600, 150)" style="width:100%;height:2rem; padding:0px" alt="Barcode"/>
+                                                                <span t-esc="item.product_id.barcode"/>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-center " style="padding:0px">
+                                                                <span t-esc="item.rate"/>
+                                                        </td>
+                                                    </tr>
+                                            </table>
+                                        </div>
+                                    </t>
+                                </t>
+                            </t>
+                        </t>
+                    </t>
+                </div>
+            </t>
+        </template>
+        <report
+            string="Package Barcode (PDF)"
+            id="action_report_quant_package_barcode_small"
+            model="myshop.barcode.wizard"
+            report_type="qweb-pdf"
+            name="eagle_shop.report_barcode_print"
+            file="eagle_shop.report_barcode_print"/>
+    </data>
+</odoo>

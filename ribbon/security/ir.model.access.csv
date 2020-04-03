@@ -1,0 +1,15 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ribbon_personal_service,access_ribbon_personal_service,model_ribbon_personal_service,base.group_user,1,0,0,0
+access_ribbon_personal_mission,access_ribbon_personal_mission,model_ribbon_personal_mission,base.group_user,1,0,0,0
+access_ribbon_personal_award,access_ribbon_personal_award,model_ribbon_personal_award,base.group_user,1,0,0,0
+access_ribbon_post,access_ribbon_post,model_ribbon_post,base.group_user,1,0,0,0
+access_ribbon_mission,access_ribbon_mission,model_ribbon_mission,base.group_user,1,0,0,0
+access_ribbon_acquired_ribbon,access_ribbon_acquired_ribbon,model_ribbon_acquired_ribbon,base.group_user,1,0,0,0
+access_ribbon_personal_acquisition,access_ribbon_personal_acquisition,model_ribbon_personal_acquisition,base.group_user,1,0,0,0
+access_ribbon_force,access_ribbon_force,model_ribbon_force,base.group_user,1,0,0,0
+access_ribbon_extension,access_ribbon_extension,model_ribbon_extension,base.group_user,1,0,0,0
+access_ribbon_ribbon_product,access_ribbon_ribbon_product,model_ribbon_ribbon_product,base.group_user,1,0,0,0
+access_ribbon_acquisition_rule,access_ribbon_acquisition_rule,model_ribbon_acquisition_rule,base.group_user,1,0,0,0
+access_ribbon_regulation,access_ribbon_regulation,model_ribbon_regulation,base.group_user,1,0,0,0
+access_ribbon_rank,access_ribbon_rank,model_ribbon_rank,base.group_user,1,0,0,0
+access_ribbon_force_unit,access_ribbon_force_unit,model_ribbon_force_unit,base.group_user,1,0,0,0

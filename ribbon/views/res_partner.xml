@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="ribbon_res_partner_form_view_inherit" model="ir.ui.view">
+            <field name="name">ribbon.res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//div[2]" position="after">
+                        <div class="o_row" name="partner_property" >
+                            <field name="is_force"  attrs="{'invisible': [('is_company','=', True)]}"/>
+                            <label class="col-form-label" for="is_force"  attrs="{'invisible': [('is_company','=', True)]}">Is a Force  </label>
+                        </div>
+                    </xpath>
+                <xpath expr="//page[@name='sales_purchases']" position="before">
+
+                    <page name="service_record" string="Service Records"  attrs="{'invisible': ['|',('is_force', '=', False),('is_company','=', True)]}">
+                        <notebook>
+                            <page name="service" string="Service">
+                                <group name="service_record">
+                                   <group>
+                                       <field name="force_id"/>
+                                       <field name="id_no"/>
+                                       <field name="bcs"/>
+                                       <field name="joining"/>
+                                   </group>
+                                   <group>
+                                       <field name="rank"/>
+                                       <field name="post"/>
+                                       <field name="unit"/>
+                                       <field name="retired"/>
+                                       <field name="service_length"/>
+                                       <field name="service_day" attrs="{'invisible':True}"/>
+                                       <field name="service_month" attrs="{'invisible':True}"/>
+                                       <field name="service_year" attrs="{'invisible':True}"/>
+                                   </group>
+                               <group>
+                                   <field name="rank"/>
+                                   <field name="post"/>
+                                   <field name="unit"/>
+                                   <field name="retired"/>
+                                   <field name="service_length"/>
+                               </group>
+                               <group>
+                                   <field name="awards" context="{'default_partner_id': id}">
+                                       <tree>
+                                           <field  name="ribbon_id"/>
+                                           <field name="extension"/>
+                                       </tree>
+                                   </field>
+                               </group>
+                               <group>
+                                   <field name="services" context="{'default_partner_id': id}">
+                                       <tree>
+                                           <field  name="ribbon_id"/>
+                                           <field name="extension"/>
+                                       </tree>
+                                   </field>
+                               </group>
+                               <group>
+                                   <field name="missions" context="{'default_partner_id': id}">
+                                       <tree>
+                                           <field name="ribbon_id"/>
+                                           <field name="extension"/>
+                                       </tree>
+                                   </field>
+                               </group>
+                           </group>
+                       </page>
+                            <page name="ribbons" string="Ribbons">
+                                <button type="object" name="get_acquired_ribbons" string="Refresh"/>
+                                <group>
+                                    <group string="Acquired Ribbons">
+                                        <field name="acquired_ribbons" nolabel="1" context="{'default_partner_id': id}">
+                                            <tree editable="top">
+                                                <field name="ribbon_id"/>
+                                                <field name="extension"/>
+                                                <field name="serial"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                    <group >
+                                        <field name="ribbon_point_size"/>
+                                        <field name="ribbon_point_unit"/>
+                                        <field name="ribbon_set_image" widget="html" nolabel="1"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <record model='ir.ui.view' id='view_res_partner_filter'>
+        <field name='name'>res.partner.select.inherit.base.partner.filter</field>
+        <field name='model'>res.partner</field>
+        <field name='inherit_id' ref='base.view_res_partner_filter'/>
+        <field name='arch' type='xml'>
+            <field name="name" position="after">
+                <field name="id_no" string="ID/BP" filter_domain="[('id_no','ilike', self)]"/>
+            </field>
+        </field>
+    </record>
+    </data>
+</odoo>

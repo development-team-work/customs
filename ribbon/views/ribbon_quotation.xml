@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ribon_medal_quotation_form" model="ir.ui.view">
+            <field name="name">ribbon.quotation.form</field>
+            <field name="model">ribbon.quotation</field>
+            <field name="arch" type="xml">
+                <form string="Quotation">
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="curiar_address"/>
+                            <field name="curiar_Contact"/>
+                            <field name="delivery_date"/>
+                        </group>
+                        <group>
+                            <field name="ribbon_qty"/>
+                            <field name="bmedal_qty"/>
+                            <field name="smedal_qty"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Ribbons">
+                            <field name="ribbon_details" widget="many2many_tag"/>
+                            <group>
+                                <field name="ribbon_qty"/>
+                                <field name="pin_qty"/>
+                                <field name="vel_qty"/>
+                                <field name="ribbon_price_per_set"/>
+                                <field name="ribbon_refund_price"/>
+                                <field name="ribbon_net_price"/>
+                            </group>
+                        </page>
+                        <page string="Tunic Medal">
+                            <field name="bmedal_details" widget="many2many_tag"/>
+                            <group>
+                                <field name="bmedal_qty"/>
+                                <field name="bmedal_price_per_set"/>
+                                <field name="bmedal_refund_price"/>
+                                <field name="bmedal_net_price"/>
+                            </group>
+                        </page>
+                        <page string="Meskit Medal">
+                            <field name="ribbon_details" widget="many2many_tag"/>
+                            <group>
+                                <field name="smedal_qty"/>
+                                <field name="smedal_price_per_set"/>
+                                <field name="smedal_refund_price"/>
+                                <field name="smedal_net_price"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </form>
+            </field>
+        </record>
+
+<!--Actions-->
+        <record id="ribbon_quotation_action" model="ir.actions.act_window">
+            <field name="name">Quotation</field>
+            <field name="res_model">ribbon.quotation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="ribbon_ribbon_quotation_action" model="ir.actions.act_window">
+            <field name="name">Ribbon Quotation</field>
+            <field name="res_model">ribbon.ribbon.quotation.details</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+<!--Menues        -->
+        <menuitem id="ribbon_quotation_menu" name="Quotation"
+                        parent="ribbon_main" action="ribbon_quotation_action"  groups="base.group_user,base.group_partner_manager"/>
+        <menuitem id="ribbon_ribbon_quotation_menu" name="Ribbon Quotation"
+                        parent="ribbon_main" action="ribbon_ribbon_quotation_action"  groups="base.group_user,base.group_partner_manager"/>
+    </data>
+</odoo>

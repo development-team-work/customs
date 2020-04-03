@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<data noupdate="1">
+    <record id="payment_acquirer_bkash" model="payment.acquirer">
+        <field name="name">Bkash</field>
+        <field name="sequence">1</field>
+        <field name="view_template_id" ref="payment.default_acquirer_button"/>
+        <field name="image" type="base64" file="payment_bkash/static/src/img/bkash_icon.png"/>
+        <field name="module_id" ref="base.module_payment_bkash"/>
+        <field name="description" type="html">
+            <p>
+                Bkash is the easiest way to accept payments alll over Bangladesh.
+            </p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><i class="fa fa-check"/>Online Payment</li>
+            </ul>
+        </field>
+        <field name="payment_icon_ids" eval='[(6, 0, [ref("payment.payment_icon_cc_maestro"),
+                                                        ref("payment.payment_icon_cc_visa")])]'/>
+    </record>
+    <record id="payment_acquirer_cashout" model="payment.acquirer">
+        <field name="name">Cash Out</field>
+        <field name="sequence">1</field>
+        <field name="view_template_id" ref="payment.default_acquirer_button"/>
+        <field name="image" type="base64" file="payment_cashout/static/src/img/icon.png"/>
+        <field name="module_id" ref="base.module_payment_cashout"/>
+        <field name="description" type="html">
+            <p>
+                Cash Out is the easiest way to accept payments through bKash, Rocket and any other Mobile banking all over Bangladesh.
+            </p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><i class="fa fa-check"/>Online Payment</li>
+                <li class="list-inline-item"><i class="fa fa-check"/>Mobile Banking</li>
+            </ul>
+        </field>
+        <field name="payment_icon_ids" eval='[(6, 0, [ref("payment.payment_icon_cc_maestro"),
+                                                        ref("payment.payment_icon_cc_visa")])]'/>
+    </record>
+ <!--   <record id="payment_acquirer_rocket" model="payment.acquirer">
+        <field name="name">Rocket</field>
+        <field name="sequence">1</field>
+        <field name="view_template_id" ref="payment.default_acquirer_button"/>
+        <field name="image" type="base64" file="payment_rocket/static/src/img/transfer_icon.png"/>
+        <field name="module_id" ref="base.module_payment_rocket"/>
+        <field name="description" type="html">
+            <p>
+                Rocket is the easiest way to accept payments via Paypal or credit cards.
+            </p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><i class="fa fa-check"/>Online Payment</li>
+            </ul>
+        </field>
+        &lt;!&ndash; https://www.paypal.com/us/selfhelp/article/Which-credit-cards-can-I-accept-with-PayPal-Merchant-Services-FAQ1525#business &ndash;&gt;
+        <field name="payment_icon_ids" eval='[(6, 0, [ref("payment.payment_icon_cc_maestro"),
+                                                        ref("payment.payment_icon_cc_visa")])]'/>
+
+    </record>-->
+</data>
+</odoo>

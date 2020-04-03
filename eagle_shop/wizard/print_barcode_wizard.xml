@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="print_barcode_wizard_view" model="ir.ui.view">
+        <field name="name">myshop.barcode.wizard.view</field>
+        <field name="model">myshop.barcode.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+
+                    <field name="picking_id"/>
+                    <field name="pricelist"/>
+
+                    <field name="item_ids">
+                        <tree editable="top">
+                            <field name="product_id"/>
+                            <field name="qty"/>
+                            <field name="rate"/>
+                        </tree>
+                    </field>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="action_print_barcode_product" model="ir.actions.act_window">
+        <field name="name">Print Barcode</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">myshop.barcode.wizard</field>
+        <field name="view_mode">form</field>
+<!--        <field name="view_id" ref="accounting_pdf_reports.account_report_partner_ledger_view"/>-->
+<!--        <field name="target">new</field>-->
+<!--        <field name="context">{'wizard_id' : 'active_id'}</field>-->
+<!--        <field name="binding_model_id" ref="account.model_account_account" />-->
+<!--        <field name="binding_type">report</field>-->
+    </record>
+</odoo>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <report
+            id="action_report_print_check"
+
+        model="account.payment"
+            string="Partner Ledger"
+            report_type="qweb-pdf"
+            name="l10n_bd_check_payment.report_print_check"
+            file="l10n_bd_check_payment.report_print_check"
+            paperformat="l10n_bd_check_payment.paperformat_bd_check"
+            />
+
+
+
+    </data>
+</odoo>

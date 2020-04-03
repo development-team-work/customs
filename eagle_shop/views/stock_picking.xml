@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="stock_valuation_layer_picking" model="ir.ui.view">
+        <field name="name">stock.valuation.layer.picking</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button string="Print Barcode" type="action"
+                    name="%(eagle_shop.action_print_barcode_product)d"
+                        context="('picking_id','=',active_id)"
+                    class="oe_stat_button" icon="fa-print" groups="base.group_no_one"
+                    attrs="{'invisible': [('state', 'not in', ['done'])]}" />
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

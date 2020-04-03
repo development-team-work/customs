@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--<record id="view_ribbon_form" model="ir.ui.view">
+            <field name="name">ribbon.form</field>
+            <field name="model">ribbon.medal</field>
+            <field name="arch" type="xml">
+                <form string="ribbon">
+                   <sheet>
+                       <group>
+                           <group>
+                             <field name="name"/>
+                             <field name="is_ribbon"/>
+                             <field name="is_medal"/>
+                               </group>
+                           <group>
+                             <field name="ribbon_template" attrs="{'invisible': [('is_ribbon', '=', False)]}" domain="[ ('categ_id.name', '=', 'Ribbons')]"/>
+&lt;!&ndash;                             <field name="ribbon_set_tmpl" attrs="{'invisible': [('is_ribbon', '=', False)]}" domain="[ ('categ_id.name', '=', 'Medals')]"/>&ndash;&gt;
+                             <field name="medal_template" attrs="{'invisible': [('is_medal', '=', False)]}" domain="[ ('categ_id.name', '=', 'Medals')]"/>
+&lt;!&ndash;                             <field name="medal_set_tmpl" attrs="{'invisible': [('is_medal', '=', False)]}" domain="[ ('categ_id.name', '=', 'Medals')]"/>&ndash;&gt;
+                           </group>
+                       </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+-->
+        <!--<record id="view_ribbon_list" model="ir.ui.view">
+            <field name="name">ribbon.list</field>
+            <field name="model">ribbon</field>
+            <field name="arch" type="xml">
+                <tree string="ribbon">
+                     <field name="name"/>
+                     <field name="is_ribbon"/>
+                     <field name="is_medal"/>
+                     <field name="ribbon_template" attrs="{'invisible': [('is_ribbon', '=', False)]}" domain="[ ('categ_id.name', '=', 'Medals')]"/>
+                     <field name="medal_template" attrs="{'invisible': [('is_medal', '=', False)]}" domain="[ ('categ_id.name', '=', 'Medals')]"/>
+                </tree>
+            </field>
+        </record>-->
+        <record id="view_ribbon_personal_form" model="ir.ui.view">
+            <field name="name">ribbon.personal.details.form</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form string="Personal Details">
+                   <group >
+                       <group>
+<!--                           <field name="image" widget="image" nolabel="True"/>-->
+                           <field name="id"/>
+                       </group>
+                       <group>
+                           <field name="name"/>
+                           <field name="force_id"/>
+                           <field name="id_no"/>
+                           <field name="rank"/>
+                           <field name="unit"/>
+                           <field name="post"/>
+                           <field name="joining"/>
+                           <field name="bcs"/>
+                           <field name="retired"/>
+                           <field name="service_length"/>
+                       </group>
+                   </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_ribbon_personal_list" model="ir.ui.view">
+            <field name="name">ribbon.personal.det.list</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree string="Personal Details">
+                   <field name="name"/>
+                   <field name="force_id"/>
+                   <field name="id_no"/>
+                   <field name="rank"/>
+                   <field name="unit"/>
+                   <field name="post"/>
+                   <field name="joining"/>
+                   <field name="bcs"/>
+                   <field name="retired"/>
+                   <field name="service_length"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="res_partner_view_search" model="ir.ui.view">
+            <field name="name">res.partner.search.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@name='inactive']" position="before">
+                   <filter string="force" name="force" domain="[('force_id','=', 1)]"/>
+                   <separator/>
+                </xpath>
+            </field>
+        </record>
+
+       <!-- <record id="view_ribbon_force_form" model="ir.ui.view">
+            <field name="name">ribbon.force.form</field>
+            <field name="model">ribbon.force</field>
+            <field name="arch" type="xml">
+                <form string="Force">
+                   <group>
+                       <group>
+                            <field name="image" widget="image" />
+                            <field name="name" />
+                            <field name="description" />
+                       </group>
+                       <group>
+                            <field name="ribbon_ids"  widget="many2many_tags"/>
+
+                       </group>
+                       <group>
+                           <field name="ranks" >
+                               <tree>
+                                   <field name="code"/>
+                                   <field name="name"/>
+                                   <field name="superiority"/>
+                               </tree>
+                           </field>
+                       </group>
+                   </group>
+                </form>
+            </field>
+        </record>-->
+
+        <!--<record id="view_ribbon_force_list" model="ir.ui.view">
+            <field name="name">ribbon.force.list</field>
+            <field name="model">ribbon.force</field>
+            <field name="arch" type="xml">
+                <tree string="Force">
+                    <field name="name" />
+                    <field name="description" />
+                    <field name="ribbon_ids"  widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+-->
+        <record id="view_ribbon_regulation_form" model="ir.ui.view">
+            <field name="name">ribbon.regulation.form</field>
+            <field name="model">ribbon.regulation</field>
+            <field name="arch" type="xml">
+                <form string="Regulation Of Ribbon  Medal">
+                    <group >
+                        <group>
+<!--                            <field name="ribbon_id"/>-->
+                            <field name="force_id" />
+                            <field name="acquisition" />
+                            <field name="ribbon_tmpl_id" />
+                            <field name="name"  />
+                            <field name="medal_tmpl_id" />
+<!--                            <field name="medal_set_tmpl_id" invisible="True"/>-->
+                        </group>
+                        <group>
+                            <field name="shedule_date"/>
+                            <field name="serial" />
+                            <field name="service_length" />
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_ribbon_regulation_list" model="ir.ui.view">
+            <field name="name">ribbon.regulation.list</field>
+            <field name="model">ribbon.regulation</field>
+            <field name="arch" type="xml">
+                <tree string="Regulation Of Ribbon  Medal">
+                    <field name="name"/>
+                    <field name="force_id" />
+                    <field name="acquisition" />
+                    <field name="shedule_date"/>
+                    <field name="serial" />
+                    <field name="service_length" attrs="{'invisible': [('acquisition', '!=', 'duration')]}"/>
+                    <field name="ribbon_tmpl_id" />
+                    <field name="medal_tmpl_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_ribbon_acquisition_form" model="ir.ui.view">
+            <field name="name">ribbon.acquisition.rule.form</field>
+            <field name="model">ribbon.acquisition.rule</field>
+            <field name="arch" type="xml">
+                <form string="Rebbon Acquisition Rules">
+                    <group >
+                        <group>
+                            <field name="name"/>
+                            <field name="description" />
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_ribbon_acquisition_tree" model="ir.ui.view">
+            <field name="name">ribbon.acquisition.rule.tree</field>
+            <field name="model">ribbon.acquisition.rule</field>
+            <field name="arch" type="xml">
+                <tree string="Rebbon Acquisition Rules">
+                    <field name="name"/>
+                    <field name="description" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_ribbon_product_form" model="ir.ui.view">
+            <field name="name">ribbon.product.form</field>
+            <field name="model">ribbon.ribbon.product</field>
+            <field name="arch" type="xml">
+                <form string="ribbon">
+                   <sheet>
+                       <group>
+                           <group>
+                             <field name="name"/>
+<!--                             <field name="big_medal"/>-->
+<!--                             <field name="big_ribbon"/>-->
+<!--                             <field name="small_medal"/>-->
+<!--                             <field name="small_ribbon"/>-->
+                           </group>
+                       </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_ribbon_personal_award_form" model="ir.ui.view">
+              <field name="name">ribbon.personal.award.form</field>
+              <field name="model">ribbon.personal.award</field>
+              <field name="arch" type="xml">
+                  <form string="ribbon">
+                     <group>
+                       <field name="partner_id"/>
+                       <field name="ribbon_id"/>
+                       <field name="extension"/>
+                     </group>
+                  </form>
+              </field>
+          </record>
+
+        <record id="view_ribbon_personal_mission_form" model="ir.ui.view">
+              <field name="name">ribbon.personal.mission.form</field>
+              <field name="model">ribbon.personal.mission</field>
+              <field name="arch" type="xml">
+                  <form string="ribbon">
+                     <group>
+                       <field name="partner_id"/>
+                       <field name="ribbon_id"/>
+                       <field name="extension"/>
+                     </group>
+                  </form>
+              </field>
+          </record>
+
+        <record id="view_ribbon_extension_form" model="ir.ui.view">
+              <field name="name">ribbon.extension.form</field>
+              <field name="model">ribbon.extension</field>
+              <field name="arch" type="xml">
+                  <form string="Extension">
+                     <group>
+                         <group>
+                             <field name="image" widget="image"/>
+                         </group>
+                         <group>
+                             <field name="name"/>
+                             <field name="related_product"/>
+                             <field name="product_tmpl"/>
+                         </group>
+                     </group>
+                  </form>
+              </field>
+          </record>
+
+        <record id="view_ribbon_personal_missions_list" model="ir.ui.view">
+            <field name="name">ribbon.personal.award.tree</field>
+            <field name="model">ribbon.personal.mission</field>
+            <field name="arch" type="xml">
+                <tree string="ribbon">
+                       <field name="partner_id"/>
+                       <field name="ribbon_id"/>
+                       <field name="extension"/>
+                  </tree>
+              </field>
+          </record>
+
+        <record id="view_ribbon_personal_award_list" model="ir.ui.view">
+              <field name="name">ribbon.personal.award.tree</field>
+              <field name="model">ribbon.personal.award</field>
+              <field name="arch" type="xml">
+                  <tree string="ribbon">
+                       <field name="partner_id"/>
+                       <field name="ribbon_id"/>
+                       <field name="extension"/>
+                  </tree>
+              </field>
+          </record>
+
+        <record id="view_ribbon_rank_form" model="ir.ui.view">
+            <field name="name">ribbon.rank.form</field>
+            <field name="model">ribbon.rank</field>
+            <field name="arch" type="xml">
+                <form string="Rank">
+                           <group>
+                             <field name="name"/>
+                             <field name="force_id"/>
+                             <field name="superiority"/>
+                             <field name="code"/>
+                           </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_ribbon_rank_list" model="ir.ui.view">
+            <field name="name">ribbon.rank.list</field>
+            <field name="model">ribbon.rank</field>
+            <field name="arch" type="xml">
+                <tree string="Rank">
+                     <field name="name"/>
+                     <field name="force_id"/>
+                     <field name="superiority"/>
+                     <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_ribbon_force_unit_form" model="ir.ui.view">
+            <field name="name">ribbon.force.unit.form</field>
+            <field name="model">ribbon.force.unit</field>
+            <field name="arch" type="xml">
+                <form string="Rank">
+                    <group>
+                        <field name="name"/>
+                        <field name="chief_rank"/>
+                        <field name="chief"/>
+                        <field name="force_name"/>
+                        <field name="address"/>
+                        <field name="parent_unit"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_ribbon_force_unit_list" model="ir.ui.view">
+            <field name="name">ribbon.force.unit.list</field>
+            <field name="model">ribbon.force.unit</field>
+            <field name="arch" type="xml">
+                <tree string="Rank">
+                        <field name="name"/>
+                        <field name="chief_rank"/>
+                        <field name="chief"/>
+                        <field name="force_name"/>
+                        <field name="address"/>
+                        <field name="parent_unit"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_ribbon_extension_list" model="ir.ui.view">
+            <field name="name">ribbon.extension.list</field>
+            <field name="model">ribbon.extension</field>
+            <field name="arch" type="xml">
+                <tree string="Rank">
+                        <field name="name"/>
+                        <field name="related_product"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_ribbon_post_form" model="ir.ui.view">
+            <field name="name">ribbon.post.form</field>
+            <field name="model">ribbon.post</field>
+            <field name="arch" type="xml">
+                <form string="Rank">
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                        <field name="force_name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="view_ribbon_post_list" model="ir.ui.view">
+            <field name="name">ribbon.post.list</field>
+            <field name="model">ribbon.post</field>
+            <field name="arch" type="xml">
+                <tree string="Rank">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="force_name"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_ribbon_acquired_form" model="ir.ui.view">
+            <field name="name">ribbon.acquired.form</field>
+            <field name="model">ribbon.acquired.ribbon</field>
+            <field name="arch" type="xml">
+                <form string="Rank">
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="ribbon_id"/>
+                        <field name="extension"/>
+                        <field name="serial"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="view_ribbon_acquired_tree" model="ir.ui.view">
+            <field name="name">ribbon.acquired.tree</field>
+            <field name="model">ribbon.acquired.ribbon</field>
+            <field name="arch" type="xml">
+                <tree string="Rank">
+                    <field name="partner_id"/>
+                    <field name="ribbon_id"/>
+                    <field name="extension"/>
+                    <field name="serial"/>
+                </tree>
+            </field>
+        </record>
+<!-- Action  -->
+        <!--<record id="ribbon_form_action" model="ir.actions.act_window">
+            <field name="name">ribbons And Medals</field>
+            <field name="res_model">ribbon.medal</field>
+            <field name="view_mode">tree,form</field>
+        </record>-->
+        <record id="ribbon_acquisition_rule_action" model="ir.actions.act_window">
+            <field name="name">Ribbon Acquisition Rules</field>
+            <field name="res_model">ribbon.acquisition.rule</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="ribbon_personal_award_action" model="ir.actions.act_window">
+            <field name="name">Personal Awards</field>
+            <field name="res_model">ribbon.personal.award</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="ribbon_extension_action" model="ir.actions.act_window">
+            <field name="name">Extension for Ribbon</field>
+            <field name="res_model">ribbon.extension</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="ribbon_personal_mission_action" model="ir.actions.act_window">
+            <field name="name">Personal Mission</field>
+            <field name="res_model">ribbon.personal.mission</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="ribbon_product_action" model="ir.actions.act_window">
+            <field name="name">Ribbon Product</field>
+            <field name="res_model">ribbon.ribbon.product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="ribbon_force_action" model="ir.actions.act_window">
+            <field name="name">Ribbons Force</field>
+            <field name="res_model">ribbon.force</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="ribbon_rank_action" model="ir.actions.act_window">
+            <field name="name">Ranks</field>
+            <field name="res_model">ribbon.rank</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="ribbon_force_unit_action" model="ir.actions.act_window">
+            <field name="name">Units</field>
+            <field name="res_model">ribbon.force.unit</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="ribbon_post_action" model="ir.actions.act_window">
+            <field name="name">Units</field>
+            <field name="res_model">ribbon.post</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="ribbon_regulation_action" model="ir.actions.act_window">
+            <field name="name">Regulation</field>
+            <field name="res_model">ribbon.regulation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="ribbon_acquired_action" model="ir.actions.act_window">
+            <field name="name">Acquired Ribbons</field>
+            <field name="res_model">ribbon.acquired.ribbon</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="ribbon_personal_details_action" model="ir.actions.act_window">
+            <field name="name">Personal Details</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_force":True}</field>
+            <field name="view_id" ref="view_ribbon_personal_list"/>
+<!--            <field name="view_id" ref="view_ribbon_personal_list"/>-->
+        </record>
+<!--         Menues   -->
+        <menuitem id="ribbon_main" name="Ribbon/Medal"
+                          groups="base.group_user,base.group_partner_manager"/>
+        <menuitem id="ribbon_product_menu" parent="ribbon_main" name="Product Relation"
+                         action="ribbon_product_action" groups="base.group_user,base.group_partner_manager"/>
+       <!-- <menuitem id="ribbon_form_menu" name="Ribbon"
+                        parent="ribbon_main" action="ribbon_form_action"  groups="base.group_user,base.group_partner_manager"/>-->
+        <menuitem id="ribbon_force_menu" name="Force"
+                        parent="ribbon_main"   groups="base.group_user,base.group_partner_manager"/>
+        <menuitem id="ribbon_force__sub_menu" name="Force"
+                        parent="ribbon_force_menu" action="ribbon_force_action"  groups="base.group_user,base.group_partner_manager"/>
+        <menuitem id="ribbon_rank_menu" name="Ranks"
+                        parent="ribbon_force_menu" action="ribbon_rank_action"  groups="base.group_user,base.group_partner_manager"/>
+        <menuitem id="ribbon_force_unit_menu" name="Units"
+                        parent="ribbon_force_menu" action="ribbon_force_unit_action"  groups="base.group_user,base.group_partner_manager"/>
+        <menuitem id="ribbon_post_menu" name="Post"
+                        parent="ribbon_force_menu" action="ribbon_post_action"  groups="base.group_user,base.group_partner_manager"/>
+        <menuitem id="ribbon_regulation_menu_root" name="Regulation"
+                        parent="ribbon_main" action="ribbon_regulation_action"  groups="base.group_user,base.group_partner_manager"/>
+        <menuitem id="ribbon_regulation_menu" name="Regulation"
+                         parent="ribbon_regulation_menu_root" action="ribbon_regulation_action"  groups="base.group_user,base.group_partner_manager"/>
+        <menuitem id="ribbon_acquisition_rule_menu" name="Acquisition Rules"
+                        parent="ribbon_regulation_menu_root" action="ribbon_acquisition_rule_action"  groups="base.group_user,base.group_partner_manager"/>
+        <menuitem id="ribbon_extension_menu" name="Extensions"
+                        parent="ribbon_main" action="ribbon_extension_action"  groups="base.group_user,base.group_partner_manager"/>
+        <menuitem id="ribbon_person_menu" name="Personal Details"
+                        parent="ribbon_main" action="ribbon_personal_details_action"  groups="base.group_user,base.group_partner_manager"/>
+
+        <menuitem id="ribbon_personal_award_menu" name="Awards"
+                        parent="ribbon_main" action="ribbon_personal_award_action"  groups="base.group_user,base.group_partner_manager"/>
+        <menuitem id="ribbon_personal_mission_menu" name="Misions"
+                        parent="ribbon_main" action="ribbon_personal_mission_action"  groups="base.group_user,base.group_partner_manager"/>
+    </data>
+</odoo>

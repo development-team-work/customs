@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+     <record id="account_common_report_view_inherits" model="ir.ui.view">
+        <field name="name">account.common.reprot.view.inherits</field>
+        <field name="model">account.report.partner.ledger</field>
+        <field name="inherit_id" ref="account.account_common_report_view"/>
+         <field name="priority">25</field>
+        <field name="arch" type="xml">
+            <data>
+            <xpath expr="//group[1]" position="before">
+                <group>
+                    <field name="partner_id" widget="many2many_tags" invisible="False" options="{'no_create': True}"/>
+                </group>
+            </xpath>
+            </data>
+        </field>
+    </record>
+    <!--<record id="account_report_partner_ledger_view" model="ir.ui.view">
+        <field name="name">Partner Ledger</field>
+        <field name="model">account.report.partner.ledger</field>
+        <field name="inherit_id" ref="account.account_common_report_view"/>
+        <field name="arch" type="xml">
+        <data>
+        <xpath expr="//field[@name='target_move']" position="after">
+                <field name="result_selection"/>
+                <field name="amount_currency" groups="base.group_multi_currency"/>
+                <newline/>
+                <field name="reconciled"/>
+                <newline/>
+            </xpath>
+        </data>
+        </field>
+    </record>-->
+
+</data>
+</odoo>

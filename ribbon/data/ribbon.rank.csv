@@ -1,0 +1,14 @@
+id,name,force_id/id,superiority,code
+__export__.ribbon_rank_1,Inspector,__export__.ribbon_force_1,10,Ins
+__export__.ribbon_rank_2,IGP,__export__.ribbon_force_1,1,IG
+__export__.ribbon_rank_3,Ad IGP,__export__.ribbon_force_1,2,Ad IG
+__export__.ribbon_rank_4,Assistant Superintendent Of POlice,__export__.ribbon_force_1,9,ASP
+__export__.ribbon_rank_5,Senior Assistant Superintendent Of Police,__export__.ribbon_force_1,8,Sr ASP
+__export__.ribbon_rank_6,Additional Superintendent Of Police,__export__.ribbon_force_1,6,Ad SP
+__export__.ribbon_rank_7,Superintendent Of Police,__export__.ribbon_force_1,5,SP
+__export__.ribbon_rank_8,Deputy Inspector General,__export__.ribbon_force_1,3,DIG
+__export__.ribbon_rank_9,Senior Superintendent of Police,__export__.ribbon_force_1,4,
+__export__.ribbon_rank_10,Sub Inspector,__export__.ribbon_force_1,11,SI
+__export__.ribbon_rank_11,Assistant Sub Inspector,__export__.ribbon_force_1,12,ASI
+__export__.ribbon_rank_12,Nayek,__export__.ribbon_force_1,13,NK
+__export__.ribbon_rank_13,Constable,__export__.ribbon_force_1,14,Cons

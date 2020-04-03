@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="external_layout_store" inherit_id="web.external_layout_boxed">
+            <xpath expr ="//div[1]" position="replace">
+                <div class="header">
+                    <div class="o_boxed_header">
+                        <div class="row mb8">
+                            <div class="col-2">
+                                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                            </div>
+                            <div class="col-6 text-Center mb4">
+                                <div>
+                                    <span style="font-size:28px;">
+                                        <t t-esc="company.name"/>
+                                    </span>
+                                </div>
+                                <div>
+                                    <t t-if="company.website" >
+                                        <t t-esc="company.website"/>
+                                    </t>
+                                </div>
+                                <div>
+                                    <t t-if="company.email" >
+                                        <t t-esc="company.email"/>
+                                    </t>
+                                </div>
+                                <div>
+                                    <t t-if="company.phone" >
+                                        <t t-esc="company.phone"/>
+                                    </t>
+                                </div>
+                            </div>
+                            <div class="col-4 text-Center mb4">
+                                <span style="font-size:12px;"><t t-esc="company.street"/></span>
+                                <span style="font-size:12px;"><t t-esc="company.street2"/></span>
+                                <span style="font-size:12px;"><t t-esc="company.city"/>,</span>
+                                <span style="font-size:12px;"><t t-esc="company.state_id.name"/>,</span>
+                                <t t-if="company.zip">
+                                    <span style="font-size:12px;">-<t t-esc="company.zip"/></span>
+                                </t>
+                                <span style="font-size:12px;"><t t-esc="company.country_id.name"/>,</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+        <!--<record id="paperformat_sticker" model="report.paperformat">
+            <field name="name">Sticker</field>
+            <field name="default" eval="True" />
+            <field name="format">custom</field>
+            <field name="page_height">250</field>
+            <field name="page_width">190</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">4</field>
+            <field name="margin_bottom">4</field>
+            <field name="margin_left">2</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">0</field>
+            <field name="dpi">90</field>
+        </record>
+        <report
+            id="report_product_labels"
+            string="Product Label khan(PDF)"
+            model="purchase.order"
+            report_type="qweb-pdf"
+            paperformat="my_shop.paperformat_sticker"
+            name="my_shop.report_productlabel"
+            file="my_shop.report_productlabel"
+            print_report_name="'Products Labels - %s' % (object.name)"
+        />-->
+
+    </data>
+</odoo>

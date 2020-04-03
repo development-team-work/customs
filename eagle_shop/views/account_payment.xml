@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="myshop_account_payment_form" model="ir.ui.view">
+        <field name="name">myshop.account.payment.form.inherit</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="balance" string="Status" style="color: red;background-color:yellow;" attrs="{'invisible':['|',('balance','&lt;',0),('balance','=',0)]}"/>
+                <field name="balance" string="Status" style="color: green; " attrs="{'invisible':['|',('balance','&gt;',0),('balance','=',0)]}" />
+                <field name="balance" string="Status" style="color: black;" attrs="{'invisible':['|',('balance','&gt;',0),('balance','&lt;',0)]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

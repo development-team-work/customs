@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <template id="report_simple_label">
+                <table  style="border: 2px solid black; page-break-inside:avoid !important;">
+                    <tr>
+                        <th style="text-align:center;font-size: 15px;">
+                            <strong><t t-esc="res_company.name"/></strong>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="text-align:center;">
+                            <span t-field="product.name"/>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center; font-size: 15px;">
+                            Price:
+                            <strong t-field="product.lst_price" t-options="{'widget': 'monetary', 'display_currency': product.company_id.currency_id}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;">
+                            <t t-if="product.barcode">
+                                <img alt="Barcode" t-if="len(product.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', product.barcode, 600, 40)" style="width:100%;height::1rem;"/>
+                                <img alt="Barcode" t-elif="len(product.barcode) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN8', product.barcode, 600, 40)" style="width:100%;height::1rem;"/>
+                                <img alt="Barcode" t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', product.barcode, 600, 40)" style="width:100%;height::1rem;"/>
+                                <span t-field="product.barcode"/>
+                            </t>
+                            <t t-else=""><span class="text-muted">No barcode available</span></t>
+                        </td>
+                    </tr>
+                </table>
+        </template>
+        <template id="report_productlabel">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <t t-foreach="docs" t-as="order">
+                        <span >&lt;table&gt;</span>
+                        <t t-set="rows" t-value="4"/>
+                        <t t-foreach="order.order_line" t-as="line">
+                            <t t-set="product" t-value="line.product_id"/>
+                            <t t-set="qty" t-value="int(line.product_qty)"/>
+                            <t t-foreach="range(0,qty)" t-as="i">
+                                    <t t-if="rows==4">
+                                        <span>&lt;tr &gt;</span>
+                                    </t>
+
+                                    <td>
+                                        <t t-call="my_shop.report_simple_label"/>
+                                    </td>
+                                    <t t-set="rows" t-value="rows-1"/>
+                                    <t t-if="rows==0">
+                                        <span>&lt;/tr &gt;</span>
+                                        <t t-set="rows" t-value="4"/>
+                                    </t>
+                            </t>
+                        </t>
+                    <span >&lt;/table&gt;</span>
+                    </t>
+                </div>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>
