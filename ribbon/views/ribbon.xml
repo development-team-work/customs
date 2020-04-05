@@ -491,18 +491,22 @@
                           groups="base.group_user,base.group_partner_manager"/>
         <menuitem id="ribbon_product_menu" parent="ribbon_main" name="Product Relation"
                          action="ribbon_product_action" groups="base.group_user,base.group_partner_manager"/>
-       <!-- <menuitem id="ribbon_form_menu" name="Ribbon"
-                        parent="ribbon_main" action="ribbon_form_action"  groups="base.group_user,base.group_partner_manager"/>-->
+
+
+<!--       Force Related menus-->
         <menuitem id="ribbon_force_menu" name="Force"
                         parent="ribbon_main"   groups="base.group_user,base.group_partner_manager"/>
         <menuitem id="ribbon_force__sub_menu" name="Force"
-                        parent="ribbon_force_menu" action="ribbon_force_action"  groups="base.group_user,base.group_partner_manager"/>
+                        parent="ribbon_force_menu" action="ribbon_force_action"  sequence="1" groups="base.group_user,base.group_partner_manager"/>
         <menuitem id="ribbon_rank_menu" name="Ranks"
-                        parent="ribbon_force_menu" action="ribbon_rank_action"  groups="base.group_user,base.group_partner_manager"/>
+                        parent="ribbon_force_menu" action="ribbon_rank_action"  sequence="2" groups="base.group_user,base.group_partner_manager"/>
         <menuitem id="ribbon_force_unit_menu" name="Units"
-                        parent="ribbon_force_menu" action="ribbon_force_unit_action"  groups="base.group_user,base.group_partner_manager"/>
+                        parent="ribbon_force_menu" action="ribbon_force_unit_action" sequence="3"  groups="base.group_user,base.group_partner_manager"/>
         <menuitem id="ribbon_post_menu" name="Post"
-                        parent="ribbon_force_menu" action="ribbon_post_action"  groups="base.group_user,base.group_partner_manager"/>
+                        parent="ribbon_force_menu" action="ribbon_post_action" sequence="4" groups="base.group_user,base.group_partner_manager"/>
+
+
+
         <menuitem id="ribbon_regulation_menu_root" name="Regulation"
                         parent="ribbon_main" action="ribbon_regulation_action"  groups="base.group_user,base.group_partner_manager"/>
         <menuitem id="ribbon_regulation_menu" name="Regulation"
