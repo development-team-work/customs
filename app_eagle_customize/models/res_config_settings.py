@@ -114,15 +114,15 @@ class ResConfigSettings(models.TransientModel):
 
     def remove_sales(self):
         to_removes = [
-            # 清除销售单据
+            # Clear sales documents
             ['sale.order.line', ],
             ['sale.order', ],
-            # 销售提成，自用
+            # Sales commission, for personal use
             ['sale.commission.line', ],
-            # 不能删除报价单模板
-            # ['sale.order.template.option', ],
-            # ['sale.order.template.line', ],
-            # ['sale.order.template', ],
+            # Cannot delete quote template
+            # ['sale.order.template.option',],
+            # ['sale.order.template.line',],
+            # ['sale.order.template',],
         ]
         try:
             for line in to_removes:
@@ -131,7 +131,7 @@ class ResConfigSettings(models.TransientModel):
                 if obj:
                     sql = "delete from %s" % obj._table
                     self._cr.execute(sql)
-            # 更新序号
+            # Update serial number
             seqs = self.env['ir.sequence'].search([
                 '|', ('code', '=', 'sale.order'),
                 ('code', '=', 'sale.commission.line')])
@@ -145,7 +145,7 @@ class ResConfigSettings(models.TransientModel):
 
     def remove_product(self):
         to_removes = [
-            # 清除产品数据
+            # Clear product data
             ['product.product', ],
             ['product.template', ],
         ]
@@ -156,7 +156,7 @@ class ResConfigSettings(models.TransientModel):
                 if obj:
                     sql = "delete from %s" % obj._table
                     self._cr.execute(sql)
-            # 更新序号,针对自动产品编号
+            # Update serial number, For automatic product numbering
             seqs = self.env['ir.sequence'].search([('code', '=', 'product.product')])
             for seq in seqs:
                 seq.write({
@@ -168,7 +168,7 @@ class ResConfigSettings(models.TransientModel):
 
     def remove_product_attribute(self):
         to_removes = [
-            # 清除产品属性
+            # Clear product attributes
             ['product.attribute.value', ],
             ['product.attribute', ],
         ]
@@ -186,7 +186,7 @@ class ResConfigSettings(models.TransientModel):
 
     def remove_pos(self):
         to_removes = [
-            # 清除POS单据
+            # Clear POS documents
             ['pos.order.line', ],
             ['pos.order', ],
         ]
@@ -197,13 +197,14 @@ class ResConfigSettings(models.TransientModel):
                 if obj:
                     sql = "delete from %s" % obj._table
                     self._cr.execute(sql)
-            # 更新序号
+            # Update serial number
             seqs = self.env['ir.sequence'].search([('code', '=', 'pos.order')])
             for seq in seqs:
                 seq.write({
                     'number_next': 1,
                 })
-            # 更新要关帐的值，因为 store=true 的计算字段要重置
+
+            # Update the value to be closed, because the calculation field of store = true should be reset
             statement = self.env['account.bank.statement'].search([])
             for s in statement:
                 s._end_balance()
@@ -215,7 +216,8 @@ class ResConfigSettings(models.TransientModel):
 
     def remove_purchase(self):
         to_removes = [
-            # 清除采购单据
+
+            # Clear purchase document
             ['purchase.order.line', ],
             ['purchase.order', ],
             ['purchase.requisition.line', ],
@@ -228,7 +230,7 @@ class ResConfigSettings(models.TransientModel):
                 if obj:
                     sql = "delete from %s" % obj._table
                     self._cr.execute(sql)
-            # 更新序号
+            # Update serial number
             seqs = self.env['ir.sequence'].search([
                 '|', ('code', '=', 'purchase.order'),
                 '|', ('code', '=', 'purchase.requisition.purchase.tender'),
@@ -245,7 +247,7 @@ class ResConfigSettings(models.TransientModel):
 
     def remove_expense(self):
         to_removes = [
-            # 清除采购单据
+            # Clear purchase document
             ['hr.expense.sheet', ],
             ['hr.expense', ],
         ]
@@ -256,7 +258,7 @@ class ResConfigSettings(models.TransientModel):
                 if obj:
                     sql = "delete from %s" % obj._table
                     self._cr.execute(sql)
-            # 更新序号
+            # Update serial number
             seqs = self.env['ir.sequence'].search([
                 ('code', '=', 'hr.expense.invoice')])
             for seq in seqs:
@@ -271,7 +273,7 @@ class ResConfigSettings(models.TransientModel):
 
     def remove_expense(self):
         to_removes = [
-            # 清除
+            # Clear
             ['hr.expense.sheet', ],
             ['hr.expense', ],
             ['hr.payslip', ],
@@ -284,7 +286,7 @@ class ResConfigSettings(models.TransientModel):
                 if obj:
                     sql = "delete from %s" % obj._table
                     self._cr.execute(sql)
-            # 更新序号
+            # Update serial number
             seqs = self.env['ir.sequence'].search([
                 ('code', '=', 'hr.expense.invoice')])
             for seq in seqs:
@@ -299,7 +301,7 @@ class ResConfigSettings(models.TransientModel):
 
     def remove_mrp(self):
         to_removes = [
-            # 清除生产单据
+            # Clear production document
             ['mrp.workcenter.productivity', ],
             ['mrp.workorder', ],
             ['mrp.production.workcenter.line', ],
@@ -318,7 +320,7 @@ class ResConfigSettings(models.TransientModel):
                 if obj:
                     sql = "delete from %s" % obj._table
                     self._cr.execute(sql)
-            # 更新序号
+            # Update serial number
             seqs = self.env['ir.sequence'].search([
                 '|', ('code', '=', 'mrp.production'),
                 ('code', '=', 'mrp.unbuild'),
@@ -376,7 +378,7 @@ class ResConfigSettings(models.TransientModel):
                 if obj:
                     sql = "delete from %s" % obj._table
                     self._cr.execute(sql)
-            # 更新序号
+            # Update serial number
             seqs = self.env['ir.sequence'].search([
                 '|', ('code', '=', 'stock.lot.serial'),
                 '|', ('code', '=', 'stock.lot.tracking'),
@@ -403,7 +405,7 @@ class ResConfigSettings(models.TransientModel):
 
     def remove_account(self):
         to_removes = [
-            # 清除财务会计单据
+            # Clear financial accounting documents
             ['account.voucher.line', ],
             ['account.voucher', ],
             ['account.bank.statement.line', ],
@@ -426,7 +428,7 @@ class ResConfigSettings(models.TransientModel):
                     sql = "delete from %s" % obj._table
                     self._cr.execute(sql)
 
-                    # 更新序号
+                    # Update serial number
                     seqs = self.env['ir.sequence'].search([
                         '|', ('code', '=', 'account.reconcile'),
                         '|', ('code', '=', 'account.payment.customer.invoice'),
@@ -439,8 +441,8 @@ class ResConfigSettings(models.TransientModel):
                         '|', ('prefix', 'like', 'INV/'),
                         '|', ('prefix', 'like', 'EXCH/'),
                         '|', ('prefix', 'like', 'MISC/'),
-                        '|', ('prefix', 'like', '账单/'),
-                        ('prefix', 'like', '杂项/')
+                        '|', ('prefix', 'like', 'Bill /'),
+                        ('prefix', 'like', 'Miscellaneous /')
                     ])
                     for seq in seqs:
                         seq.write({
@@ -453,7 +455,7 @@ class ResConfigSettings(models.TransientModel):
 
     def remove_account_chart(self):
         to_removes = [
-            # 清除财务科目，用于重设
+            # Clear financial account for resetting
             ['res.partner.bank', ],
             ['res.bank', ],
             ['account.move.line'],
@@ -468,10 +470,10 @@ class ResConfigSettings(models.TransientModel):
             ['account.account', ],
             ['account.journal', ],
         ]
-        # todo: 要做 remove_hr，因为工资表会用到 account
-        # 更新account关联，很多是多公司字段，故只存在 ir_property，故在原模型，只能用update
+        # todo: do remove_hr because the salary table will use account
+        # Update account association, many are multi-company fields, so only ir_property exists, so in the original model, only update
         try:
-            # reset default tax，不管多公司
+            # reset default tax， No matter how many companies
             field1 = self.env['ir.model.fields']._get('product.template', "taxes_id").id
             field2 = self.env['ir.model.fields']._get('product.template', "supplier_taxes_id").id
 
@@ -522,7 +524,7 @@ class ResConfigSettings(models.TransientModel):
 
             sql = "update res_company set chart_template_id=null;"
             self._cr.execute(sql)
-            # 更新序号
+            # Update serial number
         except Exception as e:
             pass
 
@@ -531,7 +533,7 @@ class ResConfigSettings(models.TransientModel):
 
     def remove_project(self):
         to_removes = [
-            # 清除项目
+            # Clear item
             ['account.analytic.line', ],
             ['project.task', ],
             ['project.forecast', ],
@@ -544,7 +546,7 @@ class ResConfigSettings(models.TransientModel):
                 if obj:
                     sql = "delete from %s" % obj._table
                     self._cr.execute(sql)
-            # 更新序号
+            # Update serial number
         except Exception as e:
             pass  # raise Warning(e)
         return True
@@ -552,7 +554,7 @@ class ResConfigSettings(models.TransientModel):
 
     def remove_website(self):
         to_removes = [
-            # 清除网站数据，w, w_blog
+            # Clear website data, w, w_blog
             ['blog.tag.category', ],
             ['blog.tag', ],
             ['blog.post', ],
@@ -580,7 +582,7 @@ class ResConfigSettings(models.TransientModel):
 
     def remove_message(self):
         to_removes = [
-            # 清除消息数据
+            # Clear message data
             ['mail.message', ],
             ['mail.followers', ],
         ]
@@ -598,7 +600,7 @@ class ResConfigSettings(models.TransientModel):
 
     def remove_workflow(self):
         to_removes = [
-            # 清除工作流
+            # Clear workflow
             ['wkf.workitem', ],
             ['wkf.instance', ],
         ]
