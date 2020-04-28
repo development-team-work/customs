@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
                 <xpath expr="//div[hasclass('settings')]" position="inside">
                     <div class="app_settings_block" data-string="Eagle Shop" string="Eagle Shop" data-key="eagle_shop" groups="mrp.group_mrp_manager">
-                        <h2>Operations</h2>
+                        <h2>Service Scopes</h2>
                         <div class="row mt16 o_settings_container">
                             <div class="col-lg-6 col-12 o_setting_box" id="ribbons" title="If your company deals with service ribbons and medals for police, Army and others">
                                 <div class="o_setting_left_pane">
@@ -20,6 +20,27 @@
                                     <label for="group_mrp_routings" string="Service Ribbons"/>
                                     <div class="text-muted">
                                         Process operations for Service ribbons for various Force
+                                    </div>
+                                    <div class="content-group" attrs="{'invisible': [('group_mrp_routings','=',False)]}">
+                                        <div class="mt8">
+                                            <div>
+                                                <button name="%(mrp.mrp_routing_action)d" icon="fa-arrow-right" type="action" string="Routings" class="btn-link"/>
+                                            </div>
+                                            <div>
+                                                <button name="%(mrp.mrp_workcenter_action)d" icon="fa-arrow-right" type="action" string="Work Centers" class="btn-link"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-12 o_setting_box" id="book" title="If your company deals with books">
+                                <div class="o_setting_left_pane">
+                                    <field name="module_book_shop"/>
+                                </div>
+                                <div class="o_setting_right_pane" id="book_shop_setting">
+                                    <label for="module_book_shop" string="Book Shop"/>
+                                    <div class="text-muted">
+                                        Customizes Eagle Shop for Book Shops
                                     </div>
                                     <div class="content-group" attrs="{'invisible': [('group_mrp_routings','=',False)]}">
                                         <div class="mt8">

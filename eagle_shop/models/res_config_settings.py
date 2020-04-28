@@ -12,6 +12,7 @@ class ResConfigSettings(models.TransientModel):
     # TODO to install ModuleName use this line
     # module_ModuleName = fields.Boolean("comment for ModuleName for")
     module_ribbon = fields.Boolean("if your shop deals with Service ribbon for police")
+    module_book_shop = fields.Boolean("If your shop deals with books")
 
 
 
