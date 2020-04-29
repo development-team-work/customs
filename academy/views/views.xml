@@ -1,0 +1,34 @@
+<odoo>
+    <record id="academy_teachers_form" model="ir.ui.view">
+        <field name="name">academy.teachers.form</field>
+        <field name="model">academy.teachers</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="num"/>
+                        <field name="num2bn"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="academy_teachers_action" model="ir.actions.act_window">
+        <field name="name">academy.teachers.action</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">academy.teachers</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            <!-- Add Text Here -->
+          </p><p>
+            <!-- More details about what a user can do with this object will be OK -->
+          </p>
+        </field>
+    </record>
+    <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+    <menuitem id="academy_teachers_root" name="academy" sequence="2"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="academy_teachers_menu" name="menu" parent="academy_teachers_root" action="academy_teachers_action" sequence=""/>
+</odoo>

@@ -1,0 +1,37 @@
+<odoo>
+
+      <template id="index">              <!--  This is the template of the web Page -->
+            <t t-call="website.layout">         <!-- This apply the theme of the web site -->
+                <t t-set="title">Academy</t>    <!-- this set title of the page -->
+                <div class="oe_structure">  <!-- default structure for site -->
+                    <div class="container"> <!--  default div for a page-->
+
+                        <t t-foreach="teachers" t-as="teacher"> <!--variable teachers is passed from the http.route from where the template is called  -->
+                            <p> <!--creates a new paragraph or line  -->
+                                <t t-esc="teacher.id"/> <!-- displays the id of teacher -->
+                                <t t-esc="teacher.name"/>
+                            </p>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </template>
+    <template id="biography">
+        <t t-call="website.layout">
+            <t t-set="title">Academy</t>
+            <div class="oe_structure">
+                    <div class="container">
+                        <t t-foreach="teachers" t-as="teacher">
+                            <p><a t-attf-href="/academy/{{ slug(teacher) }}">
+                              <t t-esc="teacher.name"/></a>
+                            </p>
+                        </t>
+                    </div>
+                </div>
+        </t>
+    </template>
+
+        <!-- <template id="object"> -->
+        <!--   <h1><t t-esc="object.display_name"/></h1> -->
+        <!--   <dl> -->
+</odoo>
