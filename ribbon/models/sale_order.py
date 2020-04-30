@@ -8,8 +8,8 @@ import re
 from odoo.addons.base.models.res_partner import Partner
 
 
-class saleOrder(models.Model):
-    _inherit = 'sale.order.line'
+class saleOrderline(models.Model):
+    _inherit = "sale.order.line"
 
     @api.onchange('product_id')
     def product_id_change(self):
@@ -18,7 +18,7 @@ class saleOrder(models.Model):
         if self.product_id.product_tmpl_id.categ_id.name =='Individual Product':
             print('itis ribbon')
         else:
-            "not ribbon"
+            print("not ribbon")
 
         valid_values = self.product_id.product_tmpl_id.valid_product_template_attribute_line_ids.product_template_value_ids
         # remove the is_custom values that don't belong to this template

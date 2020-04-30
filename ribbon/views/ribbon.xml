@@ -328,7 +328,7 @@
             <field name="name">ribbon.force.unit.form</field>
             <field name="model">ribbon.force.unit</field>
             <field name="arch" type="xml">
-                <form string="Rank">
+                <form string="Unit">
                     <group>
                         <field name="name"/>
                         <field name="chief_rank"/>
@@ -336,6 +336,9 @@
                         <field name="force_name"/>
                         <field name="address"/>
                         <field name="parent_unit"/>
+                    </group>
+                    <group>
+                        <field name="image"/>
                     </group>
                 </form>
             </field>

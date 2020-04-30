@@ -46,6 +46,7 @@ class ribbonMedalForceUnit(models.Model):
     _name = "ribbon.force.unit"
     _description = "Name of Units of a Force"
     name = fields.Char("Unit",translate=True)
+    image=fields.Boolean("Div Sign")
     force_name=fields.Many2one("ribbon.force","Force")
     address=fields.Char("address",translate=True)
     parent_unit=fields.Many2one("ribbon.force.unit","Parent Unit",translate=True)
