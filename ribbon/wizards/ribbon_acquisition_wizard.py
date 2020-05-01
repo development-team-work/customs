@@ -153,7 +153,7 @@ class ribbonMedalAcquiredRibbonWizard(models.TransientModel):
     image = fields.Binary(
         "Image", related="ribbon_id.big_ribbon.image_1920")
     extension = fields.Many2one("ribbon.extension")
-    extension_tmpl = fields.Many2one("product.template", related='extension.product_tmpl')
+    extension_tmpl = fields.Many2one("product.template")
     extension_product=fields.Many2one('product.product',"extension")
     serial = fields.Integer("serial")
 class ribbonOrderRibbonWizard(models.TransientModel):
@@ -167,7 +167,7 @@ class ribbonOrderRibbonWizard(models.TransientModel):
     image = fields.Binary(
         "Image", related="ribbon_id.big_ribbon.image_1920")
     extension = fields.Many2one("ribbon.extension")
-    extension_tmpl = fields.Many2one("product.template", related='extension.product_tmpl')
+    extension_tmpl = fields.Many2one("product.template")
     extension_product=fields.Many2one('product.product',"extension")
     serial = fields.Integer("serial")
 

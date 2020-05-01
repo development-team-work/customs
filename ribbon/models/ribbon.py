@@ -2,6 +2,19 @@
 
 from odoo import api, fields, models, _
 import datetime
+class ProductTemplate(models.Model):
+    _inherit = "product.template"
+
+    @api.onchange('name')
+    def onchange_method(self):
+        # todo here to implement automatic name change of related medal and ribbon product
+        self.env['ribbon.ribbon.ribbontest'].search([('product_tmpl_id','=',self.id)]).onchange_name
+class medaltestProduct(models.Model):
+    _inherits ={'product.template':'product_tmpl_id'}
+    _name='ribbon.medaltest'
+    has_medal=fields.Boolean("Medal?")
+    ribbon_id=fields.Many2one('ribbon.ribbon.ribbontest')
+
 class ribbonMedalForce(models.Model):
     _name="ribbon.force"
     _description = "Name of the Force ie; Police, Army ..."
@@ -19,19 +32,64 @@ class ribbonMedalForce(models.Model):
 #     ribbon_template=fields.Many2one("product.template","Ribbon Template")
 #     medal_template=fields.Many2one("product.template","Medal Template")
 class ribbonMedalExtension(models.Model):
+    _inherits = {'product.template':'product_template_id'}
     _name="ribbon.extension"
-    name=fields.Char("Ribbon Extensions")
-    image=fields.Binary("extension Image")
-    related_product=fields.Many2one("product.product")
-    product_tmpl=fields.Many2one("product.template")
+
 class RibbonMedalRibbonProduct(models.Model):
     _name="ribbon.ribbon.product"
+    _inherits ={'product.template':'product_tmpl_id'}
     _description = "ribbon and medal relation with product"
-    name=fields.Char("Name")
-    big_ribbon=fields.Many2one("product.product")
-    small_ribbon=fields.Many2one("product.product")
-    big_medal=fields.Many2one("product.product")
-    small_medal=fields.Many2one("product.product")
+
+    is_medal=fields.Boolean("Medal?")
+    medal_id=fields.Many2one('ribbon.medal.product')
+
+    @api.onchange('name')
+    def onchange_name(self):
+        if self.medal_id.id:
+            if self.medal_id.name==self.name.replace('Ribbon','medal'):
+                return
+            else:
+                self.medal_id.name=self.name.replace('Ribbon','medal')
+    @api.onchange("is_medal")
+    def make_medal(self):
+        self.ensure_one()
+        if self.is_medal==True:
+            if self.medal_id.id==False:
+                # TODO here search medal product for this ribbon
+                rec=self.env['ribbon.medal.product'].create({
+                    "name":self.name +' Medal',
+                    "ribbon_id":self.id,
+                    "is_ribbon":True,
+                })
+                self.medal_id=rec.id
+                self.is_medal=True
+
+class RibbonMedalMedalProduct(models.Model):
+    _name="ribbon.medal.product"
+    _description = " medal relation with product"
+    _inherits ={'product.template':'product_tmpl_id'}
+    is_ribbon=fields.Boolean("Ribbon?")
+    ribbon_id=fields.Many2one('ribbon.ribbon.product')
+
+    @api.onchange('name')
+    def onchange_name(self):
+        if self.ribbon_id.id:
+            if self.ribbon_id.name==self.name.replace('Medal','Ribbon'):
+                return
+            else:
+                self.ribbon_id.name=self.name.replace('Medal','Ribbon')
+    @api.onchange("is_ribbon")
+    def make_ribbon(self):
+        if self.is_ribbon==True:
+            if self.ribbon_id.id==False:
+
+                rec=self.env['ribbon.ribbon.product'].create({
+                    "name":self.name.replace('Medal','Ribbon'),
+                    "is_medal":True,
+
+                })
+                self.ribbon_id=rec.id
+                self.is_ribbon=True
 
 
 class ribbonMedalRanks(models.Model):

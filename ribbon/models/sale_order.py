@@ -13,12 +13,12 @@ class saleOrderline(models.Model):
 
     @api.onchange('product_id')
     def product_id_change(self):
-        if not self.product_id:
-            return
-        if self.product_id.product_tmpl_id.categ_id.name =='Individual Product':
-            print('itis ribbon')
-        else:
-            print("not ribbon")
+        # if not self.product_id:
+        #     return
+        # if self.product_id.product_tmpl_id.categ_id.name =='Individual Product':
+        #     print('itis ribbon')
+        # else:
+        #     print("not ribbon")
 
         valid_values = self.product_id.product_tmpl_id.valid_product_template_attribute_line_ids.product_template_value_ids
         # remove the is_custom values that don't belong to this template
