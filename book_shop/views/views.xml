@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="writer_form" model="ir.ui.view">
+        <field name="name">book_shop.writer.form</field>
+        <field name="model">book_shop.writer</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="name"/>
+                        <field name="spouse_name"/>
+                        <field name="dob"/>
+                        <field name="print_name"/>
+                        <field name="biography"/>
+                        <field name="book_ids"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="writer_form_action" model="ir.actions.act_window">
+        <field name="name">Open writer form</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">book_shop.writer</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            <!-- Add Text Here -->
+          </p><p>
+            <!-- More details about what a user can do with this object will be OK -->
+          </p>
+        </field>
+    </record>
+    <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+    <menuitem id="book_shop_root" name="Book Shop" sequence="3"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="writer_form_menu" name="writer" parent="book_shop_root" action="writer_form_action" sequence="5"/>
+
+    <record id="menu_book_shop" model="website.menu">
+            <field name="name">Writer</field>
+            <field name="url">/writers?id=all</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">22</field>
+    </record>
+   <!-- <record id="menu_book_shops" model="website.menu">
+            <field name="name">sub_menu</field>
+            <field name="url">/writers?id=all</field>
+            <field name="parent_id" ref="book_shop.menu_book_shop"/>
+            <field name="sequence" type="int">22</field>
+    </record>-->
+
+
+    <record id="menu_create_contact" model="website.menu">
+        <field name="name">contact</field>
+        <field name="url">/create_contact</field>
+        <field name="parent_id" ref="menu_book_shop"/>
+        <field name="sequence" type="int">22</field>
+    </record>
+</odoo>

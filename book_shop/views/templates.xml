@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="writer">              <!--  This is the template of the web Page -->
+        <t t-call="website.layout">         <!-- This apply the theme of the web site -->
+            <t t-set="title">Writer</t>    <!-- this set title of the page -->
+            <div class="oe_structure">  <!-- default structure for site -->
+                <div class="container-fluid"> <!--  default div for a page-->
+                    <div class="row">
+                        <div class="col-sm-3">
+
+                        </div>
+                        <div class="col-sm-6">
+
+                            <t t-set="writer_count" t-value="len(writers)"/>
+                            <t t-if="writer_count>1">
+                                <t t-foreach="writers" t-as="writer">
+                                    <div class="col-sm-6">
+                                        <t t-esc="writer.id"/> &lt;a href=writers?id=<t t-esc="writer.id"/>&gt;<t t-esc="writer.name"/> &lt;/a&gt;
+                                    </div>
+                                </t>
+                            </t>
+                        </div>
+                        <t t-if="writer_count==1">
+                            <div class="col-3">
+                                this is left col
+                            </div>
+                            <div class="col-6 column-wrapper">
+                                <div class="row">
+                                        <div class="col-3">
+                                            &lt;img width="200px" src="/web/image/res.partner/<t t-esc="writers.partner_id.id"/>/image_1920" alt="
+                                            <t t-esc="writers.name"/>' /&gt;'
+                                        </div>
+
+                                            <div  class="col-3 column">
+                                                <t t-esc="writers.name"/>
+                                                <t t-esc="writers.dob"/>
+                                                <t t-esc="writers.spouse_name"/>
+                                                <t t-esc="writers.biography"/>
+
+                                            </div>
+                                </div>
+                        this is middle col
+                            </div>
+                            <div class="col-3 column-wrapper">
+                                this is right col
+                            </div>
+                        </t>
+                        <t t-if="writer_count==0">
+                            <h1>Sorry No record is defined, please try again!</h1>
+                        </t>
+                        <div class="col-sm-3"> right</div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+    <template id="test_form">
+        <t t-call="website.layout">
+<!--        <script type="text/javascript" src="/test_workflow/static/src/js/jquery.min.js"></script>-->
+
+            <body>
+                <div class="container">
+                    <div class="page">
+                        <div class="row">
+                            <form action="/submit" method="post" data-success_page="/thanks">
+                                <label>Name :   </label><input type="text" id="name" name="name" placeholder="Type ypur Name here"/><br/>
+                                <label>Street 1 :   </label><input type="text" id="street" name="street" placeholder="Street Line 1"/><br/>
+                                <label>Street 2 :   </label><input type="text" id="street2" name="street2" placeholder="Street Line 2"/><br/>
+                                <label>City :   </label><input type="text" id="city" name="city" placeholder="City"/><br/>
+                                <label>Mobile :   </label><input type="text" id="mobile" name="mobile" placeholder="Mobile  NO"/><br/>
+                                <label>Phone :   </label><input type="text" id="phone" name="phone" placeholder="Mobile  NO"/><br/>
+                               <!-- <label>District :   </label><select id="state_id" name="state_id">
+                                                                        <option value="1">Dhaka</option>
+                                                                        <option value="2">Barisal</option>
+                                                                        <option value="3">Opel</option>
+                                                                        <option value="4">Audi</option>
+                                                                    </select><br/>
+                                <label>Country :   </label><select type="text" id="country_id" name="country_id" placeholder="Country">
+                                                            <option value="1">Bangladesh</option>
+                                                                        <option value="2">India</option>
+                                                                        <option value="opel">Australia</option>
+                                                                        <option value="audi">Nepal</option>
+                            </select><br/>
+-->
+                                <input type="hidden" name="model" value="res.partner"></input>
+                                <input type="checkbox" name="minor" value="Minor"></input>
+                                <input type="submit" value="Submit" ></input>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </body>
+
+        </t>
+    </template>
+    <template id="submit">
+        <t t-call="website.layout">
+            <body>
+                <div class="container">
+                    <div class="page">
+                        <div class="row">
+                            <t t-foreach="msg" t-as="i">
+                                <t t-if="i=='message_follower_ids'"/>
+                                <t t-else="">
+                                    <t t-esc="i"/>
+                                    :
+                                    <t t-esc="msg[i]"/>
+                                    <br/>
+                                </t>
+                            </t>
+                        </div>
+                        <div class="row">
+                            <H1>Your data is submitted successfully, Thank You.</H1>
+                        </div>
+                    </div>
+                </div>
+            </body>
+        </t>
+    </template>
+</odoo>
+
+
+
