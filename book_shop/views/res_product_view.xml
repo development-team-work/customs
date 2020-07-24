@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="eagle_shop_product_varient_easy_edit_view_inherit" model="ir.ui.view">
+            <field name="name">eagle.shop.product.varient.easy.edit.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="eagle_shop.product_varient_easy_edit_view_inherit"/>
+            <field name="arch" type="xml">
+                <page name='general' position="after">
+                    <page string="Book Details" attrs="{'invisible':[('is_book','=',False)]}" groups="product.group_product_variant">
+                        <group >
+                            <field name="writer_ids" widget="many2many_tags" domain="[ ('is_writer', '=', 'True')]" context="{'default_is_writer':1}"/>
+                            <field name="publisher_id" widget="many2many_tag" domain="[ ('is_publisher', '=', 'True')]" context="{'default_is_publisher':True}"/>
+                            <field name="edition" />
+                            <field name="total_page" />
+                            <field name="printed_price" />
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+        <record id="main_product_varient_easy_edit_view_inherit" model="ir.ui.view">
+            <field name="name">main.product.varient.easy.edit.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+            <field name="arch" type="xml">
+                <group name="pricing" string="Pricing">
+                                <field name="product_variant_count" invisible="1"/>
+                                <label for="printed_price"/>
+                                    <div >
+                                        <field name="printed_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" class="oe_inline" />
+                                        <button name="open_pricelist_rules" icon="fa-arrow-right" type="object"
+                                            groups="product.group_product_pricelist" class="oe_inline">
+                                            <field name="pricelist_item_count" attrs="{'invisible': [('pricelist_item_count', '=', 0)]}"/>
+                                            <span attrs="{'invisible': [('pricelist_item_count', '=', 1)]}">
+                                              Extra Prices
+                                            </span>
+                                            <span attrs="{'invisible': [('pricelist_item_count', '!=', 1)]}">
+                                              Extra Price
+                                            </span>
+                                        </button>
+                                    </div>
+                                <label for="lst_price"/>
+                                <div class="o_row col-5 pl-0">
+                                    <field name="lst_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" attrs="{'readonly': [('product_variant_count', '&gt;', 1)]}"/>
+                                </div>
+                                <field name="standard_price" widget="monetary" options="{'currency_field': 'cost_currency_id'}"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="cost_currency_id" invisible="1"/>
+                            </group>
+            </field>
+        </record>
+    </data>
+</odoo>
