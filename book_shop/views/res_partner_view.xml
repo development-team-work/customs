@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='view_res_partner_filter'>
+            <field name='name'>res.partner.select.inherit.base.partner.filter</field>
+            <field name='model'>res.partner</field>
+            <field name='inherit_id' ref='base.view_res_partner_filter'/>
+            <field name='arch' type='xml'>
+                <filter name="inactive" position="before">
+                    <filter string="Writers" name="writer" domain="[('is_writer', '=', True)]"/>
+                    <filter string="Publishers" name="publisher" domain="[('is_publisher', '=', True)]"/>
+                    <separator/>
+                </filter>
+
+            </field>
+        </record>
+    </data>
+</odoo>

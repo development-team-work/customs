@@ -12,6 +12,7 @@
              'views/views.xml',
              'views/templates.xml',
              'security/ir.model.access.csv',
+             'views/res_partner_view.xml',
              ],
     'demo': [''],
     'installable': True,
