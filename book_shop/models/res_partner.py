@@ -5,6 +5,8 @@ class res_partner(models.Model):
 
     partner_id = fields.Many2one('res.partner', required=True, ondelete='restrict', auto_join=True,
                                  string='Related Partner', help='Partner-related data of the Writer')
+    product_public_category_id=fields.Many2one('product.public.category',required=True, ondelete='restrict', auto_join=True,
+                                 string='Related Public Category', help='product public Category data of the Writer')
     print_name = fields.Char(index=True, translate=True)
     nick_name = fields.Char("Nick Name",default="")
     spouse_name=fields.Char("Spouse Name",default="")

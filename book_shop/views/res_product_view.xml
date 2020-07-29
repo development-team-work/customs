@@ -20,7 +20,7 @@
                 </page>
             </field>
         </record>
-        <record id="main_product_varient_easy_edit_view_inherit" model="ir.ui.view">
+        <!--<record id="main_product_varient_easy_edit_view_inherit" model="ir.ui.view">
             <field name="name">main.product.varient.easy.edit.inherit</field>
             <field name="model">product.product</field>
             <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
@@ -50,6 +50,6 @@
                                 <field name="cost_currency_id" invisible="1"/>
                             </group>
             </field>
-        </record>
+        </record>-->
     </data>
 </odoo>
