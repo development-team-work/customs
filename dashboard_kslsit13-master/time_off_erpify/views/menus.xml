@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record model="ir.ui.menu" id="hr_holidays.menu_hr_holidays_root">
+        <field name="name">Leaves</field>
+    </record>
+
+    <record model="ir.ui.menu" id="hr_holidays.hr_leave_menu_my">
+        <field name="name">Leave Requests</field>
+    </record>
+
+    <record model="ir.ui.menu" id="resource.menu_view_resource_calendar_leaves_search">
+        <field name="name">Resource Leaves</field>
+    </record>
+
+    <record model="ir.ui.menu" id="hr_holidays.hr_holidays_status_menu_configuration">
+        <field name="name">Leaves Types</field>
+    </record>
+
+    <record model="ir.ui.menu" id="hr_holidays.hr_holidays_menu_manager_payroll_to_report">
+        <field name="name">Leaves to Report</field>
+    </record>
+
+    <record model="ir.ui.menu" id="hr_holidays.menu_open_employee_leave">
+        <field name="name">Leaves</field>
+    </record>
+
+    <record model="ir.ui.menu" id="hr_holidays.menu_open_department_leave_approve">
+        <field name="name">Leaves</field>
+    </record>
+
+    <record model="ir.ui.menu" id="hr_holidays.menu_hr_holidays_my_leaves">
+        <field name="name">My Leaves</field>
+    </record>
+
+</odoo>

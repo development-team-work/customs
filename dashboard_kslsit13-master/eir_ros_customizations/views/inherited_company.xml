@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="inherit_company_ros_form_view_erpify" model="ir.ui.view">
+        <field name="name">company_ros.form.erpify</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page" position="after">
+                <page name="ros_erpify" string="ROS Details">
+                    <group>
+                        <group>
+                            <field name="ros_certificate_file"/>
+                            <field name="ros_password" password="True"/>
+                            <button name="connect_with_ros" string="Check Connectivity" type="object"/>
+                        </group>
+                        <group>
+                            <field name="ros_connectivity_status"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

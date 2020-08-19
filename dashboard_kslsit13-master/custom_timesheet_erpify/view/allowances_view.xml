@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Timesheet Allowances Category Form View -->
+        <record id="timesheet_allowance_category_form_erpify" model="ir.ui.view">
+            <field name="name">Timesheet Allowance Category Form</field>
+            <field name="model">timesheet.allowances.category.erpify</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <field name="active" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <group>
+                            <group>
+                                <field name="name" required="1"/>
+                                <field name="show_in_timesheet"/>
+                                <field name="select_by_default"/>
+                                <field name="apply_restriction"/>
+                                <field name="is_weekly"/>
+                            </group>
+                            <group>
+                                <field name="start" widget="float_time" attrs="{'invisible': ['|', ('apply_restriction', '=', 'no'), ('is_weekly', '=', True)], 'required': [('apply_restriction', '=', 'define')]}"/>
+                                <field name="end" widget="float_time" attrs="{'invisible': ['|', ('apply_restriction', '=', 'no'), ('is_weekly', '=', True)], 'required': [('apply_restriction', '=', 'define')]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="rules" string="Rules" attrs="{'invisible': [('is_weekly', '=', True)]}">
+                                <field name="rule_line_ids">
+                                    <tree>
+                                        <field name="applicable_to" widget="many2many_tags" required="1"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <group>
+                                                <field name="applicable_to" widget="many2many_tags" required="1"/>
+                                                <field name="limited" required="1"/>
+                                                <field name="round_up"/>
+                                            </group>
+                                            <group>
+                                                <field name="limit" attrs="{'invisible': [('limited', '=', 'no')], 'required': [('limited', '!=', 'no')]}"/>
+                                                <field name="number_of_occurences" attrs="{'invisible': [('limited', '=', 'no')], 'required': [('limited', '!=', 'no')]}"/>
+                                            </group>
+                                            <field name="rule_details">
+                                                <tree editable="bottom">
+                                                    <field name="upto" required="1"/>
+                                                    <field name="rate" required="1"/>
+                                                </tree>
+                                            </field>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                            <page name="weekly" string="Weekly Allowance Config" attrs="{'invisible': [('is_weekly', '=', False)]}">
+                                <group string="Fields for Input">
+                                    <group>
+                                        <field name="x_rate"/>
+                                        <field name="x_days"/>
+                                        <field name="x_hours"/>
+                                    </group>
+                                    <group>
+                                        <field name="x_team_code"/>
+                                        <field name="x_rank"/>
+                                        <field name="x_number_of_calls"/>
+                                    </group>
+                                </group>
+                                <group string="Logic">
+                                    <field name="python_code"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- TimeSheet Allowance Tree View -->
+        <record id="timesheet_allowance_category_tree_erpify" model="ir.ui.view">
+            <field name="name">Timesheet Allowance Category Tree</field>
+            <field name="model">timesheet.allowances.category.erpify</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="show_in_timesheet"/>
+                    <field name="select_by_default"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- TimeSheet Allowance Action -->
+        <record id="open_action_timesheets_allowance_category_erpify" model="ir.actions.act_window">
+            <field name="name">Timesheet Allowance Category</field>
+            <field name="res_model">timesheet.allowances.category.erpify</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Timesheet Menu -->
+        <menuitem
+        id="timesheet_allowance_category_menu_config_erpify"
+        parent="hr_timesheet.hr_timesheet_menu_configuration"
+        name="Timesheet Allowances Categories"
+        action="open_action_timesheets_allowance_category_erpify"
+        sequence="10"/>
+
+    </data>
+</odoo>

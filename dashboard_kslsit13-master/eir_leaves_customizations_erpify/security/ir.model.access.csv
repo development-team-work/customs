@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_leave_approval_rules_erpify_manager,approval.rules,model_leave_approval_rules_erpify,hr.group_hr_manager,1,1,1,1
+access_leave_approval_rules_erpify_user,approval.rules.user,model_leave_approval_rules_erpify,,1,0,0,0
+access_leave_approval_rules_lines_erpify_manager,approval.rules.lines,model_leave_attached_docs_erpify,,1,1,1,0
+access_leave_approval_rules_lines_erpify_user,approval.rules.lines,model_leave_docs_management_erpify,,1,0,0,0
+access_leave_approval_rules_lines_docs_erpify_user,approval.rules.lines,model_leave_docs_management_erpify,hr.group_hr_manager,1,1,1,1
+access_approval_history_erpify,approval.history,model_approval_history_erpify,,1,1,1,0

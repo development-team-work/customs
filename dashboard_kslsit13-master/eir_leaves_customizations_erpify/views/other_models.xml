@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Leave Form View -->
+        <record id="leave_manager_approval_modify_form_erpify" model="ir.ui.view">
+            <field name="name">Leave Manager Approval Form</field>
+            <field name="model">hr.leave</field>
+            <field name="inherit_id" ref="hr_holidays.hr_leave_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='display_name']" position="after">
+                    <field name="kanban_state" widget="state_selection" readonly="1"/>
+                </xpath>
+                <xpath expr="//button[@name='action_validate']" position="after">
+                    <field name="can_assign_dynamic_approver" invisible="1"/>
+                    <field name="dynamic_approver_responsible_erpify" invisible="1"/>
+                    <button string="Master Approve" groups="leaves_enhanced_workflow_erpify.group_holiday_master_users_erpify" name="master_approve_erpify" type="object" attrs="{'invisible': [('state', '=', 'validate')]}"/>
+                    <button string="Assign Approver" name="action_assign_dynamic_approver_erpify" type="object" class="oe_highlight" attrs="{'invisible': ['|', ('dynamic_approver_responsible_erpify', '!=', False), ('can_assign_dynamic_approver', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//div[@name='description']" position="after">
+                    <notebook>
+                        <page string="Approvals History" name='approvals'>
+                            <group colspan="4">
+                                <field nolabel="1" name="approval_history_ids" readonly="1">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="approved_by"/>
+                                        <field name="date_done"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Required Documents" name='docs_to_upload'>
+                            <group colspan="4">
+                                <field nolabel="1" name="attached_leave_docs_erpify">
+                                    <tree create="0" delete="0">
+                                        <field name="name" string="Description" readonly="1"/>
+                                        <field name="is_uploaded"/>
+                                    </tree>
+                                    <form>
+                                        <field name="name" readonly="1"/>
+                                        <field name="doc_lines">
+                                            <tree editable="bottom">
+                                                <field name="name" string="Description"/>
+                                                <field string="Document/Attachment" name="datas" filename="datas_fname"
+                                                       widget="binary"/>
+                                            </tree>
+                                        </field>
+                                    </form>
+                                </field>
+                            </group>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Leave Manager Form View -->
+        <record id="leave_manager_approval_modify_2_form_erpify" model="ir.ui.view">
+            <field name="name">Leave Manager Approval Form 2</field>
+            <field name="model">hr.leave</field>
+            <field name="inherit_id" ref="hr_holidays.hr_leave_view_form_manager_approve"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='employee_id']" position="after">
+                    <field name="kanban_state" widget="state_selection" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Leave Manager Form 2nd View -->
+        <record id="leave_manager_approval_modify_3_form_erpify" model="ir.ui.view">
+            <field name="name">Leave Manager Approval Form 2</field>
+            <field name="model">hr.leave</field>
+            <field name="inherit_id" ref="hr_holidays.hr_leave_view_form_manager"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='holiday_status_id']" position="after">
+                    <field name="kanban_state" widget="state_selection" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+
+
+        <!-- Wizard View -->
+        <record id="leave_dynamic_approval_assign_form_erpify" model="ir.ui.view">
+            <field name="name">Assign Approver</field>
+            <field name="model">dynamic.approver.selector.erpify</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="user_id" required="1"/>
+                        <field name="comments"/>
+                        <field name="leave_id_erpify" invisible="1"/>
+                    </group>
+                    <footer>
+                        <button name="action_assign" string="Assign" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

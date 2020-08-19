@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Interface Form View -->
+        <record id="integrate_inferface_form_erpify" model="ir.ui.view">
+            <field name="name">Interfaces through Emails Form</field>
+            <field name="model">email.interfaces.erpify</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="activate" type="object" class="oe_highlight" string="Activate" attrs="{'invisible': [('state','=','active')]}"/>
+                        <button name="deactivate" type="object" string="Deactivate" attrs="{'invisible': [('state','=','inactive')]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="model_name" options="{'no_create_edit': True}"/>
+                                <field name="file_type" required="1"/>
+                                <field name="separator" required="1"/>
+                                <field name="columns" required="1"/>
+                            </group>
+                        </group>
+                        <group name="group_alias">
+                            <label for="alias_name" string="Email Alias"/>
+                            <div name="alias_def">
+                                <div name="edit_alias" style="display: inline;">
+                                    <field name="alias_name" required="1" class="oe_inline"/>@<field name="alias_domain" class="oe_inline" readonly="1"/>
+                                </div>
+                            </div>
+                        </group>
+                        <notebook>
+                            <page string="Fields" name="fields">
+                                <field name="field_ids" domain="[('model_id', '=', model_name)]" attrs="{'readonly': [('state','=','active')]}" options="{'no_create_edit': True}">
+                                    <tree>
+                                        <field name="field_description" readonly="1"/>
+                                        <field name="ttype" readonly="1"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="field_description" readonly="1"/>
+                                            <field name="model_id" readonly="1"/>
+                                            <field name="ttype" readonly="1"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Interface Tree View -->
+        <record id="integrate_inferface_tree_erpify" model="ir.ui.view">
+            <field name="name">Interfaces through Emails Tree</field>
+            <field name="model">email.interfaces.erpify</field>
+            <field name="arch" type="xml">
+                <tree string="Interface">
+                    <field name="name"/>
+                    <field name="model_name"/>
+                    <field name="state" optional="show"/>
+                    <field name="alias_name" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Interface Action -->
+        <record id="open_action_integrate_inferface_erpify" model="ir.actions.act_window">
+            <field name="name">Interfaces through Emails Form</field>
+            <field name="res_model">email.interfaces.erpify</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Interface Menu -->
+        <menuitem
+        id="menu_integrate_inferface_erpify"
+        name="Interfaces through Emails"
+        web_icon="interface_connection_by_emails_erpify,static/description/icon.png"
+        action="open_action_integrate_inferface_erpify"
+        groups="group_email_inferface_erpify"
+        sequence="10"/>
+    </data>
+</odoo>

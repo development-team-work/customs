@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates id="template" xml:space="preserve">
+    <t t-extend="hr_holidays.dashboard.calendar.button">
+        <t t-jquery="t[t-esc='time_off']" t-operation="replace">
+            New Leave Request
+        </t>
+    </t>
+</templates>

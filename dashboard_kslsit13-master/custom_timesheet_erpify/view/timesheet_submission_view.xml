@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Timesheet submission Form View -->
+        <record id="timesheet_submission_form_erpify" model="ir.ui.view">
+            <field name="name">Timesheet Submission Form</field>
+            <field name="model">timesheet.submission.erpify</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="fetch_timesheets" type="object" class="oe_highlight" string="Fetch Timesheets" attrs="{'invisible': [('state','!=','draft')]}"/>
+                        <button name="submit_request" type="object" string="Submit" attrs="{'invisible': [('state','!=','draft')]}"/>
+                        <button name="approve_reject" type="object" string="Approve or Reject" attrs="{'invisible': [('state','=','draft')]}"/>
+                        <button name="cancel" type="object" string="Cancel" attrs="{'invisible': [('state','=','draft')]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="employee_id" required="1" options="{'no_create_edit': True}" readonly="1"/>
+                                <field name="company_id" readonly="1"/>
+                                <field name="currency_id" invisible="1"/>
+                                <field name="submission_date" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="start_date" required="1" attrs="{'readonly': [('state','!=','draft')]}"/>
+                                <field name="end_date" required="1" attrs="{'readonly': [('state','!=','draft')]}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Timesheets" name="timesheets">
+                                <field name="timesheet_ids" attrs="{'readonly': [('state','!=','draft')]}">
+                                    <tree create="false" editable="bottom">
+                                        <field name="date"/>
+                                        <field name="name"/>
+                                        <field name="type_id_erpify" domain="[('show_in_timesheet', '=', True)]" options="{'no_create_edit': True}"/>
+                                        <field name="start" widget="float_time"/>
+                                        <field name="end" widget="float_time"/>
+                                        <field name="unit_amount" widget="timesheet_uom" sum="Total"/>
+                                        <field name="calc_hours" widget="timesheet_uom" sum="Total"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="date"/>
+                                            <field name="name"/>
+                                            <field name="type_id_erpify" domain="[('show_in_timesheet', '=', True)]" options="{'no_create_edit': True}"/>
+                                            <field name="start" widget="float_time"/>
+                                            <field name="end" widget="float_time"/>
+                                            <field name="unit_amount" widget="timesheet_uom" sum="Total"/>
+                                            <field name="calc_hours" widget="timesheet_uom" sum="Total"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                            <page string="Approval Matrix" name="approvals">
+                                <field name="approval_matrix" readonly="1">
+                                    <tree>
+                                        <field name="user_id"/>
+                                        <field name="checked_at"/>
+                                        <field name="status"/>
+                                        <field name="comments"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <field name="user_id"/>
+                                            <field name="checked_at"/>
+                                            <field name="status"/>
+                                            <field name="comments"/>
+                                        </group>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                        <group>
+                            <group string="Allowances">
+                                <div class="oe_inline">
+                                    <field name="allowances_ids" readonly="1">
+                                        <tree string="Allowances">
+                                            <field name="is_weekly" invisible="1"/>
+                                            <field name="name"/>
+                                            <field name="hours" widget="float_time"/>
+                                            <field name="hours_after_TIL" widget="float_time"/>
+                                            <field name="currency_id" invisible="1"/>
+                                            <field name="amount" widget="monetary" options="{'currency_field': 'currency_id'}" groups="hr_payroll.group_hr_payroll_manager"/>
+                                            <field name="employee_id" invisible="1"/>
+                                            <field name="submission_request_id" invisible="1"/>
+                                            <button name="add_data" string="Add Details" type="object" attrs="{'invisible': [('is_weekly', '=', False)]}"/>
+                                        </tree>
+                                    </field>
+                                </div>
+                                <group>
+                                    <field name="time_in_lieu"/>
+                                </group>
+                            </group>
+                            <group class="oe_subtotal_footer oe_right" groups="hr_payroll.group_hr_payroll_manager">
+                                <field name="normal_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="allowance_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <div class="oe_subtotal_footer_separator oe_inline">
+                                    <label for="total_amount"/>
+                                </div>
+                                <field name="total_amount" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- TimeSheet Tree View -->
+        <record id="timesheet_submission_tree_erpify" model="ir.ui.view">
+            <field name="name">TimeSheet Submission Tree</field>
+            <field name="model">timesheet.submission.erpify</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="submission_date"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- TimeSheet Submission Action -->
+        <record id="open_action_timesheets_submission_erpify" model="ir.actions.act_window">
+            <field name="name">Timesheet Submission</field>
+            <field name="res_model">timesheet.submission.erpify</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Timesheet Menu -->
+        <menuitem
+        id="timesheet_submission_menu_config_erpify"
+        parent="hr_timesheet.timesheet_menu_root"
+        name="Timesheets Submissions"
+        action="open_action_timesheets_submission_erpify"
+        sequence="10"/>
+
+        <!-- Wizard -->
+        <record id="wizard_popup_timesheet_submission_form_erpify" model="ir.ui.view">
+            <field name="name">Approve / Reject Timesheet</field>
+            <field name="model">popup.wizard.timesheet</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="user_id" invisible="1"/>
+                        <field name="timesheet_submission_id" invisible="1"/>
+                        <field name="status" required="1"/>
+                        <field name="comments" required="1"/>
+                    </group>
+                    <footer>
+                        <button string="Proceed" name="proceed" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="allowance_popup_timesheet_submission_form_erpify" model="ir.ui.view">
+            <field name="name">Submit Allowance Details</field>
+            <field name="model">timesheet.submission.allowances.erpify</field>
+            <field name="arch" type="xml">
+                <form create="0">
+                    <group>
+                        <field name="x_rate" invisible="1"/>
+                        <field name="x_days" invisible="1"/>
+                        <field name="x_hours" invisible="1"/>
+                        <field name="x_team_code" invisible="1"/>
+                        <field name="x_rank" invisible="1"/>
+                        <field name="x_number_of_calls" invisible="1"/>
+                        <group>
+                            <field name="rate" attrs="{'invisible': [('x_rate', '=', False)]}"/>
+                            <field name="days" attrs="{'invisible': [('x_days', '=', False)]}"/>
+                            <field name="hours" attrs="{'invisible': [('x_hours', '=', False)]}"/>
+                            <field name="team_code" attrs="{'invisible': [('x_team_code', '=', False)]}"/>
+                            <field name="rank" attrs="{'invisible': [('x_rank', '=', False)]}"/>
+                            <field name="number_of_calls" attrs="{'invisible': [('x_number_of_calls', '=', False)]}"/>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    </data>
+</odoo>

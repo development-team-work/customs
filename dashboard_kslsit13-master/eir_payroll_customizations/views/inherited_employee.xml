@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="inherit_employee_payroll_custom1_form_view_erpify" model="ir.ui.view">
+        <field name="name">payroll.form.erpify</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="initiate_termination" string="Initiate Termination" type="object" attrs="{'invisible':[('leaving_date','!=',False)]}" class="btn-primary"/>
+            </xpath>
+            <xpath expr="//field[@name='work_email']" position="after">
+                <field name="bank_account_no"/>
+            </xpath>
+            <xpath expr="//field[@name='tz']" position="after">
+                <field name="joining_date" required="1"/>
+                <!--<field name="time_in_lieu_balance" readonly="1"/>-->
+            </xpath>
+            <xpath expr="//page[@name='hr_settings']" position="after">
+                <page name="leaving_details_erpify" string="Leaving Details" groups="hr.group_hr_user" attrs="{'invisible': [('leaving_date', '=', False)]}">
+                    <group>
+                        <!--<field name="joining_date" readonly="1"/>-->
+                        <field name="leaving_date" readonly="1"/>
+                        <field name="remaining_leaves_offboarding_erpify" readonly="1"/>
+                        <field name="time_in_lieu_balance" readonly="1"/>
+                        <field name="departure_reason" readonly="1"/>
+                        <field name="departure_description" readonly="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="inherit_employee_departure_wizard_form_view_erpify" model="ir.ui.view">
+        <field name="name">departure.form.erpify</field>
+        <field name="model">hr.departure.wizard</field>
+        <field name="inherit_id" ref="hr.hr_departure_wizard_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='plan_id']" position="before">
+                <field name="leaving_date" required="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="inherit_company_for_lock_form_view_erpify" model="ir.ui.view">
+        <field name="name">Transactions Lock for Payroll</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='parent_id']" position="before">
+                <field name="lock_transaction_erpify"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,103 @@
+<odoo>
+
+     <record id="time_sheet_analytic_lines_field_new" model="ir.ui.view">
+        <field name="name">time.sheet.analytic.lines.new</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="hr_timesheet.view_task_form2_inherited" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='timesheet_ids']/kanban/field[@name='name']" position="after">
+                <field name="tz"/>
+                <field name="type_id_erpify" domain="[('show_in_timesheet', '=', True)]" options="{'no_create_edit': True}"/>
+                <field name="start" widget="timesheet_uom"/>
+                <field name="end" widget="timesheet_uom"/>
+            </xpath>
+        </field>
+     </record>
+
+    <record id="my_view_fields_in_timesheed" model="ir.ui.view">
+         <field name="name">my.view.fields.in.timesheed</field>
+         <field name="model">account.analytic.line</field>
+         <field name="inherit_id" ref="timesheet_grid.timesheet_view_form" />
+         <field name="arch" type="xml">
+             <xpath expr="//form" position="replace">
+                 <form string="Add a Task">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="company_id" invisible="1"/>
+                                <field name="user_id" invisible="1"/>
+                                <field name="employee_id" readonly="1"/>
+                                <field name="date"/>
+                                <field name="start" widget="timesheet_uom" required="1"/>
+                                <field name="end" widget="timesheet_uom" required="1"/>
+                                <field name="start_end_mand" invisible="1"/>
+                                <label for="unit_amount" string="Time Spent"/>
+                                <div class="o_row">
+                                    <field name="unit_amount" widget="timesheet_uom"
+                                           attrs="{'readonly': [('start_end_mand', '=', True)]}"/>
+                                    <field name="encoding_uom_id" options="{'no_open': true}"/>
+                                </div>
+                                <field name="type_id_erpify" required="1" domain="[('show_in_timesheet', '=', True)]" options="{'no_create_edit': True, 'no_open': True}"/>
+                                <field name="name" required="1"/>
+                            </group>
+
+                        </group>
+                    </sheet>
+                </form>
+             </xpath>
+         </field>
+    </record>
+
+    <record id="analytic_lines_tree_new" model="ir.ui.view">
+    <field name="name">analytic.lines.tree.new</field>
+    <field name="model">account.analytic.line</field>
+    <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='project_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='task_id']" position="replace">
+                <field name="tz" invisible="1"/>
+                <field name="start" widget="timesheet_uom"/>
+                <field name="end" widget="timesheet_uom"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="employee_timehseet_new_erpify" model="ir.ui.view">
+    <field name="name">analytic.lines.employee.project.new</field>
+    <field name="model">hr.employee</field>
+    <field name="inherit_id" ref="hr.view_employee_form" />
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='company_id']" position="after">
+            <field name="project_id_erpify" required="1"/>
+            <field name="time_in_lieu_balance" readonly="1" widget="float_time"/>
+        </xpath>
+    </field>
+    </record>
+
+
+    <record id="analytic_lines_tree_new_1234" model="ir.ui.view">
+    <field name="name">analytic.lines.tree.new.1234</field>
+    <field name="model">account.analytic.line</field>
+    <field name="inherit_id" ref="timesheet_grid.timesheet_view_grid_by_project" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='task_id']" position="replace">
+                <field name="name" type="row"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="project_timesheet_duration_mandatory_check_erpify_form" model="ir.ui.view">
+    <field name="name">project.project.form.1</field>
+    <field name="model">project.project</field>
+    <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="start_end_mand"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

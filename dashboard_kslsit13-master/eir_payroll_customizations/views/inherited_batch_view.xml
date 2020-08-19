@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="inherit_payslip_batch_form_view_erpify" model="ir.ui.view">
+        <field name="name">batch.form.erpify</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="hr_payroll.hr_payslip_run_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='credit_note']" position="before">
+                <field name="salary_structure_id_erpify"/>
+            </xpath>
+            <xpath expr="//group" position="after">
+                <div>
+                    <label for="last_batch_history" string="Last Payroll History"/>
+                    <div>
+                        <field name="last_batch_history" readonly="1"/>
+                    </div>
+                </div>
+                <!--<field name="time_in_lieu_balance" readonly="1"/>-->
+            </xpath>
+        </field>
+    </record>
+
+    <record id="inherit_leaves_allocation_form_view_erpify" model="ir.ui.view">
+        <field name="name">leaves.form.erpify</field>
+        <field name="model">hr.leave.allocation</field>
+        <field name="inherit_id" ref="hr_holidays.hr_leave_allocation_view_form_manager"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='allocation_type']" position="after">
+                <label for="allocation_period_start"/>
+                <field name="allocation_period_start" nolabel="1" required="1"/>
+                <field name="allocation_period_end" nolabel="1" required="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

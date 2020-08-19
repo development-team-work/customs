@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_email_interfaces_erpify_manager,email.interfaces.erpify,model_email_interfaces_erpify,group_email_inferface_erpify,1,1,1,1
+access_email_interfaces_erpify_user,email.interfaces.erpify,model_email_interfaces_erpify,,1,0,0,0
+access_email_interfaces_erpify_user_dummy,email.interfaces.erpify,model_dummy_model_erpify,,1,1,1,0

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <record id="group_holiday_master_users_erpify" model="res.groups">
+        <field name="name">Master User</field>
+        <field name="category_id" ref="base.module_category_human_resources_time_off"/>
+    </record>
+</data>
+</odoo>

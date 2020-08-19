@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <record id="group_email_inferface_erpify" model="res.groups">
+        <field name="name">Interface by Emails Access</field>
+        <field name="category_id" ref="base.module_category_administration_administration"/>
+    </record>
+</data>
+</odoo>

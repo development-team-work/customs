@@ -1,0 +1,105 @@
+<!-- <?xml version="1.0" encoding="utf-8"?> -->
+<odoo>
+    <data>
+
+        <record id="paperformat_drivers_reward_template" model="report.paperformat">
+            <field name="name">European A4 low margin</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">5</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">4</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">10</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <report
+
+            id="report_for_drivers_reward_id" 
+            model="fleet.vehicle.trip"
+            name="salary_sheet_eir.drivers_reward_id"
+            file="salary_sheet_eir.drivers_reward_id"
+            report_type="qweb-html"
+            string="Salary Sheet Report"
+            paperformat="paperformat_drivers_reward_template"
+            menu="False"/>
+
+        <record id="drivers_reward_records_wizard" model="ir.ui.view">
+            <field name="name">drivers_reward_records_wizard</field>
+            <field name="model">drivers.reward.report</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+            <form string="Report">
+
+                <group name="group_top">
+
+                    <p>This wizard will print report which display a pay head employee breakup for a specified dates.</p>
+
+                </group>
+
+                <group name="group_top">
+
+                    <group name="group_right">
+                        <field name="form"/>
+                    </group>
+
+                    <group name="group_left">
+                        <field name="to"/>
+                    </group>
+
+                </group>
+
+                <group name="group_top">
+
+                    <group name="group_right">
+                        <field name="batch"/>
+                    </group>
+
+                    <group name="group_left">
+                        <!-- <field name="resigned" /> -->
+                    </group>
+
+                </group>
+
+                <group name="group_bottom">
+                    <field name="tree_link" nolabel="1" domain="[('date_from', '&gt;=', form),('date_to', '&lt;=', to)]"/>
+                </group>
+
+                <footer>
+                    <button name="generate_report" type="object" string="Print" class = "oe_highlight" />
+                </footer>
+
+                </form>
+            </field>
+        </record>
+
+        <record id="drivers_reward_menu_action" model="ir.actions.act_window">
+            <field name="name">Salary Sheet Report</field>
+            <field name="res_model">drivers.reward.report</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="drivers_reward_records_wizard"/>
+            <field name="target">new</field>
+        </record>
+    
+
+        <menuitem id="drivers_reward_menu_item" name="Salary Sheet" action="drivers_reward_menu_action" parent="hr_payroll.menu_hr_payroll_payslips"/>
+
+        <record id="hr_salary_rule_category_extention" model="ir.ui.view"> 
+            <field name="name">hr_salary_rule_category_extention</field> 
+            <field name="model">hr.salary.rule.category</field>
+            <field name="inherit_id" ref="hr_payroll.hr_salary_rule_category_form"/>
+            <field name="type">form</field> 
+            <field name="arch" type="xml">
+                
+                <xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="sequance"/>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

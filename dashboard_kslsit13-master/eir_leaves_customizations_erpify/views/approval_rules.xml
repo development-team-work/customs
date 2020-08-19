@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Leave approval rules View -->
+        <record id="leave_approval_rules_form_erpify" model="ir.ui.view">
+            <field name="name">Leave Approval Rules</field>
+            <field name="model">hr.leave.type</field>
+            <field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='allocation_type']" position="after">
+                    <field name="only_once_erpify"/>
+                    <field name="depends_erpify"/>
+                    <field name="id" invisible="1"/>
+                    <field name="depends_leave_type_erpify" options="{'no_create_edit': True}" domain="[('id', '!=', id)]" attrs="{'invisible': [('depends_erpify', '=', False)], 'required': [('depends_erpify', '=', True)]}"/>
+                    <field name="restrict_continous_leaves_upto"/>
+                </xpath>
+                <xpath expr="//group[@name='calendar']" position="after">
+                    <group name="rules" string="Rules" colspan="2">
+                            <notebook>
+                                <page name="leave_rules" string="Rules">
+                                    <field name="leave_rules_lines_erpify">
+                                        <tree editable="bottom">
+                                            <field name="sequence" widget="handle"/>
+                                            <field name="type" required="1"/>
+                                            <field name="group_id" attrs="{'invisible': [('type', '!=', 'group')], 'required': [('type', '=', 'group')]}" options="{'no_create_edit': True}"/>
+                                            <field name="user_id" attrs="{'invisible': [('type', 'not in', ['person', 'dynamic'])], 'required': [('type', 'in', ['person', 'dynamic'])]}" options="{'no_create_edit': True}"/>
+                                            <field name="message"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                                <page name="required_docs" string="Required Documents">
+                                    <field name="required_docs_erpify">
+                                        <tree editable="bottom">
+                                            <field name="name" required="1"/>
+                                        </tree>
+                                    </field>
+                                </page>
+                        </notebook>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

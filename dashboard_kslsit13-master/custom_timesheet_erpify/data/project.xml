@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<data noupdate="1">
+		
+		<!-- Auto Update Products Stock In Channel Engine -->
+		<record id="employee_timesheets_custom_erpify" model="project.project">
+			<field name="name">Employee Timesheets</field>
+			<field name="alias_contact">everyone</field>
+			<field name="allow_timesheets" eval="True"/>
+		</record>
+
+	</data>
+</odoo>

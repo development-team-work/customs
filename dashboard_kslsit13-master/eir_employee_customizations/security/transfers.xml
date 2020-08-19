@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+    <record id="transfer_type_rule_for_pos_users_erpify" model="ir.rule">
+        <field name="name">Picking Type POS</field>
+        <field name="model_id" ref="stock.model_stock_picking_type"/>
+        <field name="domain_force">[('code','in',['internal', 'outgoing']),'|',('branch_id','=',False),('branch_id','=',user.branch_id.id)]</field>
+        <field name="groups" eval="[(4, ref('user_access_and_roles.group_pos_shopkeepers'))]"/>
+    </record>
+
+    <record id="stock_picking_rule_for_pos_users_erpify" model="ir.rule">
+        <field name="name">Picking POS</field>
+        <field name="model_id" ref="stock.model_stock_picking"/>
+        <field name="domain_force">['|','|','|',('branch_id','=',False),('branch_id','=',user.branch_id.id),
+            ('location_id.branch_id','=',user.branch_id.id),('location_dest_id.branch_id','=',user.branch_id.id)]</field>
+        <field name="groups" eval="[(4, ref('branch.group_branch_user'))]"/>
+    </record>
+
+    <record id="transfer_type_rule_for_branch_users_erpify" model="ir.rule">
+        <field name="name">Picking Type POS Branch Manager</field>
+        <field name="model_id" ref="stock.model_stock_picking_type"/>
+        <field name="domain_force">['|',('branch_id','=',False),('branch_id','in',user.branch_ids.ids)]</field>
+        <field name="groups" eval="[(4, ref('user_access_and_roles.group_men_women_branch_manager'))]"/>
+    </record>
+
+    <record id="restrict_res_partner_pos_user" model="ir.rule">
+        <field name="name">Customers Only POS User</field>
+        <field name="model_id" ref="stock.model_res_partner"/>
+        <field name="domain_force">[('type_erpify','in',['customer', False]),'|', ('branch_id', 'in', [user.branch_id.id, False]), ('id','in',[user.partner_id.id])]</field>
+        <field name="groups" eval="[(4, ref('user_access_and_roles.group_pos_shopkeepers'))]"/>
+    </record>
+    </data>
+</odoo>
