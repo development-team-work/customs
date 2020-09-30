@@ -6,6 +6,41 @@
         <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
         <field name="arch" type="xml">
 
+            <xpath expr="//sheet/group[1]" position="replace">
+                <notebook colspan="4">
+                    <page string="General" name="general">
+                        <group>
+                            <group name="codes" string="Codes">
+                                <field name="default_code"/>
+                                <field name="barcode"/>
+                                <field name="type" invisible="1"/>
+                            </group>
+
+                        </group>
+                        <group>
+                            <group name="weight" string="Logistics" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}">
+                                <label for="volume"/>
+                                <div class="o_row">
+                                    <field name="volume"/>
+                                    <span><field name="volume_uom_name"/></span>
+                                </div>
+                                <label for="weight"/>
+                                <div class="o_row">
+                                    <field name="weight"/>
+                                    <span><field name="weight_uom_name"/></span>
+                                </div>
+                            </group>
+                            <group name="packaging" string="Packaging" groups="product.group_stock_packaging">
+                                <field name="packaging_ids" nolabel="1" context="{'tree_view_ref':'product.product_packaging_tree_view2', 'form_view_ref':'product.product_packaging_form_view2'}"/>
+                            </group>
+                        </group>
+                    </page>
+                </notebook>
+
+            </xpath>
+
+            <xpath expr="//sheet/group[1]" position="replace">
+            </xpath>
             <xpath expr="//label[@for='name']" position="before">
                 <label for="tmpl_name"  class="oe_edit_only"/>
                 <h2><field name="tmpl_name"  placeholder="e.g. Odoo Enterprise Subscription"/></h2>
@@ -17,31 +52,12 @@
             </xpath>
             <xpath expr="//p[1]" position="after">
                     <field name="is_book"/><label for="is_book" />
-                <group attrs="{'invisible':[('is_book','=',False)]}" groups="product.group_product_variant">
-                    <field name="writer_ids" widget="many2many_tags" domain="[ ('is_writer', '=', 'True')]" context="{'default_is_writer':1}"/>
-                    <field name="publisher_id" widget="many2many_tag" domain="[ ('is_publisher', '=', 'True')]" context="{'default_is_publisher':True}"/>
-                    <field name="edition" />
-                    <field name="total_page" />
-                    <field name="printed_price" />
-                </group>
             </xpath>
-            <label for="lst_price" position="before">
-                <label for="printed_price"/>
-                                <div >
-                                    <field name="printed_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" class="oe_inline" />
-                                    <button name="open_pricelist_rules" icon="fa-arrow-right" type="object"
-                                        groups="product.group_product_pricelist" class="oe_inline">
-                                        <field name="pricelist_item_count" attrs="{'invisible': [('pricelist_item_count', '=', 0)]}"/>
-                                        <span attrs="{'invisible': [('pricelist_item_count', '=', 1)]}">
-                                          Extra Prices
-                                        </span>
-                                        <span attrs="{'invisible': [('pricelist_item_count', '!=', 1)]}">
-                                          Extra Price
-                                        </span>
-                                    </button>
-                                </div>
-            </label>
+
+
             </field>
+
+
     </record>
 
     <record id="product_template_form_view_inherit" model="ir.ui.view">
@@ -133,5 +149,7 @@
                 </xpath>
             </field>
     </record>
+
+
 
 </odoo>

@@ -7,7 +7,7 @@
             <form string="">
                 <sheet>
                     <group>
-                        <field name="partner_id"/>
+                        <field name="partner_id" context="{'is_writer':1}"/>
                         <field name="name"/>
                         <field name="spouse_name"/>
                         <field name="dob"/>

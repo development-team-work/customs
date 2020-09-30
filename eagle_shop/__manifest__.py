@@ -39,6 +39,7 @@ Customisation Eagle ERP
         'wizard/print_barcode_wizard.xml',
         'views/stock_picking.xml',
         'views/product_pricelist_view.xml',
+        # 'views/sms.xml',
 
     ],
     'demo': [

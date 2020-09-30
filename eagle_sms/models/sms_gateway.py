@@ -6,39 +6,25 @@ import json
 from odoo import _,fields, models,api
 
 class smsSMS(models.Model):
-    _inherit = 'sms.sms'
-    sms_id=fields.Char("SMS ID")
-    device_id = fields.Char("Device Id")
-    authorisation = fields.Char("Authorisation")
+    _name = 'sms.gateway'
+    name=fields.Char("Gateway Name")
+    model_name=fields.Char("Getway Model Name")
+    website=fields.Char("website")
+    send_to_string = fields.Char("String for Send to")
+    msg_string = fields.Char("String for SMS Body")
+    user_string = fields.Char("String for User")
+    password_string = fields.Char("String for Password")
 
+    endpoint_sending=fields.Char("Endpoint for Sending ")
+    method_sending=fields.Char("Request method for Sending ")
 
-    def send_sms(self):
-        http = urllib3.PoolManager()
-        data ={"Content":{"phone_number": self.number,"message": self.body,"device_id": self.device_id}}
-        encoded_data = json.dumps(data).encode('utf-8')
-        r = http.request('POST', 'https://smsgateway.me/api/v4/message/send', headers={
-            'Authorization' : self.authorisation,'Content-Type': 'application/json'},
-            body=encoded_data)
-        print (r)
-        print (r.status)
-        if json.loads(r.data)[0]['status']=='pending':
-            self.state='outgoing'
-        self.sms_id=json.loads(r.data)[0]['id']
-    def check_sms_status(self):
-        http = urllib3.PoolManager()
-        data ={"Content":{"phone_number": self.number,"message": self.body,"device_id": self.device_id}}
-        encoded_data = json.dumps(data).encode('utf-8')
-        r = http.request("GET", "https://smsgateway.me/api/v4/message/"+self.sms_id, headers={
-            'Authorization' : self.authorisation,'Content-Type': 'application/json'},
-            body=encoded_data)
-        print (r)
-        print (r.status)
-        print(json.loads(r.data)['status'])
-    def kirim_pesan(nomer,isi_pesan):
-        time.sleep(5)
-        pesan("08xxxx","[SIMO]--")
+    endpoint_cancel=fields.Char("Endpoint for Cancel ")
+    method_cancel=fields.Char("Request method for Cancel")
 
+    endpoint_check=fields.Char("Endpoint for Check ")
+    method_check=fields.Char("Request method for Check")
 
-
+    endpoint_search=fields.Char("Endpoint for Search ")
+    method_search=fields.Char("Request method for Search")
 
 

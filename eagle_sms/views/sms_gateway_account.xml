@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="eagle_sms_form" model="ir.ui.view">
-        <field name="name">eagle.sms.form</field>
-        <field name="model">sms.sms</field>
+    <record id="eagle_sms_gateway_account_form" model="ir.ui.view">
+        <field name="name">eagle.sms.gateway.accountform</field>
+        <field name="model">sms.gateway.account</field>
         <field name="arch" type="xml">
             <form string="">
                 <sheet>
                     <group>
-                        <field name="device_id" />
-                        <field name="authorisation"/>
-                        <field name="number"/>
-                        <field name="mail_message_id"/>
-                        <field name="sms_id"/>
-                        <field name="body"/>
-                        <field name="state"/>
-                        <field name="error_code"/>
+                        <group>
+                            <field name="name" />
+                            <field name="gateway_id"/>
+                        </group>
+                        <group>
+                            <field name="user_string" nolabel="1"/>
+                            <field name="user_id" nolabel="1"/>
+                            <field name="password_string" nolabel="1"/>
+                            <field name="password" nolabel="1"/>
+
+                        </group>
                     </group>
-                    <button type="object" name="send_sms" string="Send SMS"/>
-                    <button type="object" name="check_sms_status" string="Check Status"/>
                 </sheet>
             </form>
         </field>
     </record>
-    <record id="sms_form_action" model="ir.actions.act_window">
-        <field name="name">sms.form.action</field>
+    <record id="sms_gateway_account_form_action" model="ir.actions.act_window">
+        <field name="name">sms.gateway.account.form.action</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">sms.sms</field>
+        <field name="res_model">sms.gateway.account</field>
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
           <p class="oe_view_nocontent_create">
@@ -35,8 +36,6 @@
           </p>
         </field>
     </record>
-    <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
-    <menuitem id="eagle_sms_root" name="SMS" sequence=""/>
     <!-- This Menu Item must have a parent and an action -->
-    <menuitem id="eagle_sms_menu" name="SMS" parent="eagle_sms_root" action="sms_form_action" sequence="6"/>
+    <menuitem id="eagle_sms_gateway_account_menu" name="SMS Gateway Account" parent="eagle_sms_root" action="sms_gateway_account_form_action" sequence="6"/>
 </odoo>
