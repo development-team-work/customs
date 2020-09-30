@@ -8,20 +8,24 @@ class RibbonMedalAcquisitionWizard(models.TransientModel):
     ribbon_holder=fields.Many2one('res.partner',"Person")
     force_id=fields.Many2one("ribbon.force","Force Name",related="ribbon_holder.force_id")
     id_no=fields.Char("ID No",related="ribbon_holder.id_no")
-    rank=fields.Many2one("ribbon.rank","Rank",related="ribbon_holder.rank")
-    unit=fields.Many2one("ribbon.force.unit","Unit",related="ribbon_holder.unit")
-    post=fields.Many2one("ribbon.post","Post",related="ribbon_holder.post")
+    rank=fields.Many2one("ribbon.rank","Rank")
+    unit=fields.Many2one("ribbon.force.unit","Unit")
+    post=fields.Many2one("ribbon.post","Post")
     joining=fields.Date("Joining Date",related="ribbon_holder.joining")
     bcs=fields.Boolean("BCS ?",related="ribbon_holder.bcs")
     retired=fields.Date("Retired Date?",related="ribbon_holder.retired")
     service_length=fields.Char("Service Length",related="ribbon_holder.service_length")
-    services=fields.Many2one("ribbon.personal.service")
+    services=fields.Many2many("ribbon.personal.service")
     awards=fields.Many2many("ribbon.personal.award")
     missions=fields.Many2many("ribbon.personal.mission")
     acquired_ribbons=fields.Many2many("ribbon.acquired.ribbon.wizard")
     order_ribbons=fields.Many2many("ribbon.order.ribbon.wizard")
     ribbon_set_image=fields.Html("Ribbons Immage",compute="getRibonImage")
     ribbon_point_size=fields.Integer("Point Size",default='15')
+    psc=fields.Boolean("PSC")
+    bpa=fields.Boolean("BPA")
+    hill=fields.Boolean("Hill")
+    freedom_f=fields.Boolean("Fredom Fighter")
     ribbon_price=fields.Float(required=True, digits=(16, 4), default=0,compute='get_ribbon_price')
     s_medal_price=fields.Float(required=True, digits=(16, 4), default=0)
     b_medal_price=fields.Float(required=True, digits=(16, 4), default=0)
@@ -33,6 +37,16 @@ class RibbonMedalAcquisitionWizard(models.TransientModel):
 
     @api.onchange('ribbon_holder')
     def get_acquired_ribbons(self):
+        self.hill=self.ribbon_holder.nirapotta
+        self.psc=self.ribbon_holder.psc
+        self.freedom_f=self.ribbon_holder.freedom_f
+        self.bpa=self.ribbon_holder.bpa
+        self.rank=self.ribbon_holder.rank
+        self.unit=self.ribbon_holder.unit
+        self.post=self.ribbon_holder.post
+        self.services=self.ribbon_holder.services
+        self.awards=self.ribbon_holder.awards
+        self.missions=self.ribbon_holder.missions
         for rec in self.acquired_ribbons:
             rec.unlink()
         if self.ribbon_holder.retired:
@@ -51,7 +65,7 @@ class RibbonMedalAcquisitionWizard(models.TransientModel):
             input=self.env["ribbon.acquired.ribbon.wizard"].create({
             'partner_id': self.ribbon_holder.id,
             'ribbon_id': rec.id,
-            'extension': 1,
+            'extension': rec.default_extension.id,
             'serial': rec.serial})
             data.append(input.id)
         self.acquired_ribbons=[(6,0,data)]
@@ -104,7 +118,7 @@ class RibbonMedalAcquisitionWizard(models.TransientModel):
                         position_left=point_length*(4-first_row_point)/2
                         row_point = first_row_point
             image_set = image_set + '<img style=" position:absolute;  left: '+str(position_left)+point_unit+';   width:'+str(point_length)+point_unit+';'\
-                        + 'height:'+ str(point_height)+point_unit+';  border: 1px solid blue;z-index: 1;" src="../web/image/ribbon.extension/'+str(rec.extension.id)+'/image"/>'+chr(10)
+                        + 'height:'+ str(point_height)+point_unit+';  border: 1px solid blue;z-index: 1;" src="../web/image/ribbon.extension/'+str(rec.extension.id)+'/image_1920"/>'+chr(10)
             #here to impliment extension rule if extension exist!
 
             image_set=image_set+'<img style=" position:absolute;  left: '+str(position_left)+point_unit+';   width:'+str(point_length)+point_unit+';'\
@@ -151,7 +165,7 @@ class ribbonMedalAcquiredRibbonWizard(models.TransientModel):
     ribbon_tmpl = fields.Many2one("product.template", related='ribbon_id.ribbon_tmpl_id')
     ribbon_product=fields.Many2one('product.product',"Ribbon")
     image = fields.Binary(
-        "Image", related="ribbon_id.big_ribbon.image_1920")
+        "Image", related="ribbon_id.ribbon_image")
     extension = fields.Many2one("ribbon.extension")
     extension_tmpl = fields.Many2one("product.template")
     extension_product=fields.Many2one('product.product',"extension")

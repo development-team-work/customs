@@ -4,35 +4,16 @@ from odoo import api, fields, models, _
 import datetime
 class ProductTemplate(models.Model):
     _inherit = "product.template"
-
+    force_dependent=fields.Boolean("Depends on Force")
+    is_ribbon_medal=fields.Boolean("Ribbon/Medal")
     @api.onchange('name')
     def onchange_method(self):
         # todo here to implement automatic name change of related medal and ribbon product
-        self.env['ribbon.ribbon.ribbontest'].search([('product_tmpl_id','=',self.id)]).onchange_name
-class medaltestProduct(models.Model):
-    _inherits ={'product.template':'product_tmpl_id'}
-    _name='ribbon.medaltest'
-    has_medal=fields.Boolean("Medal?")
-    ribbon_id=fields.Many2one('ribbon.ribbon.ribbontest')
+        # self.env['ribbon.ribbon.ribbontest'].search([('product_tmpl_id','=',self.id)]).onchange_name
+        return
 
-class ribbonMedalForce(models.Model):
-    _name="ribbon.force"
-    _description = "Name of the Force ie; Police, Army ..."
-    name=fields.Char("Force Name")
-    image=fields.Binary("Logo")
-    description=fields.Char("Description")
-    ribbon_ids=fields.Many2many("ribbon.regulation",'ribbon_force_prb_rel',string="ribbons")
-    ranks=fields.One2many("ribbon.rank",'force_id')
-
-# class ribbonMedal(models.Model):
-#     _name="ribbon.medal"
-#     name=fields.Char("Ribbon Name")
-#     is_ribbon=fields.Boolean("Is a Ribbon?",default="True")
-#     is_medal=fields.Boolean("Is a Medal?")
-#     ribbon_template=fields.Many2one("product.template","Ribbon Template")
-#     medal_template=fields.Many2one("product.template","Medal Template")
 class ribbonMedalExtension(models.Model):
-    _inherits = {'product.template':'product_template_id'}
+    _inherits = {'product.template':'product_tmpl_id'}
     _name="ribbon.extension"
 
 class RibbonMedalRibbonProduct(models.Model):
@@ -69,6 +50,7 @@ class RibbonMedalMedalProduct(models.Model):
     _description = " medal relation with product"
     _inherits ={'product.template':'product_tmpl_id'}
     is_ribbon=fields.Boolean("Ribbon?")
+    product_tmpl_id=fields.Many2one('product.template',"product Template",require=True)
     ribbon_id=fields.Many2one('ribbon.ribbon.product')
 
     @api.onchange('name')
@@ -80,7 +62,7 @@ class RibbonMedalMedalProduct(models.Model):
                 self.ribbon_id.name=self.name.replace('Medal','Ribbon')
     @api.onchange("is_ribbon")
     def make_ribbon(self):
-        if self.is_ribbon==True:
+        if self.is_ribbon==True and len(self.name)>0:
             if self.ribbon_id.id==False:
 
                 rec=self.env['ribbon.ribbon.product'].create({
@@ -100,46 +82,6 @@ class ribbonMedalRanks(models.Model):
     superiority=fields.Integer("Superiority")
     code=fields.Char("Rank Code",translate=True)
 
-class ribbonMedalForceUnit(models.Model):
-    _name = "ribbon.force.unit"
-    _description = "Name of Units of a Force"
-    name = fields.Char("Unit",translate=True)
-    divsign=fields.Binary("Div Sign")
-    image=fields.Binary("Div Sign", compute='_compute_image_1920', inverse='_set_image_1920')
-    force_name=fields.Many2one("ribbon.force","Force")
-    address=fields.Char("address",translate=True)
-    parent_unit=fields.Many2one("ribbon.force.unit","Parent Unit",translate=True)
-    chief_rank=fields.Many2one("ribbon.rank","Rank of Chief",translate=True)
-    chief=fields.Many2one("ribbon.post","Chief",translate=True)
-
-    street = fields.Char('Street')
-    street2 = fields.Char('Street2')
-    zip = fields.Char('Post Code', change_default=True)
-    city = fields.Char('City')
-    state_id = fields.Many2one("res.country.state", string='State')
-    country_id = fields.Many2one('res.country', string='Country')
-    phone = fields.Char('Phone', tracking=50)
-    mobile = fields.Char('Mobile')
-
-    def _compute_image_1920(self):
-        """Get the image from the template if no image is set on the variant."""
-        for record in self:
-            if record.divsign==False:
-                record.image =  record.parent_unit.image
-            else:
-                record.image = record.divsign
-
-    def _set_image_1920(self):
-        for rec in self:
-            rec.divsign=rec.image
-
-
-class RibbonMedalsPost(models.Model):
-    _name="ribbon.post"
-    _description = "Post of a force different of his rank ie; Comissioner, director etc"
-    name=fields.Char("Name of The Post",translate=True)
-    code=fields.Char("Abbreviation",translate=True)
-    force_name=fields.Many2one("ribbon.force","Force")
 
 class ribbonMedalMissions(models.Model):
     _name="ribbon.mission"
@@ -155,3 +97,39 @@ class ribbonMedalMissions(models.Model):
         ('4', '4'),
         ('5', '5'),
         ('6', '6'),])
+#  Ribbon           serial
+#  BPM Gal          100
+#  BPM seba         110
+#  pPM Gal          150
+#  pPM seba         160
+#  Ronotaroka       160
+
+#  muktitaroka      160
+#  joy padak          160
+#  shamar padak          160
+#  shangbidhan padak          160
+
+#  Nirapatta padak          160
+
+#  election 91 padak          160
+#  election 96 padak          160
+#  election 01 padak          160
+
+#  BPA          160
+#  PSC          160
+
+
+#  IG Badge          160
+#  IG Badge          160
+#  IG Badge          160
+#  IG Badge          160
+#  IG Badge          160
+#  IG Badge          160
+
+#  RajatJayanti padak          160
+#  RajatJayanti padak          160
+
+#  seniority 3 padak          160
+#  seniority 2 padak          160
+#  seniority 1 padak          160
+#  Un Mission          160

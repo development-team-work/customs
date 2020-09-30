@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       <record id="ribbon_force_form" model="ir.ui.view">
+           <field name="name">ribbon.force.form.view</field>
+           <field name="model">ribbon.force</field>
+           <field name="arch" type="xml">
+               <form string="">
+                   <sheet>
+                       <group>
+                           <field name="name"/>
+                           <field name="attribute_id"/>
+                           <field name="image"/>
+                           <field name="description"/>
+                           <field name="ribbon_ids"/>
+                           <field name="ranks"/>
+
+                       </group>
+                   </sheet>
+               </form>
+           </field>
+       </record>
+        <record id="ribbon_force_action" model="ir.actions.act_window">
+            <field name="name">Ribbons Force</field>
+            <field name="res_model">ribbon.force</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

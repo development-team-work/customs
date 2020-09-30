@@ -39,6 +39,7 @@ class PersonalDetails(models.Model):
     services=fields.One2many("ribbon.personal.service",'partner_id')
     awards=fields.One2many("ribbon.personal.award",'partner_id')
 
+    ribbon_price=fields.Monetary("Ribbon Price",compute='get_ribbon_price',currency_field='currency_id')
     custom_acquired_ribbons = fields.Many2many("ribbon.customs.acquired.ribbon", "party_customs_acquired_rel")
     acquired_ribbons = fields.Many2many("ribbon.acquired.ribbon", "party_acquired_rel")
     ribbon_set_image = fields.Html("Ribbons Immage", compute="getRibonImage")
@@ -49,11 +50,11 @@ class PersonalDetails(models.Model):
             ('px', 'Point (px)'), ],
              help='You can set here the size depends on screen.', default='px')
     #Start
-    def get_partners_service_ribbons(self,partner_id):
+    def get_partners_service_age_ribbons(self,partner_id):
         partner=self.env['res.partner'].search([('id','=',partner_id)])
         if partner.retired:
             ribbon_for_age = self.env["ribbon.regulation"].search([('force_id', '=', partner.force_id.id),
-                                                                   ('acquisition.id', '=', "1"),
+                                                                   ('acquisition.name', '=', "Service Age"),
                                                                    ('service_length', '<=',
                                                                     partner.service_year),
                                                                    ("shedule_date", "<=", partner.retired)])
@@ -86,6 +87,12 @@ class PersonalDetails(models.Model):
 
         return in_service_ribbons
 
+    def get_ribbon_price(self):
+        price=0
+        for rec in self.acquired_ribbons:
+            price=price + rec.ribbon_id.ribbon_price
+        self.ribbon_price=price
+
     @api.onchange('missions', 'services', 'awards')
     def get_acquired_ribbons(self):
         acq_ribbons=self.env['ribbon.acquired.ribbon'].search([('partner_id','=',self.id)])
@@ -109,11 +116,11 @@ class PersonalDetails(models.Model):
             input = self.env["ribbon.acquired.ribbon"].create({
                 'partner_id': self.id,
                 'ribbon_id': rec.id,
-                'extension': 1,
+                'extension': rec.default_extension.id,
                 'serial': rec.serial})
             data.append(input.id)
         self.acquired_ribbons = [(6, 0, data)]
-        ribbon_for_awards = self.env["ribbon.personal.award"].search([("partner_id", "=", self.id)])
+        ribbon_for_awards = self.env["ribbon.personal.award"].search([("partner_id", "=", self._origin.id)])
         for rec in ribbon_for_awards:
             input = self.env["ribbon.acquired.ribbon"].create({
                 'partner_id': self.id,
@@ -130,11 +137,22 @@ class PersonalDetails(models.Model):
                 'extension': rec.extension.id,
                 'serial': rec.ribbon_id.serial})
             self.acquired_ribbons = [(4, input.id)]
+        ribbon_for_service = self.env["ribbon.personal.service"].search(
+            [("partner_id", "=", self._origin.id)])
+        for rec in ribbon_for_service:
+            input = self.env["ribbon.acquired.ribbon"].create({
+                'partner_id': self._origin.id,
+                'ribbon_id': rec.ribbon_id.id,
+                'extension': rec.extension.id,
+                'serial': rec.ribbon_id.serial})
+            self.acquired_ribbons = [(4, input.id)]
 
     @api.onchange('ribbon_point_size', 'ribbon_point_unit', 'acquired_ribbons')
     def getRibonImage(self):
         # print("in service Ribbon= " )
         # print(self.get_partners_in_service_ribbons(self.id))
+
+
 
         point_unit = self.ribbon_point_unit
         pointsize = self.ribbon_point_size
@@ -169,9 +187,8 @@ class PersonalDetails(models.Model):
                 position_left) + point_unit + ';   width:' + str(point_length) + point_unit + ';' \
                         + 'height:' + str(
                 point_height) + point_unit + ';  border: 1px solid blue;z-index: 1;" src="../web/image/ribbon.extension/' + str(
-                rec.extension.id) + '/image"/>' + chr(10)
+                rec.extension.id) + '/image_1920"/>' + chr(10)
             # here to impliment extension rule if extension exist!
-
             image_set = image_set + '<img style=" position:absolute;  left: ' + str(
                 position_left) + point_unit + ';   width:' + str(point_length) + point_unit + ';' \
                         + 'height:' + str(
@@ -306,6 +323,7 @@ class ribbonMedalAcquiredRibbon(models.Model):
         "Image", related="ribbon_id.ribbon_tmpl_id.image_1920")
     extension = fields.Many2one("ribbon.extension")
     serial = fields.Integer("Serial")
+
 class ribbonCustomAcquiredRibbon(models.Model):
     _name="ribbon.customs.acquired.ribbon"
     _description = "list of customs acquired rebbon"
@@ -317,6 +335,7 @@ class ribbonCustomAcquiredRibbon(models.Model):
         "Image", related="ribbon_id.ribbon_tmpl_id.image_1920")
     extension = fields.Many2one("ribbon.extension")
     serial = fields.Integer("Serial")
+
 class RibbonMedalPersonalacquisition(models.Model):
     _name="ribbon.personal.acquisition"
     _description="list of Personal Acquisition"

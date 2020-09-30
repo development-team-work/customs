@@ -42,6 +42,12 @@
                                    <field name="retired"/>
                                    <field name="service_length"/>
                                </group>
+                                    <group>
+                                       <field name="freedom_f"/>
+                                       <field name="nirapotta"/>
+                                       <field name="bpa"/>
+                                       <field name="psc"/>
+                                    </group>
                                <group>
                                    <field name="awards" context="{'default_partner_id': id}">
                                        <tree>
@@ -81,6 +87,7 @@
                                         </field>
                                     </group>
                                     <group >
+                                        <field name="ribbon_price"/>
                                         <field name="ribbon_point_size"/>
                                         <field name="ribbon_point_unit"/>
                                         <field name="ribbon_set_image" widget="html" nolabel="1"/>

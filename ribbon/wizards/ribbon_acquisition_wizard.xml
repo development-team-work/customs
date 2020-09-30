@@ -8,22 +8,34 @@
                <form string="Ribbon Medal">
                    <group>
                        <group>
-                           <field name="ribbon_holder"/>
-                            <field name="force_id"/>
-                            <field name="id_no" />
-                            <field name="rank"/>
-                            <field name="unit"/>
-                            <field name="post"/>
+                           <group>
+                               <field name="ribbon_holder"/>
+                               <field name="force_id"/>
+                               <field name="id_no" />
+                               <field name="joining"/>
+                               <field name="retired"/>
+                               <field name="bcs"/>
+                           </group>
+                           <group>
+                               <field name="rank"/>
+                               <field name="service_length"/>
+                               <field name="unit"/>
+                               <field name="post"/>
+                           </group>
 
                        </group>
                        <group>
-                           <field name="joining"/>
-                           <field name="bcs"/>
-                           <field name="retired"/>
-                           <field name="service_length"/>
-                           <field name="ribbon_price"/>
-                           <field name="s_medal_price"/>
-                           <field name="b_medal_price"/>
+                           <group>
+                               <field name="freedom_f"/>
+                               <field name="hill"/>
+                               <field name="bpa"/>
+                               <field name="psc"/>
+                           </group>
+                           <group>
+                               <field name="ribbon_price"/>
+                               <field name="s_medal_price"/>
+                               <field name="b_medal_price"/>
+                           </group>
                        </group>
                    </group>
                    <notebook>
@@ -49,12 +61,46 @@
                                </group>
                            </group>
                        </page>
-                        <page string="Ribbon Order">
-                             <button type='object' name="get_ribbons_for_order" string="refresh"/>
+                       <page string="Details Acquisition">
+                           <group>
+                               <group>
+                                   <group string="Awards">
+                                       <field name="awards" nolabel="1">
+                                           <tree editable="top">
+                                               <field name="ribbon_id"/>
+                                               <field name="extension"/>
+                                               <field name="serial"/>
+                                           </tree>
+                                       </field>
+                                   </group>
+                                   <group string="Service Ribbons">
+                                       <field name="services" nolabel="1">
+                                           <tree editable="top">
+                                               <field name="ribbon_id"/>
+                                               <field name="extension"/>
+                                               <field name="serial"/>
+                                           </tree>
+                                       </field>
+                                   </group>
+                               </group>
+                               <group>
+                                   <group string="Missions">
+                                       <field name="missions" nolabel="1">
+                                           <tree editable="top">
+                                               <field name="ribbon_id"/>
+                                               <field name="extension"/>
+                                               <field name="serial"/>
+                                           </tree>
+                                       </field>
+                                   </group>
+                               </group>
+                           </group>
+                       </page>
+                       <page string="Ribbon Order">
                            <group>
                                <group string="Order for Ribbons">
-
-                                   <field name="order_ribbons" nolabel="1">
+                                    <button type='object' name="get_ribbons_for_order" string="refresh"/>
+                                    <field name="order_ribbons" nolabel="1">
                                        <tree editable="top">
                                            <field name="ribbon_id"/>
                                            <field name="ribbon_tmpl" invisible="True" />

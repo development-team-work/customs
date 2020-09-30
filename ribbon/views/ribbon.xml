@@ -137,47 +137,7 @@
             </field>
         </record>
 -->
-        <record id="view_ribbon_regulation_form" model="ir.ui.view">
-            <field name="name">ribbon.regulation.form</field>
-            <field name="model">ribbon.regulation</field>
-            <field name="arch" type="xml">
-                <form string="Regulation Of Ribbon  Medal">
-                    <group >
-                        <group>
-<!--                            <field name="ribbon_id"/>-->
-                            <field name="force_id" />
-                            <field name="acquisition" />
-                            <field name="ribbon_tmpl_id" />
-                            <field name="name"  />
-                            <field name="medal_tmpl_id" />
-<!--                            <field name="medal_set_tmpl_id" invisible="True"/>-->
-                        </group>
-                        <group>
-                            <field name="shedule_date"/>
-                            <field name="serial" />
-                            <field name="service_length" />
-                        </group>
-                    </group>
-                </form>
-            </field>
-        </record>
 
-        <record id="view_ribbon_regulation_list" model="ir.ui.view">
-            <field name="name">ribbon.regulation.list</field>
-            <field name="model">ribbon.regulation</field>
-            <field name="arch" type="xml">
-                <tree string="Regulation Of Ribbon  Medal">
-                    <field name="name"/>
-                    <field name="force_id" />
-                    <field name="acquisition" />
-                    <field name="shedule_date"/>
-                    <field name="serial" />
-                    <field name="service_length" attrs="{'invisible': [('acquisition', '!=', 'duration')]}"/>
-                    <field name="ribbon_tmpl_id" />
-                    <field name="medal_tmpl_id" />
-                </tree>
-            </field>
-        </record>
 
         <record id="view_ribbon_acquisition_form" model="ir.ui.view">
             <field name="name">ribbon.acquisition.rule.form</field>
@@ -225,6 +185,7 @@
                 </form>
             </field>
         </record>
+
         <record id="view_medal_product_form" model="ir.ui.view">
             <field name="name">ribbon.product.form</field>
             <field name="model">ribbon.medal.product</field>
@@ -281,10 +242,10 @@
                   <form string="Extension">
                      <group>
                          <group>
-                             <field name="image_1920" widget="image"/>
+                             <field name="name"/>
                          </group>
                          <group>
-                             <field name="name"/>
+                             <field name="image_1920" widget="image"/>
                          </group>
                      </group>
                   </form>
@@ -296,18 +257,6 @@
             <field name="model">ribbon.personal.mission</field>
             <field name="arch" type="xml">
                 <tree string="ribbon">
-                       <field name="partner_id"/>
-                       <field name="ribbon_id"/>
-                       <field name="extension"/>
-                  </tree>
-              </field>
-          </record>
-
-        <record id="view_ribbon_personal_award_list" model="ir.ui.view">
-              <field name="name">ribbon.personal.award.tree</field>
-              <field name="model">ribbon.personal.award</field>
-              <field name="arch" type="xml">
-                  <tree string="ribbon">
                        <field name="partner_id"/>
                        <field name="ribbon_id"/>
                        <field name="extension"/>
@@ -363,14 +312,24 @@
                         </group>
                     </group>
                     <group>
-                        <div class="o_address_format" name="div_address">
-                            <field name="street" placeholder="Street..." class="o_address_street"/>
-                            <field name="street2" placeholder="Street 2..." class="o_address_street"/>
-                            <field name="city" placeholder="City" class="o_address_city"/>
-                            <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}' context="{'country_id': country_id, 'zip': zip}"/>
-                            <field name="zip" placeholder="ZIP" class="o_address_zip"/>
-                            <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
-                        </div>
+                        <group>
+                            <div class="o_address_format" name="div_address">
+                                <field name="street" placeholder="Street..." class="o_address_street"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_city"/>
+                                <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}' context="{'country_id': country_id, 'zip': zip}"/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                            </div>
+                        </group>
+                        <group string="Child Units">
+                            <field name="child_units" nolabel="1">
+                                <tree string="Child Units">
+                                    <field name="name"/>
+                                    <field name="chief_rank"/>
+                                </tree>
+                            </field>
+                        </group>
                     </group>
                 </form>
             </field>
@@ -387,6 +346,18 @@
                         <field name="force_name"/>
                         <field name="parent_unit"/>
                 </tree>
+            </field>
+        </record>
+        <record id="ribbon_force_unit_search" model="ir.ui.view">
+            <field name="name">ribbon.force.unit.search</field>
+            <field name="model">ribbon.force.unit</field>
+            <field name="arch" type="xml">
+                <search string="Unit">
+                    <field name="name" string="Unit" />
+                    <field name="force_name" string="Force Name"/>
+                    <field name="chief_rank" string="Rank of Chief"/>
+                    <field name="parent_unit" string="Parent Unit"/>
+                </search>
             </field>
         </record>
 
@@ -413,6 +384,7 @@
                 </form>
             </field>
         </record>
+
         <record id="view_ribbon_post_list" model="ir.ui.view">
             <field name="name">ribbon.post.list</field>
             <field name="model">ribbon.post</field>
@@ -424,6 +396,7 @@
                 </tree>
             </field>
         </record>
+
         <record id="view_ribbon_acquired_form" model="ir.ui.view">
             <field name="name">ribbon.acquired.form</field>
             <field name="model">ribbon.acquired.ribbon</field>
@@ -438,6 +411,7 @@
                 </form>
             </field>
         </record>
+
         <record id="view_ribbon_acquired_tree" model="ir.ui.view">
             <field name="name">ribbon.acquired.tree</field>
             <field name="model">ribbon.acquired.ribbon</field>
@@ -450,12 +424,6 @@
                 </tree>
             </field>
         </record>
-       <!-- Action  -->
-        <!--<record id="ribbon_form_action" model="ir.actions.act_window">
-            <field name="name">ribbons And Medals</field>
-            <field name="res_model">ribbon.medal</field>
-            <field name="view_mode">tree,form</field>
-        </record>-->
         <record id="ribbon_acquisition_rule_action" model="ir.actions.act_window">
             <field name="name">Ribbon Acquisition Rules</field>
             <field name="res_model">ribbon.acquisition.rule</field>
@@ -486,11 +454,7 @@
             <field name="res_model">ribbon.medal.product</field>
             <field name="view_mode">tree,form</field>
         </record>
-        <record id="ribbon_force_action" model="ir.actions.act_window">
-            <field name="name">Ribbons Force</field>
-            <field name="res_model">ribbon.force</field>
-            <field name="view_mode">tree,form</field>
-        </record>
+
         <record id="ribbon_rank_action" model="ir.actions.act_window">
             <field name="name">Ranks</field>
             <field name="res_model">ribbon.rank</field>
@@ -504,11 +468,6 @@
         <record id="ribbon_post_action" model="ir.actions.act_window">
             <field name="name">Units</field>
             <field name="res_model">ribbon.post</field>
-            <field name="view_mode">tree,form</field>
-        </record>
-        <record id="ribbon_regulation_action" model="ir.actions.act_window">
-            <field name="name">Regulation</field>
-            <field name="res_model">ribbon.regulation</field>
             <field name="view_mode">tree,form</field>
         </record>
         <record id="ribbon_acquired_action" model="ir.actions.act_window">
@@ -546,12 +505,6 @@
 
 
 
-        <menuitem id="ribbon_regulation_menu_root" name="Regulation"
-                        parent="ribbon_main" action="ribbon_regulation_action"  groups="base.group_user,base.group_partner_manager"/>
-        <menuitem id="ribbon_regulation_menu" name="Regulation"
-                         parent="ribbon_regulation_menu_root" action="ribbon_regulation_action"  groups="base.group_user,base.group_partner_manager"/>
-        <menuitem id="ribbon_acquisition_rule_menu" name="Acquisition Rules"
-                        parent="ribbon_regulation_menu_root" action="ribbon_acquisition_rule_action"  groups="base.group_user,base.group_partner_manager"/>
         <menuitem id="ribbon_extension_menu" name="Extensions"
                         parent="ribbon_main" action="ribbon_extension_action"  groups="base.group_user,base.group_partner_manager"/>
         <menuitem id="ribbon_person_menu" name="Personal Details"

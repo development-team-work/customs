@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_ribbon_regulation_form" model="ir.ui.view">
+            <field name="name">ribbon.regulation.form</field>
+            <field name="model">ribbon.regulation</field>
+            <field name="arch" type="xml">
+                <form string="Regulation Of Ribbon  Medal">
+                    <group >
+                        <group>
+                            <field name="name"  />
+<!--                            <field name="product_tmpl_id" domain="[('categ_id.name','=','Ribbons')]"/>-->
+                            <field name="force_id" />
+                            <field name="force_name" attrs="{'invisible':1}"/>
+                            <field name="acquisition" />
+                            <field name="acquisition_rule" attrs="{'invisible':1}" />
+                            <field name="shedule_date"/>
+                            <field name="serial" />
+                            <field name="service_length" attrs="{'invisible': [('acquisition_rule', '!=', 'Service Age')]}" />
+                        </group>
+                        <group>
+                            <group string="Ribbon Details">
+                                <field name="ribbon_tmpl_id"   />
+                                <field name="default_big_ribbon_id"  attrs="{'invisible':[('ribbon_tmpl_id','=',False)]}" domain="[('product_tmpl_id','=',ribbon_tmpl_id),('product_template_attribute_value_ids.name','=','Ribbon'),('product_template_attribute_value_ids.name','=','Big')]" />
+                                <field name="default_small_ribbon_id" attrs="{'invisible':[('ribbon_tmpl_id','=',False)]}" domain="[('product_tmpl_id','=',ribbon_tmpl_id),('product_template_attribute_value_ids.name','=','Ribbon'),('product_template_attribute_value_ids.name','=','Small')]" />
+                                <field nolabel="True" name="ribbon_image" widget="image"/>
+                                <field name="default_extension" />
+                                <field nolabel="True" name="extension_image" widget="image"/>
+                                <field  name="ribbon_price" />
+                            </group>
+                            <group string="Medal Details">
+                                <field name="medal_tmpl_id"    />
+                                <field name="default_big_medal_id" attrs="{'invisible':[('medal_tmpl_id','=',False)]}" domain="[('product_tmpl_id','=',medal_tmpl_id),('product_template_attribute_value_ids.name','=','Medal'),('product_template_attribute_value_ids.name','=','Big')]"/>
+                                <field name="default_small_medal_id" attrs="{'invisible':[('medal_tmpl_id','=',False)]}" domain="[('product_tmpl_id','=',medal_tmpl_id),('product_template_attribute_value_ids.name','=','Medal'),('product_template_attribute_value_ids.name','=','Small')]"/>
+                                <field nolabel="True" name="medal_image" widget="image"/>
+                            </group>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="ribbon_regulation_search" model="ir.ui.view">
+            <field name="name">ribbon.regulation.search</field>
+            <field name="model">ribbon.regulation</field>
+            <field name="arch" type="xml">
+                <search string="Regulations">
+                    <field name="name" string="Ribbon" />
+                    <field name="force_id" string="Force Name"/>
+                    <field name="acquisition" string="Rule"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="view_ribbon_regulation_list" model="ir.ui.view">
+            <field name="name">ribbon.regulation.list</field>
+            <field name="model">ribbon.regulation</field>
+            <field name="arch" type="xml">
+                <tree string="Regulation Of Ribbon  Medal">
+                    <field name="name"/>
+                    <field name="force_id" />
+                    <field name="acquisition" />
+                    <field name="shedule_date"/>
+                    <field name="serial" />
+                    <field name="service_length" attrs="{'invisible': [('acquisition', '!=', 'duration')]}"/>
+                    <field name="ribbon_tmpl_id" />
+                    <field name="medal_tmpl_id" />
+                </tree>
+            </field>
+        </record>
+
+        <record id="ribbon_regulation_action" model="ir.actions.act_window">
+            <field name="name">Regulation</field>
+            <field name="res_model">ribbon.regulation</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="ribbon_regulation_menu_root" name="Regulation"
+                        parent="ribbon_main" action="ribbon_regulation_action"  groups="base.group_user,base.group_partner_manager"/>
+        <menuitem id="ribbon_regulation_menu" name="Regulation"
+                         parent="ribbon_regulation_menu_root" action="ribbon_regulation_action"  groups="base.group_user,base.group_partner_manager"/>
+        <menuitem id="ribbon_acquisition_rule_menu" name="Acquisition Rules"
+                        parent="ribbon_regulation_menu_root" action="ribbon_acquisition_rule_action"  groups="base.group_user,base.group_partner_manager"/>
+
+    </data>
+</odoo>

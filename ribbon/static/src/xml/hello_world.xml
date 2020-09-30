@@ -1,0 +1,13 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<templates xml:space="preserve">
+  <div t-name="hello_world.ClientAction" class="hello-world">
+    <h1>Hello Odoo</h1>
+    <div>
+      <t t-esc="widget.info"></t>
+      <t t-esc="widget.msg"></t>
+      <button id="button1" onclick="bpChanged()">yes</button>
+        <input type="text" name="id" id="id"  ></input>
+        <input type="text" name="model" id="model"></input>
+    </div>
+  </div>
+</templates>

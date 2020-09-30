@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="ajax_response">
+            <t t-esc="person.name" />
+        </template>
+        <template id="list_of_ribbons">
+    <div>
+        <table border="1">
+            <tr>
+                <th>Ribbon </th>
+                <th>Extension </th>
+                <th>SL</th>
+            </tr>
+            <t t-foreach="collection" t-as="line">
+                <tr>
+                    <td><t t-esc="line.ribbon_id.name"/> </td>
+
+                    <td><t t-esc="line.extension.name"/> </td>
+                    <td><t t-esc="line.ribbon_id.serial"/></td>
+                </tr>
+            </t>
+        </table>
+    </div>
+        </template>
+
+        <template id="ribbon_personel">
+            <t t-call="website.layout">
+                <t t-set="title">Personel Ribbons</t>    <!-- this set title of the page -->
+                <div class="oe_structure" >  <!-- default structure for site -->
+                    <div class="page">
+                        <div class="container">
+                            <button name="button" id="button1" onclick="myFunction()">bbbtn</button>
+                            <form action="/submit" method="post" data-success_page="/thanks">
+                                <div class="row">
+                                <div class="col-md-4">
+                                    <input type="hidden" id="id" value="&lt; t-esc='person.id'/&gt;" />
+                                    <div class="row" style="border-bottom: 1px solid black;">
+                                        <div class="col-md-3">Name : </div>
+                                        <div class="col-md-9">
+                                            &lt;input type="text" id="name" onchange="bpChanged()" value=
+                                                <t t-if="person.name">
+                                                    <t t-if="person.rank.name">
+                                                        <t t-esc="person.name +' '+ person.rank.name "/>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <t t-esc="person.name"/>
+                                                    </t>
+                                                </t>
+                                            /&gt; </div>
+                                    </div>
+                                    <div class="row" style="border-bottom: 1px solid black;">
+                                        <div class="col-md-3">Force : </div>
+                                        <div class="col-md-9">
+                                            &lt;select id="force" name="force" form="force_form" value=<t t-esc="person.force_id.id"/>&gt;
+                                                <t t-foreach="forces" t-as="force" >
+                                                    &lt;option value=<t t-esc="force.id" /> &gt; <t t-esc="force.name"/>&lt;/option&gt;
+                                                </t>
+                                            &lt;/select&gt;
+                                        </div>
+                                    </div>
+                                    <div class="row" style="border-bottom: 1px solid black;">
+                                        <div class="col-md-3">Rank : </div>
+                                        <div class="col-md-9">
+                                            &lt;select id="rank" name="rank" form="rank_form" value=<t t-esc="person.rank.id"/>&gt;
+                                                <t t-foreach="ranks" t-as="rank" >
+                                                    &lt;option value=<t t-esc="rank.id" /> &gt; <t t-esc="rank.name"/>&lt;/option&gt;
+                                                </t>
+                                            &lt;/select&gt;
+                                        </div>
+                                    </div>
+                                    <div class="row" style="border-bottom: 1px solid black;">
+                                        <div class="col-md-3" border="1">BP : </div>
+                                        <div class="col-md-9">&lt;input type="text" id="bp" value=<t t-esc="person.id_no"/> /&gt;</div>
+                                    </div>
+                                    <div class="row" style="border: 1px solid black;">
+                                        <div class="col-md-3" border="1">Service Age : </div>
+                                        <div class="col-md-9"><t t-esc="person.service_length"/></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">Mobile :</div>
+                                        <div class="col-md-9"> &lt;input type="text" id="mobile" value=<t t-esc="person.mobile"/>&gt;</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">Post :</div>
+                                        <div class="col-md-9">
+                                            &lt;select id="unit" name="unit" form="unit_form" value=<t t-esc="person.post.id"/>&gt;
+                                                <t t-foreach="posts" t-as="post" >
+
+                                                    &lt;option value=<t t-esc="post.id" /> &gt; <t t-esc="post.name"/>&lt;/option&gt;
+                                                </t>
+                                            &lt;/select&gt;
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">Unit :</div>
+                                        <div class="col-md-9">
+                                            &lt;select id="unit" name="unit" form="unit_form" value=<t t-esc="person.unit.name"/>&gt;
+                                                <t t-foreach="units" t-as="unit" >
+
+                                                    &lt;option value=<t t-esc="unit.id" /> &gt; <t t-esc="unit.name"/>&lt;/option&gt;
+                                                </t>
+                                            &lt;/select&gt;
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <t t-set="collection" t-value="person.services"/>
+                                    <div>Ribbon for Service Length</div>
+                                    <t t-call="ribbon.list_of_ribbons"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <t t-set="collection" t-value="person.awards"/>
+                                    <div>Personal Awards</div>
+                                    <t t-call="ribbon.list_of_ribbons"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <t t-set="collection" t-value="person.missions"/>
+                                    <div>Missions</div>
+                                    <t t-call="ribbon.list_of_ribbons"/>
+                                </div>
+                                <div class="col-md-2">
+                                    <t t-set="collection" t-value="person.missions"/>
+                                    <div>Posting</div>
+                                    <t t-call="ribbon.list_of_ribbons"/>
+                                </div>
+                            </div>
+                                <input type="submit" value="Submit" ></input>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+        <record id="action_hello_world" model="ir.actions.client">
+            <field name="name">Tutorial Demo</field>
+            <field name="tag">ribbon.action</field>
+        </record>
+        <menuitem name="Hello World" parent="ribbon_main" id="ribbon_mnu_root" action="action_hello_world"/>
+
+    </data>
+</odoo>

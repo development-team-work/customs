@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 # Part of eagle. See LICENSE file for full copyright and licensing details.
+
+
+
+
 {
     'name' : 'Police Ribbon And Medal',
     'version' : '1.2.0.1',
@@ -15,14 +19,22 @@ Riboon And Medal Indicator
     'depends' : ['eagle_shop'],
     'data': [
         'data/ribbon.force.csv',
-        'data/ribbon.regulation.csv',
         'data/ribbon.rank.csv',
         'data/ribbon.post.csv',
+        'data/product.attribute.csv',
+        'data/product.attribute.value.csv',
         'data/ribbon.force.unit.csv',
         'data/data/ribbon.force.unit.csv',
         'data/ribbon.acquisition.rule.csv',
+        'data/ribbon.extension.csv',
+        'data/ribbon.regulation.csv',
         'views/res_partner.xml',
+        'views/product.xml',
+        'views/ribbon_force.xml',
         'views/ribbon.xml',
+        'views/templates.xml',
+        'views/ribbon_regulation.xml',
+        'views/test.xml',
         # 'views/ribbon_sales.xml',
         # 'views/ribbon_quotation.xml',
         'security/ir.model.access.csv',
@@ -32,7 +44,7 @@ Riboon And Medal Indicator
     'demo': [
 
     ],
-    'qweb': [
+    'qweb': ['static/src/xml/hello_world.xml',
 
     ],
     'installable': True,
