@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <!-- To Whom It May Concern start -->
+            <!-- <tree view start> -->
+            <record id="view_to_whom_certificate_tree" model="ir.ui.view">
+                <field name="name">to_whom.model.tree</field>
+                <field name="model">to_whom.model</field>
+                <field name="priority" eval="8" />
+                <field name="arch" type="xml">
+                    <tree string="To Whom May It Concern" default_order="id desc">
+                        <field name="name" />
+                         <field name="date" />
+                        <field name="commercial_invoice_no" />
+                        <field name="customer_name" />
+                        <field name="truck_receipt_no" />
+                        <field name="lc_num" />
+                        <field name="delivery_challan_no" />
+                    </tree>
+                </field>
+            </record>
+            <!-- <tree view end> -->
+
+            <!-- <form view start> -->
+            <record id="view_to_whom_certificate_form" model="ir.ui.view">
+                <field name="name">to_whom.model.form</field>
+                <field name="model">to_whom.model</field>
+                <field name="arch" type="xml">
+                    <form string="To Whom May It Concern">
+                        <header>
+                        </header>
+        
+                        <sheet string="To Whom May It Concern">
+                            <div class='col-xs-6'>
+                                <group>
+                                    <field name="commercial_invoice_id" />  
+                                    <field name="name" />  
+                                    <field name="c_of_o_name"/>
+                                    <field name="quality_name"/>
+                                    <field name="date" />
+                                </group>
+                            </div>
+                            <div class='col-xs-6'></div>
+                            
+                            <div class="col-xs-12" style='margin-top:10px;'>
+                                <h2 class="mt1 com_invoice_title">
+                                    <span class="com_invoice_title_span">TO WHOME IT MAY CONCERN</span>
+                                </h2>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-xs-12" style='margin-top:30px;'>
+                                    <group>
+                                        <field name="letter1"/>
+                                        <field name="letter2"/>
+                                        <field name="letter3" />
+                                        <field name="letter4" />
+                                        <field name="letter5" />
+                                        <field name="letter6" />
+                                        <field name="letter7" />
+                                        <field name="country_of_origin" invisible="1"/>
+                                    </group>
+                                    <p invisible="1">
+                                        This is to certify that we are the manufacturer of cotton spun yarn and supplied <field name="ordered_products_total_quantity" class='oe_inline' nolabel="1"/> kgs. of <field name="commodity" class='oe_inline' nolabel="1"/> to <field name="customer_name" class='oe_inline' nolabel="1"/> <field name="customer_full_address" class='oe_inline' nolabel="1"/> under our Commercial Invoice No. <field name="commercial_invoice_no" class='oe_inline' nolabel="1"/> dated <field name="commercial_invoice_created_date" class='oe_inline' nolabel="1"/> Proforma Invoice No. <field name="proforma_invoice_no" class='oe_inline' nolabel="1"/> dated <field name="proforma_invoice_created_date" class='oe_inline' nolabel="1"/> Truck Receipt No. <field name="truck_receipt_no" class='oe_inline' nolabel="1"/> dated <field name="truck_challan_created_date" class='oe_inline' nolabel="1"/> Delivery Challan No. <field name="delivery_challan_no" class='oe_inline' nolabel="1"/> dated <field name="delivery_challan_created_date" class='oe_inline' nolabel="1"/> against L/C No. <field name="lc_num" class='oe_inline' nolabel="1"/> dated <field name="lc_date" class='oe_inline' nolabel="1"/> which is issued against <field name="contact_no" class='oe_inline' nolabel="1"/>  and Locally manufactured at our factory <field name="dealer_factory_name" class='oe_inline' nolabel="1"/>.
+                                    </p>
+                                </div>
+                                <div class="col-xs-12" invisible="1">
+                                    <p>We also certify that we have not availed any Bonded Warehouse Facilities for the aforesaid supply and we did not or shall not apply for any duty draw back or cash Assistance facility against the aforesaid supply.</p>
+                                </div>
+                                <div class="col-xs-12" style=' margin-top:90px;' invisible="1">
+                                    <p stle='float:left;border-top:1px solid #000;'>Authorized Signature</p>
+                                </div>
+                            </div>
+                        </sheet>
+                    </form>
+                </field>            
+            </record> 
+            <!-- <form view end> -->  
+
+            <!-- <search start> -->
+            <record id="view_to_whom_concern_search" model="ir.ui.view">
+                <field name="name">to_whom.model.search</field>
+                <field name="model">to_whom.model</field>
+                <field name="priority" eval="8" />
+                <field name="arch" type="xml">
+                    <search string="To Whom May It Concern">
+                        <field name="name" />
+                        <field name="date" />
+                        <field name="ordered_products_total_quantity" />
+                        <field name="commodity" />
+                        <field name="customer_name" />
+                        <field name="customer_full_address" />
+                        <field name="commercial_invoice_no" />
+                        <field name="commercial_invoice_created_date" />
+                        <field name="proforma_invoice_no" />
+                        <field name="proforma_invoice_created_date" />
+                        <field name="truck_receipt_no" />
+                        <field name="truck_challan_created_date" />
+                        <field name="delivery_challan_no" />
+                        <field name="delivery_challan_created_date" />
+                        <field name="lc_num" />
+                        <field name="lc_date" />
+                        <field name="contact_no" />
+                        <field name="dealer_factory_name" />
+                    </search>
+                </field>
+            </record>
+            <!-- <search end> --> 
+
+            <!-- <act_window start> -->
+                <record id="act_open_to_whom_view" model="ir.actions.act_window">
+                    <field name="name">To Whom May It Concern</field>
+                    <field name="type">ir.actions.act_window</field>
+                    <field name="res_model">to_whom.model</field>
+                    <field name="view_type">form</field>
+                    <field name="view_mode">tree,form</field>
+                    <field name="search_view_id" ref='view_to_whom_concern_search'/>
+                    <field name='domain'>[]</field>
+                    <field name="context">{}</field>
+                    <field name="help" type="html">
+                        <p class="oe_view_nocontent_create">
+                            Click here to creat To Whom May It Concer
+                        </p>
+                    </field>
+                </record>
+                <record model="ir.actions.act_window.view" id="act_open_to_whom_view_tree">
+                    <field name="act_window_id" ref="act_open_to_whom_view" />
+                    <field name="sequence" eval="10" />
+                    <field name="view_mode">tree</field>
+                    <field name="view_id" ref="view_to_whom_certificate_tree" />
+                </record>
+                <record model="ir.actions.act_window.view" id="act_open_to_whom_view_form">
+                    <field name="act_window_id" ref="act_open_to_whom_view" />
+                    <field name="sequence" eval="20" />
+                    <field name="view_mode">form</field>
+                    <field name="view_id" ref="view_to_whom_certificate_form" />
+                </record>
+            <!-- <act_window end> -->
+        <!-- To Whom It May Concern end -->
+
+        <!-- <menuitem action="lc_management.act_open_to_whom_view" name="To Whom It May Concern" id="custom_to_whom" parent="sales_team.menu_sales"  sequence="106"/> -->
+
+
+<!-- REPORT SECTION START -->
+        
+        <!-- TO WHOM pdf start-->
+
+            <report
+            id="report_of_beneficiary_certificate" 
+            model="to_whom.model"
+            string="To Whome"
+            name="lc_management.to_whom"
+            file="lc_management.to_whom.model"
+            report_type="qweb-pdf"/>
+
+            <template id="to_whom">
+                    
+                <t t-call="report.external_layout" t-lang="en_US">              
+                    <t t-foreach="docs" t-as="o">
+                        <t>          
+                            <div class="page" style='margin-left:30px !important; padding-top:80px;'>
+                               <!-- < page content start> -->
+                               <div class="row">
+                                    <div class='col-xs-6'>
+                                        <group>
+                                            <p style='font-weight:bold;'>Ref.No : <span t-field="o.name" /></p>
+                                            <p style='font-weight:bold;'><span t-field="o.date" /></p> 
+                                        </group>
+                                    </div>
+                                    <div class='col-xs-6'></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="container">
+                                        <h3 class="text-center"><span style='border-bottom:2px solid #000;font-weight:bold;'>TO WHOME IT MAY CONCERN</span>
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-xs-12" style='margin-top:30px; font-size:14px;'>
+                                            <p style="text-align: justify!important; font-size:14px !important;">
+                                                <span t-field="o.letter1" />
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-12">
+                                            <p style="text-align: justify!important; font-size:14px !important;"><span t-field="o.letter2" /></p>
+                                        </div>
+                                        <div class="col-xs-12" style=' margin-top:90px;'>
+                                            <p stle='float:left;border-top:1px solid #000;font-weight:bold !important;'>Authorized Signature</p>
+                                        </div>
+                                    </div>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </template>  
+        <!-- TO WHOM pdf end-->
+
+        <!-- CERTIFICATE OF ORIGIN pdf start-->
+            <report
+            id="report_of_certificate_of_origin" 
+            model="to_whom.model"
+            string="Certificate Of Origin"
+            name="lc_management.certificate_of_origin"
+            file="lc_management.to_whom.model"
+            report_type="qweb-pdf"/>
+
+            <template id="certificate_of_origin">
+                    
+                <t t-call="report.external_layout" t-lang="en_US">              
+                    <t t-foreach="docs" t-as="o">
+                        <t>          
+                            <div class="page" style='margin-left:30px !important; padding-top:80px;'>
+                               <!-- < page content start> -->
+                               <div class="row">
+                                <div class='col-xs-6'>
+                                        <group>
+                                            <p style='font-weight:bold;'>Ref.No : <span t-field="o.c_of_o_name" /></p>
+                                            <p style='font-weight:bold;'><span t-field="o.date" /></p> 
+                                        </group>
+                                    </div>
+                                    <div class='col-xs-6'></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="container">
+                                        <h3 class="text-center"><span style='border-bottom:2px solid #000;font-weight:bold;'>CERTIFICATE OF ORIGIN</span>
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-xs-12" style='margin-top:30px; font-size:14px;'>
+                                            <p style="text-align: justify!important;font-size:14px !important;">
+                                                <span t-field="o.letter3" />
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-12" style=' margin-top:90px;'>
+                                            <p stle='float:left;border-top:1px solid #000;font-weight:bold !important;'>Authorized Signature</p>
+                                        </div>
+                                    </div>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </template>  
+        <!-- CERTIFICATE OF ORIGIN pdf end-->
+
+        <!-- Quality pdf start-->
+            <report
+            id="report_of_quality" 
+            model="to_whom.model"
+            string="Quality"
+            name="lc_management.quality"
+            file="lc_management.to_whom.model"
+            report_type="qweb-pdf"/>
+
+            <template id="quality">
+                    
+                <t t-call="report.external_layout" t-lang="en_US">              
+                    <t t-foreach="docs" t-as="o">
+                        <t>          
+                            <div class="page" style='margin-left:30px !important; padding-top:80px;'>
+                               <!-- < page content start> -->
+                               <div class="row">
+                                <div class='col-xs-6'>
+                                        <group>
+                                            <p style='font-weight:bold;'>Ref.No : <span t-field="o.quality_name" /></p>
+                                            <p style='font-weight:bold;'><span t-field="o.date" /></p> 
+                                        </group>
+                                    </div>
+                                    <div class='col-xs-6'></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="container">
+                                        <h3 class="text-center"><span style='border-bottom:2px solid #000;font-weight:bold;'>QUALITY AND QUANTITY CERTIFICATE</span>
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-xs-12" style='margin-top:30px; font-size:14px;'>
+                                            <p style="text-align: justify!important; font-size:14px !important;">
+                                                <span t-field="o.letter4" />
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-12" style='margin-top:30px; font-size:14px;'>
+                                            <p style="text-align: justify!important; font-size:14px !important;">
+                                                <span t-field="o.letter5" />
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-12" style=' margin-top:90px;'>
+                                            <p stle='float:left;border-top:1px solid #000;font-weight:bold !important;'>Authorized Signature</p>
+                                        </div>
+                                    </div>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </template>  
+        <!-- Quality pdf end-->
+
+        <!-- Non Uzbek pdf start-->
+            <report
+            id="report_of_non_uzbek" 
+            model="to_whom.model"
+            string="Non Uzbek"
+            name="lc_management.non_uzbek"
+            file="lc_management.to_whom.model"
+            report_type="qweb-pdf"/>
+
+            <template id="non_uzbek">
+                    
+                <t t-call="report.external_layout" t-lang="en_US">              
+                    <t t-foreach="docs" t-as="o">
+                        <t>          
+                            <div class="page" style='margin-left:30px !important; padding-top:80px;'>
+                               <!-- < page content start> -->
+                               <div class="row">
+                                <div class='col-xs-6'>
+                                        <group>
+                                            <p style='font-weight:bold;'>Ref.No : <span t-field="o.name" /></p>
+                                            <p style='font-weight:bold;'><span t-field="o.date" /></p> 
+                                        </group>
+                                    </div>
+                                    <div class='col-xs-6'></div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="container">
+                                        <h3 class="text-center"><span style='border-bottom:2px solid #000;font-weight:bold;'>CERTIFICATE</span>
+                                        </h3>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                        <div class="col-xs-12" style='margin-top:30px; font-size:14px;'>
+                                            <p style="text-align: justify!important; font-size:14px !important;">
+                                                <span t-field="o.letter6" />
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-12" style='margin-top:30px; font-size:14px;'>
+                                            <p style="text-align: justify!important; font-size:14px !important;">
+                                                <span t-field="o.letter7" />
+                                            </p>
+                                        </div>
+                                        <div class="col-xs-12" style=' margin-top:90px;'>
+                                            <p stle='float:left;border-top:1px solid #000;font-weight:bold !important;'>Authorized Signature</p>
+                                        </div>
+                                    </div>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+            </template>  
+        <!-- Non Uzbek pdf end-->
+
+<!-- REPORT SECTION END -->
+
+    </data>
+</odoo>
