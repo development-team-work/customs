@@ -69,7 +69,7 @@ class ProductPriceListIterms(models.Model):
         if self.applied_on != '2_product_category':
             self.categ_id = False
         if self.applied_on == '0_product_variant':
-            # self.product_id = self._context['default_product_id']
+            self.product_id = self._context['default_product_id']
         if self.applied_on == 'product_tmpl_id':
             self.product_tmpl_id = self._context['default_product_tmpl_id']
 

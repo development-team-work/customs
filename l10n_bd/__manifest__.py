@@ -1,34 +1,64 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-# Copyright (C) 2011 Smartmode LTD (<http://www.smartmode.co.uk>).
-
 {
     'name': 'Bangladesh - Accounting',
-    'version': '1.0',
-    'category': 'Localization',
+    'version': '2.0',
+    'category': 'Accounting/Localizations/Account Charts',
     'description': """
-This is the latest Bangladeshi Odoo localisation necessary to run Odoo accounting for Bangladeshi SME's with:
-=============================================================================================================
-    - a CT600-ready chart of accounts
-    - VAT100-ready tax structure
-    - InfoLogic UK counties listing
-    - a few other adaptations""",
-    'author': 'SM Ashraf',
-    'website': 'https://www.odoo.com/page/accounting',
+This is the base module to manage the accounting chart for Bangladesh in Odoo.
+==============================================================================
+
+After installing this module, the Configuration wizard for accounting is launched.
+    * We have the account templates which can be helpful to generate Charts of Accounts.
+    * On that particular wizard, you will be asked to pass the name of the company,
+      the chart template to follow, the no. of digits to generate, the code for your
+      account and bank account, currency to create journals.
+
+Thus, the pure copy of Chart Template is generated.
+
+Wizards provided by this module:
+--------------------------------
+    * Partner VAT Intra: Enlist the partners with their related VAT and invoiced
+      amounts. Prepares an XML file format.
+
+        **Path to access :** Invoicing/Reporting/Legal Reports/Bangladesh Statements/Partner VAT Intra
+    * Periodical VAT Declaration: Prepares an XML file for Vat Declaration of
+      the Main company of the User currently Logged in.
+
+        **Path to access :** Invoicing/Reporting/Legal Reports/Bangladesh Statements/Periodical VAT Declaration
+    * Annual Listing Of VAT-Subjected Customers: Prepares an XML file for Vat
+      Declaration of the Main company of the User currently Logged in Based on
+      Fiscal year.
+
+        **Path to access :** Invoicing/Reporting/Legal Reports/Bangladesh Statements/Annual Listing Of VAT-Subjected Customers
+
+    """,
+    'author': 'Noviat, Odoo SA',
     'depends': [
         'account',
         'base_iban',
         'base_vat',
+        'l10n_multilang',
     ],
     'data': [
-        'data/l10n_bd_chart_data.xml',
-        'data/account.account.template.csv',
-        'data/account.chart.template.csv',
-        'data/account.tax.group.csv',
-        'data/account_tax_report_data.xml',
-        'data/account_tax_data.xml',
-        'data/account_chart_template_data.xml',
+        # 'data/account_chart_template_data.xml',
+        # 'data/account.account.template.csv',
+        # 'data/account_pcmn_bangladesh_data.xml',
+        # 'data/account_data.xml',
+        # 'data/account_tax_report_data.xml',
+        # 'data/account_tax_template_data.xml',
+        # 'data/l10n_bd_sequence_data.xml',
+        # 'data/fiscal_templates_data.xml',
+        # 'data/account_fiscal_position_tax_template_data.xml',
+        # 'data/account_reconcile_model_template.xml',
+        # 'data/account.group.template.csv',
+        # 'data/account_chart_template_configure_data.xml',
+        # 'data/menuitem_data.xml',
     ],
-    'demo' : ['demo/l10n_bd_demo.xml'],
+    'demo': [
+        # 'demo/l10n_bd_demo.xml',
+        # 'demo/demo_company.xml',
+    ],
+    # 'post_init_hook': 'load_translations',
 }

@@ -15,7 +15,7 @@ class res_partner(models.Model):
     # book_ids=fields.Many2many('product.template',string="Books")
     published=fields.One2many('product.template','publisher_id',string="Publications", translate=True)
     written=fields.Many2many('product.template','partner_product_template_rel','writer_ids','written',string="Written Books", translate=True)
-    balance=fields.Monetary(string="Balance",compute='calculate_balance',  help="Balance for this account.")
+    balance=fields.Monetary(string="Balance")#,compute='calculate_balance',  help="Balance for this account.")
 
 
     def name_get(self):
@@ -28,32 +28,32 @@ class res_partner(models.Model):
             result.append((record.id, record_name))
         return result
 
-    @api.depends_context('force_company')
-    def calculate_balance(self):
-        tables, where_clause, where_params = self.env['account.move.line'].with_context(state='posted',
-                                                                                        company_id=self.env.company.id)._query_get()
-        where_params = [tuple(self.ids)] + where_params
-        if where_clause:
-            where_clause = 'AND ' + where_clause
-        self._cr.execute("""SELECT account_move_line.partner_id, act.type, SUM(account_move_line.amount_residual)
-                         FROM """ + tables + """
-                         LEFT JOIN account_account a ON (account_move_line.account_id=a.id)
-                         LEFT JOIN account_account_type act ON (a.user_type_id=act.id)
-                         WHERE act.type IN ('receivable','payable')
-                         AND account_move_line.partner_id IN %s
-                         AND account_move_line.reconciled IS FALSE
-                         """ + where_clause + """
-                         GROUP BY account_move_line.partner_id, act.type
-                         """, where_params)
-        treated = self.browse()
-        bal=0
-        for pid, type, val in self._cr.fetchall():
-            partner = self.browse(pid)
-            if type == 'receivable':
-                bal = bal+val
-            elif type == 'payable':
-                bal = bal+val
-        self.balance=bal
+    # @api.depends_context('force_company')
+    # def calculate_balance(self):
+    #     tables, where_clause, where_params = self.env['account.move.line'].with_context(state='posted',
+    #                                                                                     company_id=self.env.company.id)._query_get()
+    #     where_params = [tuple(self.ids)] + where_params
+    #     if where_clause:
+    #         where_clause = 'AND ' + where_clause
+    #     self._cr.execute("""SELECT account_move_line.partner_id, act.type, SUM(account_move_line.amount_residual)
+    #                      FROM """ + tables + """
+    #                      LEFT JOIN account_account a ON (account_move_line.account_id=a.id)
+    #                      LEFT JOIN account_account_type act ON (a.user_type_id=act.id)
+    #                      WHERE act.type IN ('receivable','payable')
+    #                      AND account_move_line.partner_id IN %s
+    #                      AND account_move_line.reconciled IS FALSE
+    #                      """ + where_clause + """
+    #                      GROUP BY account_move_line.partner_id, act.type
+    #                      """, where_params)
+    #     treated = self.browse()
+    #     bal=0
+    #     for pid, type, val in self._cr.fetchall():
+    #         partner = self.browse(pid)
+    #         if type == 'receivable':
+    #             bal = bal+val
+    #         elif type == 'payable':
+    #             bal = bal+val
+    #     self.balance=bal
 
     def _get_name(self):
         """ Utility method to allow name_get to be overrided without re-browse the partner """
