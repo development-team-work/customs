@@ -1,24 +1,24 @@
 id,name,force_id/id,acquisition/id,shedule_date,serial,service_length,default_extension/id
-__export__.ribbon_regulation_1,Seniority 1,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_1,,0,10,__export__.ribbon_extension_1
-__export__.ribbon_regulation_2,Seniority 2,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_1,,0,20,__export__.ribbon_extension_1
-__export__.ribbon_regulation_3,Seniority 3,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_1,,0,27,__export__.ribbon_extension_1
-__export__.ribbon_regulation_4,Shadhinata,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_1,,0,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_5,Rajatjayanti,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_1,,0,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_6,Election 91,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_4,1991-02-27,0,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_7,Election 96,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_4,1996-06-12,0,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_8,Election 2001,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_4,2001-10-01,0,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_9,Nirapatta,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_2,,0,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_10,BPM Gallantry,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_3,,1,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_11,BPM Service,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_3,,2,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_12,PPM Gallantry,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_3,,3,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_13,PPM Service,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_3,,4,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_14,IG Badge A,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_3,,4,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_15,IG Badge B,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_3,,4,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_16,IG Badge C,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_3,,4,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_17,IG Badge D,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_3,,4,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_18,IG Badge E,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_3,,4,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_19,IG Badge F,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_3,,4,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_20,BPA,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_2,,4,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_21,PSC,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_2,,4,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_22,Unamid,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_2,,4,0,__export__.ribbon_extension_1
-__export__.ribbon_regulation_23,Unmit,__export__.ribbon_force_1,__export__.ribbon_acquisition_rule_2,,4,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_1,Seniority 1,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_1,,0,10,__export__.ribbon_extension_1
+__export__.ribbon_regulation_2,Seniority 2,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_1,,0,20,__export__.ribbon_extension_1
+__export__.ribbon_regulation_3,Seniority 3,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_1,,0,27,__export__.ribbon_extension_1
+__export__.ribbon_regulation_4,Shadhinata,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_1,,0,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_5,Rajatjayanti,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_1,,0,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_6,Election 91,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_4,1991-02-27,0,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_7,Election 96,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_4,1996-06-12,0,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_8,Election 2001,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_4,2001-10-01,0,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_9,Nirapatta,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_2,,0,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_10,BPM Gallantry,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_3,,1,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_11,BPM Service,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_3,,2,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_12,PPM Gallantry,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_3,,3,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_13,PPM Service,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_3,,4,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_14,IG Badge A,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_3,,4,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_15,IG Badge B,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_3,,4,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_16,IG Badge C,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_3,,4,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_17,IG Badge D,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_3,,4,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_18,IG Badge E,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_3,,4,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_19,IG Badge F,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_3,,4,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_20,BPA,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_2,,4,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_21,PSC,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_2,,4,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_22,Unamid,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_2,,4,0,__export__.ribbon_extension_1
+__export__.ribbon_regulation_23,Unmit,__export__.ribbon_force_4,__export__.ribbon_acquisition_rule_2,,4,0,__export__.ribbon_extension_1

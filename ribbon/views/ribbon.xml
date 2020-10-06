@@ -380,6 +380,7 @@
                         <field name="name"/>
                         <field name="code"/>
                         <field name="force_name"/>
+                        <field name="rank_id"/>
                     </group>
                 </form>
             </field>

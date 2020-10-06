@@ -54,5 +54,6 @@ class RibbonMedalsPost(models.Model):
     _name="ribbon.post"
     _description = "Post of a force different of his rank ie; Comissioner, director etc"
     name=fields.Char("Name of The Post",translate=True)
+    rank_id=fields.Many2one("ribbon.rank","Rank")
     code=fields.Char("Abbreviation",translate=True)
     force_name=fields.Many2one("ribbon.force","Force")

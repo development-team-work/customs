@@ -27,7 +27,7 @@
                                    </group>
                                    <group>
                                        <field name="rank"/>
-                                       <field name="post"/>
+                                       <field name="post" domain="[('rank_id','=',rank.id)]"/>
                                        <field name="unit"/>
                                        <field name="retired"/>
                                        <field name="service_length"/>
