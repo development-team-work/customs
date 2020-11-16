@@ -1,22 +1,23 @@
 # -*- coding: utf-8 -*-
 # Part of eagle. See LICENSE file for full copyright and licensing details.
 
-from odoo import _,fields, models,api
+from odoo import fields, models, api
 from odoo.osv.expression import get_unaccent_wrapper
 import re
 
-class res_partner(models.Model):
+
+class ResPartner(models.Model):
     _inherit = 'res.partner'
 
     name = fields.Char(index=True, translate=True)
-    nick = fields.Char("Nick Name",default="")
-    is_writer=fields.Boolean("Is a Writer",default=False , translate=True)
-    is_publisher=fields.Boolean("Is a Publisher",default=False , translate=True)
-    # book_ids=fields.Many2many('product.template',string="Books")
-    published=fields.One2many('product.template','publisher_id',string="Publications", translate=True)
-    written=fields.Many2many('product.template','partner_product_template_rel','writer_ids','written',string="Written Books", translate=True)
-    balance=fields.Monetary(string="Balance")#,compute='calculate_balance',  help="Balance for this account.")
-
+    nick = fields.Boolean("Nick Name", default=False)
+    is_writer = fields.Boolean("Is a Writer", default=False)
+    is_publisher = fields.Boolean("Is a Publisher", default=False)
+    book_ids = fields.Many2many('product.template', string="Books")
+    # published=fields.One2many('product.template','publisher_id',string="Publications")
+    written = fields.Many2many('product.template', 'partner_product_template_rel', 'writer_ids', 'written',
+                               string="Written Books")
+    balance = fields.Monetary(string="Balance")  # ,compute='calculate_balance',  help="Balance for this account.")
 
     def name_get(self):
         result = []
@@ -28,35 +29,35 @@ class res_partner(models.Model):
             result.append((record.id, record_name))
         return result
 
-    # @api.depends_context('force_company')
-    # def calculate_balance(self):
-    #     tables, where_clause, where_params = self.env['account.move.line'].with_context(state='posted',
-    #                                                                                     company_id=self.env.company.id)._query_get()
-    #     where_params = [tuple(self.ids)] + where_params
-    #     if where_clause:
-    #         where_clause = 'AND ' + where_clause
-    #     self._cr.execute("""SELECT account_move_line.partner_id, act.type, SUM(account_move_line.amount_residual)
-    #                      FROM """ + tables + """
-    #                      LEFT JOIN account_account a ON (account_move_line.account_id=a.id)
-    #                      LEFT JOIN account_account_type act ON (a.user_type_id=act.id)
-    #                      WHERE act.type IN ('receivable','payable')
-    #                      AND account_move_line.partner_id IN %s
-    #                      AND account_move_line.reconciled IS FALSE
-    #                      """ + where_clause + """
-    #                      GROUP BY account_move_line.partner_id, act.type
-    #                      """, where_params)
-    #     treated = self.browse()
-    #     bal=0
-    #     for pid, type, val in self._cr.fetchall():
-    #         partner = self.browse(pid)
-    #         if type == 'receivable':
-    #             bal = bal+val
-    #         elif type == 'payable':
-    #             bal = bal+val
-    #     self.balance=bal
+    @api.depends_context('force_company')
+    def calculate_balance(self):
+        tables, where_clause, where_params = self.env['account.move.line'].with_context(state='posted',
+                                               company_id=self.env.company.id)._query_get()
+        where_params = [tuple(self.ids)] + where_params
+        if where_clause:
+            where_clause = 'AND ' + where_clause
+        self._cr.execute("""SELECT account_move_line.partner_id, act.type, SUM(account_move_line.amount_residual)
+                         FROM """ + tables + """
+                         LEFT JOIN account_account a ON (account_move_line.account_id=a.id)
+                         LEFT JOIN account_account_type act ON (a.user_type_id=act.id)
+                         WHERE act.type IN ('receivable','payable')
+                         AND account_move_line.partner_id IN %s
+                         AND account_move_line.reconciled IS FALSE
+                         """ + where_clause + """
+                         GROUP BY account_move_line.partner_id, act.type
+                         """, where_params)
+        treated = self.browse()
+        bal=0
+        for pid, type, val in self._cr.fetchall():
+            partner = self.browse(pid)
+            if type == 'receivable':
+                bal = bal+val
+            elif type == 'payable':
+                bal = bal+val
+        self.balance=bal
 
     def _get_name(self):
-        """ Utility method to allow name_get to be overrided without re-browse the partner """
+        """ Utility method to allow name_get to be overridden without re-browse the partner """
         partner = self
         name = partner.name or ''
 
@@ -64,7 +65,7 @@ class res_partner(models.Model):
             if not name and partner.type in ['invoice', 'delivery', 'other']:
                 name = dict(self.fields_get(['type'])['type']['selection'])[partner.type]
             if not partner.is_company:
-                name = "%s, (%s)" % ( name,partner.commercial_company_name or partner.parent_id.name)
+                name = "%s, (%s)" % (name, partner.commercial_company_name or partner.parent_id.name)
         if self._context.get('show_address_only'):
             name = partner._display_address(without_company=True)
         if self._context.get('show_address'):
@@ -87,11 +88,11 @@ class res_partner(models.Model):
 
     @api.depends('is_company', 'name', 'parent_id.name', 'type', 'company_name')
     def _compute_display_name(self):
-        diff = dict(show_address=None, show_address_only=None, show_email=None,show_mobile=None,show_phone=None, html_format=None, show_vat=False)
+        diff = dict(show_address=None, show_address_only=None, show_email=None,show_mobile=None,
+        show_phone=None, html_format=None, show_vat=False)
         names = dict(self.with_context(**diff).name_get())
         for partner in self:
             partner.display_name = names.get(partner.id)
-
 #### this is for searching partner From others module ie. invoice, Purchase orders etc
     # here I added 2 lines,and edited one to search partner by Mobile
     #1 OR {mobile} {operator} {percent}
@@ -156,4 +157,5 @@ class res_partner(models.Model):
                 return self.browse(partner_ids).name_get()
             else:
                 return []
-        return super(res_partner, self)._name_search(name, args, operator=operator, limit=limit, name_get_uid=name_get_uid)
+        return super(ResPartner, self)._name_search(name, args, operator=operator, limit=limit,
+                                                    name_get_uid=name_get_uid)

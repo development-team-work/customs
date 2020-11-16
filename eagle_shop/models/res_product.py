@@ -20,20 +20,20 @@ class productBook(models.Model):
     uom_category_id = fields.Many2one("uom.category",related="uom_id.category_id")
     uom_available = fields.Many2many("uom.uom","product_uom_available_rel","uom_available","product_available","Avalilable Units Of Measure")
 
-    def name_get(self):
-        result = []
-
-        for record in self:
-            string = ""
-            if  len(record.writer_ids)>0:
-                for rec in record.writer_ids:
-                    if not rec.nick:
-                        rec.nick=""
-                    string= string+ " " + rec.nick
-
-            record_name = record.name + string
-            result.append((record.id, record_name))
-        return result
+    # def name_get(self):
+    #     result = []
+    #
+    #     for record in self:
+    #         string = ""
+    #         if  len(record.writer_ids)>0:
+    #             for rec in record.writer_ids:
+    #                 if not rec.nick:
+    #                     rec.nick=""
+    #                 string= string+ " " + rec.nick
+    #
+    #         record_name = record.name + string
+    #         result.append((record.id, record_name))
+    #     return result
 
 
 class product_product(models.Model):
