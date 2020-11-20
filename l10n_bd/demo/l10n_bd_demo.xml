@@ -1,38 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="l10n_bd.a100" model="account.account.template">
-        <field name="tag_ids" eval="[(4, ref('account.demo_capital_account'))]"/>
-    </record>
-    <record id="l10n_bd.a300" model="account.account.template">
-        <field name="tag_ids" eval="[(4, ref('account.demo_stock_account'))]"/>
-    </record>
-    <record id="l10n_bd.a7600" model="account.account.template">
-        <field name="tag_ids" eval="[(4, ref('account.demo_sale_of_land_account'))]"/>
-    </record>
-    <record id="l10n_bd.a6201" model="account.account.template">
-        <field name="tag_ids" eval="[(4, ref('account.demo_ceo_wages_account'))]"/>
-    </record>
-    <record id="l10n_bd.a242" model="account.account.template">
-        <field name="tag_ids" eval="[(4, ref('account.demo_office_furniture_account'))]"/>
-    </record>
-    <function model="account.account" name="write">
-        <value model="account.account" search="[('code', 'like', obj().env.ref('l10n_bd.a100').code)]"/>
-        <value eval="{'tag_ids': [(4, ref('account.demo_capital_account'))]}"/>
-    </function>
-    <function model="account.account" name="write">
-        <value model="account.account" search="[('code', 'like', obj().env.ref('l10n_bd.a300').code)]"/>
-        <value eval="{'tag_ids': [(4, ref('account.demo_stock_account'))]}"/>
-    </function>
-    <function model="account.account" name="write">
-        <value model="account.account" search="[('code', 'like', obj().env.ref('l10n_bd.a7600').code)]"/>
-        <value eval="{'tag_ids': [(4, ref('account.demo_sale_of_land_account'))]}"/>
-    </function>
-    <function model="account.account" name="write">
-        <value model="account.account" search="[('code', 'like', obj().env.ref('l10n_bd.a6201').code)]"/>
-        <value eval="{'tag_ids': [(4, ref('account.demo_ceo_wages_account'))]}"/>
-    </function>
-    <function model="account.account" name="write">
-        <value model="account.account" search="[('code', 'like', obj().env.ref('l10n_bd.a242').code)]"/>
-        <value eval="{'tag_ids': [(4, ref('account.demo_office_furniture_account'))]}"/>
-    </function>
+<data noupdate="1">
+        <record id="khanstore" model="res.partner">
+            <field name="name">Khan Store</field>
+            <field name="is_company">1</field>
+            <field name="street">Shop # C-1, Polwel Super Market</field>
+            <field name="zip">1200</field>
+            <field name="city">Noya Paltan</field>
+            <field name="country_id" ref="base.bd"/>
+            <field name="phone">+88 017 205 69256</field>
+            <field name="website">http://www.khan-store.com</field>
+            <field name="email">khan.store.digital@gmail.com</field>
+        </record>
+
+        <record id="res_partner_address_1" model="res.partner">
+            <field name="name">SM Ashraf</field>
+            <field name="parent_id" ref="khanstore"/>
+            <field name="email">dmashraf@gmail.com.com</field>
+            <field name="active">1</field>
+            <field name="type">contact</field>
+            <field name="street">69/2 VIP Road, Polwel Super Market</field>
+            <field name="zip">1200</field>
+            <field name="city">Dhaka</field>
+            <field name="country_id" ref="base.bd"/>
+        </record>
+    </data>
 </odoo>

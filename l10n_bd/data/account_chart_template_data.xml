@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-        <!-- Chart template -->
-        <record id="l10nbd_chart_template" model="account.chart.template">
-            <field name="name">Bangladeshi Chart Of Account</field>
-            <field name="bank_account_code_prefix">550</field>
-            <field name="cash_account_code_prefix">570</field>
-            <field name="transfer_account_code_prefix">580</field>
-            <field name="currency_id" ref="base.BDT"/>
-            <field name="spoken_languages" eval="'bn_IN'"/>
-        </record>
+    <data noupdate="1">
+        <function model="account.chart.template" name="try_loading">
+            <value eval="[ref('l10n_bd.l10n_bd')]"/>
+        </function>
+    </data>
 </odoo>

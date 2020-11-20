@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="partner_demo_company_be" model="res.partner">
-        <field name="name">BD Company CoA</field>
-        <field name="vat">BD246697724</field>
-        <field name="street">1021 Sint-Bernardsesteenweg</field>
-        <field name="city">Antwerpen</field>
+    <record id="partner_demo_company_bd" model="res.partner">
+        <field name="name">BD Company</field>
+        <field name="vat"></field>
+        <field name="street"></field>
+        <field name="city"></field>
         <field name="country_id" ref="base.bd"/>
-        
-        <field name="zip">2660</field>
-        <field name="phone">+32 470 12 34 56</field>
-        <field name="email">info@company.beexample.com</field>
-        <field name="website">www.beexample.com</field>
+        <field name="state_id" ref="base.state_uk119"/>
+        <field name="zip"></field>
+        <field name="phone">+32 010 12 34 56</field>
+        <field name="email">info@company.bdexample.com</field>
+        <field name="website">www.bdexample.com</field>
     </record>
 
-    <record id="demo_company_be" model="res.company">
-        <field name="name">BD Company CoA</field>
+    <record id="demo_company_bd" model="res.company">
+        <field name="name">BD Company</field>
         <field name="partner_id" ref="partner_demo_company_bd"/>
     </record>
 
@@ -28,7 +28,7 @@
     </function>
 
     <function model="account.chart.template" name="try_loading">
-        <value eval="[ref('l10n_bd.l10nbd_chart_template')]"/>
+        <value eval="[ref('l10n_bd.l10n_bd')]"/>
         <value model="res.company" eval="obj().env.ref('l10n_bd.demo_company_bd')"/>
     </function>
 </odoo>
