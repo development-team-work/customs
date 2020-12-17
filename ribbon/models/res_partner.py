@@ -11,12 +11,12 @@ from odoo.addons.base.models.res_partner import Partner
 class PersonalDetails(models.Model):
     _inherit = 'res.partner'
     _description = "force member's personal Details for ribbon, medal, cap, belt, ranks etc"
-    is_force=fields.Boolean("Is a Force",default=False , translate=True)
+    is_force=fields.Boolean("Is a Force",default=False )
     force_id = fields.Many2one("ribbon.force","Force")
     id_no=fields.Char("ID No")
-    rank = fields.Many2one("ribbon.rank","Rank",translate=True)
-    unit=fields.Many2one("ribbon.force.unit",string="Force Unit",translate=True ,domain="[('force_name','=',force_id)]")
-    post=fields.Many2one("ribbon.post",string="Post",translate=True)
+    rank = fields.Many2one("ribbon.rank","Rank")
+    unit=fields.Many2one("ribbon.force.unit",string="Force Unit",domain="[('force_name','=',force_id)]")
+    post=fields.Many2one("ribbon.post",string="Post")
     joining=fields.Date("Joining Date")
     bcs=fields.Boolean("BCS ?")
     retired=fields.Date("Retiered Date")
@@ -39,8 +39,9 @@ class PersonalDetails(models.Model):
     services=fields.One2many("ribbon.personal.service",'partner_id')
     awards=fields.One2many("ribbon.personal.award",'partner_id')
 
-    custom_acquired_ribbons = fields.Many2many("ribbon.customs.acquired.ribbon", "party_customs_acquired_rel")
-    acquired_ribbons = fields.Many2many("ribbon.acquired.ribbon", "party_acquired_rel")
+    custom_acquired_ribbons = fields.Many2many("ribbon.customs.acquired.ribbon")
+
+    acquired_ribbons = fields.Many2many("ribbon.acquired.ribbon")
     ribbon_set_image = fields.Html("Ribbons Immage", compute="getRibonImage")
     ribbon_point_size = fields.Integer("Point Size", default='15')
     ribbon_point_unit = fields.Selection(string='Unit', selection=[
@@ -49,44 +50,44 @@ class PersonalDetails(models.Model):
             ('px', 'Point (px)'), ],
              help='You can set here the size depends on screen.', default='px')
     #Start
-    def get_partners_service_ribbons(self,partner_id):
-        partner=self.env['res.partner'].search([('id','=',partner_id)])
-        if partner.retired:
-            ribbon_for_age = self.env["ribbon.regulation"].search([('force_id', '=', partner.force_id.id),
-                                                                   ('acquisition.id', '=', "1"),
-                                                                   ('service_length', '<=',
-                                                                    partner.service_year),
-                                                                   ("shedule_date", "<=", partner.retired)])
-        else:
-            ribbon_for_age = partner.env["ribbon.regulation"].search([('force_id', '=', partner.force_id.id),
-                                                                   ('acquisition.id', '=', "1"),
-                                                                   ('service_length', '<=',self.service_year)])
-        return ribbon_for_age
-
-    def get_partners_awards_ribbons(self,partner_id):
-        partner=self.env['res.partner'].search([('id','=',partner_id)])
-        ribbon_for_awards = self.env["ribbon.personal.award"].search([("partner_id", "=", partner_id)])
-        return ribbon_for_awards
-
-    def get_partners_mission_ribbons(self,partner_id):
-        ribbon_for_mission = self.env["ribbon.personal.mission"].search(
-            [("partner_id", "=", partner_id)])
-        return ribbon_for_mission
-
-    def get_partners_in_service_ribbons(self,partner_id):
-        partner = self.env['res.partner'].search([('id', '=', partner_id)])
-        if partner.retired:
-            in_service_ribbons = self.env["ribbon.regulation"].search([('force_id', '=', partner.force_id.id),
-                                                                   ('acquisition.name', '=', "In-service"),
-                                                                   ('shedule_date', '>=',partner.joining), ('shedule_date', '<=',partner.retired)])
-        else:
-            in_service_ribbons = self.env["ribbon.regulation"].search([('force_id', '=', partner.force_id.id),
-                                                                       ('acquisition.name', '=', "In-service"),
-                                                                       ('shedule_date', '>=', partner.joining)])
-
-        return in_service_ribbons
-
-    @api.onchange('missions', 'services', 'awards')
+#     def get_partners_service_ribbons(self,partner_id):
+#         partner=self.env['res.partner'].search([('id','=',partner_id)])
+#         if partner.retired:
+#             ribbon_for_age = self.env["ribbon.regulation"].search([('force_id', '=', partner.force_id.id),
+#                                                                    ('acquisition.id', '=', "1"),
+#                                                                    ('service_length', '<=',
+#                                                                     partner.service_year),
+#                                                                    ("shedule_date", "<=", partner.retired)])
+#         else:
+#             ribbon_for_age = partner.env["ribbon.regulation"].search([('force_id', '=', partner.force_id.id),
+#                                                                    ('acquisition.id', '=', "1"),
+#                                                                    ('service_length', '<=',self.service_year)])
+#         return ribbon_for_age
+#
+#     def get_partners_awards_ribbons(self,partner_id):
+#         partner=self.env['res.partner'].search([('id','=',partner_id)])
+#         ribbon_for_awards = self.env["ribbon.personal.award"].search([("partner_id", "=", partner_id)])
+#         return ribbon_for_awards
+#
+#     def get_partners_mission_ribbons(self,partner_id):
+#         ribbon_for_mission = self.env["ribbon.personal.mission"].search(
+#             [("partner_id", "=", partner_id)])
+#         return ribbon_for_mission
+#
+#     def get_partners_in_service_ribbons(self,partner_id):
+#         partner = self.env['res.partner'].search([('id', '=', partner_id)])
+#         if partner.retired:
+#             in_service_ribbons = self.env["ribbon.regulation"].search([('force_id', '=', partner.force_id.id),
+#                                                                    ('acquisition.name', '=', "In-service"),
+#                                                                    ('shedule_date', '>=',partner.joining), ('shedule_date', '<=',partner.retired)])
+#         else:
+#             in_service_ribbons = self.env["ribbon.regulation"].search([('force_id', '=', partner.force_id.id),
+#                                                                        ('acquisition.name', '=', "In-service"),
+#                                                                        ('shedule_date', '>=', partner.joining)])
+#
+#         return in_service_ribbons
+#
+#     @api.onchange('missions', 'services', 'awards')
     def get_acquired_ribbons(self):
         acq_ribbons=self.env['ribbon.acquired.ribbon'].search([('partner_id','=',self.id)])
         for rec in acq_ribbons:
@@ -103,35 +104,35 @@ class PersonalDetails(models.Model):
                                                                    ('service_length', '<=',
                                                                     self.service_year),
                                                                    ])
-        # todo here to apply search for shedule_date between joining date and Retired date
-        data = []
-        for rec in ribbon_for_age:
-            input = self.env["ribbon.acquired.ribbon"].create({
-                'partner_id': self.id,
-                'ribbon_id': rec.id,
-                'extension': 1,
-                'serial': rec.serial})
-            data.append(input.id)
-        self.acquired_ribbons = [(6, 0, data)]
-        ribbon_for_awards = self.env["ribbon.personal.award"].search([("partner_id", "=", self.id)])
-        for rec in ribbon_for_awards:
-            input = self.env["ribbon.acquired.ribbon"].create({
-                'partner_id': self.id,
-                'ribbon_id': rec.ribbon_id.id,
-                'extension': rec.extension.id,
-                'serial': rec.ribbon_id.serial})
-            self.acquired_ribbons = [(4, input.id)]
-        ribbon_for_missions = self.env["ribbon.personal.mission"].search(
-            [("partner_id", "=", self.id)])
-        for rec in ribbon_for_missions:
-            input = self.env["ribbon.acquired.ribbon"].create({
-                'partner_id': self.id,
-                'ribbon_id': rec.ribbon_id.id,
-                'extension': rec.extension.id,
-                'serial': rec.ribbon_id.serial})
-            self.acquired_ribbons = [(4, input.id)]
-
-    @api.onchange('ribbon_point_size', 'ribbon_point_unit', 'acquired_ribbons')
+#         # todo here to apply search for shedule_date between joining date and Retired date
+#         data = []
+#         for rec in ribbon_for_age:
+#             input = self.env["ribbon.acquired.ribbon"].create({
+#                 'partner_id': self.id,
+#                 'ribbon_id': rec.id,
+#                 'extension': 1,
+#                 'serial': rec.serial})
+#             data.append(input.id)
+#         self.acquired_ribbons = [(6, 0, data)]
+#         ribbon_for_awards = self.env["ribbon.personal.award"].search([("partner_id", "=", self.id)])
+#         for rec in ribbon_for_awards:
+#             input = self.env["ribbon.acquired.ribbon"].create({
+#                 'partner_id': self.id,
+#                 'ribbon_id': rec.ribbon_id.id,
+#                 'extension': rec.extension.id,
+#                 'serial': rec.ribbon_id.serial})
+#             self.acquired_ribbons = [(4, input.id)]
+#         ribbon_for_missions = self.env["ribbon.personal.mission"].search(
+#             [("partner_id", "=", self.id)])
+#         for rec in ribbon_for_missions:
+#             input = self.env["ribbon.acquired.ribbon"].create({
+#                 'partner_id': self.id,
+#                 'ribbon_id': rec.ribbon_id.id,
+#                 'extension': rec.extension.id,
+#                 'serial': rec.ribbon_id.serial})
+#             self.acquired_ribbons = [(4, input.id)]
+#
+#     @api.onchange('ribbon_point_size', 'ribbon_point_unit', 'acquired_ribbons')
     def getRibonImage(self):
         # print("in service Ribbon= " )
         # print(self.get_partners_in_service_ribbons(self.id))
@@ -232,75 +233,75 @@ class PersonalDetails(models.Model):
                 rec.service_month =0
                 rec.service_day = 0
 
-    @api.model
-    def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
-        self = self.with_user(name_get_uid or self.env.uid)
-        if args is None:
-            args = []
-        if name and operator in ('=', 'ilike', '=ilike', 'like', '=like'):
-            self.check_access_rights('read')
-            where_query = self._where_calc(args)
-            self._apply_ir_rules(where_query, 'read')
-            from_clause, where_clause, where_clause_params = where_query.get_sql()
-            from_str = from_clause if from_clause else 'res_partner'
-            where_str = where_clause and (" WHERE %s AND " % where_clause) or ' WHERE '
-
-            # search on the name of the contacts and of its company
-            search_name = name
-            if operator in ('ilike', 'like'):
-                search_name = '%%%s%%' % name
-            if operator in ('=ilike', '=like'):
-                operator = operator[1:]
-
-            unaccent = get_unaccent_wrapper(self.env.cr)
-
-            query = """SELECT res_partner.id
-                             FROM {from_str}
-                          {where} ({email} {operator} {percent}
-                               OR {display_name} {operator} {percent}
-                               OR {mobile} {operator} {percent}
-                               OR {phone} {operator} {percent}
-                               OR {id_no} {operator} {percent}
-                               OR {reference} {operator} {percent}
-                               OR {vat} {operator} {percent})
-                               -- don't panic, trust postgres bitmap
-                         ORDER BY {display_name} {operator} {percent} desc,
-                                  {display_name}
-                        """.format(from_str=from_str,
-                                   where=where_str,
-                                   operator=operator,
-                                   email=unaccent('res_partner.email'),
-                                   display_name=unaccent('res_partner.display_name'),
-                                   mobile=unaccent('res_partner.mobile'),
-                                   phone=unaccent('res_partner.phone'),
-                                   id_no=unaccent('res_partner.id_no'),
-                                   reference=unaccent('res_partner.ref'),
-                                   percent=unaccent('%s'),
-                                   vat=unaccent('res_partner.vat'), )
-
-            where_clause_params += [search_name] * 6  # for email / display_name, reference
-            where_clause_params += [re.sub('[^a-zA-Z0-9]+', '', search_name) or None]  # for vat
-            where_clause_params += [search_name]  # for order by
-            if limit:
-                query += ' limit %s'
-                where_clause_params.append(limit)
-            self.env.cr.execute(query, where_clause_params)
-            partner_ids = [row[0] for row in self.env.cr.fetchall()]
-
-            if partner_ids:
-                return self.browse(partner_ids).name_get()
-            else:
-                return []
-        return super(PersonalDetails, self)._name_search(name, args, operator=operator, limit=limit,
-                                                     name_get_uid=name_get_uid)
-
-
+#     @api.model
+#     def _name_search(self, name, args=None, operator='ilike', limit=100, name_get_uid=None):
+#         self = self.with_user(name_get_uid or self.env.uid)
+#         if args is None:
+#             args = []
+#         if name and operator in ('=', 'ilike', '=ilike', 'like', '=like'):
+#             self.check_access_rights('read')
+#             where_query = self._where_calc(args)
+#             self._apply_ir_rules(where_query, 'read')
+#             from_clause, where_clause, where_clause_params = where_query.get_sql()
+#             from_str = from_clause if from_clause else 'res_partner'
+#             where_str = where_clause and (" WHERE %s AND " % where_clause) or ' WHERE '
+#
+#             # search on the name of the contacts and of its company
+#             search_name = name
+#             if operator in ('ilike', 'like'):
+#                 search_name = '%%%s%%' % name
+#             if operator in ('=ilike', '=like'):
+#                 operator = operator[1:]
+#
+#             unaccent = get_unaccent_wrapper(self.env.cr)
+#
+#             query = """SELECT res_partner.id
+#                              FROM {from_str}
+#                           {where} ({email} {operator} {percent}
+#                                OR {display_name} {operator} {percent}
+#                                OR {mobile} {operator} {percent}
+#                                OR {phone} {operator} {percent}
+#                                OR {id_no} {operator} {percent}
+#                                OR {reference} {operator} {percent}
+#                                OR {vat} {operator} {percent})
+#                                -- don't panic, trust postgres bitmap
+#                          ORDER BY {display_name} {operator} {percent} desc,
+#                                   {display_name}
+#                         """.format(from_str=from_str,
+#                                    where=where_str,
+#                                    operator=operator,
+#                                    email=unaccent('res_partner.email'),
+#                                    display_name=unaccent('res_partner.display_name'),
+#                                    mobile=unaccent('res_partner.mobile'),
+#                                    phone=unaccent('res_partner.phone'),
+#                                    id_no=unaccent('res_partner.id_no'),
+#                                    reference=unaccent('res_partner.ref'),
+#                                    percent=unaccent('%s'),
+#                                    vat=unaccent('res_partner.vat'), )
+#
+#             where_clause_params += [search_name] * 6  # for email / display_name, reference
+#             where_clause_params += [re.sub('[^a-zA-Z0-9]+', '', search_name) or None]  # for vat
+#             where_clause_params += [search_name]  # for order by
+#             if limit:
+#                 query += ' limit %s'
+#                 where_clause_params.append(limit)
+#             self.env.cr.execute(query, where_clause_params)
+#             partner_ids = [row[0] for row in self.env.cr.fetchall()]
+#
+#             if partner_ids:
+#                 return self.browse(partner_ids).name_get()
+#             else:
+#                 return []
+#         return super(PersonalDetails, self)._name_search(name, args, operator=operator, limit=limit,
+#                                                      name_get_uid=name_get_uid)
+#
+#
 class ribbonMedalAcquiredRibbon(models.Model):
     _name="ribbon.acquired.ribbon"
     _description = "list of acquired rebbon"
     _order = "serial"
     partner_id = fields.Many2one("res.partner")
-    # force_member_id = fields.Many2one("res.partner")
+    force_member_id = fields.Many2one("res.partner")
     ribbon_id = fields.Many2one("ribbon.regulation")
     image = fields.Binary(
         "Image", related="ribbon_id.ribbon_tmpl_id.image_1920")
@@ -311,7 +312,7 @@ class ribbonCustomAcquiredRibbon(models.Model):
     _description = "list of customs acquired rebbon"
     _order = "serial"
     partner_id = fields.Many2one("res.partner")
-    # force_member_id = fields.Many2one("res.partner")
+    force_member_id = fields.Many2one("res.partner")
     ribbon_id = fields.Many2one("ribbon.regulation")
     image = fields.Binary(
         "Image", related="ribbon_id.ribbon_tmpl_id.image_1920")

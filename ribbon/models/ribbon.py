@@ -48,9 +48,9 @@ class ribbonMedalForceUnit(models.Model):
     name = fields.Char("Unit",translate=True)
     force_name=fields.Many2one("ribbon.force","Force")
     address=fields.Char("address",translate=True)
-    parent_unit=fields.Many2one("ribbon.force.unit","Parent Unit",translate=True)
-    chief_rank=fields.Many2one("ribbon.rank","Rank of Chief",translate=True)
-    chief=fields.Many2one("ribbon.post","Chief",translate=True)
+    parent_unit=fields.Many2one("ribbon.force.unit","Parent Unit")
+    chief_rank=fields.Many2one("ribbon.rank","Rank of Chief")
+    chief=fields.Many2one("ribbon.post","Chief")
 
 class RibbonMedalsPost(models.Model):
     _name="ribbon.post"

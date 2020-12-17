@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 # Part of eagle. See LICENSE file for full copyright and licensing details.
+
+
+
 {
     'name' : 'Police Ribbon And Medal',
     'version' : '1.2.0.1',
@@ -14,8 +17,10 @@ Riboon And Medal Indicator
     'images' : [],
     'depends' : ['eagle_shop'],
     'data': [
-        # 'data/ribbon.force.csv',
-        # 'data/ribbon.rank.csv',
+        'data/ribbon.force.csv',
+        'data/ribbon.post.csv',
+        'data/ribbon.rank.csv',
+        'data/ribbon.force.unit.csv',
         'data/ribbon.acquisition.rule.csv',
         'views/res_partner.xml',
         'views/ribbon.xml',

@@ -147,9 +147,9 @@
 <!--                            <field name="ribbon_id"/>-->
                             <field name="force_id" />
                             <field name="acquisition" />
-                            <field name="ribbon_tmpl_id" />
+                            <field name="ribbon_tmpl_id" domain="[('categ_id.name', '=', 'Ribbons')]"/>
                             <field name="name"  />
-                            <field name="medal_tmpl_id" />
+                            <field name="medal_tmpl_id"  domain="[('categ_id.name', '=', 'Medals')]"/>
 <!--                            <field name="medal_set_tmpl_id" invisible="True"/>-->
                         </group>
                         <group>
