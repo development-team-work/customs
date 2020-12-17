@@ -1,34 +1,28 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
-
-
 {
     'name': 'Bangladesh - Accounting',
-    'version': '1.0',
+    'version': '1.1',
     'category': 'Accounting/Localizations/Account Charts',
     'description': """
-This is the latest Bangladesh Odoo localisation necessary to run Odoo accounting for BD SME's
-=============================================================================================
+This is the base module to manage the generic accounting chart in Odoo.
+==============================================================================
+
+Install some generic chart of accounts.
     """,
-    'author': 'SM Ashraf',
-    'website': 'https://www.odoo.com/page/accounting',
     'depends': [
         'account',
-        'base_iban',
-        'base_vat',
     ],
     'data': [
-        'data/l10n_bd_chart_data.xml',
+        'data/l10n_bd.xml',
         'data/account.account.template.csv',
-        'data/account.chart.template.csv',
-        'data/account.tax.group.csv',
-        'data/account_tax_report_data.xml',
-        'data/account_tax_data.xml',
-        'data/account_chart_template_data.xml',
+        'data/l10n_bd_post.xml',
     ],
     'demo': [
-        'demo/l10n_bd_demo.xml',
-        'demo/demo_company.xml',
+        'demo/account_bank_statement_demo.xml',
+        'demo/account_invoice_demo.xml',
+        'demo/account_reconcile_model.xml',
     ],
+    'uninstall_hook': 'uninstall_hook',
 }
