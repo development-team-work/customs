@@ -2,7 +2,6 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 # Copyright (C) 2011 Smartmode LTD (<http://www.smartmode.co.uk>).
-
 {
     'name': 'Bangladesh - Check Printing',
     'version': '1.0',
@@ -19,9 +18,11 @@ This is the latest Bangladeshi Odoo localisation necessary to Print Checks  with
         'base_vat',
     ],
     'data': [
+        'data/report_paperformat_data.xml',
         'reports/report_print_check.xml',
         'reports/reports.xml',
-        'data/report_paperformat_data.xml',
+
     ],
     'demo' : ['demo/l10n_bd_check_printing_demo.xml'],
 }
+

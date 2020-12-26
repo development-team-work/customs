@@ -4,8 +4,8 @@
         <template id="report_print_check">
         <t t-call="web.html_container">
 
-                <t t-set="data_report_margin_top" t-value="3"/>
-                <t t-set="data_report_margin_left" t-value="3"/>
+                <t t-set="data_report_margin_top" t-value="2"/>
+                <t t-set="data_report_margin_left" t-value="0"/>
                 <t t-set="data_report_header_spacing" t-value="2"/>
                 <t t-set="data_report_dpi" t-value="110"/>
             <style>
@@ -15,15 +15,17 @@
     transform: rotate(270deg);
 }
 </style>
-                <div class="page">
-                    <div class="rotate" style="border-style: double;height:900px;width:1900px; top:20px;">
-                        <div style="margin-top:20px;margin-left:20px" ><t t-esc="docs.payment_date"/></div>
-                        <div style="margin-top:20px;margin-left:20px" ><t t-esc="docs.partner_id.name"/></div>
-
-                        <div style="margin-left:20px"><t t-esc="docs.check_amount_in_words"/></div>
-                        <div > <t t-esc="docs.amount"/></div>
+<!--                <div class="page">-->
+                    <div style="border-style: hidden ;height:446px;width:1820x;margin-top:1200px;margin-left:0px;
+                            -ms-transform: rotate(270deg); /* IE 9 */
+                            -webkit-transform: rotate(270deg); /* Chrome, Safari, Opera */
+                            transform: rotate(270deg);">
+                        <div style="font-size:35px; margin-left:260px; margin-top:70px" ><t t-esc="docs.date.strftime('%d %m %Y')"/></div>
+                        <div style="font-size:50px; margin-top:70px;margin-left:-390px;"><t t-esc="docs.partner_id.name"/></div>
+                        <div style="font-size:50px; margin-top:0px;margin-left:-390px;"><t t-esc="docs.check_amount_in_words"/></div>
+                        <div style="font-size:50px; margin-top:0px;margin-left:-380px;"><t t-esc="'৳{:,.2f}'.format(docs.amount)" /></div>
                     </div>
-                </div>
+<!--                </div>-->
         </t>
     </template>
 
