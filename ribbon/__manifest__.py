@@ -24,6 +24,7 @@ Riboon And Medal Indicator
         'data/ribbon.acquisition.rule.csv',
         'views/res_partner.xml',
         'views/ribbon.xml',
+        'views/prb.xml',
         # 'views/ribbon_sales.xml',
         # 'views/ribbon_quotation.xml',
         'security/ir.model.access.csv',

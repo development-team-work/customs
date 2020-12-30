@@ -8,7 +8,7 @@
                <form string="Ribbon Medal">
                    <group>
                        <group>
-                           <field name="ribbon_holder"/>
+                           <field name="ribbon_holder"  domain="[('is_force', '=', True)]"/>
                             <field name="force_id"/>
                             <field name="id_no" />
                             <field name="rank"/>

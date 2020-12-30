@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="ribbon_attribute_form" model="ir.ui.view">
+            <field name="name">ribbon.attribute.form</field>
+            <field name="model">ribbon.regulation.attribute.filter</field>
+            <field name="arch" type="xml">
+            <form>
+                <group>
+<!--                    <field name="regulation_id"/>-->
+                    <field name="attribute_id"/>
+                    <field name="attribute_value_id"/>
+                </group>
+            </form>
+            </field>
+        </record>
+        <record id="ribbon_attribute_list" model="ir.ui.view">
+            <field name="name">ribbon.attribute.list</field>
+            <field name="model">ribbon.regulation.attribute.filter</field>
+            <field name="arch" type="xml">
+            <tree editable="bottom">
+<!--                <field name="regulation_id"/>-->
+                <field name="attribute_id"/>
+                <field name="attribute_value_id"/>
+            </tree>
+            </field>
+        </record>
+
+        <record id="ribbon_attribute_action" model="ir.actions.act_window">
+            <field name="name">Ribbon Attribute </field>
+            <field name="res_model">ribbon.regulation.attribute.filter</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="ribbon_attribute_menu" name="Atributes"
+                         parent="ribbon_regulation_menu_root" action="ribbon_attribute_action"  groups="base.group_user,base.group_partner_manager"/>
+    </data>
+</odoo>

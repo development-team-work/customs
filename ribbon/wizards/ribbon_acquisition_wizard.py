@@ -51,7 +51,7 @@ class RibbonMedalAcquisitionWizard(models.TransientModel):
             input=self.env["ribbon.acquired.ribbon.wizard"].create({
             'partner_id': self.ribbon_holder.id,
             'ribbon_id': rec.id,
-            'extension': 1,
+            'extension': 0,
             'serial': rec.serial})
             data.append(input.id)
         self.acquired_ribbons=[(6,0,data)]
@@ -62,6 +62,14 @@ class RibbonMedalAcquisitionWizard(models.TransientModel):
                 'ribbon_id': rec.ribbon_id.id,
                 'extension': rec.extension.id,
                 'serial': rec.ribbon_id.serial})
+            self.acquired_ribbons=[(4,input.id)]
+        ribbon_for_in_service=self.env['res.partner'].get_partners_in_service_ribbons(self.ribbon_holder.id)
+        for rec in ribbon_for_in_service:
+            input=self.env["ribbon.acquired.ribbon.wizard"].create({
+                'partner_id': self.ribbon_holder.id,
+                'ribbon_id': rec.ribbon_id.id,
+                'extension': 0,
+                'serial': rec.serial})
             self.acquired_ribbons=[(4,input.id)]
         ribbon_for_missions = self.env["ribbon.personal.mission"].search(
             [("partner_id", "=", self.ribbon_holder.id)])
