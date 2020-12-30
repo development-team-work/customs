@@ -492,7 +492,7 @@
 <!--            <field name="view_id" ref="view_ribbon_personal_list"/>-->
         </record>
 <!--         Menues   -->
-        <menuitem id="ribbon_main" name="Ribbon/Medal"
+        <menuitem id="ribbon_main" name="Ribbon/Medal" web_icon="ribbon,static/description/icon.png"
                           groups="base.group_user,base.group_partner_manager"/>
         <menuitem id="ribbon_product_menu" parent="ribbon_main" name="Product Relation"
                          action="ribbon_product_action" groups="base.group_user,base.group_partner_manager"/>
