@@ -6,24 +6,45 @@
         <field name="model">tailor.measerment</field>
         <field name="arch" type="xml">
             <form>
+                <group >
                 <group name="partner" string="Partner">
                     <field name="partner_id"/>
                     <field name="tailor_item_id"/>
+                    <field name="attribute_template_id" domain="[('item_id','=',tailor_item_id)]"/>
                     <field name="measerment"/>
                     <field name="special_note"/>
                 </group>
+                </group>
                 <group>
-                    <field name="attribute_value_ids"  context="{'default_meserment_id':id}" nolabel="1" >
+                <group>
+                    <field name="attribute_value_ids"   nolabel="1" >
                         <tree editable="bottom">
                             <field name="measerment_id" invisible="1"/>
-                            <field name="attribute_id"/>
+                            <field name="tailor_item_id" invisible="1"/>
+                            <field name="attribute_id" domain="[('item_ids.id','=', tailor_item_id)]"/>
                             <field name="value"/>
                         </tree>
                     </field>
                 </group>
+                </group>
             </form>
         </field>
+    </record>    <record id="tailor_measerment_tree" model="ir.ui.view">
+        <field name="name">tailor.measerment.tree</field>
+        <field name="priority" eval="1"/>
+        <field name="model">tailor.measerment</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id"/>
+                <field name="tailor_item_id"/>
+                <field name="attribute_template_id" domain="[('item_id','=',tailor_item_id)]"/>
+                <field name="measerment"/>
+                <field name="special_note"/>
+                <field name="attribute_value_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
     </record>
+
     <record id="tailor_item_form" model="ir.ui.view">
         <field name="name">tailor.item</field>
         <field name="priority" eval="1"/>
@@ -35,7 +56,57 @@
                     <field name="product_tmpl_id"/>
                     <field name="attribute_ids" widget="many2many_tags"/>
                 </group>
+                <group>
+                    <field name="attribute_template_id"/>
+                </group>
             </form>
+        </field>
+    </record>
+    <record id="tailor_item_tree" model="ir.ui.view">
+        <field name="name">tailor.item.tree</field>
+        <field name="priority" eval="1"/>
+        <field name="model">tailor.item</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+                <field name="product_tmpl_id"/>
+                <field name="attribute_ids" widget="many2many_tags"/>
+                <field name="attribute_template_id" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="tailor_item_attribute_template_form" model="ir.ui.view">
+        <field name="name">tailor.item.attribute.template.form</field>
+        <field name="priority" eval="1"/>
+        <field name="model">tailor.item.attribute.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <group name="item" string="Items">
+                    <field name="name"/>
+                    <field name="item_id"/>
+<!--todo here to implement Doamin to show items attributes only-->
+                    <field name="value_line_ids">
+                        <tree editable="bottom">
+                            <field name="name" invisible="1"/>
+                            <field name="attribute_id"/>
+                            <field name="value"/>
+                        </tree>
+                    </field>
+                </group>
+            </form>
+        </field>
+    </record>
+    <record id="tailor_item_attribute_template_tree" model="ir.ui.view">
+        <field name="name">tailor.item.attribute.template.tree</field>
+        <field name="priority" eval="1"/>
+        <field name="model">tailor.item.attribute.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                    <field name="name"/>
+                    <field name="item_id"/>
+                    <field name="value_line_ids" widget="mny2many_tags"/>
+            </tree>
         </field>
     </record>
     <record id="tailor_measerment_attribute_value_form" model="ir.ui.view">
@@ -52,6 +123,7 @@
             </form>
         </field>
     </record>
+
     <record id="tailor_measerment_attribute_value_tree" model="ir.ui.view">
         <field name="name">tailor.measerment.attrbute.value.tree</field>
         <field name="priority" eval="1"/>
@@ -70,134 +142,44 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">tailor.measerment</field>
 <!--        <field name="view_type">form</field>-->
-        <field name="view_mode">form</field>
-        <field name="target">new</field>
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+    </record>
+    <record id="action_tailor_item" model="ir.actions.act_window">
+        <field name="name">Tailor Item</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tailor.item</field>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+    </record>
+    <record id="action_tailor_measerment_attribute_value" model="ir.actions.act_window">
+        <field name="name">Tailor Measerment Attribute Value</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tailor.measerment.attribute.value</field>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+    </record>
+    <record id="action_tailor_item_attribute_template" model="ir.actions.act_window">
+        <field name="name">Tailor Measerment Attribute Template</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tailor.item.attribute.template</field>
+<!--        <field name="view_type">form</field>-->
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
     </record>
 
-    <!--<record id="eagle_shop_res_partner_form_view_inherit" model="ir.ui.view">
-        <field name="name">eagle.shop.res.partner.form.inherit</field>
-        <field name="priority" eval="1"/>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_form"/>
+    <menuitem id="tailor_menu_root" web_icon="tailors,static/description/icon.png" action="mail.action_discuss" name="Tailor" groups="base.group_user,base.group_partner_manager" />
+    <menuitem id="tailor_menu_measerment" parent="tailor_menu_root" action="action_tailor_measerment" name="Measerment" groups="base.group_user,base.group_partner_manager" />
+    <menuitem id="tailor_menu_measerment_attribute_value" parent="tailor_menu_root"
+              action="action_tailor_measerment_attribute_value" name="Attribute Value"
+              groups="base.group_user,base.group_partner_manager" />
+    <menuitem id="tailor_menu_item_attribute_template" parent="tailor_menu_root"
+              action="action_tailor_item_attribute_template" name="Attribute template"
+              groups="base.group_user,base.group_partner_manager" />
+    <menuitem id="tailor_menu_item" parent="tailor_menu_root"
+              action="action_tailor_item" name="Tailor Item"
+              groups="base.group_user,base.group_partner_manager" />
 
-        <field name="arch" type="xml">
-             <field name="parent_id" position="before">
-                <label class="col-form-label" for="ref" />
-                <field name="ref"  placeholder="Refference Or Nick Name"/>
-            </field>
-            <xpath expr="//group[1]" position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-            <xpath expr="//page[1]" position="before">
-                <page string="Main" name="main" autofocus="autofocus">
-
-                    <group>
-                        <group>
-&lt;!&ndash;                            <field name="nick" />&ndash;&gt;
-                            <field name="type" groups="base.group_no_one"/>
-                            &lt;!&ndash;<label for="" name="address_name">
-                                <b attrs="{'invisible': [('type', '!=', 'contact')]}">Company Address</b>
-                                <b attrs="{'invisible': [('type', '!=', 'invoice')]}">Invoice Address</b>
-                                <b attrs="{'invisible': [('type', '!=', 'delivery')]}">Delivery Address</b>
-                                <b attrs="{'invisible': [('type', '!=', 'other')]}">Other Address</b>
-                                <b attrs="{'invisible': [('type', '!=', 'private')]}">Private Address</b>
-                                <b attrs="{'invisible': [('type', '!=', False)]}">Address</b>
-                            </label>&ndash;&gt;
-                            <div class="o_address_format">
-                                <field name="street" placeholder="Street..." class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
-                                <field name="street2" placeholder="Street 2..." class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
-                                <field name="city" placeholder="City" class="o_address_city" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
-                                <field name="state_id" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'country_id': country_id, 'zip': zip}"/>
-                                <field name="zip" placeholder="ZIP" class="o_address_zip" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
-                                <field name="country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
-                            </div>
-                            <field name="vat" placeholder="e.g. BE0477472701" attrs="{'readonly': [('parent_id','!=',False)]}"/>
-                        </group>
-                        <group>
-                            <field name="function" placeholder="e.g. Sales Director" attrs="{'invisible': [('is_company','=', True)]}"/>
-                            <field name="phone" widget="phone"/>
-                            <field name="mobile" widget="phone"/>
-                            <field name="user_ids" invisible="1"/>
-                            <field name="email" widget="email" context="{'gravatar_image': True}" attrs="{'required': [('user_ids','!=', [])]}"/>
-                            <field name="website" widget="url" placeholder="e.g. https://www.odoo.com"/>
-                            <field name="title" options="{&quot;no_open&quot;: True}" placeholder="e.g. Mister" attrs="{'invisible': [('is_company', '=', True)]}"/>
-                            <field name="active_lang_count" invisible="1"/>
-                            <label for="lang" attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}"/>
-                            <div class="o_row" attrs="{'invisible': [('active_lang_count', '&lt;=', 1)]}">
-                                <field name="lang"/>
-                                <button type="action" name="55" class="btn-sm btn-link mb4 fa fa-globe" aria-label="More languages" groups="base.group_system" title="More languages"/>
-                            </div>
-                            <field name="category_id" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}" placeholder="Tags..."/>
-                        </group>
-                    </group>
-                </page>
-            </xpath>
-
-            &lt;!&ndash;<xpath expr="//div[2]" position="after">
-                <div class="o_row" name="partner_property" >
-                    <field name="is_writer"  attrs="{'invisible': [('is_company','=', True)]}"/>
-                    <label class="col-form-label" for="is_writer"  attrs="{'invisible': [('is_company','=', True)]}">Is a Writer  </label>
-                    <field name="is_publisher"/>
-                    <label class="col-form-label" for="is_publisher">Is a Publisher  </label>
-                </div>
-            </xpath>&ndash;&gt;
-           &lt;!&ndash; <xpath expr="//page[@name='sales_purchases']" position="after">
-                <page name="book_writer_publisher" string="Writer &amp; Publisher"  attrs="{'invisible': [('is_writer','=', False),('is_publisher','=', False)]}">
-                    <group string="Writer and Publisher">
-                        <group>
-                            <field name="published" attrs="{'invisible': [('is_publisher','=',False)]}">
-                                <tree>
-                                    <field name="name"/>
-                                </tree>
-                            </field>
-                        </group>
-                        <group>
-                            <field name="written" attrs="{'invisible': [('is_writer','=',False)]}">
-                                <tree>
-                                    <field name="name"/>
-                                </tree>
-                            </field>
-                        </group>
-                    </group>
-                </page>
-            </xpath>&ndash;&gt;
-
-            <field name="city" position="replace">
-
-                <field name="city" placeholder="City/area" class="o_address_city" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'state_id': state_id}"/>
-            </field>
-            &lt;!&ndash;<div name="button_box" position="inside">
-                <button type="action"  class="oe_stat_button" icon="fa-balance-scale" name="%(action_account_partner_ledger_menus)d"
-                        context="{'default_partner_id': [(6,0, active_ids)]}">
-                    <div class="o_form_field o_stat_info">
-                        <span class="o_stat_value">
-                            <field name="balance" style="color:green;" attrs="{'invisible': [('balance', '>', 0)]}" widget='monetary' options="{'currency_field': 'currency_id'}"/>
-                            <field name="balance" style="color:red;" attrs="{'invisible': [('balance', '&lt;=', 0)]}" widget='monetary' options="{'currency_field': 'currency_id'}"/>
-                        </span>
-                        <span class="o_stat_text" style="color:green;" attrs="{'invisible': [('balance', '&gt;', 0)]}">Payable</span>
-                        <span class="o_stat_text" style="color:red;" attrs="{'invisible': [('balance', '&lt;=', 0)]}">Recievable</span>
-                    </div>
-                </button>
-            </div>
-&ndash;&gt;
-        </field>
-
-
-
-    </record>
--->
-    <!--<record model='ir.ui.view' id='view_res_partner_filter'>
-        <field name='name'>res.partner.select.inherit.base.partner.filter</field>
-        <field name='model'>res.partner</field>
-        <field name='inherit_id' ref='base.view_res_partner_filter'/>
-        <field name='arch' type='xml'>
-            <field name="name" position="after">
-                <field name="phone" string="Telephone" filter_domain="[('phone','ilike', self)]"/>
-                <field name="mobile" string="mobile" filter_domain="[('mobile','ilike', self)]"/>
-                <field name="city" string="City" filter_domain="[('city','ilike', self)]"/>
-                <field name="ref" string="Reference" filter_domain="[('ref','ilike', self)]"/>
-            </field>
-        </field>
-    </record>
--->
 </odoo>

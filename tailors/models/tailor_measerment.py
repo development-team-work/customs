@@ -9,7 +9,7 @@ import re
 class tailorProductTemplate(models.Model):
     _inherit = "product.template"
     tailoring_item = fields.Boolean("Is a Tailoring Item?", default="True")
-
+    item_id=fields.One2many('tailor.item','product_tmpl_id')
 class tailoringItemAttributes(models.Model):
     _name="tailor.item.attribute"
     _description="Attribute of the tailoring items i;e Pocket, loops, shape etc"
@@ -29,6 +29,7 @@ class tailoringItems(models.Model):
     _description="input Name of Tailoring Items Here"
     name=fields.Char('Name')
     attribute_ids=fields.Many2many("tailor.item.attribute","tailor_item_attribute_rel","item_ids","attribute_ids","Attributes")
+    attribute_template_id=fields.One2many('tailor.item.attribute.template','item_id',"Template Id")
     product_tmpl_id = fields.Many2one('product.template', required=True, ondelete='restrict', auto_join=True,
                                  string='Related product', help='Product-related data of the Tailoring Item')
     @api.onchange
@@ -48,9 +49,26 @@ class TailoringMeaserments(models.Model):
     name=fields.Char("Name",compute="get_measerment_name")
     tailor_item_id=fields.Many2one("tailor.item","Item Name")
     partner_id=fields.Many2one('res.partner',"Person")
+    product_tmpl_id=fields.Many2one('product.template',related="tailor_item_id.product_tmpl_id")
+    order_id=fields.Many2one("sale.order","last Order")
+    attribute_template_id=fields.Many2one('tailor.item.attribute.template','Template')
     attribute_value_ids=fields.One2many("tailor.measerment.attribute.value","measerment_id")
     measerment=fields.Char("Measerments")
     special_note=fields.Char("Note")
+    @api.onchange('attribute_template_id')
+    def attribute_template_onchange(self):
+        values={}
+        for rec in self:
+            newRecords=[]
+            for line in rec.attribute_template_id.value_line_ids:
+                # todo here to copy default values from template
+                values.update({'attribute_id':line.attribute_id.id,'value':line.value,'measerment_id':rec.id})
+                newRecord=self.env["tailor.measerment.attribute.value"].create(values)
+                newRecords.append(newRecord.id)
+            rec.attribute_value_ids=[(6,0,newRecords)]
+
+
+
     @api.model
     def get_measerment_name(self):
         for rec in self:
@@ -69,11 +87,40 @@ class TailoringMeaserments(models.Model):
 class tailorMeasermentAttributeValue(models.Model):
     _name="tailor.measerment.attribute.value"
     _description="Personal attribute values for Item"
+    name=fields.Char("Name",compute='get_name')
     measerment_id=fields.Many2one("tailor.measerment")
     partner_id=fields.Many2one('res.partner',"Person",related="measerment_id.partner_id")
+    tailor_item_id=fields.Many2one("tailor.item","Item Name",related="measerment_id.tailor_item_id")
     attribute_id=fields.Many2one('tailor.item.attribute','Attribute')
     value=fields.Char("Value")
     _sql_constraints = [
         ('measerment_attribute_uniq', 'unique(measerment_id,attribute_id)',
-         "Measerment and attribute combination must be unique.")
+         "Attribute Name must be unique.")
+    ]
+    @api.onchange('attribute_id')
+    def get_name(self):
+        for rec in self:
+            if rec.attribute_id.name and rec.value:
+                rec.name=rec.attribute_id.name + "-"+rec.value
+class tailoringItemAttributeTemplate(models.Model):
+    _name='tailor.item.attribute.template'
+    _description="input Name of Tailoring Items Here"
+    name=fields.Char('Name',translate="True",store="True")
+    item_id=fields.Many2one('tailor.item',"Item")
+    value_line_ids=fields.One2many("tailor.item.attribute.value.template","item_template_id","Values")
+    _sql_constraints = [
+        ('name_uniq', 'unique(name)',
+         "The Template name  must be unique, this name is already assigned to another Template.")
+    ]
+class tailorItemAttributeValueTemplate(models.Model):
+    _name="tailor.item.attribute.value.template"
+    _description="Template for attribute values for Item"
+    item_template_id=fields.Many2one('tailor.item.attribute.template','Item Template')
+    item_id=fields.Many2one('tailor.item',related="item_template_id.item_id")
+    name=fields.Char("Name",related="item_template_id.name", translate="True")
+    attribute_id=fields.Many2one('tailor.item.attribute','Attribute')
+    value=fields.Char("Value")
+    _sql_constraints = [
+        ('name_uniq', 'unique(name)',"template name must be unique."),
+        ('name_attribute_uniq', 'unique(name,attribute)',"template name attribute combination must be unique.")
     ]

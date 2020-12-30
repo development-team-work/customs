@@ -16,6 +16,7 @@ Customisation Eagle ERP
     'depends' : ['base','eagle_shop','sale','ribbon'],
     'data': [
         'views/tailor_measerment.xml',
+        'views/tailor_order.xml',
         'security/ir.model.access.csv',
         # 'views/res_config_settings_views.xml',
 

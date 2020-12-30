@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tailor_order_form_inherit" model="ir.ui.view">
+        <field name="name">tailor.order.form.inherit</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <page name="order_lines" position="after">
+                <page name="measerment" string="Measerment">
+                    <field name="measerment_ids" >
+                        <tree editable="bottom">
+                            <field name="name">haha</field>
+                            <field name="tailor_item_id"/>
+                            <field name="measerment"/>
+                        </tree>
+                    </field>
+                </page>
+            </page>
+        </field>
+    </record>
+
+
+
+</odoo>
