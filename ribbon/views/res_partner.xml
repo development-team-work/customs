@@ -7,7 +7,7 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
                 <field name="arch" type="xml">
-                    <xpath expr="//div[2]" position="after">
+                    <xpath expr="//sheet[1]/div[2]" position="after">
                         <div class="o_row" name="partner_property" >
                             <field name="is_force"  attrs="{'invisible': [('is_company','=', True)]}"/>
                             <label class="col-form-label" for="is_force"  attrs="{'invisible': [('is_company','=', True)]}">Is a Force  </label>

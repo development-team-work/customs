@@ -8,7 +8,7 @@
 </data>
 <data>
     <!-- Chart template account links -->
-    <record id="configurable_chart_template" model="account.chart.template">
+    <record id="bangladesh_chart_template" model="account.chart.template">
         <field name="complete_tax_set" eval="False"/>
         <field name="use_anglo_saxon" eval="True"/>
 
@@ -61,7 +61,7 @@
     </record>
 
    <record id="purchase_tax_template" model="account.tax.template">
-        <field name="chart_template_id" ref="configurable_chart_template"/>
+        <field name="chart_template_id" ref="bangladesh_chart_template"/>
         <field name="name">Purchase Tax 15%</field>
         <field name="amount">15</field>
         <field name="type_tax_use">purchase</field>
@@ -94,7 +94,7 @@
 </data>
 <data noupdate="1">
     <function model="account.chart.template" name="try_loading">
-        <value eval="[ref('l10n_bd.configurable_chart_template')]"/>
+        <value eval="[ref('l10n_bd.bangladesh_chart_template')]"/>
     </function>
 </data>
 </odoo>

@@ -1,28 +1,37 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
+# Copyright (C) 2011 Smartmode LTD (<http://www.smartmode.co.BD>).
+
 {
-    'name': 'Bangladesh - Accounting',
-    'version': '1.1',
+    'name': 'BD - Accounting',
+    'version': '1.0',
     'category': 'Accounting/Localizations/Account Charts',
     'description': """
-This is the base module to manage the generic accounting chart in Odoo.
-==============================================================================
-
-Install some generic chart of accounts.
-    """,
+This is the latest BD Odoo localisation necessary to run Odoo accounting for BD SME's with:
+=================================================================================================
+    - a CT600-ready chart of accounts
+    - VAT100-ready tax structure
+    - InfoLogic BD counties listing
+    - a few other adaptations""",
+    'author': 'SmartMode LTD',
+    'website': 'https://www.odoo.com/page/accounting',
     'depends': [
         'account',
+        'base_iban',
+        'base_vat',
     ],
     'data': [
-        'data/l10n_bd.xml',
+        'data/l10n_bd_chart_data.xml',
         'data/account.account.template.csv',
-        'data/l10n_bd_post.xml',
+        'data/account.chart.template.csv',
+        'data/account.tax.group.csv',
+        'data/account_tax_report_data.xml',
+        'data/account_tax_data.xml',
+        'data/account_chart_template_data.xml',
     ],
     'demo': [
-        'demo/account_bank_statement_demo.xml',
-        'demo/account_invoice_demo.xml',
-        'demo/account_reconcile_model.xml',
+        'demo/l10n_bd_demo.xml',
+        'demo/demo_company.xml',
     ],
-    'uninstall_hook': 'uninstall_hook',
 }

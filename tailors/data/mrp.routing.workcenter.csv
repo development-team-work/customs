@@ -1,0 +1,5 @@
+id,sequence,name,workcenter_id
+__export__.mrp_routing_workcenter_1,100,Cutting,Shop
+__export__.mrp_routing_workcenter_2,100,Sewing,Factory
+__export__.mrp_routing_workcenter_3,100,Hole Button,Hole Ghar
+__export__.mrp_routing_workcenter_4,100,Finishing,Shop

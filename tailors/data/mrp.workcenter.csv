@@ -1,0 +1,5 @@
+id,sequence,code,name
+__export__.mrp_workcenter_1,1,Shop,Shop
+__export__.mrp_workcenter_2,2,Fac,Factory
+__export__.mrp_workcenter_3,3,Lan,Laundry
+__export__.mrp_workcenter_4,4,Hole,Hole Ghar

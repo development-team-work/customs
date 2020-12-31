@@ -13,12 +13,14 @@ Customisation Eagle ERP
     'category': 'Custom',
     'website': 'http://www.eagle.com/page/billing',
     'images' : ['images/accounts.jpeg','images/bank_statement.jpeg','images/cash_register.jpeg','images/chart_of_accounts.jpeg','images/customer_invoice.jpeg','images/journal_entries.jpeg'],
-    'depends' : ['base','eagle_shop','sale','ribbon'],
+    'depends' : ['base','eagle_shop','sale','ribbon','delivery'],
     'data': [
         'data/res_config_setting.xml',
         'views/tailor_measerment.xml',
         'views/tailor_order.xml',
         'security/ir.model.access.csv',
+        'data/mrp.workcenter.csv',
+        'data/mrp.routing.workcenter.csv',
         # 'views/res_config_settings_views.xml',
 
     ],

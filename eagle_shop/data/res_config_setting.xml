@@ -2,7 +2,6 @@
 <odoo>
     <record id="res_config_settings_tailors" model="res.config.settings">
         <field name="group_mrp_routings" eval="True"/>
-        <field name="group_stock_production_lot" eval="True"/>
         <field name="group_product_variant" eval="True"/>
         <field name="group_uom" eval="True"/>
         <field name="group_stock_multi_locations" eval="True"/>
@@ -11,6 +10,6 @@
     </record>
     <function model="res.config.settings" name="execute">
         <value model="res.config.settings"
-               search="[('id', '=', ref('res_config_settings_tailors'))]"/>
+               search="[('id', '=', ref('res_config_settings_eagle_shop'))]"/>
     </function>
 </odoo>
