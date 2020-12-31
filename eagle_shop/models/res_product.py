@@ -38,7 +38,7 @@ class productBook(models.Model):
 
 class product_product(models.Model):
     _inherit = "product.product"
-    name = fields.Char('Name', index=True, translate=True )
+    name = fields.Char('Name', compute="get_name",inverse="get_name_inverse",store="True",index=True, translate=True )
     tmpl_name = fields.Char('Template Name', compute='get_name')
     is_book = fields.Boolean("Is A Book", default=False)
     publisher_id = fields.Many2one("res.partner", string="Publisher")
@@ -53,13 +53,15 @@ class product_product(models.Model):
     product_price_list_item_count = fields.Integer(
         '# Pricelist', compute='_compute_product_pricelist_items_count')
 
-    @api.depends('name')
+    @api.depends('tmpl_name')
     def get_name(self):
         """Get the name from the template if no name is set on the variant."""
         for record in self:
             record.tmpl_name=record.product_tmpl_id.name
             if record.name == False:
                 record.name = record.product_tmpl_id.name
+    def get_name_inverse(self):
+        print(self.name)
 
     def open_pricelist_rules(self):
         self.ensure_one()
