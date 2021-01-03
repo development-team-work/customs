@@ -29,6 +29,35 @@ class ResPartner(models.Model):
             result.append((record.id, record_name))
         return result
 
+    @api.onchange('country_id', 'mobile')
+    def _onchange_mobile(self):
+        """Tries to convert a local number to e.164 format based on the partners country, don't change if already in e164 format"""
+        if self.mobile:
+
+            if self.country_id and self.country_id.phone_code:
+                if self.mobile.startswith("0"):
+                    self.mobile = "+" + str(self.country_id.phone_code) + self.mobile[1:].replace(" ", "")
+                elif self.mobile.startswith("+"):
+                    self.mobile = self.mobile.replace(" ", "")
+                else:
+                    self.mobile = "+" + str(self.country_id.phone_code) + self.mobile.replace(" ", "")
+            else:
+                self.mobile = self.mobile.replace(" ", "")
+
+    @api.onchange('country_id', 'phone')
+    def _onchange_phone(self):
+        """Tries to convert a local number to e.164 format based on the partners country, don't change if already in e164 format"""
+        if self.phone:
+
+            if self.country_id and self.country_id.phone_code:
+                if self.mobile.startswith("0"):
+                    self.phone = "+" + str(self.country_id.phone_code) + self.phone[1:].replace(" ", "")
+                elif self.phone.startswith("+"):
+                    self.phone = self.phone.replace(" ", "")
+                else:
+                    self.phone = "+" + str(self.country_id.phone_code) + self.phone.replace(" ", "")
+            else:
+                self.phone = self.phone.replace(" ", "")
     @api.depends_context('force_company')
     def calculate_balance(self):
         tables, where_clause, where_params = self.env['account.move.line'].with_context(state='posted',
