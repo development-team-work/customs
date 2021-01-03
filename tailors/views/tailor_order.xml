@@ -9,7 +9,6 @@
                 <page name="measerment" string="Measerment">
                     <field name="measerment_ids" >
                         <tree editable="bottom">
-                            <field name="name">haha</field>
                             <field name="tailor_item_id"/>
                             <field name="measerment"/>
                         </tree>
