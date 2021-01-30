@@ -1,103 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="tailor_measerment_form" model="ir.ui.view">
-        <field name="name">tailor.measerment</field>
+    <record id="tailor_body_point_list" model="ir.ui.view">
+        <field name="name">tailor.body.pointlist</field>
+        <field name="model">tailor.body.point</field>
         <field name="priority" eval="1"/>
-        <field name="model">tailor.measerment</field>
         <field name="arch" type="xml">
-            <form>
-                <group >
-                <group name="partner" string="Partner">
+            <tree string="Body Points to Measure" >
+                <field name="name"/>
+                <field name="details"/>
+            </tree>
+        </field>
+    </record>
+    <record id="tailor_body_point_form" model="ir.ui.view">
+        <field name="name">tailor.body.point.form</field>
+        <field name="model">tailor.body.point</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="Body Points to Measure" >
+                <group>
+                    <field name="name"/>
+                    <field name="details"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="tailor_party_measerment_value_list" model="ir.ui.view">
+        <field name="name">tailor.party.measerment.value.list</field>
+        <field name="model">tailor.party.measerment.value</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <tree string="Body Points to Measure" >
+                <field name="partner_id"/>
+                <field name="body_point"/>
+                <field name="point_value"/>
+            </tree>
+        </field>
+    </record>
+    <record id="tailor_party_measerment_value_form" model="ir.ui.view">
+        <field name="name">tailor.party.measerment.value.form</field>
+        <field name="model">tailor.party.measerment.value</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="Body Points to Measure" >
+                <group>
                     <field name="partner_id"/>
-                    <field name="tailor_item_id"/>
-                    <field name="attribute_template_id" domain="[('item_id','=',tailor_item_id)]"/>
-                    <field name="measerment"/>
-                    <field name="special_note"/>
+                    <field name="body_point"/>
+                    <field name="point_value"/>
                 </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="tailor_party_measerment_value_list" model="ir.ui.view">
+        <field name="name">tailor.party.measerment.value.list</field>
+        <field name="model">tailor.party.measerment.value</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <tree string="Measerment of Body Points" editable="bottom ">
+                <field name="partner_id"/>
+                <field name="body_point"/>
+                <field name="point_value"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="tailor_item_list" model="ir.ui.view">
+        <field name="name">tailor.item.list</field>
+        <field name="model">tailor.item</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <tree string="Items">
+                <field name="name"/>
+                <field name="related_to"/>
+                <field name="product_tmpl_id"/>
+                <field name="product_id"/>
+                <field name="body_point_ids"/>
+            </tree>
+        </field>
+    </record>
+    <record id="tailor_item_form" model="ir.ui.view">
+        <field name="name">tailor.item.form</field>
+        <field name="model">tailor.item</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="Items" editable="bottom">
+                <group>
+
+                    <field name="name"/>
+                    <field name="related_to"/>
+                    <field name="product_tmpl_id"/>
+                    <field name="product_id"/>
                 </group>
                 <group>
-                <group>
-                    <field name="attribute_value_ids"   nolabel="1" >
-                        <tree editable="bottom">
-                            <field name="measerment_id" invisible="1"/>
-                            <field name="tailor_item_id" invisible="1"/>
-                            <field name="attribute_id" domain="[('item_ids.id','=', tailor_item_id)]"/>
-                            <field name="value"/>
+                    <field name="body_point_ids">
+                        <tree string="Body Points to Measure" editable="bottom ">
+                            <field name="name"/>
+                            <field name="details"/>
                         </tree>
                     </field>
                 </group>
-                </group>
-            </form>
-        </field>
-    </record>    <record id="tailor_measerment_tree" model="ir.ui.view">
-        <field name="name">tailor.measerment.tree</field>
-        <field name="priority" eval="1"/>
-        <field name="model">tailor.measerment</field>
-        <field name="arch" type="xml">
-            <tree>
-                <field name="partner_id"/>
-                <field name="tailor_item_id"/>
-                <field name="attribute_template_id" domain="[('item_id','=',tailor_item_id)]"/>
-                <field name="measerment"/>
-                <field name="special_note"/>
-                <field name="attribute_value_ids" widget="many2many_tags"/>
-            </tree>
-        </field>
-    </record>
-
-    <record id="tailor_item_form" model="ir.ui.view">
-        <field name="name">tailor.item</field>
-        <field name="priority" eval="1"/>
-        <field name="model">tailor.item</field>
-        <field name="arch" type="xml">
-            <form>
-                <group name="item" string="Items">
-                    <field name="name"/>
-                    <field name="related_to" />
-
-                    <field name="product_tmpl_id" attrs="{
-                        'invisible': [('related_to', '=', 'product')],
-                    }"/>
-                    <field name="product_id" attrs="{
-                        'invisible': [('related_to', '=', 'template')],
-                    }"/>
-                    <field name="attribute_ids" widget="many2many_tags"/>
-                </group>
                 <group>
-                    <field name="attribute_template_id"/>
+                    <field name="attribute_ids">
+                        <tree string="Body Points to Measure" editable="bottom ">
+                            <field name="name"/>
+                            <field name="details"/>
+                        </tree>
+                    </field>
                 </group>
             </form>
         </field>
     </record>
-    <record id="tailor_item_tree" model="ir.ui.view">
-        <field name="name">tailor.item.tree</field>
+
+    <record id="tailor_item_attribute_list" model="ir.ui.view">
+        <field name="name">tailor.item.attribute.list</field>
+        <field name="model">tailor.item.attribute</field>
         <field name="priority" eval="1"/>
-        <field name="model">tailor.item</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree string="Attributes">
                 <field name="name"/>
-                <field name="related_to"/>
-                <field name="product_tmpl_id" />
-                <field name="product_id"/>
-                <field name="attribute_ids" widget="many2many_tags"/>
-                <field name="attribute_template_id" widget="many2many_tags"/>
+                <field name="details"/>
             </tree>
         </field>
     </record>
+    <record id="tailor_item_attribute_form" model="ir.ui.view">
+        <field name="name">tailor.item.attribute.form</field>
+        <field name="model">tailor.item.attribute</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <form string="Attributes">
+                <group>
+                    <field name="name"/>
+                    <field name="details"/>
+                </group>
+            </form>
+        </field>
+    </record>
 
+    <record id="tailor_item_attribute_template_list" model="ir.ui.view">
+        <field name="name">tailor.item.attribute.template.list</field>
+        <field name="model">tailor.item.attribute.template</field>
+        <field name="priority" eval="1"/>
+        <field name="arch" type="xml">
+            <tree string="Attribute Templates">
+                <field name="name"/>
+                <field name="item_id"/>
+                <field name="attribute_line_ids"/>
+            </tree>
+        </field>
+    </record>
     <record id="tailor_item_attribute_template_form" model="ir.ui.view">
         <field name="name">tailor.item.attribute.template.form</field>
-        <field name="priority" eval="1"/>
         <field name="model">tailor.item.attribute.template</field>
+        <field name="priority" eval="1"/>
         <field name="arch" type="xml">
-            <form>
-                <group name="item" string="Items">
+            <form string="Attribute Templates">
+                <group>
+
                     <field name="name"/>
                     <field name="item_id"/>
-<!--todo here to implement Doamin to show items attributes only-->
-                    <field name="value_line_ids">
+                </group>
+                <group>
+                    <field name="attribute_line_ids">
                         <tree editable="bottom">
-                            <field name="name" invisible="1"/>
                             <field name="attribute_id"/>
                             <field name="value"/>
                         </tree>
@@ -106,90 +171,115 @@
             </form>
         </field>
     </record>
-    <record id="tailor_item_attribute_template_tree" model="ir.ui.view">
-        <field name="name">tailor.item.attribute.template.tree</field>
+    <record id="tailor_item_attribute_template_value_form" model="ir.ui.view">
+        <field name="name">tailor.item.attribute.template.value.form</field>
+        <field name="model">tailor.item.attribute.template.value</field>
         <field name="priority" eval="1"/>
-        <field name="model">tailor.item.attribute.template</field>
         <field name="arch" type="xml">
-            <tree>
+            <form string="Attribute Templates">
+                <group>
+
                     <field name="name"/>
+                    <field name="item_template_id"/>
                     <field name="item_id"/>
-                    <field name="value_line_ids" widget="mny2many_tags"/>
-            </tree>
-        </field>
-    </record>
-    <record id="tailor_measerment_attribute_value_form" model="ir.ui.view">
-        <field name="name">tailor.measerment.attrbute.value.form</field>
-        <field name="priority" eval="1"/>
-        <field name="model">tailor.measerment.attribute.value</field>
-        <field name="arch" type="xml">
-            <form>
-                <group name="Attribute" string="Items">
-                    <field name="measerment_id"/>
                     <field name="attribute_id"/>
-                    <field name="value" />
+                    <field name="value"/>
                 </group>
+
             </form>
         </field>
     </record>
-
-    <record id="tailor_measerment_attribute_value_tree" model="ir.ui.view">
-        <field name="name">tailor.measerment.attrbute.value.tree</field>
-        <field name="priority" eval="1"/>
-        <field name="model">tailor.measerment.attribute.value</field>
+    <record id="res_partner_form_nherit" model="ir.ui.view">
+        <field name='name'>view.partner.form.inherit</field>
+        <field name='model'>res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <tree>
-                <field name="measerment_id"/>
-                <field name="attribute_id"/>
-                <field name="value" />
-            </tree>
+            <field name="parent_id" position="after">
+                <field name="gender"/>
+            </field>
+            <page name="sales_purchases" position="before">
+                <page name="tailor_measerment" string="Measerment">
+                    <group>
+                        <field name="select_item"/>
+<!--                        todo here to create a domain to show the points for the selected items-->
+                        <field name="measerments" >
+                            <tree>
+                                <field name="body_point" readonly="1"/>
+                                <field name="point_value"/>
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </page>
         </field>
     </record>
-
-
-    <record id="action_tailor_measerment" model="ir.actions.act_window">
-        <field name="name">Tailor Measerment</field>
-        <field name="type">ir.actions.act_window</field>
-        <field name="res_model">tailor.measerment</field>
-<!--        <field name="view_type">form</field>-->
-        <field name="view_mode">tree,form</field>
-        <field name="target">current</field>
-    </record>
+<!--ACTIONS-->
     <record id="action_tailor_item" model="ir.actions.act_window">
         <field name="name">Tailor Item</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">tailor.item</field>
-<!--        <field name="view_type">form</field>-->
         <field name="view_mode">tree,form</field>
         <field name="target">current</field>
     </record>
-    <record id="action_tailor_measerment_attribute_value" model="ir.actions.act_window">
-        <field name="name">Tailor Measerment Attribute Value</field>
+    <record id="action_tailor_body_point" model="ir.actions.act_window">
+        <field name="name">Tailor body points</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">tailor.measerment.attribute.value</field>
-<!--        <field name="view_type">form</field>-->
+        <field name="res_model">tailor.body.point</field>
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+    </record>
+    <record id="action_tailor_party_measerment_value" model="ir.actions.act_window">
+        <field name="name">Measerment of a Party</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tailor.party.measerment.value</field>
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+    </record>
+    <record id="action_tailor_item_attribute" model="ir.actions.act_window">
+        <field name="name">Attributes for Tailoring Item</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tailor.item.attribute</field>
         <field name="view_mode">tree,form</field>
         <field name="target">current</field>
     </record>
     <record id="action_tailor_item_attribute_template" model="ir.actions.act_window">
-        <field name="name">Tailor Measerment Attribute Template</field>
+        <field name="name">Attributes for Tailoring Item</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">tailor.item.attribute.template</field>
-<!--        <field name="view_type">form</field>-->
         <field name="view_mode">tree,form</field>
         <field name="target">current</field>
     </record>
-
+    <record id="action_tailor_item_attribute_template_value" model="ir.actions.act_window">
+        <field name="name">Item template atribute Values</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tailor.item.attribute.template.value</field>
+        <field name="view_mode">tree,form</field>
+        <field name="target">current</field>
+    </record>
+<!--   Menue-->
     <menuitem id="tailor_menu_root" web_icon="tailors,static/description/icon.png" action="mail.action_discuss" name="Tailor" groups="base.group_user,base.group_partner_manager" />
-    <menuitem id="tailor_menu_measerment" parent="tailor_menu_root" action="action_tailor_measerment" name="Measerment" groups="base.group_user,base.group_partner_manager" />
-    <menuitem id="tailor_menu_measerment_attribute_value" parent="tailor_menu_root"
+<!--    <menuitem id="tailor_menu_measerment" parent="tailor_menu_root" action="action_tailor_measerment" name="Measerment" groups="base.group_user,base.group_partner_manager" />-->
+    <!--<menuitem id="tailor_menu_measerment_attribute_value" parent="tailor_menu_root"
               action="action_tailor_measerment_attribute_value" name="Attribute Value"
-              groups="base.group_user,base.group_partner_manager" />
-    <menuitem id="tailor_menu_item_attribute_template" parent="tailor_menu_root"
-              action="action_tailor_item_attribute_template" name="Attribute template"
-              groups="base.group_user,base.group_partner_manager" />
-    <menuitem id="tailor_menu_item" parent="tailor_menu_root"
+              groups="base.group_user,base.group_partner_manager" />-->
+    <menuitem id="tailor_menu_item_main" parent="tailor_menu_root"
+              name="Tailor Item"  groups="base.group_user,base.group_partner_manager" />
+    <menuitem id="tailor_menu_item" parent="tailor_menu_item_main"
               action="action_tailor_item" name="Tailor Item"
               groups="base.group_user,base.group_partner_manager" />
-
+    <menuitem id="tailor_body_point_menu" parent="tailor_menu_item_main"
+              action="action_tailor_body_point" name="Measerment Points"
+              groups="base.group_user,base.group_partner_manager" />
+    <menuitem id="tailor_party_measerment_value_menu" parent="tailor_menu_item_main"
+              action="action_tailor_party_measerment_value" name="Party Measerment"
+              groups="base.group_user,base.group_partner_manager" />
+    <menuitem id="tailor_item_attribute_menu" parent="tailor_menu_item_main"
+              action="action_tailor_item_attribute" name="Item Attribute"
+              groups="base.group_user,base.group_partner_manager" />
+    <menuitem id="tailor_item_attribute_template_menu" parent="tailor_menu_item_main"
+              action="action_tailor_item_attribute_template" name="Item Attribute Template"
+              groups="base.group_user,base.group_partner_manager" />
+    <menuitem id="tailor_item_attribute_template_value_menu" parent="tailor_menu_item_main"
+              action="action_tailor_item_attribute_template_value" name="Item Attribute Template Value"
+              groups="base.group_user,base.group_partner_manager" />
 </odoo>

@@ -14,6 +14,8 @@ class ResPartner(models.Model):
     is_writer = fields.Boolean("Is a Writer", default=False)
     is_publisher = fields.Boolean("Is a Publisher", default=False)
     book_ids = fields.Many2many('product.template', string="Books")
+    sanitized_phone = fields.Char("Phone number sanitized", compute='_compute_sanitized_mobile', store=True)
+    sanitized_mobile = fields.Char("Mobile number sanitized", compute='_compute_sanitized_mobile', store=True)
     # published=fields.One2many('product.template','publisher_id',string="Publications")
     written = fields.Many2many('product.template', 'partner_product_template_rel', 'writer_ids', 'written',
                                string="Written Books")
@@ -29,35 +31,25 @@ class ResPartner(models.Model):
             result.append((record.id, record_name))
         return result
 
-    @api.onchange('country_id', 'mobile')
-    def _onchange_mobile(self):
+
+    @api.onchange('phone','mobile')
+    def _compute_sanitized_mobile(self):
         """Tries to convert a local number to e.164 format based on the partners country, don't change if already in e164 format"""
-        if self.mobile:
-
-            if self.country_id and self.country_id.phone_code:
-                if self.mobile.startswith("0"):
-                    self.mobile = "+" + str(self.country_id.phone_code) + self.mobile[1:].replace(" ", "")
-                elif self.mobile.startswith("+"):
-                    self.mobile = self.mobile.replace(" ", "")
-                else:
-                    self.mobile = "+" + str(self.country_id.phone_code) + self.mobile.replace(" ", "")
-            else:
-                self.mobile = self.mobile.replace(" ", "")
-
-    @api.onchange('country_id', 'phone')
-    def _onchange_phone(self):
-        """Tries to convert a local number to e.164 format based on the partners country, don't change if already in e164 format"""
-        if self.phone:
-
-            if self.country_id and self.country_id.phone_code:
-                if self.mobile.startswith("0"):
-                    self.phone = "+" + str(self.country_id.phone_code) + self.phone[1:].replace(" ", "")
-                elif self.phone.startswith("+"):
-                    self.phone = self.phone.replace(" ", "")
-                else:
-                    self.phone = "+" + str(self.country_id.phone_code) + self.phone.replace(" ", "")
-            else:
-                self.phone = self.phone.replace(" ", "")
+        for rec in self:
+            if rec.mobile:
+                number=rec.mobile
+                number = number.replace("-", "")
+                number = number.replace("(", "")
+                number = number.replace(")", "")
+                number = number.replace(" ", "")
+                rec.sanitized_mobile=number
+            if rec.phone:
+                number = rec.phone
+                number = number.replace("-", "")
+                number = number.replace("(", "")
+                number = number.replace(")", "")
+                number = number.replace(" ", "")
+                rec.sanitized_phone = number
     @api.depends_context('force_company')
     def calculate_balance(self):
         tables, where_clause, where_params = self.env['account.move.line'].with_context(state='posted',

@@ -38,7 +38,7 @@ class LebupayForm(LebupayCommon):
             'Brq_accesskey': self.buckaroo.brq_accesskey,
             'Brq_amount': '2240.0',
             'Brq_currency': 'EUR',
-            'Brq_invoicenumber': 'SO004',
+            'tran_id': 'SO004',
             'Brq_signature': '1b8c10074c622d965272a91a9e88b5b3777d2474',  # update me
             'brq_test': 'True',
             'Brq_return': '%s' % urlparse.urljoin(base_url, BuckarooController._return_url),
@@ -109,7 +109,7 @@ class LebupayForm(LebupayCommon):
             'BRQ_AMOUNT': u'2240.00',
             'BRQ_CURRENCY': u'EUR',
             'BRQ_CUSTOMER_NAME': u'Jan de Tester',
-            'BRQ_INVOICENUMBER': u'SO004',
+            'tran_id': u'SO004',
             'brq_payment': u'573311D081B04069BD6336001611DBD4',
             'BRQ_PAYMENT_METHOD': u'paypal',
             'BRQ_SERVICE_PAYPAL_PAYERCOUNTRY': u'NL',

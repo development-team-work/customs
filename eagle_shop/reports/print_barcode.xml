@@ -38,7 +38,7 @@
                 </div>
             </t>
         </template>
-        <report
+        <record
             string="Package Barcode (PDF)"
             id="action_report_quant_package_barcode_small"
             model="myshop.barcode.wizard"

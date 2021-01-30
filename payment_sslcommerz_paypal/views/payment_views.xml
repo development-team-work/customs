@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="acquirer_form_sslcommerz" model="ir.ui.view">
+            <field name="name">acquirer.form.sslcommerz</field>
+            <field name="model">payment.acquirer</field>
+            <field name="inherit_id" ref="payment.acquirer_form"/>
+            <field name="arch" type="xml">
+                <xpath expr='//group[@name="acquirer"]' position='inside'>
+                    <group attrs="{'invisible': [('provider', '!=', 'sslcommerz')]}">
+                        <field name="store_id" attrs="{'required':[ ('provider', '=', 'sslcommerz'), ('state', '!=', 'disabled')]}"/>
+                        <field name="store_pass" attrs="{'required':[ ('provider', '=', 'sslcommerz'), ('state', '!=', 'disabled')]}"/>
+                        <field name="sslcommerz_email_account" attrs="{'required':[ ('provider', '=', 'sslcommerz'), ('state', '!=', 'disabled')]}"/>
+                        <field name="sslcommerz_seller_account"/>
+                        <field name="sslcommerz_pdt_token"/>
+                        <field name="sslcommerz_use_ipn" attrs="{'required':[ ('provider', '=', 'sslcommerz'), ('state', '!=', 'disabled')]}"/>
+                        <a colspan="2" href="https://www.odoo.com/documentation/user/online/ecommerce/shopper_experience/sslcommerz.html" target="_blank">How to configure your sslcommerz account?</a>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="transaction_form_sslcommerz" model="ir.ui.view">
+            <field name="name">acquirer.transaction.form.sslcommerz</field>
+            <field name="model">payment.transaction</field>
+            <field name="inherit_id" ref="payment.transaction_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='acquirer_reference']" position="after">
+                    <field name="sslcommerz_txn_type" readonly="1" attrs="{'invisible': [('provider', '!=', 'sslcommerz')]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

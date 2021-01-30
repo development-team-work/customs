@@ -20,6 +20,7 @@ class tailorMrpBomInherit(models.Model):
             for orderline in rec.order_line:
                 if orderline.product_template_id:
                     kit_boms=check_kit_for_product_template(orderline.product_template_id.id)
+                    print("kitboms",kit_boms)
             #         tmpl_boms=self.env['mrp.bom'].search([('product_tmpl_id','=',orderline.product_template_id.id)])
             #         product_boms=self.env['mrp.bom'].search([('product_id','=',orderline.product_id.id)])
             #         if len(product_boms)>0:
@@ -36,3 +37,6 @@ class tailorMrpBomInherit(models.Model):
             #         measermentLine=self.env['tailor.measerment'].search([("partner_id","=",rec.partner_id.id),("product_tmpl_id","=",orderline.product_template_id.id)])
             #         print(measermentLine.id)
             # rec.measerment_ids= [(6,0,data)]
+
+
+# class MrpWork

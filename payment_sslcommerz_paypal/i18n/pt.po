@@ -1,0 +1,169 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* payment_sslcommerz
+# 
+# Translators:
+# Martin Trigaux, 2020
+# Marco Reis <marco.a.n.reis@gmail.com>, 2020
+# Manuela Silva <manuelarodsilva@gmail.com>, 2020
+# Nuno Silva <nuno.silva@arxi.pt>, 2020
+# Reinaldo Ramos <reinaldo.ramos@arxi.pt>, 2020
+# Pedro Filipe <pedro2.10@hotmail.com>, 2020
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server saas~13.5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-01 07:28+0000\n"
+"PO-Revision-Date: 2020-09-07 08:15+0000\n"
+"Last-Translator: Pedro Filipe <pedro2.10@hotmail.com>, 2020\n"
+"Language-Team: Portuguese (https://www.transifex.com/odoo/teams/41243/pt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: payment_sslcommerz
+#: model_terms:ir.ui.view,arch_db:payment_sslcommerz.mail_template_sslcommerz_invite_user_to_configure
+msgid ""
+"<br/><br/>\n"
+"                Thanks,<br/>\n"
+"                <b>The Odoo Team</b>"
+msgstr ""
+
+#. module: payment_sslcommerz
+#: code:addons/payment_sslcommerz/models/payment.py:0
+#, python-format
+msgid "Add your SSL Commerz account to Odoo"
+msgstr ""
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_acquirer__display_name
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_transaction__display_name
+msgid "Display Name"
+msgstr "Nome"
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_acquirer__sslcommerz_email_account
+msgid "Email"
+msgstr "Email"
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_acquirer__fees_dom_fixed
+msgid "Fixed domestic fees"
+msgstr "Taxas Domésticas Fixas"
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_acquirer__fees_int_fixed
+msgid "Fixed international fees"
+msgstr "Taxas Internacionais Fixas"
+
+#. module: payment_sslcommerz
+#: model_terms:ir.ui.view,arch_db:payment_sslcommerz.mail_template_sslcommerz_invite_user_to_configure
+msgid ""
+"Hello,\n"
+"                <br/><br/>\n"
+"                You have received a payment through SSL Commerz.<br/>\n"
+"                Kindly follow the instructions given by SSL Commerz to create your account.<br/>\n"
+"                Then, help us complete your SSL Commerz credentials in Odoo.<br/><br/>"
+msgstr ""
+
+#. module: payment_sslcommerz
+#: model_terms:ir.ui.view,arch_db:payment_sslcommerz.acquirer_form_sslcommerz
+msgid "How to configure your sslcommerz account?"
+msgstr "Como configurar a sua conta SSL Commerz?"
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_acquirer__id
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_transaction__id
+msgid "ID"
+msgstr "ID"
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_acquirer____last_update
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_transaction____last_update
+msgid "Last Modified on"
+msgstr "Última Modificação em"
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_acquirer__sslcommerz_seller_account
+msgid "Merchant Account ID"
+msgstr ""
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_acquirer__sslcommerz_pdt_token
+msgid "PDT Identity Token"
+msgstr "Código de Identidade de PDT"
+
+#. module: payment_sslcommerz
+#: model:ir.model,name:payment_sslcommerz.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr "Intermediário de Pagamento"
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,help:payment_sslcommerz.field_payment_acquirer__sslcommerz_pdt_token
+msgid ""
+"Payment Data Transfer allows you to receive notification of successful "
+"payments as they are made."
+msgstr ""
+
+#. module: payment_sslcommerz
+#: model:ir.model,name:payment_sslcommerz.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "Transação de Pagamento"
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields.selection,name:payment_sslcommerz.selection__payment_acquirer__provider__sslcommerz
+msgid "SSL Commerz"
+msgstr "SSL Commerz"
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,help:payment_sslcommerz.field_payment_acquirer__sslcommerz_use_ipn
+msgid "SSL Commerz Instant Payment Notification"
+msgstr ""
+
+#. module: payment_sslcommerz
+#: code:addons/payment_sslcommerz/models/payment.py:0
+#, python-format
+msgid "SSL Commerz: received data with missing reference (%s) or txn_id (%s)"
+msgstr ""
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_acquirer__provider
+msgid "Provider"
+msgstr "Provedor"
+
+#. module: payment_sslcommerz
+#: model_terms:ir.ui.view,arch_db:payment_sslcommerz.mail_template_sslcommerz_invite_user_to_configure
+msgid "Set SSL Commerz credentials"
+msgstr ""
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,help:payment_sslcommerz.field_payment_acquirer__sslcommerz_seller_account
+msgid ""
+"The Merchant ID is used to ensure communications coming from SSL Commerz are "
+"valid and secured."
+msgstr ""
+"A Id. do Comerciante é utilizada para garantir que as comunicações "
+"provenientes do SSL Commerz sejam válidas e protegidas."
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_transaction__sslcommerz_txn_type
+msgid "Transaction type"
+msgstr "Tipo da transação"
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_acquirer__sslcommerz_use_ipn
+msgid "Use IPN"
+msgstr "Utilizar IPN"
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_acquirer__fees_dom_var
+msgid "Variable domestic fees (in percents)"
+msgstr "Taxas variáveis domésticas (em percentagem)"
+
+#. module: payment_sslcommerz
+#: model:ir.model.fields,field_description:payment_sslcommerz.field_payment_acquirer__fees_int_var
+msgid "Variable international fees (in percents)"
+msgstr "Taxas variáveis internacionais (em percentagem)"

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import api, fields, models, _
+from odoo.osv import expression
 from odoo.osv.expression import get_unaccent_wrapper
 import datetime
 import re
@@ -265,8 +266,8 @@ class PersonalDetails(models.Model):
                          FROM {from_str}
                       {where} ({email} {operator} {percent}
                            OR {display_name} {operator} {percent}
-                           OR {mobile} {operator} {percent}
-                           OR {phone} {operator} {percent}
+                           OR {sanitized_mobile} {operator} {percent}
+                           OR {sanitized_phone} {operator} {percent}
                            OR {id_no} {operator} {percent}
                            OR {reference} {operator} {percent}
                            OR {vat} {operator} {percent})
@@ -279,8 +280,8 @@ class PersonalDetails(models.Model):
                                operator=operator,
                                email=unaccent('res_partner.email'),
                                display_name=unaccent('res_partner.display_name'),
-                               mobile=unaccent('res_partner.mobile'),
-                               phone=unaccent('res_partner.phone'),
+                               sanitized_mobile=unaccent('res_partner.sanitized_mobile'),
+                               sanitized_phone=unaccent('res_partner.sanitized_phone'),
                                id_no=unaccent('res_partner.id_no'),
                                reference=unaccent('res_partner.ref'),
                                percent=unaccent('%s'),
@@ -296,7 +297,7 @@ class PersonalDetails(models.Model):
             return [row[0] for row in self.env.cr.fetchall()]
 
         return super(PersonalDetails, self)._name_search(name, args, operator=operator, limit=limit, name_get_uid=name_get_uid)
-#
+
 class ribbonMedalAcquiredRibbon(models.Model):
     _name="ribbon.acquired.ribbon"
     _description = "list of acquired rebbon"

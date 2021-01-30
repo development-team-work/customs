@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<DemoXMLNode xmlns="http://CustomDemoXML.htm">
+<name>egp authorisation form</name>
+<tenderer>
+	<designation></designation>
+	<Company></Company>
+	<address></address>
+</tenderer>
+<Participant>
+	<name></name>
+	<company></company>
+	<ID_no></ID_no>
+	<contact></contact>
+	<signature></signature>
+	<Autherisation>
+		<name></name>
+		<id></id>
+		<signature></signature>
+	</Autherisation>
+</Participant>
+</DemoXMLNode>
