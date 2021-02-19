@@ -1,0 +1,241 @@
+<odoo>
+  <data>
+
+      <template id="external_layout_vat63">
+        <div class="header" width="100%" >
+            <style>
+                    @font-face {
+                        font-family: kalpurush_ANSI; src: vat_bd_6_3/static/src/fonts/kalpurush_ANSI.ttf;
+                    }
+                    div {
+                        font-family: kalpurush_ANSI;
+                    }
+
+                </style>
+            <div class="row">
+                <table width="100%">
+                    <tr>
+                        <td width="10%"></td>
+                        <td rowspan="3" width="10%">
+                            <div style="width: 100%;">
+                                 <img src='/vat_bd_6_3/static/src/img/bd_gov_logo.png' style="width:100%"/>
+                             </div>
+                        </td>
+                        <td rowspan="3" width="60%">
+                            <div style="width: 100%;text-align:center;">
+                                    <bangla>গণপ্রজাতন্ত্রী বাংলাদেশ সরকার</bangla>
+                                    <h3 >জাতীয় রাজস্ব বোর্ড</h3>
+                            </div>
+                        </td>
+                        <td width="10%"><br/><br></br><br></br></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td style="border: 1px solid black; padding-top:6px;padding-bottom:6px;padding-left:6px;padding-right:6px; width:10%">
+                                মুসক-৬.৩
+                        </td>
+                    </tr>
+                    <tr><td></td></tr>
+                    <tr><td></td><td></td>
+                        <td style="text-align:center;" >
+                                 কর চালান পত্র
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr><td></td><td></td>
+                        <td style="text-align:center;">
+                              [বিধি ৪০ এর উপ-বিধি(১) এর দফা(প) ও দফা(চ) দ্রষ্টব্য]
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr><td></td><td></td>
+                        <td text_allign="center">
+                            <div style="width:100%">
+                                <bangla style=" text-align: left;" t-if="res_company.name">
+                                   নিবন্ধিত ব্যাক্তির নামঃ <span  t-field="res_company.name"/>jjjjdddিইআ্টচটচটচ </bangla>
+                                <bangla> নিবন্ধিত ব্যক্তির বিআইএনঃ <span t-field="res_company.bin"/></bangla>
+                                <h6 style=" text-align: left;">চালানপত্র ইস্যুর ঠিকানাঃ<t t-if="res_company.street"> <span t-field="res_company.street"/></t><t t-if="res_company.street2"><span t-field="res_company.street2"/> </t><t t-if="res_company.country_id"><span t-field="res_company.country_id"/></t></h6>
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+
+
+            </div>
+        </div>
+            <div class="article">
+          <t t-raw="0" />
+        </div>
+
+        <!--<div class="footer o_boxed_footer">-->
+           <div class="footer">
+               <div class="row">
+                    <br/><br/><br/><br/>
+               </div>
+               <div class="row">
+               </div>
+               <div class="row" >
+                   <table style="border:none;width:100%;">
+                       <tr>
+                           <td style="text-align: left; padding-left: 300px; font-size:9px;">Powered by Eagle ERP</td><td></td>
+                           <td style="text-align: right; font-size:9px;"><span >Page </span><span class="page" /> of <span class="topage" /></td>
+                       </tr>
+                   </table>
+
+               </div>
+            </div>
+        <!--</div>-->
+    </template>
+<template id="report_vat_63_challan">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-if="user.lang=='en_US'">
+                        <t t-call="vat_bd_6_3.vat_63_challan_form_bangla" t-lang="o.partner_id.lang"/>
+                    </t>
+                    </t>
+            </t>
+        </template>
+
+        <template id="vat_63_challan_form_bangla">
+            <t t-call="vat_bd_6_3.external_layout_vat63">
+                <t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})" />
+                <div class="page">
+                    <div class="row">
+                        <div class="col-xs-2">ক্রেতার নামঃ </div>
+                        <div class="col-xs-6"><span t-field="o.partner_id"/></div>
+                        <div  class="col-xs-2 ">চালানপত্র নম্বরঃ</div>
+                        <div  class="col-xs-2 "><span t-field="o.name"/></div>
+
+                        <div class="col-xs-2">ক্রেতার বিআইএনঃ </div>
+                        <div class="col-xs-6"><span t-field="o.partner_id.bin"/></div>
+                        <div  class="col-xs-2 ">ইস্যুর তারিখঃ</div>
+                        <div  class="col-xs-2 "><span t-field="o.date"/></div>
+
+                        <div class="col-xs-2">সরবরাহের গন্তব্যস্থলঃ </div>
+                        <div class="col-xs-6"> <span t-field="o.partner_id"/></div>
+                        <div  class="col-xs-2 ">ইস্যুর সময়ঃ</div>
+                        <div  class="col-xs-2 "><span t-field="o.time_invoice"/></div>
+
+
+                    </div>
+                    <style>
+                        table,td,th{
+                        border:1px solid black;
+                        }
+                    </style>
+
+                    <table class="table table-condensed" name="invoice_line_table">
+                        <thead>
+                            <tr>
+                                <th class="text-right" width="1fr">ক্রমিক</th>
+                                <th class="text-left" width="5fr">পন্য/সেবার বর্ণনা (প্রযোজ্য ক্ষেত্রে ব্র্যান্ড নাম সহ)</th>
+                                <th class="text-right" width="2fr">সরবরাহের একক</th>
+                                <th class="text-right" width="2fr">পরিমান</th>
+                                <th class="text-right" width="2fr">একক মূল্য (টাকায়)</th>
+                                <th class="text-right" width="3fr">মোট মূল্য (টাকায়)</th>
+                                <th class="text-right" width="2fr">সম্পুরক সুল্কের পরিমান (টাকায়)</th>
+                                <th class="text-right"  width="2fr">মূল্য সংযোজন করের হার/সুনির্দিষ্ট কর</th>
+                                <th class="text-right" width="3fr">মূল্য সংযোজন কর/সুনির্দিষ্ট করের পরিমান (টাকায়)</th>
+                                <th class="text-right" width="3fr">সকল প্রকার সুল্ক ও কর সহ মূল্য</th>
+                            </tr>
+                        </thead>
+                        <tbody class="invoice_tbody">
+                            <t t-set="serial" t-value="1"/>
+                            <tr t-foreach="o.invoice_line_ids" t-as="l">
+                                <td><span t-esc="serial"/></td>
+                                <td><span t-field="l.name"/></td>
+                                <td class="text-right">
+                                    <span t-field="l.uom_id"  groups="product.group_uom"/>
+                                </td>
+                                <td><span t-field="l.quantity"/></td>
+                                <td class="text-right">
+                                    <span t-field="l.price_unit"/>
+                                </td>
+                                <td class="text-right" id="subtotal">
+                                    <span t-field="l.price_subtotal"
+                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                                <td t-if="display_discount" class="text-right">
+                                    <span t-field="l.discount"/>
+                                </td>
+                                <td><span t-field="l.invoice_line_supplimentary_tax"
+                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                <td class="text-right">
+                                    <span t-esc="', '.join(map(lambda x: (x.description or x.name), l.tax_ids))"/>
+                                </td>
+                                <t t-set="total_tax" t-value="0"/>
+                                <t t-foreach="l.tax_ids" t-as="tax_line">
+                                    <t t-set="total_tax" t-value="total_tax + (l.price_subtotal*l.tax_ids.amount/100)"/>
+                                </t>
+                                <td><span t-esc="total_tax"
+                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                                <td><span t-esc="total_tax+l.price_subtotal"
+                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                            <tr t-foreach="range(max(5-len(o.invoice_line_ids),0))" t-as="l">
+                                <td t-translation="off">&amp;nbsp;</td>
+                                <td ></td>
+                                <td></td>
+                                <td></td>
+                                <td ></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" text_align="right"> সর্বমোট </td>
+
+                                <td> <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                <td></td>
+                                <td></td>
+                                <td><span t-field="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                <td><span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <br/>
+                        <br/>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            প্রতিষ্ঠান কর্তৃপক্ষের দায়ীত্বপ্রাপ্ত ব্যাক্তির নামঃ
+                        </div>
+                        <div class="col-xs-8">
+                            <span t-field="o.user_id"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            পদবীঃ
+                        </div>
+                        <div class="col-xs-8">
+                            <span t-field="o.user_id.partner_id.function"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            স্বাক্ষরঃ
+                        </div>
+                        <div class="col-xs-8">
+                        <br/><br/><br/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            সিলঃ
+                        </div>
+                        <div class="col-xs-8">
+                            <br/><br/><br/><br/><br/>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+  </data>
+</odoo>

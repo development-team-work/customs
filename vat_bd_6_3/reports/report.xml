@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+         <record id="vat63" model="report.paperformat">
+            <field name="name">vat63</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">55</field>
+            <field name="margin_bottom">28</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">50</field>
+            <field name="dpi">100</field>
+        </record>
+        <report
+            id="account_vat_63_challan"
+            model="account.move"
+            string="VAT 6.3 Challan"
+            report_type="qweb-pdf"
+            paperformat="vat63"
+            name="vat_bd_6_3.report_vat_63_challan"
+            file="vat_bd_6_3.report_vat_63_challan"
+        />
+
+
+    </data>
+</odoo>

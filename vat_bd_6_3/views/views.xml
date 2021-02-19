@@ -1,0 +1,40 @@
+<odoo>
+  <data>
+    <record id="res_company_form_inherit" model="ir.ui.view">
+        <field name="name">res.company.form.inherit</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="bin"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="res_partner_form_inherit" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="bin"/>
+            </xpath>
+        </field>
+    </record>
+<!--      insert bin number in the invoice -->
+    <!--<record id="account_invoice_form_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.form.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='invoice_print']" position="after">
+                <button name="vat_63_challan_print" string="Print VAT 6.3" type="object" attrs="{'invisible':['|',('sent','=',False), ('state', 'not in', ('open','paid'))]}" groups="base.group_user"/>
+            </xpath>
+            <xpath expr="//field[@name='date_invoice']" position="after">
+                <field name="time_invoice"/>
+            </xpath>
+        </field>
+    </record>-->
+
+    <!--<menuitem action="action_imort_previous_students_tree_form" id="menu_import_previous_students" sequence="1"/>-->
+  </data>
+</odoo>
