@@ -18,13 +18,15 @@ Customisation Eagle ERP
                  'note','website_sale','purchase','contacts','mrp','accounting_pdf_reports'],
     'data': [
         ## 'data/payment_acquirer.xml',
+
         'data/res.country.state.csv',
         'data/report_paperformat_data.xml',
+        'data/res_config_setting.xml',
         'reports/invoice.xml',
         #'reports/product_label.xml',
         'reports/account_common_report_view.xml',
         'reports/report.xml',
-        'reports/print_barcode.xml',
+        # 'reports/print_barcode.xml',
         #'security/ir.model.access.csv',
         'views/account_payment.xml',
         'views/my_shop.xml',

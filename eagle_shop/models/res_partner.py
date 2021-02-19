@@ -8,7 +8,6 @@ import re
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
-
     name = fields.Char(index=True, translate=True)
     nick = fields.Boolean("Nick Name", default=False)
     is_writer = fields.Boolean("Is a Writer", default=False)
@@ -21,6 +20,13 @@ class ResPartner(models.Model):
                                string="Written Books")
     balance = fields.Monetary(string="Balance" ,compute='calculate_balance',  help="Balance for this account.")
 
+    @api.onchange('is_writer')
+    def create_related_ecommerce_category(self):
+        if self.is_writer:
+            ecom_categ=self.env['product.public.category'].search([('related_writer_id','=',self.id)])
+            if len(ecom_categ)==0:
+                data=[]
+            #todo create a ecommerce category for the writer
     def name_get(self):
         result = []
         for record in self:

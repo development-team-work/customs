@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="res_config_settings_tailors" model="res.config.settings">
-        <field name="group_mrp_routings" eval="True"/>
-        <field name="group_product_variant" eval="True"/>
-        <field name="group_uom" eval="True"/>
-        <field name="group_stock_multi_locations" eval="True"/>
-        <field name="group_stock_adv_location" eval="True"/>
-        <field name="group_product_pricelist" eval="True"/>
+    <record id="res_config_settings_eagle_shop" model="res.config.settings">
+        <field name="module_ribbon" eval="True"/>
+        <field name="module_eagle_book_shop" eval="False"/>
     </record>
     <function model="res.config.settings" name="execute">
         <value model="res.config.settings"

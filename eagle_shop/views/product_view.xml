@@ -6,13 +6,13 @@
         <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
         <field name="arch" type="xml">
 
-            <xpath expr="//label[@for='name']" position="before">
-                <label for="tmpl_name"  class="oe_edit_only"/>
-                <h2><field name="tmpl_name"  placeholder="e.g. Odoo Enterprise Subscription"/></h2>
-            </xpath>
-            <xpath expr="//field[@name='name']" position="replace">
-                <field name="name" placeholder="e.g. Odoo Enterprise Subscription"/>
-            </xpath>
+<!--            <xpath expr="//label[@for='name']" position="before">-->
+<!--                <label for="tmpl_name"  class="oe_edit_only"/>-->
+<!--                <h2><field name="tmpl_name"  placeholder="e.g. Odoo Enterprise Subscription"/></h2>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//field[@name='name']" position="replace">-->
+<!--                <field name="name" placeholder="e.g. Odoo Enterprise Subscription"/>-->
+<!--            </xpath>-->
             <xpath expr="//p[1]" position="after">
                     <field name="is_book"/><label for="is_book" />
                 <group attrs="{'invisible':[('is_book','=',False)]}" groups="product.group_product_variant">
