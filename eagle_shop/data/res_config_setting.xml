@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="res_config_settings_eagle_shop" model="res.config.settings">
-        <field name="module_ribbon" eval="True"/>
+        <field name="module_sale_product_matrix" eval="True"/>
+        <field name="module_purchase_product_matrix" eval="True"/>
+        <field name="module_sale_product_configurator" eval="True"/>
+        <field name="module_delivery" eval="True"/>
+        <field name="module_website_sale_delivery" eval="True"/>
+<!--        <field name="default_invoice_policy" eval="order"/>-->
+        <field name="group_product_variant" eval="True"/>
+        <field name="group_product_pricelist" eval="True"/>
+        <field name="portal_confirmation_pay" eval="True"/>
+        <field name="group_uom" eval="True"/>
+        <field name="module_ribbon" eval="False"/>
         <field name="module_eagle_book_shop" eval="False"/>
     </record>
     <function model="res.config.settings" name="execute">
