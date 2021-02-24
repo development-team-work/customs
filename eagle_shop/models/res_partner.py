@@ -10,23 +10,16 @@ class ResPartner(models.Model):
     _inherit = 'res.partner'
     name = fields.Char(index=True, translate=True)
     nick = fields.Boolean("Nick Name", default=False)
-    is_writer = fields.Boolean("Is a Writer", default=False)
-    is_publisher = fields.Boolean("Is a Publisher", default=False)
-    book_ids = fields.Many2many('product.template', string="Books")
+    # is_writer = fields.Boolean("Is a Writer", default=False)
+    # is_publisher = fields.Boolean("Is a Publisher", default=False)
+    # book_ids = fields.Many2many('product.template', string="Books")
     sanitized_phone = fields.Char("Phone number sanitized", compute='_compute_sanitized_mobile', store=True)
     sanitized_mobile = fields.Char("Mobile number sanitized", compute='_compute_sanitized_mobile', store=True)
     # published=fields.One2many('product.template','publisher_id',string="Publications")
-    written = fields.Many2many('product.template', 'partner_product_template_rel', 'writer_ids', 'written',
-                               string="Written Books")
+    # written = fields.Many2many('product.template', 'partner_product_template_rel', 'writer_ids', 'written',
+    #                            string="Written Books")
     balance = fields.Monetary(string="Balance" ,compute='calculate_balance',  help="Balance for this account.")
 
-    @api.onchange('is_writer')
-    def create_related_ecommerce_category(self):
-        if self.is_writer:
-            ecom_categ=self.env['product.public.category'].search([('related_writer_id','=',self.id)])
-            if len(ecom_categ)==0:
-                data=[]
-            #todo create a ecommerce category for the writer
     def name_get(self):
         result = []
         for record in self:

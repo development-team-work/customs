@@ -1,46 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="product_varient_easy_edit_view_inherit" model="ir.ui.view">
-        <field name="name">product.varient.easy.edit.inherit</field>
-        <field name="model">product.product</field>
-        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
-        <field name="arch" type="xml">
 
-<!--            <xpath expr="//label[@for='name']" position="before">-->
-<!--                <label for="tmpl_name"  class="oe_edit_only"/>-->
-<!--                <h2><field name="tmpl_name"  placeholder="e.g. Odoo Enterprise Subscription"/></h2>-->
-<!--            </xpath>-->
-<!--            <xpath expr="//field[@name='name']" position="replace">-->
-<!--                <field name="name" placeholder="e.g. Odoo Enterprise Subscription"/>-->
-<!--            </xpath>-->
-            <xpath expr="//p[1]" position="after">
-                    <field name="is_book"/><label for="is_book" />
-                <group attrs="{'invisible':[('is_book','=',False)]}" groups="product.group_product_variant">
-                    <field name="writer_ids" widget="many2many_tags" domain="[ ('is_writer', '=', 'True')]" context="{'default_is_writer':1}"/>
-                    <field name="publisher_id" widget="many2many_tag" domain="[ ('is_publisher', '=', 'True')]" context="{'default_is_publisher':True}"/>
-                    <field name="edition" />
-                    <field name="total_page" />
-                    <field name="printed_price" />
-                </group>
-            </xpath>
-            <label for="lst_price" position="before">
-                <label for="printed_price"/>
-                                <div >
-                                    <field name="printed_price" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" class="oe_inline" />
-                                    <button name="open_pricelist_rules" icon="fa-arrow-right" type="object"
-                                        groups="product.group_product_pricelist" class="oe_inline">
-                                        <field name="pricelist_item_count" attrs="{'invisible': [('pricelist_item_count', '=', 0)]}"/>
-                                        <span attrs="{'invisible': [('pricelist_item_count', '=', 1)]}">
-                                          Extra Prices
-                                        </span>
-                                        <span attrs="{'invisible': [('pricelist_item_count', '!=', 1)]}">
-                                          Extra Price
-                                        </span>
-                                    </button>
-                                </div>
-            </label>
-            </field>
-    </record>
 
     <record id="product_template_form_view_inherit" model="ir.ui.view">
         <field name="name">product.template.form.inherit</field>
@@ -56,80 +16,17 @@
                            <label for="sale_ok"/>
                            <field name="purchase_ok" nolabel="1"/>
                            <label for="purchase_ok"/>
-                           <field name="is_book" nolabel="1" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"/>
-                           <label for="is_book" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"/>
+<!--                           <field name="is_book" nolabel="1" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"/>-->
+<!--                           <label for="is_book" attrs="{'invisible': [('product_variant_count', '&gt;', 1)]}"/>-->
 
                        </group>
                 </div>
             </xpath>
-            <xpath expr="//page[@name='general_information']" position="after">
-                <page name="book" string="Book Details" attrs="{'invisible':[('is_book','=',False)]}" groups="product.group_product_variant">
-                    <group>
-                        <field name="writer_ids" widget="many2many_tags" domain="[ ('is_writer', '=', 'True')]" context="{'default_is_writer':1}"/>
-                        <field name="publisher_id" widget="many2many_tag" domain="[ ('is_publisher', '=', 'True')]" context="{'default_is_publisher':True}"/>
-                        <field name="edition" />
-                        <field name="total_page" />
-                        <field name="printed_price" />
-                    </group>
-
-                </page>
-            </xpath>
-
-<!--            <xpath expr="//field[@name='applied_on']" position="replace" >-->
-<!--                <field name="product_id" invisible="1" />-->
-<!--                <field name="product_tmpl_id" invisible="1" />-->
-<!--               <field name="applied_on" invisible="1"/>-->
-<!--        </xpath>-->
-        </field>
-    </record>
-    <record id="product_template_search_view_inherit" model="ir.ui.view">
-        <field name="name">product.template.search.view.inherit</field>
-        <field name="model">product.template</field>
-        <field name="inherit_id" ref="product.product_template_search_view"/>
-        <field name="arch" type="xml">
-            <xpath expr="//filter[@name='inactive']" position="before">
-                <field name="writer_ids" string="Writer" filter_domain="[('writer_ids.name', 'ilike', self)]"/>
-                <field name="publisher_id" string="Publisher" filter_domain="[('publisher_id.name', 'ilike', self)]"/>
-            </xpath>
         </field>
     </record>
 
 
-    <record id="product_normal_form_view_inherit" model="ir.ui.view">
-            <field name="name">product.normal.form.inherit</field>
-            <field name="model">product.product</field>
-            <field name="inherit_id" ref="product.product_normal_form_view"/>
-            <field name="arch" type="xml">
-                <xpath expr="//page[@name='sales']" position="after">
-                    <page name="price_list" string="Price List">
-                        <group>
 
-                            <field name="pricelist_item_ids" string="Writer" filter_domain="[('writer_ids.name', 'ilike', self)]" nolabel="1">
-<!--  todo here to develop for edit and add record functionality                              -->
-                                <tree editable="top">
-                                    <field name="pricelist_id"/>
-                                    <field name="price"/>
-                                    <field name="min_quantity"/>
-                                    <field name="date_start"/>
-                                    <field name="date_end"/>
 
-                                </tree>
-                            </field>
-                        </group>
-                    </page>
-            </xpath>
-            </field>
-    </record>
-    <record id="product_template_only_form_view_inherit" model="ir.ui.view">
-            <field name="name">product.template.only.form.inherit</field>
-            <field name="model">product.template</field>
-            <field name="inherit_id" ref="product.product_template_only_form_view"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='uom_id']" position="before">
-                    <field name="uom_category_id" invisible="True"/>
-                    <field name="uom_available" widget="many2many_tags" domain="[('category_id','=',uom_category_id)]"/>
-                </xpath>
-            </field>
-    </record>
 
 </odoo>
