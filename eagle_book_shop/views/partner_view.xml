@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="eagle_shop_res_partner_form_view_inherit" model="ir.ui.view">
+        <field name="name">eagle.shop.res.partner.form.inherit</field>
+        <field name="priority" eval="1"/>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[2]" position="after">
+                <div class="o_row" name="partner_property" >
+                    <field name="is_writer"  attrs="{'invisible': [('is_company','=', True)]}"/>
+                    <label class="col-form-label" for="is_writer"  attrs="{'invisible': [('is_company','=', True)]}">Is a Writer  </label>
+                    <field name="is_publisher"/>
+                    <label class="col-form-label" for="is_publisher">Is a Publisher  </label>
+                </div>
+            </xpath>
+           <xpath expr="//page[@name='sales_purchases']" position="after">
+                <page name="book_writer_publisher" string="Writer &amp; Publisher"  attrs="{'invisible': [('is_writer','=', False),('is_publisher','=', False)]}">
+                    <group string="Writer and Publisher">
+                        <group>
+                            <field name="published_books" domain="[('is_book', '=', True)]" attrs="{'invisible': [('is_publisher','=',False)]}">
+                                <tree>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group>
+                            <field name="written_books" attrs="{'invisible': [('is_writer','=',False)]}">
+                                <tree>
+                                    <field name="name"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+
+            <field name="city" position="replace">
+
+                <field name="city" placeholder="City/area" class="o_address_city" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'state_id': state_id}"/>
+            </field>
+        </field>
+
+
+
+    </record>
+
+</odoo>

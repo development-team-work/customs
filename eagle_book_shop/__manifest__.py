@@ -16,6 +16,8 @@ Customisation Eagle ERP
     'images' : ['images/accounts.jpeg','images/bank_statement.jpeg','images/cash_register.jpeg','images/chart_of_accounts.jpeg','images/customer_invoice.jpeg','images/journal_entries.jpeg'],
     'depends' : ['eagle_shop'],
     'data': [
+        'views/product_view.xml',
+        'views/partner_view.xml',
 
     ],
     'demo': [
