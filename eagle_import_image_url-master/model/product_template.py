@@ -15,12 +15,12 @@ class ProductTemplate(models.Model):
     
     @api.model
     def create(self, vals):
-        if not vals.get('image_medium'):
+        if not vals.get('image_1920'):
             image_url_template = vals.get('image_url_template')
             if image_url_template:
                 try:
                     image = base64.encodestring(urllib.request.urlopen(image_url_template).read())
-                    vals['image_medium'] = image
+                    vals['image_1920'] = image
                 except:
                     pass
         return super(ProductTemplate, self).create(vals)
@@ -35,7 +35,7 @@ class ProductTemplate(models.Model):
                 print('base64.encodestring(urllib.request.urlopen(image_url_template).read',base64.encodestring(urllib.request.urlopen(image_url_template).read()))
                 image = base64.encodestring(urllib.request.urlopen(image_url_template).read())
                 print('image=====================================',image)
-                vals.update({'image_medium': image})
+                vals.update({'image_1920': image})
             except:
                 pass
         return super(ProductTemplate, self).write(vals)
