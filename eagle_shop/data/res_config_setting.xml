@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<odoo>
+<odoo noupdate="True">
     <record id="res_config_settings_eagle_shop" model="res.config.settings">
         <field name="module_sale_product_matrix" eval="True"/>
         <field name="module_purchase_product_matrix" eval="True"/>

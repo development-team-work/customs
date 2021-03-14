@@ -1,7 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-   <record id="website_sale.address_b2b" model="ir.ui.view">
-        <field name="active" eval="False"/>
-</record>
+    <data>
+    <template id="assets_common" name="eagle_shop_report" inherit_id="web.report_assets_common">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/scss" href="/eagle_shop/static/src/scss/layout_eagle.scss"/>
+            </xpath>
+        </template>
 
+<!--   <record id="website_sale.address_b2b" model="ir.ui.view">-->
+<!--        <field name="active" eval="False"/>-->
+<!--</record>-->
+<template id="external_layout_eagle">
+        <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+            <div class="o_eagle_header">
+            <div class="row">
+
+                <div class="col-5 offset-1 " name="company_address">
+                    <ul class="list-unstyled">
+                        <h1 t-if="company.name"><span t-field="company.name"/></h1>
+                        <li t-if="company.vat"><t t-esc="company.country_id.vat_label or 'Tax ID'"/>: <span t-field="company.vat"/></li>
+                        <li t-if="company.street"> <span class="o_force_ltr" t-field="company.street"/></li>
+                        <li t-if="company.street2"> <span class="o_force_ltr" t-field="company.street2"/></li>
+                        <li t-if="company.city"> <span class="o_force_ltr" t-field="company.city"/>
+                            <span class="o_force_ltr" t-field="company.state_id.name"/>
+                            <span class="o_force_ltr" t-field="company.country_id"/>
+                        </li>
+                        <li ><t t-if="company.email"><span t-field="company.email"/></t>
+                            <t t-if="company.website"><span t-field="company.website"/></t>
+                        </li>
+                    </ul>
+                    <h5 t-if="company.phone">Tel: <span class="o_force_ltr" t-field="company.phone"/></h5>
+                </div>
+                <div class="col-6 offset-4" >
+                    <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" alt="Logo"/>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div t-attf-class="article o_report_layout_eagle o_company_#{company.id}_layout"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-call="web.address_layout"/>
+            <t t-raw="0"/>
+        </div>
+
+        <div t-attf-class="footer o_eagle_footer o_company_#{company.id}_layout">
+            <div class="row mt8">
+                <div class="col-3">
+                    <span t-field="company.report_footer"/>
+                </div>
+                <div class="col-4 text-right">
+                    <span class="company_address" t-field="company.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+                </div>
+                <div class="col-4">
+                    <h4 class="mt0 mb0 text-uppercase" t-field="company.report_header"/>
+                </div>
+                <div class="col-1">
+                    <ul t-if="report_type == 'pdf'" class="list-inline pagenumber float-right text-center">
+                        <li class="list-inline-item"><strong><span class="page"/></strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="styles_company_report">
+        <t t-foreach="company_ids" t-as="company" t-translation="off">
+            <t t-set="font" t-value="company.font or 'Lato'" />
+            <t t-set="primary" t-value="company.primary_color or 'black'" />
+            <t t-set="secondary" t-value="company.secondary_color or 'black'" />
+            <t t-set="layout" t-value="company.external_report_layout_id.key or 'web.external_layout_standard'" />
+                .o_company_<t t-esc='company.id'/>_layout {
+                font-family: '<t t-esc="font" />';
+
+            <t t-if="layout == 'web.external_layout_background'">
+                .o_background_header {
+                    h3 {
+                        color: <t t-esc='primary'/>;
+                    }
+                }
+                &amp;.o_background_footer {
+                    ul {
+                        li {
+                            color: <t t-esc='secondary'/>;
+                        }
+                    }
+                }
+                &amp;.o_report_layout_background {
+                   strong {
+                        color: <t t-esc='secondary'/>;
+                    }
+                    h2 {
+                        color: <t t-esc='primary'/>;
+                    }
+                    thead tr th {
+                        color: <t t-esc='secondary'/>;
+                    }
+                }
+                .row > div > table,
+                div#total table {
+                    &amp;:first-child,
+                    &amp;:last-child,
+                    &amp;.o_subtotal,
+                    &amp;.o_total {
+                        strong {
+                            color: <t t-esc='primary'/>;
+                        }
+                    }
+                }
+            </t>
+            <t t-elif="layout == 'web.external_layout_boxed'">
+                &amp;.o_report_layout_boxed {
+                    #total strong {
+                        color: <t t-esc='primary'/>;
+                    }
+                    #informations strong {
+                        color: <t t-esc='secondary'/>;
+                    }
+                    h2 span {
+                        color: <t t-esc='primary'/>;
+                    }
+                    table {
+                        thead {
+                            tr th {
+                                color: <t t-esc='secondary'/>;
+                            }
+                        }
+                        tbody tr td {
+                            &amp;.o_line_section td {
+                                    background-color: rgba(<t t-esc='primary'/>, 0.7);
+                                }
+                            &amp;.is-subtotal,
+                                td.o_price_total {
+                                    background-color: rgba(<t t-esc='secondary'/>, 0.1);
+                                }
+                        }
+                    }
+                }
+                .row > div > table,
+                div#total table {
+                    tr {
+                        &amp;.o_total td {
+                            background-color: rgba(<t t-esc='primary'/>, 0.9);
+                        }
+                    }
+                }
+            </t>
+            <t t-elif="layout == 'web.external_layout_clean'" >
+                &amp;.o_clean_footer {
+                    border-top: 3px solid <t t-esc='secondary'/>;
+                    h4 {
+                        color: <t t-esc='secondary'/>;
+                    }
+                    .pagenumber {
+                        border: 3px solid <t t-esc='primary'/>;
+                        background-color: <t t-esc='secondary'/>;
+                    }
+                }
+                &amp;.o_report_layout_clean {
+                    h1, h2, h3 {
+                        color: <t t-esc='primary'/>;
+                    }
+                    strong {
+                        color: <t t-esc='secondary'/>;
+                    }
+                    table {
+                       thead {
+                           color: <t t-esc='secondary'/>;
+                           tr th {
+                                border-top: 3px solid <t t-esc='secondary'/> !important;
+                            }
+                        }
+                        tbody {
+                            tr:last-child td {
+                                border-bottom: 3px solid <t t-esc='secondary'/>;
+                            }
+                        }
+                    }
+                    #total {
+                        strong {
+                            color: <t t-esc='secondary'/>;
+                        }
+                    }
+                }
+            </t>
+            <t t-elif="layout == 'web.external_layout_eagle'" >
+                &amp;.o_eagle_footer {
+                    border-top: 3px solid <t t-esc='secondary'/>;
+                    h4 {
+                        color: <t t-esc='secondary'/>;
+                    }
+                    .pagenumber {
+                        border: 3px solid <t t-esc='primary'/>;
+                        background-color: <t t-esc='secondary'/>;
+                    }
+                }
+                &amp;.o_report_layout_eagle {
+                    h1, h2, h3 {
+                        color: <t t-esc='primary'/>;
+                    }
+                    strong {
+                        color: <t t-esc='secondary'/>;
+                    }
+                    table {
+                       thead {
+                           color: <t t-esc='secondary'/>;
+                           tr th {
+                                border-top: 3px solid <t t-esc='secondary'/> !important;
+                            }
+                        }
+                        tbody {
+                            tr:last-child td {
+                                border-bottom: 3px solid <t t-esc='secondary'/>;
+                            }
+                        }
+                    }
+                    #total {
+                        strong {
+                            color: <t t-esc='secondary'/>;
+                        }
+                    }
+                }
+            </t>
+            <t t-elif="layout == 'web.external_layout_standard'">
+                &amp;.o_report_layout_standard {
+                    h2 {
+                        color: <t t-esc='primary'/>;
+                    }
+                    #informations strong {
+                        color: <t t-esc='secondary'/>;
+                    }
+                    #total strong{
+                        color: <t t-esc='primary'/>;
+                    }
+                    table {
+                        thead {
+                            color: <t t-esc='secondary'/>;
+                        }
+                    }
+                }
+            </t>
+            }
+        </t>
+    </template>
+    </data>
 </odoo>

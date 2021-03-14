@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="report_layout_eagle" model="report.layout">
+            <field name="name">Eagle</field>
+            <field name="sequence">5</field>
+            <field name="view_id" ref="eagle_shop.external_layout_eagle"/>
+            <field name="image">/eagle_shop/static/img/preview_eagle.png</field>
+            <field name="pdf">/eagle_shop/static/pdf/preview_eagle.pdf</field>
+        </record>
+
+    </data>
+</odoo>
